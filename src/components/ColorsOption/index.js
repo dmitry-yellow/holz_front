@@ -81,7 +81,7 @@ const ColorsOption = (props) => {
                                   <div className='ColorsOption-moreInfo-tooltip-box-desc'
                                        dangerouslySetInnerHTML={{__html: dataTooltip?.germanDescription}}
                                   />
-                                  <p className="ColorsOption-moreInfo-tooltip-box-gotIt">OK ich habe es!</p>
+                                  <p className="ColorsOption-moreInfo-tooltip-box-gotIt">OK</p>
                               </div>
                           }
 

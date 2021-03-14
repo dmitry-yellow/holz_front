@@ -154,20 +154,22 @@ const HotTubCanvasFourthView = (props) => {
     const imageMassageFunctionSrc = useMemo(() => {
         const massageFunctionData = customizeData?.massageFunction;
 
-        let insideSrc, imageSrc;
+        let insideSrc, imageSrc, massagePosition;
 
         if (!isCustomizeOptionsWater) {
             insideSrc = 'base';
             imageSrc = 'imageLarge4';
+            massagePosition = 'position';
         } else {
             insideSrc = 'waterPictures';
             imageSrc = 'image4';
+            massagePosition = 'waterPosition'
         }
 
         const imageLarge = massageFunctionData?.[`${selectedMassageFunctionId}`][insideSrc][imageSrc];
         const width = massageFunctionData?.[`${selectedMassageFunctionId}`][insideSrc].width3;
         const height = massageFunctionData?.[`${selectedMassageFunctionId}`][insideSrc].height3;
-        const position = massageFunctionData?.[`${selectedMassageFunctionId}`].position;
+        const position = massageFunctionData?.[`${selectedMassageFunctionId}`]?.[massagePosition];
 
 
         if (massageFunctionData && selectedMassageFunctionId && imageLarge && position && height && width) {

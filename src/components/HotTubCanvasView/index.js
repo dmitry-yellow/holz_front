@@ -156,20 +156,22 @@ const HotTubCanvasView = (props) => {
     const imageMassageFunctionSrc = useMemo(() => {
         const massageFunctionData = customizeData?.massageFunction;
 
-        let insideSrc, imageSrc;
+        let insideSrc, imageSrc, massagePosition;
 
         if (!isCustomizeOptionsWater) {
             insideSrc = 'base';
             imageSrc = 'imageLarge1';
+            massagePosition = 'position';
         } else {
             insideSrc = 'waterPictures';
             imageSrc = 'image1';
+            massagePosition = 'waterPosition'
         }
 
         const imageLarge = massageFunctionData?.[`${selectedMassageFunctionId}`][insideSrc][imageSrc];
         const width = massageFunctionData?.[`${selectedMassageFunctionId}`][insideSrc].width;
         const height = massageFunctionData?.[`${selectedMassageFunctionId}`][insideSrc].height;
-        const position = massageFunctionData?.[`${selectedMassageFunctionId}`].position;
+        const position = massageFunctionData?.[`${selectedMassageFunctionId}`]?.[massagePosition];
 
 
         if (massageFunctionData && selectedMassageFunctionId && imageLarge && position && height && width) {
