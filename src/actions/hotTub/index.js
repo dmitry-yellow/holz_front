@@ -27,39 +27,37 @@ export const ActionTypes = {
 }
 
 
-
-
 export const getCalcData = () => async (dispatch, getState) => {
-  try {
-    dispatch({ type: ActionTypes.GET_DATA });
-    const response = await hotTubAPI.getCalcData();
-    await dispatch(getRootData());
-    if (response?.data && response?.status === 200) {
-      await dispatch({
-        type: ActionTypes.GET_DATA_SUCCESS,
-        data: response.data
-      })
+    try {
+        dispatch({type: ActionTypes.GET_DATA});
+        const response = await hotTubAPI.getCalcData();
+        await dispatch(getRootData());
+        if (response?.data && response?.status === 200) {
+            await dispatch({
+                type: ActionTypes.GET_DATA_SUCCESS,
+                data: response.data
+            })
+        }
+    } catch (error) {
+        console.log(error)
+        dispatch({type: ActionTypes.GET_DATA_FAILURE})
     }
-  } catch (error) {
-    console.log(error)
-    dispatch({ type: ActionTypes.GET_DATA_FAILURE })
-  }
 };
 
 const getRootData = () => async (dispatch) => {
-  try {
-    dispatch({ type: ActionTypes.GET_ROOT_DATA });
-    const response = await hotTubAPI.getRootData();
-    if (response?.data && response?.status === 200) {
-      await dispatch({
-        type: ActionTypes.GET_ROOT_DATA_SUCCESS,
-        rootData: response.data
-      })
+    try {
+        dispatch({type: ActionTypes.GET_ROOT_DATA});
+        const response = await hotTubAPI.getRootData();
+        if (response?.data && response?.status === 200) {
+            await dispatch({
+                type: ActionTypes.GET_ROOT_DATA_SUCCESS,
+                rootData: response.data
+            })
+        }
+    } catch (error) {
+        console.log(error)
+        dispatch({type: ActionTypes.GET_ROOT_DATA_FAILURE})
     }
-  } catch (error) {
-    console.log(error)
-    dispatch({ type: ActionTypes.GET_ROOT_DATA_FAILURE })
-  }
 };
 
 const getAllSelectedIds = (getState) => {
@@ -88,31 +86,8 @@ const getAllSelectedIds = (getState) => {
     }
 }
 
-const generateImages = () => {
-    let canvases = document.getElementsByTagName('canvas');
-    let combined = document.getElementById("CursorLayer");
-    if (!combined) {
-        combined = document.createElement('canvas');
-        combined.id = "CursorLayer";
-        combined.width = canvases[0].width;
-        combined.height =  canvases[0].height;
-        combined.style.display = 'none';
-        combined.style.position = "absolute";
-        var body = document.getElementsByTagName("body")[0];
-        body.appendChild(combined);
-    }
 
-    let ctx = combined.getContext("2d");
-
-    for (let i = 1; i < canvases.length; i++) {
-        ctx.drawImage(canvases[i], 0, 0); //Copying Canvas1
-    }
-
-    let image = combined.toDataURL("image/png");
-        console.log(image);
-}
-
-export const generatePdfLink = () => async (dispatch, getState) => {
+export const generatePdfLink = (images) => async (dispatch, getState) => {
     try {
         dispatch({type: ActionTypes.GENERATE_PGF});
         const selectedIds = await getAllSelectedIds(getState);
@@ -120,7 +95,7 @@ export const generatePdfLink = () => async (dispatch, getState) => {
             return {id: id, amount: 1}
         })
 
-        generateImages();
+        data.images = images;
 
         if (data && selectedIds?.length >= 1) {
             const response = await hotTubAPI.generatePdfLink(data);
@@ -128,6 +103,7 @@ export const generatePdfLink = () => async (dispatch, getState) => {
                 await dispatch({
                     type: ActionTypes.GENERATE_PGF_SUCCESS,
                     pdfFile: response.data.file
+
                 })
                 window.open(`${process.env.REACT_APP_HOST_API_URL}${response.data.file}`, '_blank');
             }
@@ -139,77 +115,79 @@ export const generatePdfLink = () => async (dispatch, getState) => {
 };
 
 export const setSelectedSizeId = (sizeId) => (dispatch) => {
-  dispatch({ type: ActionTypes.SET_SELECTED_SIZE_ID, selectedSizeId: sizeId })
+    dispatch({type: ActionTypes.SET_SELECTED_SIZE_ID, selectedSizeId: sizeId})
 }
 
 export const setSelectedWoodId = (woodId) => (dispatch, getState) => {
-  dispatch({ type: ActionTypes.SET_SELECTED_WOOD_ID, selectedWoodId: woodId })
+    dispatch({type: ActionTypes.SET_SELECTED_WOOD_ID, selectedWoodId: woodId})
 }
 
 export const setSelectedSpruceColorId = (spruceColorId) => (dispatch) => {
-  dispatch({ type: ActionTypes.SET_SELECTED_SPRUCE_COLOR_ID, selectedSpruceColorId: spruceColorId })
+    dispatch({type: ActionTypes.SET_SELECTED_SPRUCE_COLOR_ID, selectedSpruceColorId: spruceColorId})
 }
 
 export const setSelectedInsideColorId = (insideColorId) => (dispatch) => {
-  dispatch({ type: ActionTypes.SET_SELECTED_INSIDE_COLOR_ID, selectedInsideColorId: insideColorId })
+    dispatch({type: ActionTypes.SET_SELECTED_INSIDE_COLOR_ID, selectedInsideColorId: insideColorId})
 }
 
 export const setSelectedCoverId = (coverId) => (dispatch) => {
-  dispatch({ type: ActionTypes.SET_SELECTED_COVER_ID, selectedCoverId: coverId })
+    dispatch({type: ActionTypes.SET_SELECTED_COVER_ID, selectedCoverId: coverId})
 }
 
 export const setSelectedMassageFunctionId = (massageFunctionId) => (dispatch) => {
-  dispatch({ type: ActionTypes.SET_SELECTED_MASSAGE_FUNCTION_ID, selectedMassageFunctionId: massageFunctionId })
+    dispatch({type: ActionTypes.SET_SELECTED_MASSAGE_FUNCTION_ID, selectedMassageFunctionId: massageFunctionId})
 }
 
 export const setSelectedLedId = (ledId) => (dispatch) => {
-  dispatch({ type: ActionTypes.SET_SELECTED_LED_ID, selectedLedId: ledId })
+    dispatch({type: ActionTypes.SET_SELECTED_LED_ID, selectedLedId: ledId})
 }
 
 export const setSelectedHeatingOvenId = (heatingOvenId) => (dispatch) => {
-  dispatch({ type: ActionTypes.SET_SELECTED_HEATING_OVEN_ID, selectedHeatingOvenId: heatingOvenId })
+    dispatch({type: ActionTypes.SET_SELECTED_HEATING_OVEN_ID, selectedHeatingOvenId: heatingOvenId})
 }
 
 export const setSelectedAdditionalAccessoriesId = (additionalAccessoriesId) => async (dispatch, getState) => {
-  const oldSelectedIds = getState().hotTub.selectedAdditionalAccessoriesIds;
-  const noPriceId = +Object.keys(getState().hotTub.data.additionalAccessories)[0];
+    const oldSelectedIds = getState().hotTub.selectedAdditionalAccessoriesIds;
+    const noPriceId = +Object.keys(getState().hotTub.data.additionalAccessories)[0];
 
-  let newSelectedIds = [...oldSelectedIds];
-  if (additionalAccessoriesId === noPriceId) {
-    newSelectedIds = [additionalAccessoriesId];
-  }
-  else if (oldSelectedIds.includes(additionalAccessoriesId)) {
+    let newSelectedIds = [...oldSelectedIds];
+    if (additionalAccessoriesId === noPriceId) {
+        newSelectedIds = [additionalAccessoriesId];
+    } else if (oldSelectedIds.includes(additionalAccessoriesId)) {
 
-    if(oldSelectedIds.length <= 1){
-      newSelectedIds = [noPriceId];
+        if (oldSelectedIds.length <= 1) {
+            newSelectedIds = [noPriceId];
+        } else {
+            newSelectedIds = oldSelectedIds.filter((id) => id !== additionalAccessoriesId);
+        }
+
     } else {
-      newSelectedIds = oldSelectedIds.filter((id) => id !== additionalAccessoriesId);
+
+        if (oldSelectedIds.includes(noPriceId)) {
+            newSelectedIds = newSelectedIds.filter(id => id !== noPriceId)
+        }
+
+        newSelectedIds.push(additionalAccessoriesId);
     }
-
-  } else {
-
-    if(oldSelectedIds.includes(noPriceId)){
-      newSelectedIds = newSelectedIds.filter(id => id !== noPriceId)
-    }
-
-    newSelectedIds.push(additionalAccessoriesId);
-  }
-  await dispatch ({ type: ActionTypes.SET_SELECTED_ADDITIONAL_ACCESSORIES_ID, selectedAdditionalAccessoriesIds: newSelectedIds })
+    await dispatch({
+        type: ActionTypes.SET_SELECTED_ADDITIONAL_ACCESSORIES_ID,
+        selectedAdditionalAccessoriesIds: newSelectedIds
+    })
 }
 
 export const setSelectedTubeExtensionId = (tubeExtensionId) => (dispatch, getState) => {
-  const currentTubeId = getState().hotTub.selectedTubeExtensionId === tubeExtensionId ? null : tubeExtensionId
-  dispatch({ type: ActionTypes.SET_SELECTED_TUBE_EXTENSION_ID, selectedTubeExtensionId: currentTubeId })
+    const currentTubeId = getState().hotTub.selectedTubeExtensionId === tubeExtensionId ? null : tubeExtensionId
+    dispatch({type: ActionTypes.SET_SELECTED_TUBE_EXTENSION_ID, selectedTubeExtensionId: currentTubeId})
 }
 
 export const setSelectedDeliveryId = (deliveryId) => (dispatch) => {
-  dispatch({ type: ActionTypes.SET_SELECTED_DELIVERY_ID, selectedDeliveryId: deliveryId })
+    dispatch({type: ActionTypes.SET_SELECTED_DELIVERY_ID, selectedDeliveryId: deliveryId})
 }
 
 export const setSelectedWarmingId = (warmingId) => (dispatch) => {
-  dispatch({ type: ActionTypes.SET_SELECTED_WARMING_ID, selectedWarmingId: warmingId })
+    dispatch({type: ActionTypes.SET_SELECTED_WARMING_ID, selectedWarmingId: warmingId})
 }
 
 export const setSelectedMetalStrapsId = (metalStrapsId) => (dispatch) => {
-  dispatch({ type: ActionTypes.SET_SELECTED_METAL_STRAPS_ID, selectedMetalStrapsId: metalStrapsId })
+    dispatch({type: ActionTypes.SET_SELECTED_METAL_STRAPS_ID, selectedMetalStrapsId: metalStrapsId})
 }

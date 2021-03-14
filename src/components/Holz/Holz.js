@@ -166,6 +166,7 @@ const Holz = () => {
                            selectedAdditionalAccessoriesIds={ selectedAdditionalAccessoriesIds }
                            selectedTubeExtensionId={ selectedTubeExtensionId }
                            selectedDeliveryId={ selectedDeliveryId }
+                           setHotTubPositionView={ setHotTubPositionView }
           />
           <HotTubControls
               isCustomizeOptionsOpen={ isCustomizeOptionsOpen }

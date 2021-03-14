@@ -1,92 +1,130 @@
-import { useMemo } from 'react';
+import {useMemo} from 'react';
 import './style.css';
 import * as accounting from "accounting-js";
-import { useDispatch, useSelector } from "react-redux";
-import { generatePdfLink } from "../../actions/hotTub";
+import {useDispatch, useSelector} from "react-redux";
+import {generatePdfLink} from "../../actions/hotTub";
 
 
 const TotalAmountCard = (props) => {
 
-  const {
-    customizeData,
-    selectedSizeId,
-    selectedAdditionalAccessoriesIds,
-    selectedCoverId,
-    selectedDeliveryId,
-    selectedHeatingOvenId,
-    selectedInsideColorId,
-    selectedLedId,
-    selectedMassageFunctionId,
-    selectedMetalStrapsId,
-    selectedSpruceColorId,
-    selectedTubeExtensionId,
-    selectedWarmingId,
-    selectedWoodId
-  } = props;
+    const {
+        customizeData,
+        selectedSizeId,
+        selectedAdditionalAccessoriesIds,
+        selectedCoverId,
+        selectedDeliveryId,
+        selectedHeatingOvenId,
+        selectedInsideColorId,
+        selectedLedId,
+        selectedMassageFunctionId,
+        selectedMetalStrapsId,
+        selectedSpruceColorId,
+        selectedTubeExtensionId,
+        selectedWarmingId,
+        selectedWoodId,
+        setHotTubPositionView
+    } = props;
 
-  const dispatch = useDispatch();
-  const isLoadingPgfGenerator = useSelector(state => state.hotTub.isLoadingPgfGenerator);
+    const dispatch = useDispatch();
+    const isLoadingPgfGenerator = useSelector(state => state.hotTub.isLoadingPgfGenerator);
 
-  const totalPrice = useMemo(() => {
-    let allSelectedIds = [];
-    let selectedIds = [
-      selectedSizeId,
-      selectedCoverId,
-      selectedDeliveryId,
-      selectedHeatingOvenId,
-      selectedInsideColorId,
-      selectedLedId,
-      selectedMassageFunctionId,
-      selectedMetalStrapsId,
-      selectedSpruceColorId,
-      selectedTubeExtensionId,
-      selectedWarmingId,
-      selectedWoodId
-    ];
+    const generateImage = () => {
+        let canvases = document.getElementsByTagName('canvas');
+        let combined = document.getElementById("CursorLayer");
+        if (!combined) {
+            combined = document.createElement('canvas');
+            combined.id = "CursorLayer";
+            combined.width = canvases[0].width;
+            combined.height = canvases[0].height;
+            combined.style.display = 'none';
+            combined.crossOrigin = "anonymous";
+            combined.style.position = "absolute";
+            var body = document.getElementsByTagName("body")[0];
+            body.appendChild(combined);
+        }
 
-    if (selectedAdditionalAccessoriesIds?.length >= 1) {
-      allSelectedIds = selectedIds.concat(selectedAdditionalAccessoriesIds);
-    } else {
-      allSelectedIds = selectedIds;
+        let ctx = combined.getContext("2d");
+
+        for (let i = 1; i < canvases.length; i++) {
+            ctx.drawImage(canvases[i], 0, 0); //Copying Canvas1
+        }
+
+        return combined.toDataURL("image/png");
     }
 
-    if (allSelectedIds?.length >= 1 && customizeData) {
-      let totalPrice = 0;
-      allSelectedIds.forEach((id) => {
-        Object.values(customizeData).forEach((dataItem) => {
-          if(Object.keys(dataItem)?.length >= 1){
-            let currentId = Object.keys(dataItem).filter(itemId => +itemId === +id ? String(id) : '');
-            let value = currentId?.length >= 1 && dataItem?.[`${ currentId }`].base.price.realValue;
-            if(value){
-              totalPrice = totalPrice + accounting.unformat(`€ ${value}`)
-            }
-          }
-        })
-      })
-      return accounting.formatNumber(totalPrice);
-    }
+    let callGenerate = () => {
 
-  }, [
-      selectedAdditionalAccessoriesIds, customizeData, selectedSizeId,
-    selectedCoverId, selectedDeliveryId, selectedHeatingOvenId,
-    selectedInsideColorId, selectedLedId, selectedMassageFunctionId,
-    selectedMetalStrapsId, selectedSpruceColorId, selectedTubeExtensionId, selectedWarmingId,
-    selectedWoodId
-  ])
+        let images = [];
+        ['positionOne', 'positionTwo', 'positionThree', 'positionFor'].forEach((value) => {
+            setHotTubPositionView(value);
+            images.push(generateImage())
+        });
 
-  return (
-      <div className="TotalAmountCard">
-        <div className="TotalAmountCard-title">
-          <p className="TotalAmountCard-title-amount">Gesamtsumme</p>
-          <p className="TotalAmountCard-title-price">{totalPrice && `€ ${totalPrice}`}</p>
+        setHotTubPositionView('positionOne');
+
+        dispatch(generatePdfLink(images));
+    };
+
+    const totalPrice = useMemo(() => {
+        let allSelectedIds = [];
+        let selectedIds = [
+            selectedSizeId,
+            selectedCoverId,
+            selectedDeliveryId,
+            selectedHeatingOvenId,
+            selectedInsideColorId,
+            selectedLedId,
+            selectedMassageFunctionId,
+            selectedMetalStrapsId,
+            selectedSpruceColorId,
+            selectedTubeExtensionId,
+            selectedWarmingId,
+            selectedWoodId
+        ];
+
+        if (selectedAdditionalAccessoriesIds?.length >= 1) {
+            allSelectedIds = selectedIds.concat(selectedAdditionalAccessoriesIds);
+        } else {
+            allSelectedIds = selectedIds;
+        }
+
+        if (allSelectedIds?.length >= 1 && customizeData) {
+            let totalPrice = 0;
+            allSelectedIds.forEach((id) => {
+                Object.values(customizeData).forEach((dataItem) => {
+                    if (Object.keys(dataItem)?.length >= 1) {
+                        let currentId = Object.keys(dataItem).filter(itemId => +itemId === +id ? String(id) : '');
+                        let value = currentId?.length >= 1 && dataItem?.[`${currentId}`].base.price.realValue;
+                        if (value) {
+                            totalPrice = totalPrice + accounting.unformat(`€ ${value}`)
+                        }
+                    }
+                })
+            })
+            return accounting.formatNumber(totalPrice);
+        }
+
+    }, [
+        selectedAdditionalAccessoriesIds, customizeData, selectedSizeId,
+        selectedCoverId, selectedDeliveryId, selectedHeatingOvenId,
+        selectedInsideColorId, selectedLedId, selectedMassageFunctionId,
+        selectedMetalStrapsId, selectedSpruceColorId, selectedTubeExtensionId, selectedWarmingId,
+        selectedWoodId
+    ])
+
+    return (
+        <div className="TotalAmountCard">
+            <div className="TotalAmountCard-title">
+                <p className="TotalAmountCard-title-amount">Gesamtsumme</p>
+                <p className="TotalAmountCard-title-price">{totalPrice && `€ ${totalPrice}`}</p>
+            </div>
+            <p>Versandbereit in 2-3 Wochen</p>
+            <button>in den Warenkorb</button>
+            <p className='TotalAmountCard-pdfTextDownload'
+               onClick={() => callGenerate()}
+            >{isLoadingPgfGenerator ? 'Wird geladen ...' : 'Konfiguration als PDF herunterladen'}</p>
         </div>
-        <p>Versandbereit in 2-3 Wochen</p>
-        <button>in den Warenkorb</button>
-        <p className='TotalAmountCard-pdfTextDownload'
-           onClick={() => dispatch(generatePdfLink())}
-        >{isLoadingPgfGenerator ? 'Wird geladen ...' : 'Konfiguration als PDF herunterladen' }</p>
-      </div>
-  )
+    )
 }
 
 export default TotalAmountCard;
