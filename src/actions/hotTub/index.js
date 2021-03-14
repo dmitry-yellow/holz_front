@@ -1,30 +1,29 @@
-import { hotTubAPI } from "../../api";
-
+import {hotTubAPI} from "../../api";
 
 
 export const ActionTypes = {
-  GET_DATA: "HOT_TUB/GET_DATA",
-  GET_DATA_SUCCESS: "HOT_TUB/GET_DATA_SUCCESS",
-  GET_DATA_FAILURE: "HOT_TUB/GET_DATA_FAILURE",
-  GET_ROOT_DATA: "HOT_TUB/GET_ROOT_DATA",
-  GET_ROOT_DATA_SUCCESS: "HOT_TUB/GET_ROOT_DATA_SUCCESS",
-  GET_ROOT_DATA_FAILURE: "HOT_TUB/GET_ROOT_DATA_FAILURE",
-  SET_SELECTED_SIZE_ID: "HOT_TUB/SET_SELECTED_SIZE_ID",
-  SET_SELECTED_WOOD_ID: "HOT_TUB/SET_SELECTED_WOOD_ID",
-  SET_SELECTED_SPRUCE_COLOR_ID: "HOT_TUB/SET_SELECTED_SPRUCE_COLOR_ID",
-  SET_SELECTED_INSIDE_COLOR_ID: "HOT_TUB/SET_SELECTED_INSIDE_COLOR_ID",
-  SET_SELECTED_COVER_ID: "HOT_TUB/SET_SELECTED_COVER_ID",
-  SET_SELECTED_METAL_STRAPS_ID: "HOT_TUB/SET_SELECTED_METAL_STRAPS_ID",
-  SET_SELECTED_MASSAGE_FUNCTION_ID: "HOT_TUB/SET_SELECTED_MASSAGE_FUNCTION_ID",
-  SET_SELECTED_LED_ID: "HOT_TUB/SET_SELECTED_LED_ID",
-  SET_SELECTED_HEATING_OVEN_ID: "HOT_TUB/SET_SELECTED_HEATING_OVEN_ID",
-  SET_SELECTED_ADDITIONAL_ACCESSORIES_ID: "HOT_TUB/SET_SELECTED_ADDITIONAL_ACCESSORIES_ID",
-  SET_SELECTED_TUBE_EXTENSION_ID: "HOT_TUB/SET_SELECTED_TUBE_EXTENSION_ID",
-  SET_SELECTED_DELIVERY_ID: "HOT_TUB/SET_SELECTED_DELIVERY_ID",
-  SET_SELECTED_WARMING_ID: "HOT_TUB/SET_SELECTED_WARMING_ID",
-  GENERATE_PGF: "HOT_TUB/GENERATE_PGF",
-  GENERATE_PGF_SUCCESS: "HOT_TUB/GENERATE_PGF_SUCCESS",
-  GENERATE_PGF_FAILURE: "HOT_TUB/GENERATE_PGF_FAILURE"
+    GET_DATA: "HOT_TUB/GET_DATA",
+    GET_DATA_SUCCESS: "HOT_TUB/GET_DATA_SUCCESS",
+    GET_DATA_FAILURE: "HOT_TUB/GET_DATA_FAILURE",
+    GET_ROOT_DATA: "HOT_TUB/GET_ROOT_DATA",
+    GET_ROOT_DATA_SUCCESS: "HOT_TUB/GET_ROOT_DATA_SUCCESS",
+    GET_ROOT_DATA_FAILURE: "HOT_TUB/GET_ROOT_DATA_FAILURE",
+    SET_SELECTED_SIZE_ID: "HOT_TUB/SET_SELECTED_SIZE_ID",
+    SET_SELECTED_WOOD_ID: "HOT_TUB/SET_SELECTED_WOOD_ID",
+    SET_SELECTED_SPRUCE_COLOR_ID: "HOT_TUB/SET_SELECTED_SPRUCE_COLOR_ID",
+    SET_SELECTED_INSIDE_COLOR_ID: "HOT_TUB/SET_SELECTED_INSIDE_COLOR_ID",
+    SET_SELECTED_COVER_ID: "HOT_TUB/SET_SELECTED_COVER_ID",
+    SET_SELECTED_METAL_STRAPS_ID: "HOT_TUB/SET_SELECTED_METAL_STRAPS_ID",
+    SET_SELECTED_MASSAGE_FUNCTION_ID: "HOT_TUB/SET_SELECTED_MASSAGE_FUNCTION_ID",
+    SET_SELECTED_LED_ID: "HOT_TUB/SET_SELECTED_LED_ID",
+    SET_SELECTED_HEATING_OVEN_ID: "HOT_TUB/SET_SELECTED_HEATING_OVEN_ID",
+    SET_SELECTED_ADDITIONAL_ACCESSORIES_ID: "HOT_TUB/SET_SELECTED_ADDITIONAL_ACCESSORIES_ID",
+    SET_SELECTED_TUBE_EXTENSION_ID: "HOT_TUB/SET_SELECTED_TUBE_EXTENSION_ID",
+    SET_SELECTED_DELIVERY_ID: "HOT_TUB/SET_SELECTED_DELIVERY_ID",
+    SET_SELECTED_WARMING_ID: "HOT_TUB/SET_SELECTED_WARMING_ID",
+    GENERATE_PGF: "HOT_TUB/GENERATE_PGF",
+    GENERATE_PGF_SUCCESS: "HOT_TUB/GENERATE_PGF_SUCCESS",
+    GENERATE_PGF_FAILURE: "HOT_TUB/GENERATE_PGF_FAILURE"
 }
 
 
@@ -63,54 +62,80 @@ const getRootData = () => async (dispatch) => {
   }
 };
 
-const getAllSelectedIds = (getState) =>{
-  let allSelectedIds = [];
-  let selectedIds = [
-    getState().hotTub.selectedSizeId,
-    getState().hotTub.selectedCoverId,
-    getState().hotTub.selectedDeliveryId,
-    getState().hotTub.selectedHeatingOvenId,
-    getState().hotTub.selectedInsideColorId,
-    getState().hotTub.selectedLedId,
-    getState().hotTub.selectedMassageFunctionId,
-    getState().hotTub.selectedMetalStrapsId,
-    getState().hotTub.selectedSpruceColorId,
-    getState().hotTub.selectedTubeExtensionId,
-    getState().hotTub.selectedWarmingId,
-    getState().hotTub.selectedWoodId
-  ];
+const getAllSelectedIds = (getState) => {
+    let allSelectedIds = [];
+    let selectedIds = [
+        getState().hotTub.selectedSizeId,
+        getState().hotTub.selectedCoverId,
+        getState().hotTub.selectedDeliveryId,
+        getState().hotTub.selectedHeatingOvenId,
+        getState().hotTub.selectedInsideColorId,
+        getState().hotTub.selectedLedId,
+        getState().hotTub.selectedMassageFunctionId,
+        getState().hotTub.selectedMetalStrapsId,
+        getState().hotTub.selectedSpruceColorId,
+        getState().hotTub.selectedTubeExtensionId,
+        getState().hotTub.selectedWarmingId,
+        getState().hotTub.selectedWoodId
+    ];
 
-  if (getState().hotTub.selectedAdditionalAccessoriesIds?.length >= 1) {
-    allSelectedIds = selectedIds.concat(getState().hotTub.selectedAdditionalAccessoriesIds);
-    return allSelectedIds;
-  } else {
-    allSelectedIds = selectedIds;
-    return allSelectedIds;
-  }
+    if (getState().hotTub.selectedAdditionalAccessoriesIds?.length >= 1) {
+        allSelectedIds = selectedIds.concat(getState().hotTub.selectedAdditionalAccessoriesIds);
+        return allSelectedIds;
+    } else {
+        allSelectedIds = selectedIds;
+        return allSelectedIds;
+    }
+}
+
+const generateImages = () => {
+    let canvases = document.getElementsByTagName('canvas');
+    let combined = document.getElementById("CursorLayer");
+    if (!combined) {
+        combined = document.createElement('canvas');
+        combined.id = "CursorLayer";
+        combined.width = canvases[0].width;
+        combined.height =  canvases[0].height;
+        combined.style.display = 'none';
+        combined.style.position = "absolute";
+        var body = document.getElementsByTagName("body")[0];
+        body.appendChild(combined);
+    }
+
+    let ctx = combined.getContext("2d");
+
+    for (let i = 1; i < canvases.length; i++) {
+        ctx.drawImage(canvases[i], 0, 0); //Copying Canvas1
+    }
+
+    let image = combined.toDataURL("image/png");
+        console.log(image);
 }
 
 export const generatePdfLink = () => async (dispatch, getState) => {
-  try {
-    dispatch({ type: ActionTypes.GENERATE_PGF });
-    const selectedIds = await getAllSelectedIds(getState);
-    const data = await selectedIds.map(id => {
-          return {id: id, amount: 1}
-    })
-
-    if(data && selectedIds?.length >=1 ){
-      const response = await hotTubAPI.generatePdfLink(data);
-      if (response?.data && response?.status === 200) {
-        await dispatch({
-          type: ActionTypes.GENERATE_PGF_SUCCESS,
-          pdfFile: response.data.file
+    try {
+        dispatch({type: ActionTypes.GENERATE_PGF});
+        const selectedIds = await getAllSelectedIds(getState);
+        const data = await selectedIds.map(id => {
+            return {id: id, amount: 1}
         })
-        window.open(`${process.env.REACT_APP_HOST_API_URL}${response.data.file}`, '_blank');
-      }
+
+        generateImages();
+
+        if (data && selectedIds?.length >= 1) {
+            const response = await hotTubAPI.generatePdfLink(data);
+            if (response?.data && response?.status === 200) {
+                await dispatch({
+                    type: ActionTypes.GENERATE_PGF_SUCCESS,
+                    pdfFile: response.data.file
+                })
+                window.open(`${process.env.REACT_APP_HOST_API_URL}${response.data.file}`, '_blank');
+            }
+        }
+    } catch (error) {
+        console.log(error)
+        dispatch({type: ActionTypes.GENERATE_PGF_FAILURE})
     }
-  } catch (error) {
-    console.log(error)
-    dispatch({ type: ActionTypes.GENERATE_PGF_FAILURE })
-  }
 };
 
 export const setSelectedSizeId = (sizeId) => (dispatch) => {
