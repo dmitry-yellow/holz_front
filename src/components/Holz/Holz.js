@@ -67,6 +67,7 @@ const Holz = () => {
                                                                     rootData={ rootData }
                                                                     selectedSizeId={ selectedSizeId }
                                                                     selectedInsideColorId={ selectedInsideColorId }
+                                                                    selectedLedId={ selectedLedId }
                                                                     selectedMetalStrapsId={ selectedMetalStrapsId }
                                                                     selectedHeatingOvenId={ selectedHeatingOvenId }
                                                                     selectedAdditionalAccessoriesIds={ selectedAdditionalAccessoriesIds }
@@ -114,6 +115,7 @@ const Holz = () => {
                                                                            selectedTubeExtensionId={ selectedTubeExtensionId }
                                                                            selectedCoverId={ selectedCoverId }
                                                                            selectedMassageFunctionId={selectedMassageFunctionId}
+                                                                           selectedLedId={ selectedLedId }
                                                                            isCustomizeOptionsOpen={ isCustomizeOptionsOpen }
                                                                            isCustomizeOptionsWater={ isCustomizeOptionsWater }
                                                                            coverOptionOpacity={ coverOptionOpacity }
@@ -134,6 +136,7 @@ const Holz = () => {
                                                                            selectedTubeExtensionId={ selectedTubeExtensionId }
                                                                            selectedCoverId={ selectedCoverId }
                                                                            selectedMassageFunctionId={selectedMassageFunctionId}
+                                                                           selectedLedId={ selectedLedId }
                                                                            isCustomizeOptionsWater={ isCustomizeOptionsWater }
                                                                            isCustomizeOptionsOpen={ isCustomizeOptionsOpen }
                                                                            coverOptionOpacity={ coverOptionOpacity }

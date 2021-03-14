@@ -1,5 +1,6 @@
 .ColorsOption {
   padding-bottom: 15px;
+
   &-moreInfo {
     position: relative;
     display: flex;
@@ -21,28 +22,41 @@
       color: #774D2E;
     }
 
-    &-tooltip{
+    &-tooltip {
+      z-index: 10000!important;
+      background-color: #FFFFFF!important;
+      box-shadow: 0px -4px 20px rgba(0, 0, 0, 0.1) !important;
+      opacity: 1!important;
 
-      &-box{
+      &-box {
         width: 340px;
         height: max-content;
 
-        &-title{
+        &-gotIt {
+          font-family: 'Lato_400';
+          font-size: 1rem;
+          line-height: 19px;
+          text-align: right;
+          color: #774D2E;
+          margin-bottom: 10px;
+        }
+
+        &-title {
           font-family: 'Lato_300';
           font-size: 2rem;
           color: #0E0E0E;
           margin-bottom: 20px;
         }
 
-        &-desc{
-          font-family: 'Lato_300';
-          font-size: 12px;
-          color: #444444;
+        &-desc {
           margin-bottom: 20px;
 
-          > b{
-            font-size: 1rem;
+          > p {
+            font-family: 'Lato_300';
+            font-size: 12px;
+            color: #444444;
           }
+
         }
       }
 

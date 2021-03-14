@@ -24,8 +24,10 @@ const HotTubCanvasFourthView = (props) => {
         selectedSpruceColorId,
         selectedTubeExtensionId,
         selectedCoverId,
-        isCustomizeOptionsOpen, isCustomizeOptionsWater,
+        isCustomizeOptionsOpen,
+        isCustomizeOptionsWater,
         selectedMassageFunctionId,
+        selectedLedId,
         coverOptionOpacity
     } = props;
 
@@ -121,12 +123,32 @@ const HotTubCanvasFourthView = (props) => {
 
     const imageInsideColorSrc = useMemo(() => {
         const insideColorData = customizeData?.insideColor;
-        const imageLarge = insideColorData?.[`${selectedInsideColorId}`].base.imageLarge4;
+        let insideSrc, imageSrc;
+        if (!isCustomizeOptionsWater) {
+            if(+selectedLedId !== 80517){
+                insideSrc = 'waterledoff';
+                imageSrc = 'image4';
+            } else {
+                insideSrc = 'base';
+                imageSrc = 'imageLarge4';
+            }
+
+        } else {
+            if(+selectedLedId !== 80517){
+                insideSrc = 'waterledon';
+                imageSrc = 'image4';
+            } else {
+                insideSrc = 'waterPictures';
+                imageSrc = 'image4';
+            }
+        }
+        const imageLarge = insideColorData?.[`${selectedInsideColorId}`][insideSrc][imageSrc];
+
 
         if (insideColorData && selectedInsideColorId && imageLarge) {
             return `${apiUrl}${imageLarge}`
         }
-    }, [customizeData, selectedInsideColorId, apiUrl]);
+    }, [customizeData, selectedInsideColorId, apiUrl, isCustomizeOptionsWater, selectedLedId]);
 
 
     const imageMassageFunctionSrc = useMemo(() => {
@@ -149,7 +171,6 @@ const HotTubCanvasFourthView = (props) => {
 
 
         if (massageFunctionData && selectedMassageFunctionId && imageLarge && position && height && width) {
-            console.log(imageLarge);
             return [`${apiUrl}${imageLarge}`, position, {width: width, height: height}];
         }
     }, [customizeData, selectedMassageFunctionId, apiUrl, isCustomizeOptionsWater]);
@@ -213,7 +234,6 @@ const HotTubCanvasFourthView = (props) => {
                    offsetX={-hotTubStageWidth / 2}
                    offsetY={-hotTubStageHeight / 2}
             >
-                {console.log(imageMassageFunctionSrc)}
                 <Layer ref={massageRef}
                        scaleX={calcHeight(1)}
                        scaleY={calcHeight(1)}

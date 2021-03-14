@@ -3,8 +3,11 @@ import Image from "../Image/Image";
 import {useMemo, useRef, useEffect, useState} from "react";
 import plusIcon from '../../assets/images/icon-svg.svg';
 import doneIcon from '../../assets/images/icon-done.svg';
-import imageBasicPositionThree
-    from '../../assets/images/hintergrund-180-metall-und-schatten-03_0000_180er-metal-und-schatten-03.png';
+import imageBasicPositionThree from '../../assets/images/hintergrund-180-metall-und-schatten-03_0000_180er-metal-und-schatten-03.png';
+import schalter_1 from '../../assets/images/schalter/Hottub-Studio_0002s_0004s_0003_Schalter-01.png';
+import schalter_2 from '../../assets/images/schalter/Hottub-Studio_0002s_0004s_0002_Schalter-02.png';
+import schalter_3 from '../../assets/images/schalter/Hottub-Studio_0002s_0004s_0001_Schalter-03.png';
+import schalter_4 from '../../assets/images/schalter/Hottub-Studio_0002s_0004s_0000_Schalter-04.png';
 import {useKunakovHeight} from "../customHooks/useKunakovHeight";
 
 
@@ -26,6 +29,7 @@ const HotTubCanvasThirdView = (props) => {
         selectedTubeExtensionId,
         selectedCoverId,
         selectedMassageFunctionId,
+        selectedLedId,
         isCustomizeOptionsOpen,
         coverOptionOpacity
     } = props;
@@ -127,11 +131,22 @@ const HotTubCanvasThirdView = (props) => {
         const insideColorData = customizeData?.insideColor;
         let insideSrc, imageSrc;
         if (!isCustomizeOptionsWater) {
-            insideSrc = 'base';
-            imageSrc = 'imageLarge3';
+            if(+selectedLedId !== 80517){
+                insideSrc = 'waterledoff';
+                imageSrc = 'image3';
+            } else {
+                insideSrc = 'base';
+                imageSrc = 'imageLarge3';
+            }
+
         } else {
-            insideSrc = 'waterPictures';
-            imageSrc = 'image3';
+            if(+selectedLedId !== 80517){
+                insideSrc = 'waterledon';
+                imageSrc = 'image3';
+            } else {
+                insideSrc = 'waterPictures';
+                imageSrc = 'image3';
+            }
         }
         const imageLarge = insideColorData?.[`${selectedInsideColorId}`][insideSrc][imageSrc];
 
@@ -139,7 +154,7 @@ const HotTubCanvasThirdView = (props) => {
         if (insideColorData && selectedInsideColorId && imageLarge) {
             return `${apiUrl}${imageLarge}`
         }
-    }, [customizeData, selectedInsideColorId, apiUrl, isCustomizeOptionsWater]);
+    }, [customizeData, selectedInsideColorId, apiUrl, isCustomizeOptionsWater, selectedLedId]);
 
 
 
@@ -163,7 +178,6 @@ const HotTubCanvasThirdView = (props) => {
 
 
         if (massageFunctionData && selectedMassageFunctionId && imageLarge && position && height && width) {
-            console.log(imageLarge);
             return [`${apiUrl}${imageLarge}`, position, {width: width, height: height}];
         }
     }, [customizeData, selectedMassageFunctionId, apiUrl, isCustomizeOptionsWater]);
@@ -248,6 +262,12 @@ const HotTubCanvasThirdView = (props) => {
 
     }, [isExteriorBcg, apiUrl, rootData])
 
+    const schalters = [
+        {image: schalter_1, width: 20, height: 20, x: -60, y: -18 },
+        {image: schalter_2, width: 20, height: 20, x: -36, y: -24 },
+        {image: schalter_3, width: 20, height: 20, x: -12, y: -30 },
+        {image: schalter_4, width: 20, height: 20, x: 9, y: -40 }
+    ];
 
     return (
         <div className='HotTubCanvasSecondView'>
@@ -270,11 +290,21 @@ const HotTubCanvasThirdView = (props) => {
                         //y={ -550 }
                         //width={ 900 }
                         //height={ 800 }
-
                                                        src={imageMassageFunctionSrc?.[0]}
                                                        opacity={selectedCoverId !== 80580 && coverOptionOpacity ? 0 : 1}
                     />
                     }
+                    <Group>
+                        {schalters?.length > 1 && schalters.map((schalter, index) => {
+                            return <Image x={schalter.x}
+                                          y={schalter.y}
+                                          width={schalter.width}
+                                          height={schalter.height}
+                                          src={schalter.image}
+                                          key={index}
+                            />
+                        })}
+                    </Group>
                 </Layer>
                 <Layer ref={iconsRef}
                        opacity={isCustomizeOptionsOpen ? 1 : 0}
