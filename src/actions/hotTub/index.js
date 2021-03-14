@@ -36,7 +36,6 @@ export const getCalcData = () => async (dispatch, getState) => {
     const response = await hotTubAPI.getCalcData();
     await dispatch(getRootData());
     if (response?.data && response?.status === 200) {
-      console.log(response.data)
       await dispatch({
         type: ActionTypes.GET_DATA_SUCCESS,
         data: response.data
@@ -53,7 +52,6 @@ const getRootData = () => async (dispatch) => {
     dispatch({ type: ActionTypes.GET_ROOT_DATA });
     const response = await hotTubAPI.getRootData();
     if (response?.data && response?.status === 200) {
-      console.log(response?.data)
       await dispatch({
         type: ActionTypes.GET_ROOT_DATA_SUCCESS,
         rootData: response.data

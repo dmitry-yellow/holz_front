@@ -8,6 +8,7 @@ import imageBasicPositionOne
     from '../../assets/images/hintergrund-180-metall-und-schatten_0000_180er-metal-und-schatten-01-копия.png';
 import './style.css';
 import {useKunakovHeight} from "../customHooks/useKunakovHeight";
+import {setSelectedLedId} from "../../actions/hotTub";
 
 
 const HotTubCanvasView = (props) => {
@@ -28,6 +29,7 @@ const HotTubCanvasView = (props) => {
         selectedSpruceColorId,
         selectedTubeExtensionId,
         selectedCoverId,
+        selectedLedId,
         isCustomizeOptionsOpen,
         coverOptionOpacity, selectedMassageFunctionId
     } = props;
@@ -36,7 +38,6 @@ const HotTubCanvasView = (props) => {
 
     const accessoriesRef = useRef(null);
     const iconsRef = useRef(null);
-    /*const canvasRef = useRef(null);*/
 
 
     const [woodText, setWoodText] = useState('');
@@ -56,9 +57,6 @@ const HotTubCanvasView = (props) => {
             accessoriesRef.current.zIndex(2);
         }
 
-        /*if(canvasRef.current){
-          console.log(canvasRef.current.toDataURL())
-        }*/
     }, [iconsRef, accessoriesRef]);
 
     const imageAdditionalAccessoriesSrc = useMemo(() => {
@@ -129,19 +127,30 @@ const HotTubCanvasView = (props) => {
         let insideSrc, imageSrc;
 
         if (!isCustomizeOptionsWater) {
-            insideSrc = 'base';
-            imageSrc = 'imageLarge1';
+            if(+selectedLedId !== 80517){
+                insideSrc = 'waterledoff';
+                imageSrc = 'image1';
+            } else {
+                insideSrc = 'base';
+                imageSrc = 'imageLarge1';
+            }
+
         } else {
+            if(+selectedLedId !== 80517){
+                insideSrc = 'waterledon';
+                imageSrc = 'image1';
+            } else {
             insideSrc = 'waterPictures';
             imageSrc = 'image1';
+            }
         }
 
-        const imageLarge = insideColorData?.[`${selectedInsideColorId}`][insideSrc][imageSrc];
+        const imageLarge = insideColorData?.[`${selectedInsideColorId}`]?.[insideSrc]?.[imageSrc];
 
         if (insideColorData && selectedInsideColorId && imageLarge) {
             return `${apiUrl}${imageLarge}`
         }
-    }, [customizeData, selectedInsideColorId, apiUrl, isCustomizeOptionsWater]);
+    }, [customizeData, selectedInsideColorId, apiUrl, isCustomizeOptionsWater, selectedLedId]);
 
 
     const imageMassageFunctionSrc = useMemo(() => {
@@ -164,7 +173,6 @@ const HotTubCanvasView = (props) => {
 
 
         if (massageFunctionData && selectedMassageFunctionId && imageLarge && position && height && width) {
-
             return [`${apiUrl}${imageLarge}`, position, {width: width, height: height}];
         }
     }, [customizeData, selectedMassageFunctionId, apiUrl, isCustomizeOptionsWater]);
@@ -254,16 +262,10 @@ const HotTubCanvasView = (props) => {
 
     return (
         <div className='HotTubCanvasView'>
-            {/*<p onClick={() => {
-          if(canvasRef.current){
-            console.log(canvasRef.current.toDataURL())
-          }
-        }}>fdjhsdkjfhksdjhfksdjf</p>*/}
             <Stage width={hotTubStageWidth}
                    height={hotTubStageHeight}
                    offsetX={-hotTubStageWidth / 2}
                    offsetY={-hotTubStageHeight / 2}
-                /*ref={canvasRef}*/
             >
                 <Layer scaleX={calcHeight(1)}
                        scaleY={calcHeight(1)}

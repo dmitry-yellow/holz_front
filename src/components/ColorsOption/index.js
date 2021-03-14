@@ -70,7 +70,7 @@ const ColorsOption = (props) => {
                  data-for={option?.replace(' ', '_')}
             >
                 <img src={moreInfoIcon} alt="alt"/>
-                <p>Mehr Info</p>
+                <p>Mehr Information</p>
 
             </div>
             <ReactTooltip className='ColorsOption-moreInfo-tooltip' id={option?.replace(' ', '_')}
@@ -78,9 +78,10 @@ const ColorsOption = (props) => {
 
                               return <div className='ColorsOption-moreInfo-tooltip-box'>
                                   <p className='ColorsOption-moreInfo-tooltip-box-title'>{dataTooltip?.germanName}</p>
-                                  <p className='ColorsOption-moreInfo-tooltip-box-desc'>
-                                      <div dangerouslySetInnerHTML={{__html: dataTooltip?.germanDescription}}/>
-                                  </p>
+                                  <div className='ColorsOption-moreInfo-tooltip-box-desc'
+                                       dangerouslySetInnerHTML={{__html: dataTooltip?.germanDescription}}
+                                  />
+                                  <p className="ColorsOption-moreInfo-tooltip-box-gotIt">OK ich habe es!</p>
                               </div>
                           }
 

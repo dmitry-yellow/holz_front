@@ -20,9 +20,23 @@
   font-size: 1rem;
   color: #774D2E;
 }
+.ColorsOption-moreInfo-tooltip {
+  z-index: 10000!important;
+  background-color: #FFFFFF !important;
+  box-shadow: 0px -4px 20px rgba(0, 0, 0, 0.1) !important;
+  opacity: 1!important;
+}
 .ColorsOption-moreInfo-tooltip-box {
-  width: 440px;
+  width: 340px;
   height: max-content;
+}
+.ColorsOption-moreInfo-tooltip-box-gotIt {
+  font-family: 'Lato_400';
+  font-size: 1rem;
+  line-height: 19px;
+  text-align: right;
+  color: #774D2E;
+  margin-bottom: 10px;
 }
 .ColorsOption-moreInfo-tooltip-box-title {
   font-family: 'Lato_300';
@@ -31,13 +45,12 @@
   margin-bottom: 20px;
 }
 .ColorsOption-moreInfo-tooltip-box-desc {
+  margin-bottom: 20px;
+}
+.ColorsOption-moreInfo-tooltip-box-desc > p {
   font-family: 'Lato_300';
   font-size: 12px;
   color: #444444;
-  margin-bottom: 20px;
-}
-.ColorsOption-moreInfo-tooltip-box-desc > b {
-  font-size: 1rem;
 }
 .ColorsOption-box {
   display: grid;
