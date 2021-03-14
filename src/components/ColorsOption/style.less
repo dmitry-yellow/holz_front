@@ -1,0 +1,109 @@
+.ColorsOption {
+  padding-bottom: 15px;
+  &-moreInfo {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    width: max-content;
+    margin: 10px 0 10px 0;
+    cursor: pointer;
+
+    > img {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      margin-right: 7px;
+    }
+
+    > p {
+      font-family: 'Lato_400';
+      font-size: 1rem;
+      color: #774D2E;
+    }
+
+    &-tooltip{
+
+      &-box{
+        width: 340px;
+        height: max-content;
+
+        &-title{
+          font-family: 'Lato_300';
+          font-size: 2rem;
+          color: #0E0E0E;
+          margin-bottom: 20px;
+        }
+
+        &-desc{
+          font-family: 'Lato_300';
+          font-size: 12px;
+          color: #444444;
+          margin-bottom: 20px;
+
+          > b{
+            font-size: 1rem;
+          }
+        }
+      }
+
+
+    }
+  }
+
+  &-box {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 8px;
+    margin-bottom: 15px;
+
+    &-item {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-self: center;
+      border: 1.5px solid #EAEAEA;
+      box-sizing: border-box;
+      border-radius: 4px;
+      cursor: pointer;
+      padding: 15px 0;
+
+      &.selected {
+        border: 1.5px solid #774D2E;
+        pointer-events: none;
+      }
+
+      &.multiSelelected {
+        border: 1.5px solid #774D2E;
+      }
+
+      &.without-image {
+        text-align: center;
+        padding: 15px 5px;
+        justify-content: space-between;
+      }
+
+      > img {
+        width: 42px;
+        height: 42px;
+        margin-bottom: 6px;
+        border-radius: 50%;
+      }
+
+      &-name {
+        font-family: 'Lato_300';
+        font-size: 0.75rem;
+        line-height: 1rem;
+        margin-bottom: 4px;
+        color: #444444;
+      }
+
+      &-price {
+        font-family: 'Lato_400';
+        font-size: 0.625rem;
+        line-height: 13px;
+        color: #444444;
+      }
+    }
+  }
+}

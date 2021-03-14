@@ -1,0 +1,51 @@
+.SizeOption {
+  border-bottom: 1px solid #EAEAEA;
+
+  &-item {
+    width: 100%;
+    border: 1.5px solid #EAEAEA;
+    box-sizing: border-box;
+    border-radius: 4px;
+    padding: 15px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    background: #FFFFFF;
+
+    &.selected {
+      border: 1.5px solid #774D2E;
+      pointer-events: none;
+    }
+
+    > p {
+      font-family: "Lato_300";
+      font-size: 0.75rem;
+    }
+
+    > div {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 10px;
+    }
+
+    &-name {
+      font-family: "Lato_400";
+      font-size: 1.125rem;
+      color: #0E0E0E;
+    }
+
+    &-price {
+      font-family: "Spartan_Bold";
+      font-size: 1rem;
+      color: #0E0E0E;
+    }
+  }
+
+  > p {
+    font-family: "Lato_300";
+    font-size: 2rem;
+    line-height: 38px;
+    color: #0E0E0E;
+    margin-bottom: 1rem;
+  }
+}

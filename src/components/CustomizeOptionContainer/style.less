@@ -1,0 +1,70 @@
+.CustomizeOptionContainer{
+  border-bottom: 1px solid #EAEAEA;
+  &-header {
+    position: relative;
+    cursor: pointer;
+    transition: all .15s linear;
+    margin-bottom: 2rem;
+
+    &.optionOpen{
+      margin-bottom: 1rem;
+    }
+
+    &.disabled{
+      pointer-events: none;
+    }
+
+    span{
+      position: absolute;
+      right: 0;
+      top: 10px;
+      width: 20px;
+      height: 20px;
+      &:before, &:after{
+        position: absolute;
+        left: 10px;
+        content: ' ';
+        height: 20px;
+        width: 1px;
+        background-color: #774D2E;
+        transition: all .15s linear;
+      }
+      &:before {
+        transform: rotate(90deg);
+      }
+      &:after {
+        transform: rotate(-180deg);
+      }
+      &.open{
+        &:after{
+          transform: rotate(-90deg);
+        }
+      }
+    }
+
+    &-optionName{
+      font-family: "Lato_300";
+      font-size: 2rem;
+      line-height: 38px;
+      color: #0E0E0E;
+    }
+    &-optional{
+      font-family: "Lato_400";
+      font-size: 1rem;
+      line-height: 19px;
+      color: #D0D0D0;
+    }
+  }
+
+  &-collapse{
+    transition: height .7s ease;
+  }
+
+  &-content {
+    height: max-content;
+    background-color: #fff;
+    position: relative;
+  }
+
+
+}

@@ -1,0 +1,61 @@
+.CustomizeOptionContainer {
+  border-bottom: 1px solid #EAEAEA;
+}
+.CustomizeOptionContainer-header {
+  position: relative;
+  cursor: pointer;
+  transition: all 0.15s linear;
+  margin-bottom: 2rem;
+}
+.CustomizeOptionContainer-header.optionOpen {
+  margin-bottom: 1rem;
+}
+.CustomizeOptionContainer-header.disabled {
+  pointer-events: none;
+}
+.CustomizeOptionContainer-header span {
+  position: absolute;
+  right: 0;
+  top: 10px;
+  width: 20px;
+  height: 20px;
+}
+.CustomizeOptionContainer-header span:before,
+.CustomizeOptionContainer-header span:after {
+  position: absolute;
+  left: 10px;
+  content: ' ';
+  height: 20px;
+  width: 1px;
+  background-color: #774D2E;
+  transition: all 0.15s linear;
+}
+.CustomizeOptionContainer-header span:before {
+  transform: rotate(90deg);
+}
+.CustomizeOptionContainer-header span:after {
+  transform: rotate(-180deg);
+}
+.CustomizeOptionContainer-header span.open:after {
+  transform: rotate(-90deg);
+}
+.CustomizeOptionContainer-header-optionName {
+  font-family: "Lato_300";
+  font-size: 2rem;
+  line-height: 38px;
+  color: #0E0E0E;
+}
+.CustomizeOptionContainer-header-optional {
+  font-family: "Lato_400";
+  font-size: 1rem;
+  line-height: 19px;
+  color: #D0D0D0;
+}
+.CustomizeOptionContainer-collapse {
+  transition: height 0.7s ease;
+}
+.CustomizeOptionContainer-content {
+  height: max-content;
+  background-color: #fff;
+  position: relative;
+}

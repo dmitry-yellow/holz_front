@@ -1,0 +1,35 @@
+.HotTubCustomize {
+  width: 350px;
+  height: calc(100vh - 187px);
+  /*height: calc(940px - 187px);*/
+  padding: 20px 30px;
+  box-sizing: border-box;
+  background-color: #FFFFFF;
+  overflow-y: scroll;
+  scrollbar-color: transparent transparent;
+  scrollbar-width: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  transition: right 0.3s linear;
+}
+.HotTubCustomize::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 0;
+}
+.HotTubCustomize.closed {
+  right: -355px !important;
+  transition: right 0.3s linear;
+}
+.HotTubCustomize-title {
+  width: 95%;
+  font-family: "Lato_Bold";
+  font-size: 2rem;
+  line-height: 38px;
+  color: #000000;
+  margin-bottom: 20px;
+}
+.HotTubCustomize > div {
+  width: 100%;
+  margin-bottom: 30px;
+}
