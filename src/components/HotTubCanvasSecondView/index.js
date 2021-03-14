@@ -405,7 +405,7 @@ const HotTubCanvasSecondView = (props) => {
                                               height={1100}
                                               src={bcgImagePositionTwo}
                                               opacity={isExteriorBcg ? 0 : 1}
-                                              offsetX={0}
+                                              offsetX={offsetMoveToWindow}
                                               offsetY={calcHeight(-offsetYToCalcHeight(hotTubStageHeight))}
                     />}
                     {(bcgExteriorImage2 && isExteriorBcg) && <Image x={-hotTubStageWidth / 2}
