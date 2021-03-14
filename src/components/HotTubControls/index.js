@@ -14,7 +14,7 @@ const HotTubControls = (props) => {
         <div className='HotTubControls' /*{ classForControls }*/>
             <ControlItem controlName="Vollbild" iconSrc={fullScreenIcon}/>
 
-            <ControlItem controlName="Startseite"
+            <ControlItem controlName="Deckel"
                          setToggleValue={setCoverOptionOpacity}
                          isChecked={coverOptionOpacity}
 
