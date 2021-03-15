@@ -208,19 +208,19 @@ const HotTubCanvasSecondView = (props) => {
 
     const offsetYToCalcHeight = (stageHeight) => {
         if (stageHeight >= 750 && stageHeight < 900) {
-            return 220
+            return 150
         } else if (stageHeight >= 900 && stageHeight < 1000) {
-            return 200
-        } else if (stageHeight >= 1000 && stageHeight < 1200) {
-            return 180
-        } else if (stageHeight >= 1200 && stageHeight < 1400) {
-            return 160
-        } else if (stageHeight >= 1400 && stageHeight < 1600) {
             return 140
+        } else if (stageHeight >= 1000 && stageHeight < 1200) {
+            return 120
+        } else if (stageHeight >= 1200 && stageHeight < 1400) {
+            return 100
+        } else if (stageHeight >= 1400 && stageHeight < 1600) {
+            return 90
         }
     }
 
-    const offsetMoveToWindow = -hotTubStageWidth / 8;
+    const offsetMoveToWindow = -100;
     const optionName = function (name) {
         return rootData?.descriptions[name]?.germanName;
     }
@@ -234,8 +234,8 @@ const HotTubCanvasSecondView = (props) => {
             >
                 <Layer ref={iconsRef}
                        opacity={isCustomizeOptionsOpen ? 1 : 0}
-                       scaleX={calcHeight(1.1)}
-                       scaleY={calcHeight(1.1)}
+                       scaleX={calcHeight(1.3)}
+                       scaleY={calcHeight(1.3)}
                        offsetX={offsetMoveToWindow}
                        offsetY={calcHeight(-offsetYToCalcHeight(hotTubStageHeight))}
                 >
@@ -375,8 +375,8 @@ const HotTubCanvasSecondView = (props) => {
 
                 </Layer>
                 <Layer ref={accessoriesRef}
-                       scaleX={calcHeight(1.1)}
-                       scaleY={calcHeight(1.1)}
+                       scaleX={calcHeight(1.4)}
+                       scaleY={calcHeight(1.3)}
                        offsetX={offsetMoveToWindow}
                        offsetY={calcHeight(-offsetYToCalcHeight(hotTubStageHeight))}
                 >
@@ -400,8 +400,8 @@ const HotTubCanvasSecondView = (props) => {
                     </Group>
 
                 </Layer>
-                <Layer scaleX={isExteriorBcg ? 1 : calcHeight(1.1)}
-                       scaleY={isExteriorBcg ? 1 : calcHeight(1.1)}
+                <Layer scaleX={isExteriorBcg ? 1 : calcHeight(1.5)}
+                       scaleY={isExteriorBcg ? 1 : calcHeight(1.4)}
                 >
                     {!isExteriorBcg && <Image x={-830}
                                               y={-753}
@@ -419,8 +419,8 @@ const HotTubCanvasSecondView = (props) => {
                                                                     src={bcgExteriorImage2}/>
                     }
                 </Layer>
-                <Layer scaleX={calcHeight(1.1)}
-                       scaleY={calcHeight(1.1)}
+                <Layer scaleX={calcHeight(1.4)}
+                       scaleY={calcHeight(1.3)}
                        offsetX={offsetMoveToWindow}
                        offsetY={calcHeight(-offsetYToCalcHeight(hotTubStageHeight))}
                 >
