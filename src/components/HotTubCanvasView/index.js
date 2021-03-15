@@ -8,7 +8,6 @@ import imageBasicPositionOne
     from '../../assets/images/hintergrund-180-metall-und-schatten_0000_180er-metal-und-schatten-01-копия.png';
 import './style.css';
 import {useKunakovHeight} from "../customHooks/useKunakovHeight";
-import {setSelectedLedId} from "../../actions/hotTub";
 
 
 const HotTubCanvasView = (props) => {
@@ -86,18 +85,23 @@ const HotTubCanvasView = (props) => {
                         imageLarge = woodData?.[`${selectedWoodId}`].base.boxImage;
                     }
                 } else {
+
                     imageLarge = additionalAccessoriesData?.[`${id}`].base.imageLarge1;
                 }
 
                 if (isExteriorBcg && +id === 80574) {
-                    arr = [...arr, {
+                    arr = [{
                         image: `${apiUrl}${imageLargeExterior}`,
                         position: positionExterior,
                         width: widthExterior,
                         height: heightExterior
-                    }]
+                    }, ...arr]
                 } else if (imageLarge) {
-                    arr = [...arr, {image: `${apiUrl}${imageLarge}`, position: position, width: width, height: height}]
+                    if(+id === 80591){
+                        arr = [ {image: `${apiUrl}${imageLarge}`, position: position, width: width, height: height}, ...arr]
+                    } else {
+                        arr = [...arr, {image: `${apiUrl}${imageLarge}`, position: position, width: width, height: height}]
+                    }
                 }
             })
             return arr;

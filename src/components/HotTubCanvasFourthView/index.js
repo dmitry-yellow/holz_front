@@ -89,14 +89,18 @@ const HotTubCanvasFourthView = (props) => {
                 }
 
                 if (isExteriorBcg && +id === 80574) {
-                    arr = [...arr, {
+                    arr = [{
                         image: `${apiUrl}${imageLargeExterior}`,
                         position: positionExterior,
                         width: widthExterior,
                         height: heightExterior
-                    }]
+                    }, ...arr ]
                 } else if (imageLarge) {
-                    arr = [...arr, {image: `${apiUrl}${imageLarge}`, position: position, width: width, height: height}]
+                    if(+id === 80591){
+                        arr = [ {image: `${apiUrl}${imageLarge}`, position: position, width: width, height: height}, ...arr]
+                    } else {
+                        arr = [...arr, {image: `${apiUrl}${imageLarge}`, position: position, width: width, height: height}]
+                    }
                 }
             })
             return arr;

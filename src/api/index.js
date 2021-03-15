@@ -13,7 +13,7 @@ export const hotTubAPI = {
   getRootData: () => instance.get('/~api/json/catalog.mf/getRootData'),
   generatePdfLink: (data) => {
     const instance = axios.create({
-      baseURL: `http://35.158.251.132:3000`,
+      baseURL: `${ process.env.REACT_APP_HOST_API_URL }:3000`,
       headers: {
         'Content-Type': 'application/json',
       }
