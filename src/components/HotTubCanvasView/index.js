@@ -470,9 +470,9 @@ const HotTubCanvasView = (props) => {
                        offsetX={0}
                        offsetY={calcHeight(-100)}
                 >
-                    {imageHeatingOvenSrc && <Image x={-907}
+                    {imageHeatingOvenSrc && <Image x={-889}
                                                    y={-495}
-                                                   width={1200}
+                                                   width={1175}
                                                    height={880}
                                                    src={imageHeatingOvenSrc}
                                                    opacity={isExteriorBcg ? 0 : 1}
@@ -480,9 +480,9 @@ const HotTubCanvasView = (props) => {
                     }
 
 
-                    {imageBasicPositionOne && <Image x={-930}
+                    {imageBasicPositionOne && <Image x={-903}
                                                      y={-575}
-                                                     width={1700}
+                                                     width={1650}
                                                      height={1000}
                                                      src={imageBasicPositionOne}
                                                      opacity={isExteriorBcg ? 1 : 0}
