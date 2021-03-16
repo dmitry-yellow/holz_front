@@ -1,6 +1,5 @@
 import cn from 'classnames';
 import './style.css';
-import Input from "../Input";
 import moreInfoIcon from '../../assets/images/icon-more-info-circle.png';
 import ReactTooltip from "react-tooltip";
 
