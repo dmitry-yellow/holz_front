@@ -13,7 +13,7 @@ const SizeOption = ( props ) => {
 
           const price = size.base.price;  // object with prices
           const main = size["_main"];     // name and id info
-          const countPeople = '3-4 personen'; //Свойство добавить на сколько персон в админку
+          const countPeople = ['4-6', '6-8']; //Свойство добавить на сколько персон в админку
 
           return <div key={ main.id }
                       onClick={ () => dispatch(setSelectedSizeId(main.id)) }
@@ -22,7 +22,7 @@ const SizeOption = ( props ) => {
               <p className="SizeOption-item-name">{ size['_main'].Name }</p>
               <p className="SizeOption-item-price">{ price.realValue } { price.currency.currencySymbol }</p>
             </div>
-            <p>{ countPeople }</p>
+            <p>{ countPeople[index] } personen</p>
             <p>Durchmesser - { main.Name.trim().slice(0, 3) } cm</p>
           </div>
         }) : null }

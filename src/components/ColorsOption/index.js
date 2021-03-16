@@ -62,8 +62,6 @@ const ColorsOption = (props) => {
                 }) : null}
             </div>
 
-            {(option && option === 'Delivery') && <Input/>}
-
             <div className='ColorsOption-moreInfo'
                  key={option?.replace(' ', '_')}
                  data-tip={option?.replace(' ', '_')}
