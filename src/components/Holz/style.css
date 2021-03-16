@@ -30,6 +30,12 @@
   top: 20px;
   left: 15px;
 }
+.Holz .Controls-totalAmount-customizeHotTub-container > .ControlItem {
+  position: fixed;
+  top: 20px;
+  right: 370px;
+  width: max-content;
+}
 .Holz .Controls-totalAmount-customizeHotTub-container .HotTubCustomize {
   margin: 7px 5px 0 0;
 }

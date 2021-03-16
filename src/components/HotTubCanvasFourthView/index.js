@@ -28,6 +28,7 @@ const HotTubCanvasFourthView = (props) => {
         isCustomizeOptionsWater,
         selectedMassageFunctionId,
         selectedLedId,
+        selectedSizeId,
         coverOptionOpacity
     } = props;
 
@@ -45,6 +46,10 @@ const HotTubCanvasFourthView = (props) => {
     const [coverText, setCoverText] = useState('');
     const [tubeExtensionText, setTubeExtensionText] = useState('');
     const [additionalAccessoriesText, setAdditionalAccessoriesText] = useState('');
+    const [scaleX, setScaleX] = useState(null);
+    const [scaleY, setScaleY] = useState(null);
+    const [offsetX, setOffsetX] = useState(null);
+    const [offsetY, setOffsetY] = useState(null);
 
     useEffect(() => {
         if (iconsRef.current) {
@@ -56,7 +61,11 @@ const HotTubCanvasFourthView = (props) => {
         if (bcgRefImageLayer.current) {
             bcgRefImageLayer.current.zIndex(0);
         }
-    }, [iconsRef, accessoriesRef]);
+
+        if(hotTubStageWidth && hotTubStageHeight){
+            setScaleForLayers(hotTubStageWidth);
+        }
+    }, [iconsRef, accessoriesRef, selectedSizeId, hotTubStageWidth, hotTubStageHeight]);
 
     const imageAdditionalAccessoriesSrc = useMemo(() => {
         const additionalAccessoriesData = customizeData?.additionalAccessories;
@@ -233,6 +242,29 @@ const HotTubCanvasFourthView = (props) => {
     }, [isExteriorBcg, apiUrl, rootData])
 
 
+    const setScaleForLayers = ( hotTubStageWidth ) => {
+        if(+hotTubStageWidth >= 1200){
+            if(+selectedSizeId === 80504){
+                setScaleX(1);
+                setScaleY(1);
+                setOffsetX(0);
+                setOffsetY(-250);
+            } else {
+                setScaleX(1.05);
+                setScaleY(1.05);
+                setOffsetX(0);
+                setOffsetY(-250);
+            }
+
+        } else {
+            setScaleX(0.95);
+            setScaleY(0.95);
+            setOffsetX(100);
+            setOffsetY(-200);
+        }
+    }
+
+
     return (
         <div className='HotTubCanvasFourthView'>
             <Stage width={hotTubStageWidth}
@@ -241,10 +273,10 @@ const HotTubCanvasFourthView = (props) => {
                    offsetY={-hotTubStageHeight / 2}
             >
                 <Layer ref={massageRef}
-                       scaleX={calcHeight(1)}
-                       scaleY={calcHeight(1)}
-                       offsetX={0}
-                       offsetY={calcHeight(-250)}
+                       scaleX={scaleX && calcHeight(scaleX)}
+                       scaleY={scaleY && calcHeight(scaleY)}
+                       offsetX={offsetX && offsetX}
+                       offsetY={offsetY && calcHeight(offsetY)}
                 >
                     {imageMassageFunctionSrc && <Image x={+imageMassageFunctionSrc?.[1].x3}
                                                        y={+imageMassageFunctionSrc?.[1].y3}
@@ -255,12 +287,12 @@ const HotTubCanvasFourthView = (props) => {
                     />
                     }
                 </Layer>
-                <Layer scaleX={calcHeight(1)}
-                       scaleY={calcHeight(1)}
-                       ref={iconsRef}
+                <Layer ref={iconsRef}
                        opacity={isCustomizeOptionsOpen ? 1 : 0}
-                       offsetX={0}
-                       offsetY={calcHeight(-250)}
+                       scaleX={scaleX && calcHeight(scaleX)}
+                       scaleY={scaleY && calcHeight(scaleY)}
+                       offsetX={offsetX && offsetX}
+                       offsetY={offsetY && calcHeight(offsetY)}
                 >
                     <Group>
                         {woodText?.length > 1 && <Text x={65}
@@ -376,10 +408,10 @@ const HotTubCanvasFourthView = (props) => {
                     </Group>
 
                 </Layer>
-                <Layer scaleX={calcHeight(1)}
-                       scaleY={calcHeight(1)}
-                       offsetX={0}
-                       offsetY={calcHeight(-250)}
+                <Layer scaleX={scaleX && calcHeight(scaleX)}
+                       scaleY={scaleY && calcHeight(scaleY)}
+                       offsetX={offsetX && offsetX}
+                       offsetY={offsetY && calcHeight(offsetY)}
                 >
                     {imageAdditionalAccessoriesSrc?.length >= 1 && imageAdditionalAccessoriesSrc.map((item, index) => {
                         return <Image key={index}
@@ -412,10 +444,10 @@ const HotTubCanvasFourthView = (props) => {
                                                                     src={bcgExteriorImage4}/>
                     }
                 </Layer>
-                <Layer scaleX={calcHeight(1)}
-                       scaleY={calcHeight(1)}
-                       offsetX={0}
-                       offsetY={calcHeight(-250)}
+                <Layer scaleX={scaleX && calcHeight(scaleX)}
+                       scaleY={scaleY && calcHeight(scaleY)}
+                       offsetX={offsetX && offsetX}
+                       offsetY={offsetY && calcHeight(offsetY)}
                 >
 
                     {imageHeatingOvenSrc && <Image x={-765}

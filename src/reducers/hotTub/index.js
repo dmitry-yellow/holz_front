@@ -48,6 +48,7 @@ const hotTubReducer = (state = initialState, action) => {
         selectedWarmingId: +Object.keys(action.data.warming)[0],
         selectedHeatingOvenId: +Object.keys(action.data.heatingOven)[0],
         selectedAdditionalAccessoriesIds: [+Object.keys(action.data.additionalAccessories)[0]],
+        selectedTubeExtensionId: +Object.keys(action.data.tubeExtension)[1],
         selectedDeliveryId: +Object.keys(action.data.delivery)[0],
       }
     case ActionTypes.GET_DATA_FAILURE:

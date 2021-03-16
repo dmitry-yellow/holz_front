@@ -7,14 +7,15 @@
   position: fixed;
   top: 7px;
   right: 360px;
-  /*background-color: white;
-  border: 1px solid red;*/
   border-radius: 20px;
-  transition: right .3s linear;
 
-  &.closed{
-    right: 5px;
-    transition: right .3s linear;
+  @media screen and (max-width: 1100px){
+    grid-template-columns: repeat(2, 1fr);
+    height: 80px;
+    top: initial;
+    right: initial;
+    bottom: 20px;
+    left: 20px;
   }
 
 }

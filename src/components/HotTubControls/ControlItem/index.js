@@ -1,15 +1,15 @@
-import './style.css';
 import ToggleSwitchButton from "../ToggleSwitchButton";
+import './style.css';
 
 
 
 const ControlItem = (props) => {
 
-  const { controlName, iconSrc, setToggleValue, isChecked } = props;
+  const { controlName, iconSrc, setToggleValue, isChecked, mobileQueryMatches } = props;
 
   return (
       <div className='ControlItem'>
-        <p>{controlName}</p>
+        {mobileQueryMatches && iconSrc ? null : <p>{controlName}</p>}
         {iconSrc ?
             <img src={iconSrc}
                  alt="full screen"
