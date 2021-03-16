@@ -1,8 +1,6 @@
 import {Group, Layer, Stage, Text} from "react-konva";
 import Image from "../Image/Image";
 import {useMemo, useRef, useEffect, useState} from "react";
-import imageBasicPositionFour
-    from '../../assets/images/hintergrund-180-metall-und-schatten-02_0000_180er-metal-und-schatten-02.png';
 import plusIcon from "../../assets/images/icon-svg.svg";
 import doneIcon from '../../assets/images/icon-done.svg';
 import {useKunakovHeight} from "../customHooks/useKunakovHeight";
@@ -234,6 +232,18 @@ const HotTubCanvasFourthView = (props) => {
 
         if (exteriorImages) {
             const imageLarge = exteriorImages?.exterior4;
+            if (imageLarge && isExteriorBcg) {
+                return `${apiUrl}${imageLarge}`
+            }
+        }
+
+    }, [isExteriorBcg, apiUrl, rootData])
+
+    const imageBasicPositionFour = useMemo(() => {
+        const exteriorImages = rootData?.reflections;
+
+        if (exteriorImages) {
+            const imageLarge = exteriorImages?.image4;
             if (imageLarge && isExteriorBcg) {
                 return `${apiUrl}${imageLarge}`
             }

@@ -3,8 +3,6 @@ import Image from "../Image/Image";
 import { useMemo, useRef, useEffect, useState } from "react";
 import plusIcon from '../../assets/images/icon-svg.svg';
 import doneIcon from '../../assets/images/icon-done.svg';
-import imageBasicPositionThree
-  from '../../assets/images/hintergrund-180-metall-und-schatten-03_0000_180er-metal-und-schatten-03.png';
 import schalter_1 from '../../assets/images/schalter/Hottub-Studio_0002s_0004s_0003_Schalter-01.png';
 import schalter_2 from '../../assets/images/schalter/Hottub-Studio_0002s_0004s_0002_Schalter-02.png';
 import schalter_3 from '../../assets/images/schalter/Hottub-Studio_0002s_0004s_0001_Schalter-03.png';
@@ -267,6 +265,18 @@ const HotTubCanvasThirdView = (props) => {
 
     if (exteriorImages) {
       const imageLarge = exteriorImages?.exterior3;
+      if (imageLarge && isExteriorBcg) {
+        return `${ apiUrl }${ imageLarge }`
+      }
+    }
+
+  }, [isExteriorBcg, apiUrl, rootData])
+
+  const imageBasicPositionThree = useMemo(() => {
+    const exteriorImages = rootData?.reflections;
+
+    if (exteriorImages) {
+      const imageLarge = exteriorImages?.image3;
       if (imageLarge && isExteriorBcg) {
         return `${ apiUrl }${ imageLarge }`
       }

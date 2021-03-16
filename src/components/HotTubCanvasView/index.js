@@ -4,8 +4,6 @@ import {useMemo, useRef, useEffect, useState} from "react";
 import bcgImagePositionOne from '../../assets/images/bcg-image-position-one.png';
 import plusIcon from '../../assets/images/icon-svg.svg';
 import doneIcon from '../../assets/images/icon-done.svg';
-import imageBasicPositionOne
-    from '../../assets/images/hintergrund-180-metall-und-schatten_0000_180er-metal-und-schatten-01-копия.png';
 import './style.css';
 import {useKunakovHeight} from "../customHooks/useKunakovHeight";
 
@@ -271,6 +269,16 @@ const HotTubCanvasView = (props) => {
 
     }, [isExteriorBcg, apiUrl, rootData])
 
+    const imageBasicPositionOne = useMemo(() => {
+        const exteriorImages = rootData?.reflections;
+        if (exteriorImages) {
+            const imageLarge = exteriorImages?.image1;
+            if (imageLarge && isExteriorBcg) {
+                return `${apiUrl}${imageLarge}`
+            }
+        }
+    }, [isExteriorBcg, apiUrl, rootData])
+
     const optionName = function (name) {
         return rootData?.descriptions[name]?.germanName;
     }
@@ -518,7 +526,6 @@ const HotTubCanvasView = (props) => {
                                                    opacity={isExteriorBcg ? 0 : 1}
                     />
                     }
-
 
                     {imageBasicPositionOne && <Image x={-903}
                                                      y={-575}

@@ -4,8 +4,6 @@ import {useMemo, useRef, useEffect, useState} from "react";
 import bcgImagePositionTwo from '../../assets/images/bcg-image-position-two.png';
 import plusIcon from '../../assets/images/icon-svg.svg';
 import doneIcon from '../../assets/images/icon-done.svg';
-import imageBasicPositionTwo
-    from '../../assets/images/hintergrund-180-metall-und-schatten-04_0000_180er-metal-und-schatten-04.png';
 import {useKunakovHeight} from "../customHooks/useKunakovHeight";
 
 
@@ -212,6 +210,19 @@ const HotTubCanvasSecondView = (props) => {
         }
 
     }, [isExteriorBcg, apiUrl, rootData])
+
+    const imageBasicPositionTwo = useMemo(() => {
+        const exteriorImages = rootData?.reflections;
+        if (exteriorImages) {
+            const imageLarge = exteriorImages?.image2;
+            if (imageLarge && isExteriorBcg) {
+                return `${apiUrl}${imageLarge}`
+            }
+        }
+
+    }, [isExteriorBcg, apiUrl, rootData])
+
+
 
 
     const offsetYToCalcHeight = (stageHeight) => {
@@ -430,8 +441,8 @@ const HotTubCanvasSecondView = (props) => {
                     </Group>
 
                 </Layer>
-                <Layer scaleX={isExteriorBcg ? 1 : calcHeight(scaleX && scaleX + 0.2)}
-                       scaleY={isExteriorBcg ? 1 : calcHeight(scaleY && scaleY + 0.1)}
+                <Layer scaleX={isExteriorBcg ? 1 : calcHeight(scaleX && scaleX )}
+                       scaleY={isExteriorBcg ? 1 : calcHeight(scaleY && scaleY )}
                 >
                     {!isExteriorBcg && <Image x={-830}
                                               y={-753}
@@ -449,8 +460,8 @@ const HotTubCanvasSecondView = (props) => {
                                                                     src={bcgExteriorImage2}/>
                     }
                 </Layer>
-                <Layer scaleX={calcHeight(scaleX && scaleX + 0.1)}
-                       scaleY={calcHeight(scaleY && scaleY)}
+                <Layer scaleX={calcHeight(scaleX && scaleX )}
+                       scaleY={calcHeight(scaleY && scaleY )}
                        offsetX={offsetMoveToWindow}
                        offsetY={calcHeight(-offsetYToCalcHeight(hotTubStageHeight))}
                 >
