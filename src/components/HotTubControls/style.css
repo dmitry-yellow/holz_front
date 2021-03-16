@@ -5,7 +5,7 @@
   width: max-content;
   height: 60px;
   position: fixed;
-  top: 7px;
+  top: calc(7px + 130px);
   right: 360px;
   border-radius: 20px;
 }
