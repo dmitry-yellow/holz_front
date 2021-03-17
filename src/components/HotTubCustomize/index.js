@@ -13,11 +13,12 @@ import {
 import customizeMenu from "./menuHelper";
 import ColorsOption from "../ColorsOption";
 import SizeOption from "../SizeOption";
+import TotalAmountCard from "../TotalAmountCard";
 
 
 const HotTubCustomize = (props) => {
 
-    const {customizeData, openTab, setOpenTab, rootData} = props;
+    const {customizeData, openTab, setOpenTab, rootData, setHotTubPositionView} = props;
 
     const dispatch = useDispatch();
 
@@ -200,6 +201,22 @@ const HotTubCustomize = (props) => {
                                                          isDisabled={isDisabled}
                         />
                     })}
+                    <TotalAmountCard customizeData={ customizeData }
+                                     selectedSizeId={ selectedSizeId }
+                                     selectedWoodId={ selectedWoodId }
+                                     selectedSpruceColorId={ selectedSpruceColorId }
+                                     selectedInsideColorId={ selectedInsideColorId }
+                                     selectedCoverId={ selectedCoverId }
+                                     selectedMetalStrapsId={ selectedMetalStrapsId }
+                                     selectedMassageFunctionId={ selectedMassageFunctionId }
+                                     selectedLedId={ selectedLedId }
+                                     selectedWarmingId={ selectedWarmingId }
+                                     selectedHeatingOvenId={ selectedHeatingOvenId }
+                                     selectedAdditionalAccessoriesIds={ selectedAdditionalAccessoriesIds }
+                                     selectedTubeExtensionId={ selectedTubeExtensionId }
+                                     selectedDeliveryId={ selectedDeliveryId }
+                                     setHotTubPositionView={ setHotTubPositionView }
+                    />
                 </Fragment>
             }
 

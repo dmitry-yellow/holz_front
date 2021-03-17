@@ -326,6 +326,18 @@ const HotTubCanvasView = (props) => {
       setScaleY(0.6);
       setOffsetX(250);
       setOffsetY(-450);
+    } else if (+hotTubStageWidth >= 380 && +hotTubStageWidth <= 420) {
+      if (+selectedSizeId === 80504) {
+        setScaleX(1);
+        setScaleY(1);
+        setOffsetX(-100);
+        setOffsetY(-200);
+      } else {
+        setScaleX(1.05);
+        setScaleY(1.05);
+        setOffsetX(-100);
+        setOffsetY(-200);
+      }
     }
   }
 

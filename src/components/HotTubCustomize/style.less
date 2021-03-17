@@ -13,6 +13,21 @@
   right: 0;
   transition: right .3s linear;
 
+  @media screen and (max-device-width: 420px) {
+    width: 100%;
+    height: calc(100vh - 130px - 300px);
+    top: calc(100vh - 130px - 22.5vh)
+  }
+
+  > .TotalAmountCard{
+    display: none;
+    @media screen and (max-device-width: 420px) {
+      display: block;
+      position: initial;
+    }
+
+  }
+
   &::-webkit-scrollbar {
     -webkit-appearance: none;
     width: 0;
