@@ -51,6 +51,7 @@ const HotTubCustomize = (props) => {
             case 'Wood':
                 return <ColorsOption optionData={customizeData?.wood}
                                      selectedId={selectedWoodId}
+                                     selectedSizeId={selectedSizeId}
                                      setSelectedId={setSelectedWoodId}
                                      setSelectedSpruceColorId={setSelectedSpruceColorId}
                                      option='Wood'
@@ -60,6 +61,7 @@ const HotTubCustomize = (props) => {
                 />
             case 'Spruce color':
                 return <ColorsOption optionData={customizeData?.spruceColor}
+                                     selectedSizeId={selectedSizeId}
                                      selectedId={selectedSpruceColorId}
                                      setSelectedId={setSelectedSpruceColorId}
                                      option='Spruce color'
@@ -69,6 +71,7 @@ const HotTubCustomize = (props) => {
                 />
             case 'Inside color':
                 return <ColorsOption optionData={customizeData?.insideColor}
+                                     selectedSizeId={selectedSizeId}
                                      selectedId={selectedInsideColorId}
                                      setSelectedId={setSelectedInsideColorId}
                                      option='Inside color'
@@ -78,6 +81,7 @@ const HotTubCustomize = (props) => {
                 />
             case 'Cover':
                 return <ColorsOption optionData={customizeData?.cover}
+                                     selectedSizeId={selectedSizeId}
                                      selectedId={selectedCoverId}
                                      setSelectedId={setSelectedCoverId}
                                      option='Cover'
@@ -87,6 +91,7 @@ const HotTubCustomize = (props) => {
                 />
             case 'Metal Straps':
                 return <ColorsOption optionData={customizeData?.metalStraps}
+                                     selectedSizeId={selectedSizeId}
                                      selectedId={selectedMetalStrapsId}
                                      setSelectedId={setSelectedMetalStrapsId}
                                      additionalClass={'without-image'}
@@ -97,6 +102,7 @@ const HotTubCustomize = (props) => {
                 />
             case 'Massage Function':
                 return <ColorsOption optionData={customizeData?.massageFunction}
+                                     selectedSizeId={selectedSizeId}
                                      selectedId={selectedMassageFunctionId}
                                      setSelectedId={setSelectedMassageFunctionId}
                                      additionalClass={'without-image'}
@@ -107,6 +113,7 @@ const HotTubCustomize = (props) => {
                 />
             case 'LED':
                 return <ColorsOption optionData={customizeData?.led}
+                                     selectedSizeId={selectedSizeId}
                                      selectedId={selectedLedId}
                                      setSelectedId={setSelectedLedId}
                                      additionalClass={'without-image'}
@@ -117,6 +124,7 @@ const HotTubCustomize = (props) => {
                 />
             case 'Warming':
                 return <ColorsOption optionData={customizeData?.warming}
+                                     selectedSizeId={selectedSizeId}
                                      selectedId={selectedWarmingId}
                                      setSelectedId={setSelectedWarmingId}
                                      additionalClass={'without-image'}
@@ -127,6 +135,7 @@ const HotTubCustomize = (props) => {
                 />
             case 'Heating oven':
                 return <ColorsOption optionData={customizeData?.heatingOven}
+                                     selectedSizeId={selectedSizeId}
                                      selectedId={selectedHeatingOvenId}
                                      setSelectedId={setSelectedHeatingOvenId}
                                      option='Heating oven'
@@ -136,6 +145,7 @@ const HotTubCustomize = (props) => {
                 />
             case 'Additional Accessoires':
                 return <ColorsOption optionData={customizeData?.additionalAccessories}
+                                     selectedSizeId={selectedSizeId}
                                      selectedId={selectedAdditionalAccessoriesIds}
                                      setSelectedId={setSelectedAdditionalAccessoriesId}
                                      additionalClass={'without-image'}
@@ -147,6 +157,7 @@ const HotTubCustomize = (props) => {
                 />
             case 'Tube extension':
                 return <ColorsOption optionData={customizeData?.tubeExtension}
+                                     selectedSizeId={selectedSizeId}
                                      selectedId={selectedTubeExtensionId}
                                      setSelectedId={setSelectedTubeExtensionId}
                                      additionalClass={'without-image'}
@@ -157,6 +168,7 @@ const HotTubCustomize = (props) => {
                 />
             case 'Delivery':
                 return <ColorsOption optionData={customizeData?.delivery}
+                                     selectedSizeId={selectedSizeId}
                                      selectedId={selectedDeliveryId}
                                      setSelectedId={setSelectedDeliveryId}
                                      additionalClass={'without-image'}

@@ -17,7 +17,17 @@ const ColorsOption = (props) => {
         multiSel,
         setSelectedSpruceColorId,
         dataTooltip,
+        selectedSizeId
     } = props;
+
+    let priceShow = (size) => {
+
+        if (selectedSizeId == 80530) {
+            console.log(size.base.priceBig);
+            return size.base.priceBig;
+        }
+        return size.base.price;
+    }
 
     return (
         <div className="ColorsOption">
@@ -29,7 +39,7 @@ const ColorsOption = (props) => {
                     const imageUrl = `${process.env.REACT_APP_HOST_API_URL}${option.base.image}`;
                     const description = option.base.description;
 
-                    const price = option.base.price;
+                    const price = priceShow(option);
                     const main = option['_main'];
                     const showName = option['translation']['germanName'];
 
@@ -49,9 +59,9 @@ const ColorsOption = (props) => {
                              )}>
                             {option.base.image ? <img src={imageUrl} alt={showName}/> : null}
                             <p className="ColorsOption-box-item-name">{showName}</p>
-                            {price.realValue ?
+                            {price?.realValue ?
                                 <p className="ColorsOption-box-item-price">
-                                    + {price.realValue} {price.currency.currencySymbol} {description?.length > 0 ? `(${description})` : null}
+                                    + {price?.realValue} {price.currency.currencySymbol} {description?.length > 0 ? `(${description})` : null}
                                 </p> :
                                 <p className="ColorsOption-box-item-price">frei</p>
                             }

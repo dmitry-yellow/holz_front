@@ -122,7 +122,13 @@ const TotalAmountCard = (props) => {
                 Object.values(customizeData).forEach((dataItem) => {
                     if (Object.keys(dataItem)?.length >= 1) {
                         let currentId = Object.keys(dataItem).filter(itemId => +itemId === +id ? String(id) : '');
-                        let value = currentId?.length >= 1 && dataItem?.[`${currentId}`].base.price.realValue;
+                        let value;
+
+                        if(selectedSizeId==80530){
+                            value = currentId?.length >= 1 && dataItem?.[`${currentId}`].base?.priceBig?.realValue;
+                        }else {
+                            value = currentId?.length >= 1 && dataItem?.[`${currentId}`].base.price.realValue;
+                        }
                         if (value) {
                             totalPrice = totalPrice + accounting.unformat(`€ ${value}`)
                         }
