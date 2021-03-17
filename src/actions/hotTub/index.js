@@ -95,10 +95,10 @@ export const generatePdfLink = (images) => async (dispatch, getState) => {
             return {id: id, amount: 1}
         })
 
-        data.images = images;
+        let sendData = {data: data, images: images};
 
         if (data && selectedIds?.length >= 1) {
-            const response = await hotTubAPI.generatePdfLink(data);
+            const response = await hotTubAPI.generatePdfLink(sendData);
             if (response?.data && response?.status === 200) {
                 await dispatch({
                     type: ActionTypes.GENERATE_PGF_SUCCESS,

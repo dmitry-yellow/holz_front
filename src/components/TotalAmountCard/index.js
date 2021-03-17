@@ -58,9 +58,8 @@ const TotalAmountCard = (props) => {
         ['positionOne', 'positionTwo', 'positionThree', 'positionFor'].forEach((value) => {
             setHotTubPositionView(value);
             images.push(generateImage())
+            console.log(images);
         });
-
-        setHotTubPositionView('positionOne');
 
         dispatch(generatePdfLink(images));
     };
