@@ -4,6 +4,7 @@ import * as accounting from "accounting-js";
 import {useDispatch, useSelector} from "react-redux";
 import {getCartData, generatePdfLink} from "../../actions/hotTub";
 
+const cartUrl = process.env.REACT_APP_CART_URL;
 
 const TotalAmountCard = (props) => {
 
@@ -29,7 +30,7 @@ const TotalAmountCard = (props) => {
     const isLoadingPgfGenerator = useSelector(state => state.hotTub.isLoadingPgfGenerator);
     const cartData = useSelector(state => state.hotTub.cart);
     useEffect(() => {
-        generateDynForm(cartData, 'https://b9zny54.myraidbox.de/cart/');
+        generateDynForm(cartData, cartUrl);
     }, [cartData]);
 
     const generateImage = () => {
