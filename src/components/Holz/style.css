@@ -14,7 +14,7 @@
 }
 @media screen and (max-device-width: 420px) {
   .Holz {
-    height: calc(100vh - 130px - 40vh);
+    height: 312px;
   }
 }
 .Holz .HotTubCanvasView {
