@@ -1,6 +1,5 @@
 import {Fragment, useEffect} from 'react';
 import CustomizeOptionContainer from "../CustomizeOptionContainer";
-/*import cn from 'classnames';*/
 import "./style.css";
 import {useDispatch, useSelector} from "react-redux";
 import {
@@ -37,7 +36,7 @@ const HotTubCustomize = (props) => {
     const selectedTubeExtensionId = useSelector(state => state.hotTub.selectedTubeExtensionId);
     const selectedDeliveryId = useSelector(state => state.hotTub.selectedDeliveryId);
 
-    /*const classForCustomize = cn("HotTubCustomize", !isCustomizeOptionsOpen && 'closed');*/
+
     useEffect(() => {
         document.getElementById('HotTubCustomize').scroll({
             bottom: 100,

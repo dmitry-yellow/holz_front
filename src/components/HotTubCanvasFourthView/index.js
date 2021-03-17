@@ -266,11 +266,32 @@ const HotTubCanvasFourthView = (props) => {
                 setOffsetY(-250);
             }
 
-        } else {
-            setScaleX(0.95);
-            setScaleY(0.95);
-            setOffsetX(100);
-            setOffsetY(-200);
+        } else if(+hotTubStageWidth >= 1000 && +hotTubStageWidth < 1200){
+            if(+selectedSizeId === 80504){
+                setScaleX(0.7);
+                setScaleY(0.7);
+                setOffsetX(100);
+                setOffsetY(-300);
+            } else {
+                setScaleX(0.75);
+                setScaleY(0.75);
+                setOffsetX(80);
+                setOffsetY(-300);
+            }
+
+        } else if(+hotTubStageWidth >= 700 && +hotTubStageWidth < 1000){
+            if(+selectedSizeId === 80504){
+                setScaleX(0.61);
+                setScaleY(0.61);
+                setOffsetX(210);
+                setOffsetY(-400);
+            } else {
+                setScaleX(0.64);
+                setScaleY(0.64);
+                setOffsetX(210);
+                setOffsetY(-400);
+            }
+
         }
     }
 
