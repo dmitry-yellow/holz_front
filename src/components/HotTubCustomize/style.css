@@ -16,8 +16,10 @@
 @media screen and (max-device-width: 420px) {
   .HotTubCustomize {
     width: 100%;
-    height: calc(100vh - 130px - 300px);
-    top: calc(100vh - 130px - 22.5vh);
+    /*height: calc(100vh - 130px - 300px);
+    top: calc(100vh - 130px - 22.5vh)*/
+    height: calc(100vh - 312px - 120px);
+    top: calc(312px + 130px);
   }
 }
 .HotTubCustomize > .TotalAmountCard {
@@ -27,6 +29,7 @@
   .HotTubCustomize > .TotalAmountCard {
     display: block;
     position: initial;
+    margin-bottom: 120px!important;
   }
 }
 .HotTubCustomize::-webkit-scrollbar {

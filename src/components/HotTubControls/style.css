@@ -24,7 +24,7 @@
     grid-template-columns: repeat(4, 1fr);
     width: 90%;
     height: 55px;
-    top: calc(100vh - 130px - 31vh);
+    top: calc(130px + 312px - 60px);
     left: 50%;
     transform: translateX(-50%);
   }
