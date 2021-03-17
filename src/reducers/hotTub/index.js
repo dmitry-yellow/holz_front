@@ -88,6 +88,22 @@ const hotTubReducer = (state = initialState, action) => {
         ...state,
         isLoadingPgfGenerator: false
       }
+    case ActionTypes.GENERATE_CART:
+      return {
+        ...state,
+        isLoadingCartData: true
+      }
+    case ActionTypes.GENERATE_CART_SUCCESS:
+      return {
+        ...state,
+        isLoadingCartData: false,
+        cart: action.cart,
+      }
+    case ActionTypes.GENERATE_CART_FAILURE:
+      return {
+        ...state,
+        isLoadingCartData: false
+      }
     case ActionTypes.SET_SELECTED_SIZE_ID:
       return {
         ...state,

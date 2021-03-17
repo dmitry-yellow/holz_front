@@ -1,8 +1,8 @@
-import {useMemo} from 'react';
+import {useMemo, useEffect} from 'react';
 import './style.css';
 import * as accounting from "accounting-js";
 import {useDispatch, useSelector} from "react-redux";
-import {generatePdfLink} from "../../actions/hotTub";
+import {getCartData, generatePdfLink} from "../../actions/hotTub";
 
 
 const TotalAmountCard = (props) => {
@@ -27,6 +27,10 @@ const TotalAmountCard = (props) => {
 
     const dispatch = useDispatch();
     const isLoadingPgfGenerator = useSelector(state => state.hotTub.isLoadingPgfGenerator);
+    const cartData = useSelector(state => state.hotTub.cart);
+    useEffect(() => {
+        generateDynForm(cartData, 'https://b9zny54.myraidbox.de/cart/');
+    }, [cartData]);
 
     const generateImage = () => {
         let canvases = document.getElementsByTagName('canvas');
@@ -52,14 +56,39 @@ const TotalAmountCard = (props) => {
         return combined.toDataURL("image/png");
     }
 
+    const generateDynForm = (data, sendTo) => {
+        if(data) {
+            var f = document.createElement("form");
+            f.setAttribute('style', "display:none");
+            f.setAttribute('method', "post");
+            f.setAttribute('action', sendTo);
+            for (let z in data) {
+                let item = data[z];
+                var i = document.createElement("input"); //input element, text
+                i.setAttribute('type', "text");
+                i.setAttribute('name', item.name);
+                i.setAttribute('value', item.value);
+                f.appendChild(i);
+            }
+
+            document.getElementsByTagName('body')[0].appendChild(f);
+            f.submit();
+        }
+    }
+
+    const callToCart = () => {
+        dispatch(getCartData());
+    }
+
     let callGenerate = () => {
 
         let images = [];
-        ['positionOne', 'positionTwo', 'positionThree', 'positionFor'].forEach((value) => {
-            setHotTubPositionView(value);
+        const positions = ['positionOne', 'positionTwo', 'positionThree', 'positionFor']
+        for (let i in positions) {
+            setHotTubPositionView(positions[i]);
             images.push(generateImage())
             console.log(images);
-        });
+        }
 
         dispatch(generatePdfLink(images));
     };
@@ -118,7 +147,7 @@ const TotalAmountCard = (props) => {
                 <p className="TotalAmountCard-title-price">{totalPrice && `€ ${totalPrice}`}</p>
             </div>
             <p>Versandbereit in 8-10 Wochen</p>
-            <button>in den Warenkorb</button>
+            <button onClick={() => callToCart()}>in den Warenkorb</button>
             <p className='TotalAmountCard-pdfTextDownload'
                onClick={() => callGenerate()}
             >{isLoadingPgfGenerator ? 'Wird geladen ...' : 'Konfiguration als PDF herunterladen'}</p>

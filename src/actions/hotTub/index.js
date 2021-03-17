@@ -23,7 +23,10 @@ export const ActionTypes = {
     SET_SELECTED_WARMING_ID: "HOT_TUB/SET_SELECTED_WARMING_ID",
     GENERATE_PGF: "HOT_TUB/GENERATE_PGF",
     GENERATE_PGF_SUCCESS: "HOT_TUB/GENERATE_PGF_SUCCESS",
-    GENERATE_PGF_FAILURE: "HOT_TUB/GENERATE_PGF_FAILURE"
+    GENERATE_PGF_FAILURE: "HOT_TUB/GENERATE_PGF_FAILURE",
+    GENERATE_CART: "HOT_TUB/GENERATE_CART",
+    GENERATE_CART_SUCCESS: "HOT_TUB/GENERATE_CART_SUCCESS",
+    GENERATE_CART_FAILURE: "HOT_TUB/GENERATE_CART_FAILURE"
 }
 
 
@@ -86,6 +89,30 @@ const getAllSelectedIds = (getState) => {
     }
 }
 
+export const getCartData = () => async (dispatch, getState) => {
+    try {
+        dispatch({type: ActionTypes.GENERATE_CART});
+        const selectedIds = await getAllSelectedIds(getState);
+        const data = await selectedIds.map(id => {
+            return {id: id, amount: 1}
+        })
+
+
+        if (data && selectedIds?.length >= 1) {
+            const response = await hotTubAPI.getCartData(data);
+            if (response?.data && response?.status === 200) {
+                await dispatch({
+                    type: ActionTypes.GENERATE_CART_SUCCESS,
+                    cart: response.data
+
+                })
+            }
+        }
+    } catch (error) {
+        console.log(error)
+        dispatch({type: ActionTypes.GENERATE_CART_FAILURE})
+    }
+};
 
 export const generatePdfLink = (images) => async (dispatch, getState) => {
     try {
