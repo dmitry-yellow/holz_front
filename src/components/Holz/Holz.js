@@ -22,6 +22,7 @@ const Holz = () => {
   const [hotTubStageWidth, setHotTubStageWidth] = useState(0);
   const [hotTubStageHeight, setHotTubStageHeight] = useState(0);
   const [hotTubPositionView, setHotTubPositionView] = useState('positionOne')
+  const [mobileQueryMatches, setMobileQueryMatches] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -52,6 +53,11 @@ const Holz = () => {
   const getHeightAndWidthStage = () => {
     const HotTubCanvasViewElem = document.getElementsByClassName('Holz');  //HotTubCanvasView
     if (HotTubCanvasViewElem?.[0].clientWidth && HotTubCanvasViewElem?.[0].clientHeight) {
+      if(HotTubCanvasViewElem[0].clientWidth <= 1100){
+        setMobileQueryMatches(true)
+      } else {
+        setMobileQueryMatches(false)
+      }
       setHotTubStageWidth(HotTubCanvasViewElem[0].clientWidth); // 1440
       setHotTubStageHeight(HotTubCanvasViewElem[0].clientHeight);
     }
@@ -177,6 +183,7 @@ const Holz = () => {
               setExteriorBcg={ setExteriorBcg }
               coverOptionOpacity={ coverOptionOpacity }
               setCoverOptionOpacity={ setCoverOptionOpacity }
+              mobileQueryMatches={mobileQueryMatches}
           />
         </div>
       </div>

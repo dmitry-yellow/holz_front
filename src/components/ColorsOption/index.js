@@ -17,7 +17,6 @@ const ColorsOption = (props) => {
         multiSel,
         setSelectedSpruceColorId,
         dataTooltip,
-        openTab
     } = props;
 
     return (
@@ -45,7 +44,7 @@ const ColorsOption = (props) => {
                              className={cn("ColorsOption-box-item",
                                  (selectedId === main.id && !multiSel) && 'selected',
                                  additionalClass && additionalClass,
-                                 (multi && selectedId.includes(main.id)) && 'multiSelelected',
+                                 (multi && selectedId.includes(main.id)) && 'multiSelected',
                                  multiSel && selectedId && 'multiSelelected'
                              )}>
                             {option.base.image ? <img src={imageUrl} alt={showName}/> : null}
