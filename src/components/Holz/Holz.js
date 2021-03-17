@@ -157,6 +157,7 @@ const Holz = () => {
               openTab={ openTab }
               setOpenTab={ setOpenTab }
               rootData={rootData}
+              setHotTubPositionView={setHotTubPositionView}
           />
           <TotalAmountCard customizeData={ customizeData }
                            selectedSizeId={ selectedSizeId }

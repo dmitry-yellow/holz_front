@@ -292,6 +292,19 @@ const HotTubCanvasFourthView = (props) => {
                 setOffsetY(-400);
             }
 
+        } else if(+hotTubStageWidth >= 380 && +hotTubStageWidth < 500){
+            if(+selectedSizeId === 80504){
+                setScaleX(0.9);
+                setScaleY(0.9);
+                setOffsetX(-200);
+                setOffsetY(-800);
+            } else {
+                setScaleX(1);
+                setScaleY(1);
+                setOffsetX(-200);
+                setOffsetY(-780);
+            }
+
         }
     }
 

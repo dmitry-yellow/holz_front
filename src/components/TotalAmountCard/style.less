@@ -12,7 +12,11 @@
   position: fixed;
   right: 0;
   bottom: 0;
-  /*top: 760px;*/
+
+  @media screen and (max-device-width: 420px){
+    display: none;
+  }
+
   > p {
     width: 100%;
     font-family: "Lato_400";

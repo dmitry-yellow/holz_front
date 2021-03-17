@@ -12,7 +12,11 @@
   position: fixed;
   right: 0;
   bottom: 0;
-  /*top: 760px;*/
+}
+@media screen and (max-device-width: 420px) {
+  .TotalAmountCard {
+    display: none;
+  }
 }
 .TotalAmountCard > p {
   width: 100%;

@@ -228,7 +228,9 @@ const HotTubCanvasSecondView = (props) => {
 
     const offsetYToCalcHeight = (stageHeight) => {
         console.log(stageHeight, hotTubStageWidth)
-        if ((stageHeight >= 880 && stageHeight < 1000) && +hotTubStageWidth < 800) {
+        if ((stageHeight < 320) && (+hotTubStageWidth >= 380 && +hotTubStageWidth < 500)) {
+            return 300
+        } else if ((stageHeight >= 880 && stageHeight < 1000) && (+hotTubStageWidth >= 500 && +hotTubStageWidth < 800)) {
             return 600
         } else if (stageHeight >= 750 && stageHeight < 900) {
             return 150
@@ -278,6 +280,16 @@ const HotTubCanvasSecondView = (props) => {
                 setScaleX(0.57);
                 setScaleY(0.57);
                 setOffsetX(280);
+            }
+        } else if(+hotTubStageWidth >= 380 && +hotTubStageWidth <= 500) {
+            if(+selectedSizeId === 80504) {
+                setScaleX(0.95);
+                setScaleY(0.95);
+                setOffsetX(-200);
+            } else {
+                setScaleX(1);
+                setScaleY(1);
+                setOffsetX(-200);
             }
         }
     }

@@ -13,6 +13,22 @@
   right: 0;
   transition: right 0.3s linear;
 }
+@media screen and (max-device-width: 420px) {
+  .HotTubCustomize {
+    width: 100%;
+    height: calc(100vh - 130px - 300px);
+    top: calc(100vh - 130px - 22.5vh);
+  }
+}
+.HotTubCustomize > .TotalAmountCard {
+  display: none;
+}
+@media screen and (max-device-width: 420px) {
+  .HotTubCustomize > .TotalAmountCard {
+    display: block;
+    position: initial;
+  }
+}
 .HotTubCustomize::-webkit-scrollbar {
   -webkit-appearance: none;
   width: 0;
