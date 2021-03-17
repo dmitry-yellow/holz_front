@@ -41,8 +41,8 @@ const HotTubCanvasSecondView = (props) => {
     const [additionalAccessoriesText, setAdditionalAccessoriesText] = useState('');
     const [scaleX, setScaleX] = useState(null);
     const [scaleY, setScaleY] = useState(null);
-    /*const [offsetX, setOffsetX] = useState(null);
-    const [offsetY, setOffsetY] = useState(null);*/
+    const [offsetX, setOffsetX] = useState(null);
+    const [offsetY, setOffsetY] = useState(null);
 
     useEffect(() => {
         if (iconsRef.current) {
@@ -188,12 +188,13 @@ const HotTubCanvasSecondView = (props) => {
         const tubeExtensionData = customizeData?.tubeExtension;
 
         if (tubeExtensionData && selectedTubeExtensionId) {
-            const imageLarge = tubeExtensionData?.[`${selectedTubeExtensionId}`].base.imageLarge2;
+            const imageLarge = tubeExtensionData?.[`${selectedTubeExtensionId}`].base.ImageLarge2;
             const imageLargeExterior = tubeExtensionData?.[`${selectedTubeExtensionId}`].imagesext.objectimage2;
 
             if (isExteriorBcg && imageLargeExterior) {
                 return `${apiUrl}${imageLargeExterior}`
             } else if (imageLarge) {
+                debugger
                 return `${apiUrl}${imageLarge}`
             }
 
@@ -226,12 +227,17 @@ const HotTubCanvasSecondView = (props) => {
 
 
     const offsetYToCalcHeight = (stageHeight) => {
-        if (stageHeight >= 750 && stageHeight < 900) {
+        console.log(stageHeight, hotTubStageWidth)
+        if ((stageHeight >= 880 && stageHeight < 1000) && +hotTubStageWidth < 800) {
+            return 600
+        } else if (stageHeight >= 750 && stageHeight < 900) {
             return 150
         } else if (stageHeight >= 900 && stageHeight < 1000) {
             return 140
         } else if (stageHeight >= 1000 && stageHeight < 1200) {
             return 120
+        } else if ((stageHeight >= 1200 && stageHeight < 1400) && +hotTubStageWidth < 1200) {
+            return 370
         } else if (stageHeight >= 1200 && stageHeight < 1400) {
             return 100
         } else if (stageHeight >= 1400 && stageHeight < 1600) {
@@ -246,22 +252,36 @@ const HotTubCanvasSecondView = (props) => {
             if(+selectedSizeId === 80504){
                 setScaleX(1.25);
                 setScaleY(1.25);
-                /*setOffsetX(0);*/
+                setOffsetX(-100);
             } else {
                 setScaleX(1.3);
                 setScaleY(1.3);
-                /*setOffsetX(0);*/
+                setOffsetX(-100);
             }
 
-        } else {
-            setScaleX(0.95);
-            setScaleY(0.95);
-            /*setOffsetX(100);
-            setOffsetY(-250);*/
+        } else if(+hotTubStageWidth >= 1000 && +hotTubStageWidth < 1200) {
+            if(+selectedSizeId === 80504) {
+                setScaleX(0.62);
+                setScaleY(0.62);
+                setOffsetX(130);
+            } else {
+                setScaleX(0.67);
+                setScaleY(0.67);
+                setOffsetX(130);
+            }
+        } else if(+hotTubStageWidth >= 700 && +hotTubStageWidth < 1000) {
+            if(+selectedSizeId === 80504) {
+                setScaleX(0.52);
+                setScaleY(0.52);
+                setOffsetX(300);
+            } else {
+                setScaleX(0.57);
+                setScaleY(0.57);
+                setOffsetX(280);
+            }
         }
     }
 
-    const offsetMoveToWindow = -100;
     const optionName = function (name) {
         return rootData?.descriptions[name]?.germanName;
     }
@@ -277,7 +297,7 @@ const HotTubCanvasSecondView = (props) => {
                        opacity={isCustomizeOptionsOpen ? 1 : 0}
                        scaleX={scaleX && calcHeight(scaleX)}
                        scaleY={scaleY && calcHeight(scaleY)}
-                       offsetX={offsetMoveToWindow}
+                       offsetX={offsetX && offsetX}
                        offsetY={calcHeight(-offsetYToCalcHeight(hotTubStageHeight))}
                 >
                     <Group>
@@ -416,9 +436,9 @@ const HotTubCanvasSecondView = (props) => {
 
                 </Layer>
                 <Layer ref={accessoriesRef}
-                       scaleX={ scaleX && calcHeight(scaleX + 0.1)}
+                       scaleX={ scaleX && calcHeight(scaleX)}
                        scaleY={ scaleY && calcHeight(scaleY)}
-                       offsetX={offsetMoveToWindow}
+                       offsetX={offsetX && offsetX}
                        offsetY={calcHeight(-offsetYToCalcHeight(hotTubStageHeight))}
                 >
                     {imageAdditionalAccessoriesSrc?.length >= 1 && imageAdditionalAccessoriesSrc.map((item, index) => {
@@ -450,7 +470,7 @@ const HotTubCanvasSecondView = (props) => {
                                               height={1100}
                                               src={bcgImagePositionTwo}
                                               opacity={isExteriorBcg ? 0 : 1}
-                                              offsetX={offsetMoveToWindow}
+                                              offsetX={offsetX && offsetX}
                                               offsetY={calcHeight(-offsetYToCalcHeight(hotTubStageHeight))}
                     />}
                     {(bcgExteriorImage2 && isExteriorBcg) && <Image x={-hotTubStageWidth / 2}
@@ -462,7 +482,7 @@ const HotTubCanvasSecondView = (props) => {
                 </Layer>
                 <Layer scaleX={calcHeight(scaleX && scaleX )}
                        scaleY={calcHeight(scaleY && scaleY )}
-                       offsetX={offsetMoveToWindow}
+                       offsetX={offsetX && offsetX}
                        offsetY={calcHeight(-offsetYToCalcHeight(hotTubStageHeight))}
                 >
 

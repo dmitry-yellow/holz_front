@@ -303,14 +303,32 @@ const HotTubCanvasThirdView = (props) => {
 				setOffsetX(0);
 				setOffsetY(-200);
 			}
-
-		} else {
-			setScaleX(0.95);
-			setScaleY(0.95);
-			setOffsetX(100);
-			setOffsetY(-200);
-		}
-	}
+		} else if( +hotTubStageWidth >= 1000 && +hotTubStageWidth < 1200){
+      if(+selectedSizeId === 80504){
+        setScaleX(0.65);
+        setScaleY(0.65);
+        setOffsetX(100);
+        setOffsetY(-400);
+      } else {
+        setScaleX(0.7);
+        setScaleY(0.7);
+        setOffsetX(100);
+        setOffsetY(-400);
+      }
+    } else if( +hotTubStageWidth >= 700 && +hotTubStageWidth < 1000){
+      if(+selectedSizeId === 80504) {
+        setScaleX(0.57);
+        setScaleY(0.57);
+        setOffsetX(230);
+        setOffsetY(-600);
+      } else {
+        setScaleX(0.6);
+        setScaleY(0.6);
+        setOffsetX(230);
+        setOffsetY(-600);
+      }
+    }
+  }
 
   return (
       <div className='HotTubCanvasSecondView'>
