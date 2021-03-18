@@ -18,7 +18,7 @@ import TotalAmountCard from "../TotalAmountCard";
 
 const HotTubCustomize = (props) => {
 
-    const {customizeData, openTab, setOpenTab, rootData, setHotTubPositionView} = props;
+    const {customizeData, openTab, setOpenTab, rootData, setHotTubPositionView, setExteriorBcg} = props;
 
     const dispatch = useDispatch();
 
@@ -228,6 +228,7 @@ const HotTubCustomize = (props) => {
                                      selectedTubeExtensionId={ selectedTubeExtensionId }
                                      selectedDeliveryId={ selectedDeliveryId }
                                      setHotTubPositionView={ setHotTubPositionView }
+                                     setExteriorBcg={setExteriorBcg}
                     />
                 </Fragment>
             }

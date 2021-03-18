@@ -23,7 +23,8 @@ const TotalAmountCard = (props) => {
         selectedTubeExtensionId,
         selectedWarmingId,
         selectedWoodId,
-        setHotTubPositionView
+        setHotTubPositionView,
+        setExteriorBcg
     } = props;
 
     const dispatch = useDispatch();
@@ -36,11 +37,11 @@ const TotalAmountCard = (props) => {
     const generateImage = () => {
         let canvases = document.getElementsByTagName('canvas');
         let combined = document.getElementById("CursorLayer");
-        if (!combined) {
+        if(!combined){
             combined = document.createElement('canvas');
             combined.id = "CursorLayer";
-            combined.width = canvases[0].width;
-            combined.height = canvases[0].height;
+            combined.width = canvases?.[0]?.width;
+            combined.height = canvases?.[0]?.height;
             combined.style.display = 'none';
             combined.crossOrigin = "anonymous";
             combined.style.position = "absolute";
@@ -54,7 +55,9 @@ const TotalAmountCard = (props) => {
             ctx.drawImage(canvases[i], 0, 0); //Copying Canvas1
         }
 
-        return combined.toDataURL("image/png");
+        const dataText = combined.toDataURL("image/png");
+        ctx.clearRect(0, 0, combined.width, combined.height);
+        return dataText;
     }
 
     const generateDynForm = (data, sendTo) => {
@@ -81,16 +84,26 @@ const TotalAmountCard = (props) => {
         dispatch(getCartData());
     }
 
-    let callGenerate = () => {
+    const delay = (delayInms) => {
+        return new Promise(resolve => {
+            setTimeout(() => {
+                resolve(2);
+            }, delayInms);
+        });
+    }
+
+    let callGenerate = async () => {
 
         let images = [];
-        const positions = ['positionOne', 'positionTwo', 'positionThree', 'positionFor']
+        const positions = ['positionOne', 'positionTwo', 'positionThree', 'positionFour']
         for (let i in positions) {
+            setExteriorBcg(false);
             setHotTubPositionView(positions[i]);
-            images.push(generateImage())
-            console.log(images);
+            await delay(500);
+            images.push(generateImage());
         }
-
+        setHotTubPositionView('positionOne');
+        setExteriorBcg(true);
         dispatch(generatePdfLink(images));
     };
 
