@@ -158,6 +158,7 @@ const Holz = () => {
               setOpenTab={ setOpenTab }
               rootData={rootData}
               setHotTubPositionView={setHotTubPositionView}
+              setExteriorBcg={setExteriorBcg}
           />
           <TotalAmountCard customizeData={ customizeData }
                            selectedSizeId={ selectedSizeId }
@@ -174,6 +175,7 @@ const Holz = () => {
                            selectedTubeExtensionId={ selectedTubeExtensionId }
                            selectedDeliveryId={ selectedDeliveryId }
                            setHotTubPositionView={ setHotTubPositionView }
+                           setExteriorBcg={setExteriorBcg}
           />
           <HotTubControls
               isCustomizeOptionsOpen={ isCustomizeOptionsOpen }
