@@ -5,30 +5,31 @@ const isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { retu
 
 
     const Image = React.forwardRef((props, ref) => {
-        const [imageState, setImage] = useState(new window.Image());
+
         const [image, status] = useImage(props.src, 'Anonymous');
+        const [imageState, setImage] = useState(image);
         const localRef = useRef(null);
         const KonvaImageRef = ref || localRef;
 
         useEffect(() => {
-            const img = new window.Image();
-            img.src = props.src;
-            img.crossOrigin = 'Anonymous';
-            img.onload = () => {
-                setImage(img);
-            };
+            if(status=='loaded') {
+                    setImage(image);
+            }
         }, [props.src, props]);
 
-        if(isSafari) {
+
+    /*    if(isSafari) {*/
             return (
+
                 <React.Fragment>
-                    <KonvaImage {...props} image={image} ref={KonvaImageRef}/>
+                    <KonvaImage {...props} image={imageState} ref={KonvaImageRef}/>
                 </React.Fragment>
+
             )
-        }else{
+        /*}else{
             return (<KonvaImage {...props} image={imageState} ref={KonvaImageRef}/>
             )
-        }
+        }*/
 
     });
 
