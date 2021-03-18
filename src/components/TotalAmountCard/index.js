@@ -88,7 +88,6 @@ const TotalAmountCard = (props) => {
         for (let i in positions) {
             setHotTubPositionView(positions[i]);
             images.push(generateImage())
-            console.log(images);
         }
 
         dispatch(generatePdfLink(images));

@@ -23,7 +23,7 @@ const ColorsOption = (props) => {
     let priceShow = (size) => {
 
         if (selectedSizeId == 80530) {
-            console.log(size.base.priceBig);
+
             return size.base.priceBig;
         }
         return size.base.price;

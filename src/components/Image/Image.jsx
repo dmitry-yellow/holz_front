@@ -5,7 +5,7 @@ const isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { retu
 
 
     const Image = React.forwardRef((props, ref) => {
-        const [image, setImage] = useState(new window.Image());
+        const [imageState, setImage] = useState(new window.Image());
         const [image, status] = useImage(props.src, 'Anonymous');
         const localRef = useRef(null);
         const KonvaImageRef = ref || localRef;
@@ -19,12 +19,17 @@ const isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { retu
             };
         }, [props.src, props]);
 
-        return (
-            <React.Fragment>
-                <KonvaImage {...props} image={image} ref={KonvaImageRef}/>
-            </React.Fragment>
-        )
+        if(isSafari) {
+            return (
+                <React.Fragment>
+                    <KonvaImage {...props} image={image} ref={KonvaImageRef}/>
+                </React.Fragment>
+            )
+        }else{
+            return (<KonvaImage {...props} image={imageState} ref={KonvaImageRef}/>
+            )
+        }
 
     });
-});
+
 export default Image;
