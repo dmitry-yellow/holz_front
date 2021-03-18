@@ -295,49 +295,61 @@ const HotTubCanvasThirdView = (props) => {
 			if(+selectedSizeId === 80504){
 				setScaleX(1);
 				setScaleY(1);
-				setOffsetX(0);
-				setOffsetY(-200);
+				setOffsetX(-100);
+				setOffsetY(-250);
 			} else {
 				setScaleX(1.05);
 				setScaleY(1.05);
-				setOffsetX(0);
-				setOffsetY(-200);
+				setOffsetX(-100);
+				setOffsetY(-250);
 			}
 		} else if( +hotTubStageWidth >= 1000 && +hotTubStageWidth < 1200){
       if(+selectedSizeId === 80504){
-        setScaleX(0.65);
-        setScaleY(0.65);
+        setScaleX(0.6);
+        setScaleY(0.6);
         setOffsetX(100);
         setOffsetY(-400);
       } else {
-        setScaleX(0.7);
-        setScaleY(0.7);
+        setScaleX(0.65);
+        setScaleY(0.65);
         setOffsetX(100);
         setOffsetY(-400);
       }
     } else if( +hotTubStageWidth >= 700 && +hotTubStageWidth < 1000){
       if(+selectedSizeId === 80504) {
-        setScaleX(0.57);
-        setScaleY(0.57);
-        setOffsetX(230);
+        setScaleX(0.5);
+        setScaleY(0.5);
+        setOffsetX(250);
         setOffsetY(-600);
       } else {
-        setScaleX(0.6);
-        setScaleY(0.6);
+        setScaleX(0.53);
+        setScaleY(0.53);
         setOffsetX(230);
         setOffsetY(-600);
       }
-    } else if( +hotTubStageWidth >= 320 && +hotTubStageWidth < 500){
+    } else if( +hotTubStageWidth >= 340 && +hotTubStageWidth < 500){
       if(+selectedSizeId === 80504) {
-        setScaleX(0.9);
-        setScaleY(0.9);
-        setOffsetX(-200);
-        setOffsetY(-600);
+        setScaleX(0.7);
+        setScaleY(0.7);
+        setOffsetX(-160);
+        setOffsetY(-950);
       } else {
-        setScaleX(1);
-        setScaleY(1);
-        setOffsetX(-200);
-        setOffsetY(-600);
+        setScaleX(0.75);
+        setScaleY(0.75);
+        setOffsetX(-180);
+        setOffsetY(-900);
+      }
+    } else if(+hotTubStageWidth <= 340){
+      if(+selectedSizeId === 80504) {
+        setScaleX(0.55);
+        setScaleY(0.55);
+        setOffsetX(-170);
+        setOffsetY(-1800);
+      } else {
+        setScaleX(0.57);
+        setScaleY(0.57);
+        setOffsetX(-170);
+        setOffsetY(-1800);
       }
     }
   }

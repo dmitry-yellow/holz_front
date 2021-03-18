@@ -16,10 +16,16 @@
 @media screen and (max-device-width: 420px) {
   .HotTubCustomize {
     width: 100%;
-    /*height: calc(100vh - 130px - 300px);
-    top: calc(100vh - 130px - 22.5vh)*/
     height: calc(100vh - 312px - 120px);
     top: calc(312px + 130px);
+  }
+}
+@media screen and (max-device-width: 330px) {
+  .HotTubCustomize {
+    width: 100%;
+    height: calc(100vh - 300px);
+    top: 340px;
+    padding: 15px;
   }
 }
 .HotTubCustomize > .TotalAmountCard {

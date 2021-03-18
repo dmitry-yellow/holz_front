@@ -1,20 +1,20 @@
 .Holz {
-  height: calc(100vh - 130px);
+  height: 100vh;
   width: 100vw;
   display: flex;
   align-items: center;
   overflow-x: hidden;
   background: linear-gradient(180deg, #CFCFCF 0%, #CFCFCF 12.59%, #E1E1E1 60.81%, #EAEAEA 74.35%, #EAEAEA 100%);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
-  /*.HotTubPositionsMenu {
-    position: absolute;
-    top: 20px;
-    left: 15px;
-  }*/
 }
 @media screen and (max-device-width: 420px) {
   .Holz {
-    height: 312px;
+    height: 442px;
+  }
+}
+@media screen and (max-device-width: 340px) {
+  .Holz {
+    height: 342px;
   }
 }
 .Holz .HotTubCanvasView {

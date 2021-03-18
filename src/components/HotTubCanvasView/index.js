@@ -286,38 +286,38 @@ const HotTubCanvasView = (props) => {
   const setScaleForLayers = (hotTubStageWidth) => {
     if (+hotTubStageWidth >= 1200) {
       if (+selectedSizeId === 80504) {
+        setScaleX(0.95);
+        setScaleY(0.95);
+        setOffsetX(0);
+        setOffsetY(-200);
+      } else {
         setScaleX(1);
         setScaleY(1);
         setOffsetX(0);
-        setOffsetY(-100);
-      } else {
-        setScaleX(1.05);
-        setScaleY(1.05);
-        setOffsetX(0);
-        setOffsetY(-100);
+        setOffsetY(-200);
       }
 
     } else if (+hotTubStageWidth >= 1000 && +hotTubStageWidth < 1200) {
       if (+selectedSizeId === 80504) {
-        setScaleX(0.65);
-        setScaleY(0.65);
+        setScaleX(0.6);
+        setScaleY(0.6);
         setOffsetX(120);
         setOffsetY(-250);
       } else {
-        setScaleX(0.7);
-        setScaleY(0.7);
+        setScaleX(0.65);
+        setScaleY(0.65);
         setOffsetX(120);
         setOffsetY(-250);
       }
     } else if (+hotTubStageWidth >= 700 && +hotTubStageWidth < 1000) {
       if (+selectedSizeId === 80504) {
-        setScaleX(0.55);
-        setScaleY(0.55);
+        setScaleX(0.5);
+        setScaleY(0.5);
         setOffsetX(280);
         setOffsetY(-450);
       } else {
-          setScaleX(0.6);
-          setScaleY(0.6);
+          setScaleX(0.54);
+          setScaleY(0.54);
           setOffsetX(250);
           setOffsetY(-450);
       }
@@ -326,17 +326,29 @@ const HotTubCanvasView = (props) => {
       setScaleY(0.6);
       setOffsetX(250);
       setOffsetY(-450);
-    } else if (+hotTubStageWidth >= 320 && +hotTubStageWidth <= 420) {
+    } else if (+hotTubStageWidth >= 340 && +hotTubStageWidth <= 420) {
       if (+selectedSizeId === 80504) {
-        setScaleX(1);
-        setScaleY(1);
-        setOffsetX(-100);
-        setOffsetY(-200);
+        setScaleX(0.8);
+        setScaleY(0.8);
+        setOffsetX(0);
+        setOffsetY(-600);
       } else {
-        setScaleX(1.05);
-        setScaleY(1.05);
+        setScaleX(0.85);
+        setScaleY(0.85);
+        setOffsetX(0);
+        setOffsetY(-600);
+      }
+    } else if ( +hotTubStageWidth <= 330){
+      if (+selectedSizeId === 80504) {
+        setScaleX(0.7);
+        setScaleY(0.7);
         setOffsetX(-100);
-        setOffsetY(-200);
+        setOffsetY(-1200);
+      } else {
+        setScaleX(0.72);
+        setScaleY(0.72);
+        setOffsetX(-100);
+        setOffsetY(-1200);
       }
     }
   }

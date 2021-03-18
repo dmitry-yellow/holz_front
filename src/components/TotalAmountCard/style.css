@@ -18,6 +18,11 @@
     display: none;
   }
 }
+@media screen and (max-device-width: 330px) {
+  .TotalAmountCard {
+    padding: 15px 5px 30px;
+  }
+}
 .TotalAmountCard > p {
   width: 100%;
   font-family: "Lato_400";

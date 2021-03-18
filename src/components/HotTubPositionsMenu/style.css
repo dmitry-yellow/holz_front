@@ -15,6 +15,12 @@
   box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.32);
   cursor: pointer;
 }
+@media screen and (max-device-width: 420px) {
+  .HotTubPositionsMenu > span {
+    width: 40px;
+    height: 40px;
+  }
+}
 .HotTubPositionsMenu > span.selected {
   pointer-events: none;
 }
@@ -27,6 +33,12 @@
   border: 2.5px solid #774D2E;
   border-radius: 50%;
 }
+@media screen and (max-device-width: 420px) {
+  .HotTubPositionsMenu > span.selected:before {
+    width: 44px;
+    height: 44px;
+  }
+}
 .HotTubPositionsMenu > span:after {
   content: "";
   display: block;
@@ -35,6 +47,12 @@
   height: 40px;
   background-repeat: no-repeat;
   background-size: contain;
+}
+@media screen and (max-device-width: 420px) {
+  .HotTubPositionsMenu > span:after {
+    width: 30px;
+    height: 30px;
+  }
 }
 .HotTubPositionsMenu-middleTopWater:after {
   background-image: url("../../assets/images/positionIcons/hot-tub-position-top-middle-with-water.svg");

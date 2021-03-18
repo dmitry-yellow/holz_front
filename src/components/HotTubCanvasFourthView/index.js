@@ -258,51 +258,51 @@ const HotTubCanvasFourthView = (props) => {
                 setScaleX(1);
                 setScaleY(1);
                 setOffsetX(0);
-                setOffsetY(-250);
+                setOffsetY(-300);
             } else {
                 setScaleX(1.05);
                 setScaleY(1.05);
                 setOffsetX(0);
-                setOffsetY(-250);
+                setOffsetY(-300);
             }
 
         } else if(+hotTubStageWidth >= 1000 && +hotTubStageWidth < 1200){
             if(+selectedSizeId === 80504){
-                setScaleX(0.7);
-                setScaleY(0.7);
-                setOffsetX(100);
+                setScaleX(0.65);
+                setScaleY(0.65);
+                setOffsetX(80);
                 setOffsetY(-300);
             } else {
-                setScaleX(0.75);
-                setScaleY(0.75);
+                setScaleX(0.68);
+                setScaleY(0.68);
                 setOffsetX(80);
                 setOffsetY(-300);
             }
 
         } else if(+hotTubStageWidth >= 700 && +hotTubStageWidth < 1000){
             if(+selectedSizeId === 80504){
-                setScaleX(0.61);
-                setScaleY(0.61);
+                setScaleX(0.55);
+                setScaleY(0.55);
                 setOffsetX(210);
                 setOffsetY(-400);
             } else {
-                setScaleX(0.64);
-                setScaleY(0.64);
-                setOffsetX(210);
+                setScaleX(0.57);
+                setScaleY(0.57);
+                setOffsetX(200);
                 setOffsetY(-400);
             }
 
         } else if(+hotTubStageWidth >= 320 && +hotTubStageWidth < 500){
             if(+selectedSizeId === 80504){
-                setScaleX(0.9);
-                setScaleY(0.9);
-                setOffsetX(-200);
-                setOffsetY(-800);
+                setScaleX(0.8);
+                setScaleY(0.8);
+                setOffsetX(-100);
+                setOffsetY(-1020);
             } else {
-                setScaleX(1);
-                setScaleY(1);
-                setOffsetX(-200);
-                setOffsetY(-780);
+                setScaleX(0.85);
+                setScaleY(0.85);
+                setOffsetX(-100);
+                setOffsetY(-1000);
             }
 
         }
