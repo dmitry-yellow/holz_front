@@ -23,11 +23,11 @@
     }
 
     &-tooltip {
-      z-index: 10000!important;
-      background-color: #FFFFFF!important;
+      z-index: 10000 !important;
+      background-color: #FFFFFF !important;
       box-shadow: 0px -4px 20px rgba(0, 0, 0, 0.1) !important;
-      opacity: 1!important;
-      margin-left: -45px!important;
+      opacity: 1 !important;
+      margin-left: -45px !important;
 
       &-box {
         width: 340px;
@@ -84,10 +84,20 @@
       padding: 15px 0;
       position: relative;
 
+      &.delivery {
+        justify-content: center !important;
+        margin-bottom: 5px;
+
+        .ColorsOption-box-item-price {
+          margin-bottom: 5px;
+        }
+      }
+
       &.selected {
         border: 1.5px solid #774D2E;
-        pointer-events: none;
-        &:after{
+
+
+        &:after {
           content: "";
           display: inline-block;
           width: 16px;
@@ -100,8 +110,9 @@
           right: 10px;
         }
       }
-      &.selected.without-image{
-        &:after{
+
+      &.selected.without-image {
+        &:after {
           content: "";
           display: inline-block;
           width: 16px;
@@ -118,7 +129,8 @@
 
       &.multiSelected {
         border: 1.5px solid #774D2E;
-        &:after{
+
+        &:after {
           content: "";
           display: inline-block;
           width: 16px;
@@ -159,6 +171,33 @@
         font-size: 0.625rem;
         line-height: 13px;
         color: #444444;
+      }
+
+      &-canBuyFew {
+        display: flex;
+        align-items: center;
+        margin-top: 5px;
+
+        .disabled{
+          pointer-events: none;
+          background-color: rgba(224, 224, 224, 0.59);
+        }
+
+        > span {
+          font-size: 1rem;
+          margin: 0 10px;
+          width: 25px;
+          height: 25px;
+          border-radius: 50%;
+          background-color: #ada3a396;
+          cursor: pointer;
+        }
+
+        > p {
+          font-family: 'Lato_400';
+          font-size: 1rem;
+          line-height: 1;
+        }
       }
     }
   }

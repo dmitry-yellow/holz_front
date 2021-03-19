@@ -16,6 +16,13 @@
 @media screen and (max-device-width: 420px) {
   .TotalAmountCard {
     display: none;
+    background-color: transparent;
+    box-shadow: none;
+  }
+}
+@media screen and (max-device-width: 380px) {
+  .TotalAmountCard {
+    padding: 15px 10px 30px;
   }
 }
 @media screen and (max-device-width: 330px) {

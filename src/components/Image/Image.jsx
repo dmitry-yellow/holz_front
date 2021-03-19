@@ -11,11 +11,12 @@ const Image = React.forwardRef((props, ref) => {
 
   const [image, status] = useImage(props.src, 'Anonymous');
   const [imageState, setStateImage] = useState(image);
+
   const localRef = useRef(null);
   const KonvaImageRef = ref || localRef;
 
   useEffect(() => {
-    if (status == 'loaded') {
+    if (status === 'loaded') {
       setStateImage(image);
     }
   }, [props.src, props, image]);

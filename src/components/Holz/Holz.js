@@ -22,7 +22,6 @@ const Holz = () => {
   const [hotTubStageWidth, setHotTubStageWidth] = useState(0);
   const [hotTubStageHeight, setHotTubStageHeight] = useState(0);
   const [hotTubPositionView, setHotTubPositionView] = useState('positionOne')
-  const [mobileQueryMatches, setMobileQueryMatches] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -48,16 +47,18 @@ const Holz = () => {
     dispatch(getCalcData());
   }, [dispatch])
 
+  useEffect(() => {
+    window.addEventListener('resize', getHeightAndWidthStage);
+    return () => window.removeEventListener('resize', getHeightAndWidthStage)
+  }, [])
+
+
+
   const classForHolz = cn("Holz", isExteriorBcg && "exterior");
 
   const getHeightAndWidthStage = () => {
     const HotTubCanvasViewElem = document.getElementsByClassName('Holz');  //HotTubCanvasView
     if (HotTubCanvasViewElem?.[0].clientWidth && HotTubCanvasViewElem?.[0].clientHeight) {
-      if(HotTubCanvasViewElem[0].clientWidth <= 1100){
-        setMobileQueryMatches(true)
-      } else {
-        setMobileQueryMatches(false)
-      }
       setHotTubStageWidth(HotTubCanvasViewElem[0].clientWidth); // 1440
       setHotTubStageHeight(HotTubCanvasViewElem[0].clientHeight);
     }
@@ -152,7 +153,6 @@ const Holz = () => {
                                hotTubPositionView={ hotTubPositionView }
           />
           <HotTubCustomize
-              /*isCustomizeOptionsOpen={ isCustomizeOptionsOpen }*/
               customizeData={ customizeData }
               openTab={ openTab }
               setOpenTab={ setOpenTab }
@@ -186,7 +186,6 @@ const Holz = () => {
               setExteriorBcg={ setExteriorBcg }
               coverOptionOpacity={ coverOptionOpacity }
               setCoverOptionOpacity={ setCoverOptionOpacity }
-              mobileQueryMatches={mobileQueryMatches}
           />
         </div>
       </div>

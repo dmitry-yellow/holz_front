@@ -21,10 +21,10 @@
   color: #774D2E;
 }
 .ColorsOption-moreInfo-tooltip {
-  z-index: 10000!important;
+  z-index: 10000 !important;
   background-color: #FFFFFF !important;
   box-shadow: 0px -4px 20px rgba(0, 0, 0, 0.1) !important;
-  opacity: 1!important;
+  opacity: 1 !important;
   margin-left: -45px !important;
 }
 .ColorsOption-moreInfo-tooltip-box {
@@ -72,9 +72,15 @@
   padding: 15px 0;
   position: relative;
 }
+.ColorsOption-box-item.delivery {
+  justify-content: center !important;
+  margin-bottom: 5px;
+}
+.ColorsOption-box-item.delivery .ColorsOption-box-item-price {
+  margin-bottom: 5px;
+}
 .ColorsOption-box-item.selected {
   border: 1.5px solid #774D2E;
-  pointer-events: none;
 }
 .ColorsOption-box-item.selected:after {
   content: "";
@@ -140,4 +146,27 @@
   font-size: 0.625rem;
   line-height: 13px;
   color: #444444;
+}
+.ColorsOption-box-item-canBuyFew {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+}
+.ColorsOption-box-item-canBuyFew .disabled {
+  pointer-events: none;
+  background-color: rgba(224, 224, 224, 0.59);
+}
+.ColorsOption-box-item-canBuyFew > span {
+  font-size: 1rem;
+  margin: 0 10px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: #ada3a396;
+  cursor: pointer;
+}
+.ColorsOption-box-item-canBuyFew > p {
+  font-family: 'Lato_400';
+  font-size: 1rem;
+  line-height: 1;
 }

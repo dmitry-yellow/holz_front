@@ -5,11 +5,11 @@
   width: max-content;
   height: 60px;
   position: fixed;
-  top: calc(7px + 130px);
+  top: calc(7px + 100px);
   right: 360px;
   border-radius: 20px;
 }
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 1050px) {
   .HotTubControls {
     grid-template-columns: repeat(2, 1fr);
     height: 80px;

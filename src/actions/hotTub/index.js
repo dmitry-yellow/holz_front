@@ -203,8 +203,8 @@ export const setSelectedAdditionalAccessoriesId = (additionalAccessoriesId) => a
 }
 
 export const setSelectedTubeExtensionId = (tubeExtensionId) => (dispatch, getState) => {
-    const currentTubeId = getState().hotTub.selectedTubeExtensionId === tubeExtensionId ? null : tubeExtensionId
-    dispatch({type: ActionTypes.SET_SELECTED_TUBE_EXTENSION_ID, selectedTubeExtensionId: currentTubeId})
+    /*const currentTubeId = getState().hotTub.selectedTubeExtensionId === tubeExtensionId ? null : tubeExtensionId*/
+    dispatch({type: ActionTypes.SET_SELECTED_TUBE_EXTENSION_ID, selectedTubeExtensionId: tubeExtensionId})
 }
 
 export const setSelectedDeliveryId = (deliveryId) => (dispatch) => {

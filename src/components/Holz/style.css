@@ -28,12 +28,16 @@
 }
 .Holz .Controls-totalAmount-customizeHotTub-container .HotTubPositionsMenu {
   position: fixed;
-  top: calc(20px + 130px);
+  top: calc(20px + 100px);
   left: 15px;
 }
 @media screen and (max-device-width: 420px) {
   .Holz .Controls-totalAmount-customizeHotTub-container .HotTubPositionsMenu {
     flex-direction: row;
+    top: calc(20px + 70px);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
   }
 }
 @media screen and (max-device-width: 420px) {
@@ -43,7 +47,7 @@
 }
 .Holz .Controls-totalAmount-customizeHotTub-container > .ControlItem {
   position: fixed;
-  top: calc(20px + 130px);
+  top: calc(20px + 100px);
   right: 370px;
   width: max-content;
 }
@@ -53,7 +57,7 @@
   }
 }
 .Holz .Controls-totalAmount-customizeHotTub-container .HotTubCustomize {
-  margin: 137px 5px 0 0;
+  margin: 107px 5px 0 0;
 }
 @media screen and (max-device-width: 420px) {
   .Holz .Controls-totalAmount-customizeHotTub-container .HotTubCustomize {

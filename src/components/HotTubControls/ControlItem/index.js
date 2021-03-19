@@ -5,11 +5,11 @@ import './style.css';
 
 const ControlItem = (props) => {
 
-  const { controlName, iconSrc, setToggleValue, isChecked, mobileQueryMatches } = props;
+  const { controlName, iconSrc, setToggleValue, isChecked, desktopQueryMatches } = props;
 
   return (
       <div className='ControlItem'>
-        {mobileQueryMatches && iconSrc ? null : <p>{controlName}</p>}
+        {!desktopQueryMatches && iconSrc ? null : <p>{controlName}</p>}
         {iconSrc ?
             <img src={iconSrc}
                  alt="full screen"

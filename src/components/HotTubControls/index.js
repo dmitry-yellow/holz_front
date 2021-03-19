@@ -1,7 +1,7 @@
 import ControlItem from "./ControlItem";
 import fullScreenIcon from '../../assets/images/positionIcons/full-screen-icon.svg';
-/*import cn from 'classnames';*/
 import './style.css';
+import injectMedia from "../media";
 
 
 const HotTubControls = (props) => {
@@ -15,19 +15,19 @@ const HotTubControls = (props) => {
     setExteriorBcg,
     coverOptionOpacity,
     setCoverOptionOpacity,
-    mobileQueryMatches
+    desktopQueryMatches
   } = props;
 
   return (
       <>
-        { mobileQueryMatches && <ControlItem controlName="Vollbild"
+        { !desktopQueryMatches && <ControlItem controlName="Vollbild"
                                              iconSrc={ fullScreenIcon }
-                                             mobileQueryMatches={ mobileQueryMatches }
+                                               desktopQueryMatches={ desktopQueryMatches }
         /> }
         <div className='HotTubControls'>
-        { !mobileQueryMatches && <ControlItem controlName="Vollbild"
+        { desktopQueryMatches && <ControlItem controlName="Vollbild"
                                               iconSrc={ fullScreenIcon }
-                                              mobileQueryMatches={ mobileQueryMatches }
+                                              desktopQueryMatches={ desktopQueryMatches }
         />
         }
 
@@ -55,6 +55,6 @@ const HotTubControls = (props) => {
 }
 
 
-export default HotTubControls;
+export default injectMedia(HotTubControls);
 
 

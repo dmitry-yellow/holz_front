@@ -14,11 +14,12 @@ import customizeMenu from "./menuHelper";
 import ColorsOption from "../ColorsOption";
 import SizeOption from "../SizeOption";
 import TotalAmountCard from "../TotalAmountCard";
+import injectMedia from "../media";
 
 
 const HotTubCustomize = (props) => {
 
-    const {customizeData, openTab, setOpenTab, rootData, setHotTubPositionView, setExteriorBcg} = props;
+    const {customizeData, openTab, setOpenTab, rootData, setHotTubPositionView, setExteriorBcg, desktopQueryMatches} = props;
 
     const dispatch = useDispatch();
 
@@ -184,7 +185,7 @@ const HotTubCustomize = (props) => {
 
     return (
         <div className='HotTubCustomize' id='HotTubCustomize'>   {/*classForCustomize*/}
-            <p className="HotTubCustomize-title">Passen Sie Ihren Whirlpool an</p>
+            {desktopQueryMatches && <p className="HotTubCustomize-title">Passen Sie Ihren Whirlpool an</p>}
             {isLoadingData ? <p>Loading...</p> :
                 <Fragment>
                     <SizeOption sizeData={customizeData?.sizes}
@@ -238,4 +239,4 @@ const HotTubCustomize = (props) => {
 }
 
 
-export default HotTubCustomize;
+export default injectMedia(HotTubCustomize);
