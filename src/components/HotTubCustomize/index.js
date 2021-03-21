@@ -185,7 +185,7 @@ const HotTubCustomize = (props) => {
 
     return (
         <div className='HotTubCustomize' id='HotTubCustomize'>   {/*classForCustomize*/}
-            {desktopQueryMatches && <p className="HotTubCustomize-title">Passen Sie Ihren Hot Tub an</p>}
+            {/*{desktopQueryMatches && <p className="HotTubCustomize-title">Passen Sie Ihren Hot Tub an</p>}*/}
             {isLoadingData ? <p>Loading...</p> :
                 <Fragment>
                     <SizeOption sizeData={customizeData?.sizes}
