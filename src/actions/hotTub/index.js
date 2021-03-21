@@ -26,7 +26,8 @@ export const ActionTypes = {
     GENERATE_PGF_FAILURE: "HOT_TUB/GENERATE_PGF_FAILURE",
     GENERATE_CART: "HOT_TUB/GENERATE_CART",
     GENERATE_CART_SUCCESS: "HOT_TUB/GENERATE_CART_SUCCESS",
-    GENERATE_CART_FAILURE: "HOT_TUB/GENERATE_CART_FAILURE"
+    GENERATE_CART_FAILURE: "HOT_TUB/GENERATE_CART_FAILURE",
+    SET_SELECTED_IDS_WITH_AMOUNT: "HOT_TUB/SET_SELECTED_IDS_WITH_AMOUNT"
 }
 
 
@@ -62,6 +63,28 @@ const getRootData = () => async (dispatch) => {
         dispatch({type: ActionTypes.GET_ROOT_DATA_FAILURE})
     }
 };
+
+/*export const setSelectedIdsWithAmount = (selectedIdWithAmount, amount = 1) => (dispatch, getState) => {
+    /!*console.log({ selectedIdWithAmount, amount });*!/
+    debugger
+    let newArr = [];
+    let storeArrAmount = getState().hotTub.selectedIdsWithAmount;
+    let currentElement = storeArrAmount.filter(item => item.selectedIdWithAmount === selectedIdWithAmount);
+
+    let isStoreArrAmountIncludesElem = storeArrAmount.includes({ selectedIdWithAmount, amount });
+
+    if(!isStoreArrAmountIncludesElem && !currentElement.length >= 1) {
+        newArr.push({ selectedIdWithAmount, amount })
+    } else {
+        newArr = storeArrAmount.map(item => {
+            if(item.selectedIdWithAmount === selectedIdWithAmount){
+                return {selectedIdWithAmount, amount}
+            }
+        })
+    }
+    dispatch({type: ActionTypes.SET_SELECTED_IDS_WITH_AMOUNT, selectedIdsWithAmount: newArr})
+}*/
+
 
 const getAllSelectedIds = (getState) => {
     let allSelectedIds = [];

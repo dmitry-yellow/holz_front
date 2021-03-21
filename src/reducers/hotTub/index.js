@@ -20,6 +20,7 @@ const initialState = {
   isLoadingData: false,
   isLoadingRootData: false,
   isLoadingPgfGenerator: false,
+  /*selectedIdsWithAmount: [],*/
   pdfFile: ''
 }
 
@@ -169,6 +170,11 @@ const hotTubReducer = (state = initialState, action) => {
         ...state,
         selectedMetalStrapsId: action.selectedMetalStrapsId
       }
+    /*case ActionTypes.SET_SELECTED_IDS_WITH_AMOUNT:
+      return {
+        ...state,
+        selectedIdsWithAmount: action.selectedIdsWithAmount
+      }*/
 
     default:
       return state;

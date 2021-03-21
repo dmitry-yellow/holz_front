@@ -194,7 +194,6 @@ const HotTubCanvasSecondView = (props) => {
             if (isExteriorBcg && imageLargeExterior) {
                 return `${apiUrl}${imageLargeExterior}`
             } else if (imageLarge) {
-                debugger
                 return `${apiUrl}${imageLarge}`
             }
 

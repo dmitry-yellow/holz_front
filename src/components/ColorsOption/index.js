@@ -1,8 +1,11 @@
-import cn from 'classnames';
-import './style.css';
+import { useEffect } from 'react';
 import moreInfoIcon from '../../assets/images/icon-more-info-circle.png';
 import ReactTooltip from "react-tooltip";
 import injectMedia from "../media";
+import cn from 'classnames';
+import './style.css';
+import { useDispatch, useSelector } from "react-redux";
+/*import { setSelectedIdsWithAmount } from "../../actions/hotTub";*/
 
 
 const ColorsOption = (props) => {
@@ -21,6 +24,12 @@ const ColorsOption = (props) => {
     selectedSizeId
   } = props;
 
+  /*const selectedIdsWithAmount = useSelector(state => state.hotTub.selectedIdsWithAmount);
+
+  useEffect(() => {
+
+  }, [selectedIdsWithAmount])*/
+
   let priceShow = (size) => {
 
     if (selectedSizeId == 80530) {
@@ -30,11 +39,35 @@ const ColorsOption = (props) => {
     return size.base.price;
   }
 
+/*  const renderCanBuyFew = (mainId, canBuyFew) => {
+
+    debugger
+    const currentObjArr = selectedIdsWithAmount?.filter(item => item.selectedIdWithAmount === mainId);
+    const classForMinSpan = cn( currentObjArr?.length >= 1 && currentObjArr?.[0].amount <= 1 && 'disabled');
+    const classForMaxSpan = cn( currentObjArr?.length >= 1 && currentObjArr?.[0].amount >= canBuyFew && 'disabled');
+
+    console.log(currentObjArr)
+
+    return <div className='ColorsOption-box-item-canBuyFew'>
+      <span className={ classForMinSpan }
+            onClick={ () => dispatch(setSelectedIdsWithAmount(mainId, +currentObjArr[0].amount - 1)) }
+      >-</span>
+      <p>{ currentObjArr?.length >= 1 && currentObjArr?.[0].amount }</p>
+      <span className={ classForMaxSpan }
+            onClick={ () => {
+              debugger
+              dispatch(setSelectedIdsWithAmount(mainId, +currentObjArr[0].amount + 1))
+            } }
+      >+</span>
+    </div>
+  }*/
+
   return (
       <div className="ColorsOption">
 
 
         <div className="ColorsOption-box">
+
           { optionData ? Object.values(optionData).map((option, index) => {
 
             const imageUrl = `${ process.env.REACT_APP_HOST_API_URL }${ option.base.image }`;
@@ -47,9 +80,13 @@ const ColorsOption = (props) => {
             return (
                 <div key={ main.id }
                      onClick={ () => {
+                       /*let isIncludesItem = selectedIdsWithAmount.filter(item => item.selectedIdWithAmount === main.id).length >= 1;*/
                        if (main.Name !== 'Spruce' && props.option === 'Wood') {
                          dispatch(setSelectedSpruceColorId(80533))
                        }
+                       /*if (canBuyFew && !isIncludesItem) {
+                         dispatch(setSelectedIdsWithAmount(main.id, 1));
+                       }*/
                        dispatch(setSelectedId(main.id))
                      } }
                      className={ cn("ColorsOption-box-item",
@@ -67,11 +104,7 @@ const ColorsOption = (props) => {
                       </p> :
                       <p className="ColorsOption-box-item-price">{ props.option === 'Delivery' ? 'Selbstabholung' : 'frei' }</p>
                   }
-                  { canBuyFew && selectedId === main.id && <div className='ColorsOption-box-item-canBuyFew'>
-                    <span >-</span>
-                    <p>{ canBuyFew }</p>
-                    <span className='disabled'>+</span>
-                  </div> }
+                  {/*{ canBuyFew && selectedId === main.id ? renderCanBuyFew(main.id, canBuyFew) : null}*/}
                 </div>
             )
           }) : null }
