@@ -29,7 +29,7 @@
   right: 10px;
 }
 .SizeOption-item > p {
-  font-family: "Lato_300";
+  font-family: "Montserrat_300";
   font-size: 0.75rem;
 }
 .SizeOption-item > div {
@@ -39,7 +39,7 @@
   margin-bottom: 10px;
 }
 .SizeOption-item-name {
-  font-family: "Lato_400";
+  font-family: "Montserrat_400";
   font-size: 1.125rem;
   color: #0E0E0E;
 }
@@ -49,7 +49,7 @@
   color: #0E0E0E;
 }
 .SizeOption > p {
-  font-family: "Lato_300";
+  font-family: "Montserrat_300";
   font-size: 2rem;
   line-height: 38px;
   color: #0E0E0E;

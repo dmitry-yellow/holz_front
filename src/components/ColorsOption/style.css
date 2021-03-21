@@ -16,7 +16,7 @@
   margin-right: 7px;
 }
 .ColorsOption-moreInfo > p {
-  font-family: 'Lato_400';
+  font-family: 'Montserrat_400';
   font-size: 1rem;
   color: #774D2E;
 }
@@ -32,7 +32,7 @@
   height: max-content;
 }
 .ColorsOption-moreInfo-tooltip-box-gotIt {
-  font-family: 'Lato_400';
+  font-family: 'Montserrat_400';
   font-size: 1rem;
   line-height: 19px;
   text-align: right;
@@ -40,7 +40,7 @@
   margin-bottom: 10px;
 }
 .ColorsOption-moreInfo-tooltip-box-title {
-  font-family: 'Lato_300';
+  font-family: 'Montserrat_300';
   font-size: 2rem;
   color: #0E0E0E;
   margin-bottom: 20px;
@@ -49,7 +49,7 @@
   margin-bottom: 20px;
 }
 .ColorsOption-moreInfo-tooltip-box-desc > p {
-  font-family: 'Lato_300';
+  font-family: 'Montserrat_300';
   font-size: 12px;
   color: #444444;
 }
@@ -135,14 +135,14 @@
   border-radius: 50%;
 }
 .ColorsOption-box-item-name {
-  font-family: 'Lato_300';
+  font-family: 'Montserrat_300';
   font-size: 0.75rem;
   line-height: 1rem;
   margin-bottom: 4px;
   color: #444444;
 }
 .ColorsOption-box-item-price {
-  font-family: 'Lato_400';
+  font-family: 'Montserrat_400';
   font-size: 0.625rem;
   line-height: 13px;
   color: #444444;
@@ -166,7 +166,7 @@
   cursor: pointer;
 }
 .ColorsOption-box-item-canBuyFew > p {
-  font-family: 'Lato_400';
+  font-family: 'Montserrat_400';
   font-size: 1rem;
   line-height: 1;
 }
