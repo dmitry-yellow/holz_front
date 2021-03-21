@@ -135,6 +135,7 @@ const HotTubCanvasView = (props) => {
 
   const imageInsideColorSrc = useMemo(() => {
     const insideColorData = customizeData?.insideColor;
+    const bigInsideColorData = customizeData?.bigInsideColor;
     let insideSrc, imageSrc;
 
     if (!isCustomizeOptionsWater) {
@@ -156,12 +157,22 @@ const HotTubCanvasView = (props) => {
       }
     }
 
-    const imageLarge = insideColorData?.[`${ selectedInsideColorId }`]?.[insideSrc]?.[imageSrc];
+    let imageLarge = '';
+    const indexOfSelectedInsideColorId = insideColorData && Object.keys(insideColorData)?.indexOf(String(selectedInsideColorId));
+    let selectedBigInsideColorId = bigInsideColorData && Object.keys(bigInsideColorData)[indexOfSelectedInsideColorId];
+
+    if(+selectedSizeId === 80504){
+      imageLarge = insideColorData?.[`${ selectedInsideColorId }`]?.[insideSrc]?.[imageSrc];
+    } else {
+      imageLarge = bigInsideColorData?.[`${ selectedBigInsideColorId }`]?.[insideSrc]?.[imageSrc];
+    }
+
+
 
     if (insideColorData && selectedInsideColorId && imageLarge) {
       return `${ apiUrl }${ imageLarge }`
     }
-  }, [customizeData, selectedInsideColorId, apiUrl, isCustomizeOptionsWater, selectedLedId]);
+  }, [customizeData, selectedInsideColorId, apiUrl, isCustomizeOptionsWater, selectedLedId, selectedSizeId]);
 
 
   const imageMassageFunctionSrc = useMemo(() => {
