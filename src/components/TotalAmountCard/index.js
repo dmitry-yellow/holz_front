@@ -34,6 +34,64 @@ const TotalAmountCard = (props) => {
         generateDynForm(cartData, cartUrl);
     }, [cartData]);
 
+
+    const trimCanvas = (c) => {
+        var ctx = c.getContext('2d');
+        var copy = document.createElement('canvas').getContext('2d'),
+            pixels = ctx.getImageData(0, 0, c.width, c.height),
+            l = pixels.data.length,
+            i,
+            bound = {
+                top: null,
+                left: null,
+                right: null,
+                bottom: null
+            },
+            x, y;
+
+        for (i = 0; i < l; i += 4) {
+            if (pixels.data[i + 3] !== 0) {
+                x = (i / 4) % c.width;
+                y = ~~((i / 4) / c.width);
+
+                if (bound.top === null) {
+                    bound.top = y;
+                }
+
+                if (bound.left === null) {
+                    bound.left = x;
+                } else if (x < bound.left) {
+                    bound.left = x;
+                }
+
+                if (bound.right === null) {
+                    bound.right = x;
+                } else if (bound.right < x) {
+                    bound.right = x;
+                }
+
+                if (bound.bottom === null) {
+                    bound.bottom = y;
+                } else if (bound.bottom < y) {
+                    bound.bottom = y;
+                }
+            }
+        }
+
+        // Calculate the height and width of the content
+        var trimHeight = bound.bottom - bound.top,
+            trimWidth = bound.right - bound.left,
+            trimmed = ctx.getImageData(bound.left, bound.top, trimWidth, trimHeight);
+
+        copy.canvas.width = trimWidth;
+        copy.canvas.height = trimHeight;
+        copy.putImageData(trimmed, 0, 0);
+
+        // Return trimmed canvas
+        return copy.canvas;
+    }
+
+
     const generateImage = () => {
         let canvases = document.getElementsByTagName('canvas');
         let combined = document.getElementById("CursorLayer");
@@ -54,8 +112,8 @@ const TotalAmountCard = (props) => {
         for (let i = 1; i < canvases.length; i++) {
             ctx.drawImage(canvases[i], 0, 0); //Copying Canvas1
         }
-
-        const dataText = combined.toDataURL("image/png");
+        let trimed = trimCanvas(combined);
+        const dataText = trimed.toDataURL("image/png");
         ctx.clearRect(0, 0, combined.width, combined.height);
         return dataText;
     }
@@ -95,11 +153,11 @@ const TotalAmountCard = (props) => {
     let callGenerate = async () => {
 
         let images = [];
-        const positions = ['positionOne', 'positionTwo', 'positionThree', 'positionFour']
+        const positions = ['positionOne', 'positionTwo', 'positionThree', 'positionFour'];
+        setExteriorBcg(false);
         for (let i in positions) {
-            setExteriorBcg(false);
             setHotTubPositionView(positions[i]);
-            await delay(500);
+            await delay(800);
             images.push(generateImage());
         }
         setHotTubPositionView('positionOne');
