@@ -1,10 +1,9 @@
 import {useMemo, useRef, useEffect, useState} from "react";
-import {Group, Layer, Stage, Text} from "react-konva";
 import {useKunakovHeight} from "../customHooks/useKunakovHeight";
+import {Group, Layer, Stage, Text} from "react-konva";
 import Image from "../Image/Image";
 import plusIcon from "../../assets/images/icon-svg.svg";
 import doneIcon from '../../assets/images/icon-done.svg';
-import bcgImagePositionFour from '../../assets/images/bcg-image-position-four.png';
 
 
 const HotTubCanvasFourthView = (props) => {
@@ -263,6 +262,21 @@ const HotTubCanvasFourthView = (props) => {
 
     }, [isExteriorBcg, apiUrl, rootData])
 
+    const bcgShadowImage = useMemo(() => {
+
+        const bcgShadowImageData = customizeData?.sizes;
+
+        let imageLarge = '';
+
+        if (bcgShadowImageData && selectedSizeId) {
+            imageLarge = bcgShadowImageData?.[`${ selectedSizeId }`].base.imageLarge4;
+        }
+
+        if (imageLarge && !isExteriorBcg) {
+            return `${ apiUrl }${ imageLarge }`
+        }
+    }, [isExteriorBcg, apiUrl, selectedSizeId, customizeData])
+
 
     const setScaleForLayers = ( hotTubStageWidth ) => {
         if(+hotTubStageWidth >= 1200){
@@ -493,11 +507,11 @@ const HotTubCanvasFourthView = (props) => {
                        scaleY={ isExteriorBcg ? 1 : calcHeight(scaleY && scaleY) }
                        ref={bcgRefImageLayer}
                 >
-                    { !isExteriorBcg && <Image x={ -455 }
+                    { !isExteriorBcg && bcgShadowImage &&  <Image x={ -455 }
                                                y={ -515 }
                                                width={ 680 }
                                                height={ 580 }
-                                               src={ bcgImagePositionFour }
+                                               src={ bcgShadowImage }
                                                opacity={ isExteriorBcg ? 0 : 1 }
                                                offsetX={ offsetX && offsetX }
                                                offsetY={ offsetY && calcHeight(offsetY) }

@@ -2,7 +2,6 @@ import { Group, Layer, Stage, Text } from "react-konva";
 import { useMemo, useRef, useEffect, useState } from "react";
 import { useKunakovHeight } from "../customHooks/useKunakovHeight";
 import Image from "../Image/Image";
-import bcgImagePositionOne from '../../assets/images/bcg-image-position-one.png';
 import plusIcon from '../../assets/images/icon-svg.svg';
 import doneIcon from '../../assets/images/icon-done.svg';
 import './style.css';
@@ -290,6 +289,22 @@ const HotTubCanvasView = (props) => {
     }
   }, [isExteriorBcg, apiUrl, rootData])
 
+  const bcgShadowImage = useMemo(() => {
+
+    const bcgShadowImageData = customizeData?.sizes;
+
+    let imageLarge = '';
+
+    if (bcgShadowImageData && selectedSizeId) {
+      imageLarge = bcgShadowImageData?.[`${ selectedSizeId }`].base.imageLarge1;
+    }
+
+    if (imageLarge && !isExteriorBcg) {
+        return `${ apiUrl }${ imageLarge }`
+    }
+  }, [isExteriorBcg, apiUrl, selectedSizeId, customizeData])
+
+
   const optionName = function (name) {
     return rootData?.descriptions[name]?.germanName;
   }
@@ -550,11 +565,11 @@ const HotTubCanvasView = (props) => {
           </Layer>
           <Layer scaleX={ isExteriorBcg ? 1 : calcHeight(scaleX && scaleX) }
                  scaleY={ isExteriorBcg ? 1 : calcHeight(scaleY && scaleY) }>
-            { !isExteriorBcg && <Image x={ -473 }
+            { !isExteriorBcg && bcgShadowImage &&  <Image x={ -473 }
                                        y={ -167 }
                                        width={ 697 }
                                        height={ 500 }
-                                       src={ bcgImagePositionOne }
+                                       src={ bcgShadowImage }
                                        opacity={ isExteriorBcg ? 0 : 1 }
                                        offsetX={ offsetX && offsetX }
                                        offsetY={ offsetY && calcHeight(offsetY) }
