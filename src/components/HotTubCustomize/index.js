@@ -1,4 +1,4 @@
-import {Fragment, useEffect} from 'react';
+import {Fragment, useEffect, useState} from 'react';
 import CustomizeOptionContainer from "../CustomizeOptionContainer";
 import "./style.css";
 import {useDispatch, useSelector} from "react-redux";
@@ -21,7 +21,10 @@ const HotTubCustomize = (props) => {
 
     const {customizeData, openTab, setOpenTab, rootData, setHotTubPositionView, setExteriorBcg, desktopQueryMatches} = props;
 
+    const [openToolltip, setOpenToolltip] = useState('');
+
     const dispatch = useDispatch();
+
 
     const isLoadingData = useSelector(state => state.hotTub.isLoadingData);
     const selectedSizeId = useSelector(state => state.hotTub.selectedSizeId);
@@ -58,6 +61,8 @@ const HotTubCustomize = (props) => {
                                      option='Wood'
                                      dataTooltip={rootData?.descriptions && rootData?.descriptions?.wood}
                                      openTab={openTab}
+                                     openToolltip={openToolltip}
+                                     setOpenToolltip={setOpenToolltip}
                                      dispatch={dispatch}
                 />
             case 'Spruce color':
@@ -68,6 +73,8 @@ const HotTubCustomize = (props) => {
                                      option='Spruce color'
                                      dispatch={dispatch}
                                      dataTooltip={rootData?.descriptions && rootData?.descriptions.spruceColor}
+                                     openToolltip={openToolltip}
+                                     setOpenToolltip={setOpenToolltip}
                                      openTab={openTab}
                 />
             case 'Inside color':
@@ -78,6 +85,8 @@ const HotTubCustomize = (props) => {
                                      option='Inside color'
                                      dispatch={dispatch}
                                      dataTooltip={rootData?.descriptions && rootData?.descriptions.insideColor}
+                                     openToolltip={openToolltip}
+                                     setOpenToolltip={setOpenToolltip}
                                      openTab={openTab}
                 />
             case 'Cover':
@@ -88,6 +97,8 @@ const HotTubCustomize = (props) => {
                                      option='Cover'
                                      dispatch={dispatch}
                                      dataTooltip={rootData?.descriptions && rootData?.descriptions.cover}
+                                     openToolltip={openToolltip}
+                                     setOpenToolltip={setOpenToolltip}
                                      openTab={openTab}
                 />
             case 'Metal Straps':
@@ -99,6 +110,8 @@ const HotTubCustomize = (props) => {
                                      option='Metal Straps'
                                      dispatch={dispatch}
                                      dataTooltip={rootData?.descriptions && rootData?.descriptions.metalStraps}
+                                     openToolltip={openToolltip}
+                                     setOpenToolltip={setOpenToolltip}
                                      openTab={openTab}
                 />
             case 'Massage Function':
@@ -110,6 +123,8 @@ const HotTubCustomize = (props) => {
                                      option='Massage Function'
                                      dispatch={dispatch}
                                      dataTooltip={rootData?.descriptions && rootData?.descriptions.massageFunction}
+                                     openToolltip={openToolltip}
+                                     setOpenToolltip={setOpenToolltip}
                                      openTab={openTab}
                 />
             case 'LED':
@@ -121,6 +136,8 @@ const HotTubCustomize = (props) => {
                                      option='LED'
                                      dispatch={dispatch}
                                      dataTooltip={rootData?.descriptions && rootData?.descriptions.led}
+                                     openToolltip={openToolltip}
+                                     setOpenToolltip={setOpenToolltip}
                                      openTab={openTab}
                 />
             case 'Warming':
@@ -132,6 +149,8 @@ const HotTubCustomize = (props) => {
                                      option='Warming'
                                      dispatch={dispatch}
                                      dataTooltip={rootData?.descriptions && rootData?.descriptions.warming}
+                                     openToolltip={openToolltip}
+                                     setOpenToolltip={setOpenToolltip}
                                      openTab={openTab}
                 />
             case 'Heating oven':
@@ -142,6 +161,8 @@ const HotTubCustomize = (props) => {
                                      option='Heating oven'
                                      dispatch={dispatch}
                                      dataTooltip={rootData?.descriptions && rootData?.descriptions.heatingOven}
+                                     openToolltip={openToolltip}
+                                     setOpenToolltip={setOpenToolltip}
                                      openTab={openTab}
                 />
             case 'Additional Accessoires':
@@ -153,6 +174,8 @@ const HotTubCustomize = (props) => {
                                      option='Additional Accessoires'
                                      dispatch={dispatch}
                                      dataTooltip={rootData?.descriptions && rootData?.descriptions.additionalAccessories}
+                                     openToolltip={openToolltip}
+                                     setOpenToolltip={setOpenToolltip}
                                      multi
                                      openTab={openTab}
                 />
@@ -165,6 +188,8 @@ const HotTubCustomize = (props) => {
                                      option='Tube extension'
                                      dispatch={dispatch}
                                      dataTooltip={rootData?.descriptions && rootData?.descriptions.tubeExtension}
+                                     openToolltip={openToolltip}
+                                     setOpenToolltip={setOpenToolltip}
                                      openTab={openTab}
                 />
             case 'Delivery':
@@ -176,6 +201,8 @@ const HotTubCustomize = (props) => {
                                      option='Delivery'
                                      dispatch={dispatch}
                                      dataTooltip={rootData?.descriptions && rootData?.descriptions.delivery}
+                                     openToolltip={openToolltip}
+                                     setOpenToolltip={setOpenToolltip}
                                      openTab={openTab}
                 />
             default:
@@ -212,6 +239,8 @@ const HotTubCustomize = (props) => {
                                                          openTab={openTab}
                                                          showName={showName}
                                                          isDisabled={isDisabled}
+                                                         setOpenToolltip={setOpenToolltip}
+                                                         openToolltip={openToolltip}
                         />
                     })}
                     <TotalAmountCard customizeData={ customizeData }

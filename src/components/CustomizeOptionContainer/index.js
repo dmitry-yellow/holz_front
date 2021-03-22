@@ -6,7 +6,7 @@ import './style.css';
 
 const CustomizeOptionContainer = (props) => {
 
-    const {option, setOpenTab, isOpen, content, optional, isDisabled, openTab, showName} = props;
+    const {option, setOpenTab, isOpen, content, optional, isDisabled, openTab, showName, setOpenToolltip, openToolltip} = props;
 
     const optionRef = useRef();
 
@@ -24,7 +24,12 @@ const CustomizeOptionContainer = (props) => {
             <div ref={optionRef}
                  id={option}
                  className={classForHeaderOption}
-                 onClick={() => setOpenTab(isOpen ? '' : option)}>
+                 onClick={() => {
+                   setOpenTab(isOpen ? '' : option);
+                   if(openTab === '' || option !== openToolltip){
+                     setOpenToolltip('');
+                   }
+                 }}>
                 <p className="CustomizeOptionContainer-header-optionName">
                     {option === 'Positioning' ? 'Positioning of the sandfilter/pump & Control Panel' : showName}
                 </p>

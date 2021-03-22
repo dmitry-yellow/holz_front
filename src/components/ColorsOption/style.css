@@ -1,6 +1,14 @@
 .ColorsOption {
   padding-bottom: 15px;
 }
+.ColorsOption-collapse {
+  transition: height 0.7s ease;
+}
+.ColorsOption-content {
+  height: max-content;
+  background-color: #fff;
+  position: relative;
+}
 .ColorsOption-moreInfo {
   position: relative;
   display: flex;
@@ -31,6 +39,9 @@
   width: 340px;
   height: max-content;
 }
+.ColorsOption-moreInfo-tooltip-box.collapse {
+  width: 100%;
+}
 .ColorsOption-moreInfo-tooltip-box-gotIt {
   font-family: 'Montserrat_400';
   font-size: 1rem;
@@ -41,16 +52,19 @@
 }
 .ColorsOption-moreInfo-tooltip-box-title {
   font-family: 'Montserrat_300';
-  font-size: 2rem;
+  font-size: 1.9rem;
   color: #0E0E0E;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 .ColorsOption-moreInfo-tooltip-box-desc {
   margin-bottom: 20px;
 }
+.ColorsOption-moreInfo-tooltip-box-desc.collapse-desc {
+  margin: 0;
+}
 .ColorsOption-moreInfo-tooltip-box-desc > p {
   font-family: 'Montserrat_300';
-  font-size: 12px;
+  font-size: 1rem;
   color: #444444;
 }
 .ColorsOption-box {

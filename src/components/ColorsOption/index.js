@@ -1,10 +1,11 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import moreInfoIcon from '../../assets/images/icon-more-info-circle.png';
 import ReactTooltip from "react-tooltip";
 import injectMedia from "../media";
 import cn from 'classnames';
 import './style.css';
 import { useDispatch, useSelector } from "react-redux";
+import { Collapse } from "react-collapse/lib/Collapse";
 /*import { setSelectedIdsWithAmount } from "../../actions/hotTub";*/
 
 
@@ -21,8 +22,14 @@ const ColorsOption = (props) => {
     multiSel,
     setSelectedSpruceColorId,
     dataTooltip,
-    selectedSizeId
+    desktopQueryTooltip,
+    selectedSizeId,
+    openTab,
+    openToolltip,
+    setOpenToolltip
   } = props;
+
+  /*const [openToolltip, setOpenToolltip] = useState('');*/
 
   /*const selectedIdsWithAmount = useSelector(state => state.hotTub.selectedIdsWithAmount);
 
@@ -39,33 +46,31 @@ const ColorsOption = (props) => {
     return size.base.price;
   }
 
-/*  const renderCanBuyFew = (mainId, canBuyFew) => {
+  /*  const renderCanBuyFew = (mainId, canBuyFew) => {
 
-    debugger
-    const currentObjArr = selectedIdsWithAmount?.filter(item => item.selectedIdWithAmount === mainId);
-    const classForMinSpan = cn( currentObjArr?.length >= 1 && currentObjArr?.[0].amount <= 1 && 'disabled');
-    const classForMaxSpan = cn( currentObjArr?.length >= 1 && currentObjArr?.[0].amount >= canBuyFew && 'disabled');
+      debugger
+      const currentObjArr = selectedIdsWithAmount?.filter(item => item.selectedIdWithAmount === mainId);
+      const classForMinSpan = cn( currentObjArr?.length >= 1 && currentObjArr?.[0].amount <= 1 && 'disabled');
+      const classForMaxSpan = cn( currentObjArr?.length >= 1 && currentObjArr?.[0].amount >= canBuyFew && 'disabled');
 
-    console.log(currentObjArr)
+      console.log(currentObjArr)
 
-    return <div className='ColorsOption-box-item-canBuyFew'>
-      <span className={ classForMinSpan }
-            onClick={ () => dispatch(setSelectedIdsWithAmount(mainId, +currentObjArr[0].amount - 1)) }
-      >-</span>
-      <p>{ currentObjArr?.length >= 1 && currentObjArr?.[0].amount }</p>
-      <span className={ classForMaxSpan }
-            onClick={ () => {
-              debugger
-              dispatch(setSelectedIdsWithAmount(mainId, +currentObjArr[0].amount + 1))
-            } }
-      >+</span>
-    </div>
-  }*/
+      return <div className='ColorsOption-box-item-canBuyFew'>
+        <span className={ classForMinSpan }
+              onClick={ () => dispatch(setSelectedIdsWithAmount(mainId, +currentObjArr[0].amount - 1)) }
+        >-</span>
+        <p>{ currentObjArr?.length >= 1 && currentObjArr?.[0].amount }</p>
+        <span className={ classForMaxSpan }
+              onClick={ () => {
+                debugger
+                dispatch(setSelectedIdsWithAmount(mainId, +currentObjArr[0].amount + 1))
+              } }
+        >+</span>
+      </div>
+    }*/
 
   return (
       <div className="ColorsOption">
-
-
         <div className="ColorsOption-box">
 
           { optionData ? Object.values(optionData).map((option, index) => {
@@ -104,41 +109,63 @@ const ColorsOption = (props) => {
                       </p> :
                       <p className="ColorsOption-box-item-price">{ props.option === 'Delivery' ? 'Selbstabholung' : 'frei' }</p>
                   }
-                  {/*{ canBuyFew && selectedId === main.id ? renderCanBuyFew(main.id, canBuyFew) : null}*/}
+                  {/*{ canBuyFew && selectedId === main.id ? renderCanBuyFew(main.id, canBuyFew) : null}*/ }
                 </div>
             )
           }) : null }
         </div>
 
-        <div className='ColorsOption-moreInfo'
-             key={ option?.replace(' ', '_') }
-             data-tip={ option?.replace(' ', '_') }
-             data-for={ option?.replace(' ', '_') }
-        >
-          <img src={ moreInfoIcon } alt="alt"/>
-          <p>Mehr Information</p>
+        { desktopQueryTooltip ? <>
+          <div className='ColorsOption-moreInfo'
+               key={ option?.replace(' ', '_') }
+               data-tip={ option?.replace(' ', '_') }
+               data-for={ option?.replace(' ', '_') }
+          >
+            <img src={ moreInfoIcon } alt="alt"/>
+            <p>Mehr Information</p>
 
-        </div>
-        <ReactTooltip className='ColorsOption-moreInfo-tooltip' id={ option?.replace(' ', '_') }
-                      getContent={ (dataTip) => {
+          </div>
+          <ReactTooltip className='ColorsOption-moreInfo-tooltip' id={ option?.replace(' ', '_') }
+                        getContent={ (dataTip) => {
 
-                        return <div className='ColorsOption-moreInfo-tooltip-box'>
-                          <p className='ColorsOption-moreInfo-tooltip-box-title'>{ dataTooltip?.germanName }</p>
-                          <div className='ColorsOption-moreInfo-tooltip-box-desc'
-                               dangerouslySetInnerHTML={ { __html: dataTooltip?.germanDescription } }
-                          />
-                          {/*<p className="ColorsOption-moreInfo-tooltip-box-gotIt">OK</p>*/}
-                        </div>
-                      }
+                          return <div className='ColorsOption-moreInfo-tooltip-box'>
+                            <p className='ColorsOption-moreInfo-tooltip-box-title'>{ dataTooltip?.germanName }</p>
+                            <div className='ColorsOption-moreInfo-tooltip-box-desc'
+                                 dangerouslySetInnerHTML={ { __html: dataTooltip?.germanDescription } }
+                            />
+                          </div>
+                        }
 
-                      }
-                      delayHide={ 300 }
-                      place="left"
-                      type='light'
-                      effect='solid'
-                      border={ false }
+                        }
+                        delayHide={ 300 }
+                        place="left"
+                        type='light'
+                        effect='solid'
+                        border={ false }
 
-        />
+          />
+        </> : <>
+          <div className='ColorsOption-moreInfo' onClick={() => setOpenToolltip(option === openToolltip ? '' : option)}>
+            <img src={ moreInfoIcon } alt="alt"/>
+            <p>Mehr Information</p>
+          </div>
+          <Collapse
+              theme={{
+                collapse: 'ColorsOption-collapse',
+                content: 'ColorsOption-content'
+              }}
+              isOpened={option === openToolltip}
+          >
+            {dataTooltip && <div className='ColorsOption-moreInfo-tooltip-box collapse'>
+              {/*<p className='ColorsOption-moreInfo-tooltip-box-title'>{ dataTooltip?.germanName }</p>*/}
+              <div className='ColorsOption-moreInfo-tooltip-box-desc collapse-desc'
+                   dangerouslySetInnerHTML={ { __html: dataTooltip?.germanDescription } }
+              />
+            </div> }
+          </Collapse>
+        </>
+
+        }
       </div>
   )
 }
