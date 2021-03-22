@@ -20,7 +20,7 @@ const initialState = {
   isLoadingData: false,
   isLoadingRootData: false,
   isLoadingPgfGenerator: false,
-  /*selectedIdsWithAmount: [],*/
+  selectedIdsWithAmount: {},
   pdfFile: ''
 }
 
@@ -133,7 +133,11 @@ const hotTubReducer = (state = initialState, action) => {
     case ActionTypes.SET_SELECTED_MASSAGE_FUNCTION_ID:
       return {
         ...state,
-        selectedMassageFunctionId: action.selectedMassageFunctionId
+        selectedMassageFunctionId: action.selectedMassageFunctionId,
+        selectedIdsWithAmount: {
+          ...state.selectedIdsWithAmount,
+          [action.selectedMassageFunctionId]: 1
+        }
       }
     case ActionTypes.SET_SELECTED_LED_ID:
       return {
@@ -153,12 +157,20 @@ const hotTubReducer = (state = initialState, action) => {
     case ActionTypes.SET_SELECTED_ADDITIONAL_ACCESSORIES_ID:
       return {
         ...state,
-        selectedAdditionalAccessoriesIds: action.selectedAdditionalAccessoriesIds
+        selectedAdditionalAccessoriesIds: action.selectedAdditionalAccessoriesIds,
+        selectedIdsWithAmount: {
+          ...state.selectedIdsWithAmount,
+          [action.additionalAccessoriesId]: 1
+        }
       }
     case ActionTypes.SET_SELECTED_TUBE_EXTENSION_ID:
       return {
         ...state,
-        selectedTubeExtensionId: action.selectedTubeExtensionId
+        selectedTubeExtensionId: action.selectedTubeExtensionId,
+        selectedIdsWithAmount: {
+          ...state.selectedIdsWithAmount,
+          [action.selectedTubeExtensionId]: 1
+        }
       }
     case ActionTypes.SET_SELECTED_DELIVERY_ID:
       return {
@@ -170,11 +182,14 @@ const hotTubReducer = (state = initialState, action) => {
         ...state,
         selectedMetalStrapsId: action.selectedMetalStrapsId
       }
-    /*case ActionTypes.SET_SELECTED_IDS_WITH_AMOUNT:
+    case ActionTypes.SET_SELECTED_IDS_WITH_AMOUNT:
       return {
         ...state,
-        selectedIdsWithAmount: action.selectedIdsWithAmount
-      }*/
+        selectedIdsWithAmount: {
+          ...state.selectedIdsWithAmount,
+          [action.selectedId]: action.amount
+        }
+      }
 
     default:
       return state;

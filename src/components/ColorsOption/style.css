@@ -170,7 +170,6 @@
   margin-top: 5px;
 }
 .ColorsOption-box-item-canBuyFew .disabled {
-  pointer-events: none;
   background-color: rgba(224, 224, 224, 0.59);
 }
 .ColorsOption-box-item-canBuyFew > span {

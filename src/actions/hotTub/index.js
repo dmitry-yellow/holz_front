@@ -64,26 +64,10 @@ const getRootData = () => async (dispatch) => {
     }
 };
 
-/*export const setSelectedIdsWithAmount = (selectedIdWithAmount, amount = 1) => (dispatch, getState) => {
-    /!*console.log({ selectedIdWithAmount, amount });*!/
-    debugger
-    let newArr = [];
-    let storeArrAmount = getState().hotTub.selectedIdsWithAmount;
-    let currentElement = storeArrAmount.filter(item => item.selectedIdWithAmount === selectedIdWithAmount);
+export const setSelectedIdsWithAmount = (selectedId, amount = 1) => (dispatch, getState) => {
 
-    let isStoreArrAmountIncludesElem = storeArrAmount.includes({ selectedIdWithAmount, amount });
-
-    if(!isStoreArrAmountIncludesElem && !currentElement.length >= 1) {
-        newArr.push({ selectedIdWithAmount, amount })
-    } else {
-        newArr = storeArrAmount.map(item => {
-            if(item.selectedIdWithAmount === selectedIdWithAmount){
-                return {selectedIdWithAmount, amount}
-            }
-        })
-    }
-    dispatch({type: ActionTypes.SET_SELECTED_IDS_WITH_AMOUNT, selectedIdsWithAmount: newArr})
-}*/
+    dispatch({type: ActionTypes.SET_SELECTED_IDS_WITH_AMOUNT, selectedId, amount})
+}
 
 
 const getAllSelectedIds = (getState) => {
@@ -115,11 +99,16 @@ const getAllSelectedIds = (getState) => {
 export const getCartData = () => async (dispatch, getState) => {
     try {
         dispatch({type: ActionTypes.GENERATE_CART});
+        const selectedIdsWithAmount = getState().hotTub.selectedIdsWithAmount;
         const selectedIds = await getAllSelectedIds(getState);
-        const data = await selectedIds.map(id => {
-            return {id: id, amount: 1}
-        })
 
+        const data = await selectedIds.map(id => {
+            if(selectedIdsWithAmount?.[id]){
+                return {id: id, amount: selectedIdsWithAmount?.[id]}
+            } else {
+                return {id: id, amount: 1}
+            }
+        })
 
         if (data && selectedIds?.length >= 1) {
             const response = await hotTubAPI.getCartData(data);
@@ -140,9 +129,16 @@ export const getCartData = () => async (dispatch, getState) => {
 export const generatePdfLink = (images) => async (dispatch, getState) => {
     try {
         dispatch({type: ActionTypes.GENERATE_PGF});
+        const selectedIdsWithAmount = getState().hotTub.selectedIdsWithAmount;
         const selectedIds = await getAllSelectedIds(getState);
+
+
         const data = await selectedIds.map(id => {
-            return {id: id, amount: 1}
+            if(selectedIdsWithAmount?.[id]){
+                return {id: id, amount: selectedIdsWithAmount?.[id]}
+            } else {
+                return {id: id, amount: 1}
+            }
         })
 
         let sendData = {data: data, images: images};
@@ -221,7 +217,8 @@ export const setSelectedAdditionalAccessoriesId = (additionalAccessoriesId) => a
     }
     await dispatch({
         type: ActionTypes.SET_SELECTED_ADDITIONAL_ACCESSORIES_ID,
-        selectedAdditionalAccessoriesIds: newSelectedIds
+        selectedAdditionalAccessoriesIds: newSelectedIds,
+        additionalAccessoriesId
     })
 }
 

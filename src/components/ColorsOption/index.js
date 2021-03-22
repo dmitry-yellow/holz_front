@@ -6,7 +6,8 @@ import cn from 'classnames';
 import './style.css';
 import { useDispatch, useSelector } from "react-redux";
 import { Collapse } from "react-collapse/lib/Collapse";
-/*import { setSelectedIdsWithAmount } from "../../actions/hotTub";*/
+import { setSelectedIdsWithAmount } from "../../actions/hotTub";
+
 
 
 const ColorsOption = (props) => {
@@ -29,13 +30,10 @@ const ColorsOption = (props) => {
     setOpenToolltip
   } = props;
 
-  /*const [openToolltip, setOpenToolltip] = useState('');*/
 
-  /*const selectedIdsWithAmount = useSelector(state => state.hotTub.selectedIdsWithAmount);
+  const selectedIdsWithAmount = useSelector(state => state.hotTub.selectedIdsWithAmount);
 
-  useEffect(() => {
 
-  }, [selectedIdsWithAmount])*/
 
   let priceShow = (size) => {
 
@@ -46,33 +44,44 @@ const ColorsOption = (props) => {
     return size.base.price;
   }
 
-  /*  const renderCanBuyFew = (mainId, canBuyFew) => {
+    const renderCanBuyFew = (mainId, canBuyFew) => {
 
-      debugger
-      const currentObjArr = selectedIdsWithAmount?.filter(item => item.selectedIdWithAmount === mainId);
-      const classForMinSpan = cn( currentObjArr?.length >= 1 && currentObjArr?.[0].amount <= 1 && 'disabled');
-      const classForMaxSpan = cn( currentObjArr?.length >= 1 && currentObjArr?.[0].amount >= canBuyFew && 'disabled');
+    let currentId, currentAmount;
 
-      console.log(currentObjArr)
+    if(selectedId?.length >= 1){
+        const index = selectedId.includes(mainId) ? selectedId.indexOf(mainId) : null;
+        currentId = selectedId[index];
+        currentAmount = selectedIdsWithAmount[currentId];
+      } else {
+        currentId = mainId;
+        currentAmount = selectedIdsWithAmount[currentId];
+      }
 
-      return <div className='ColorsOption-box-item-canBuyFew'>
+      const classForMinSpan = cn( currentAmount <= 1 && 'disabled');
+      const classForMaxSpan = cn( currentAmount >= canBuyFew && 'disabled');
+
+      return <>
+        {  currentId && currentAmount && canBuyFew ? <div className='ColorsOption-box-item-canBuyFew'>
         <span className={ classForMinSpan }
-              onClick={ () => dispatch(setSelectedIdsWithAmount(mainId, +currentObjArr[0].amount - 1)) }
-        >-</span>
-        <p>{ currentObjArr?.length >= 1 && currentObjArr?.[0].amount }</p>
+              onClick={ (event) => {
+                event.stopPropagation();
+                if (classForMinSpan === 'disabled') return
+                dispatch(setSelectedIdsWithAmount(mainId, currentAmount - 1))
+              } }>-</span>
+        <p>{ currentAmount }</p>
         <span className={ classForMaxSpan }
-              onClick={ () => {
-                debugger
-                dispatch(setSelectedIdsWithAmount(mainId, +currentObjArr[0].amount + 1))
-              } }
-        >+</span>
-      </div>
-    }*/
+              onClick={ (event) => {
+                event.stopPropagation();
+                if (classForMaxSpan === 'disabled') return
+                dispatch(setSelectedIdsWithAmount(mainId, currentAmount + 1))
+              } }>+</span>
+      </div> : null }
+      </>
+    }
 
   return (
       <div className="ColorsOption">
         <div className="ColorsOption-box">
-
           { optionData ? Object.values(optionData).map((option, index) => {
 
             const imageUrl = `${ process.env.REACT_APP_HOST_API_URL }${ option.base.image }`;
@@ -85,14 +94,12 @@ const ColorsOption = (props) => {
             return (
                 <div key={ main.id }
                      onClick={ () => {
-                       /*let isIncludesItem = selectedIdsWithAmount.filter(item => item.selectedIdWithAmount === main.id).length >= 1;*/
                        if (main.Name !== 'Spruce' && props.option === 'Wood') {
                          dispatch(setSelectedSpruceColorId(80533))
                        }
-                       /*if (canBuyFew && !isIncludesItem) {
-                         dispatch(setSelectedIdsWithAmount(main.id, 1));
-                       }*/
-                       dispatch(setSelectedId(main.id))
+                       if(selectedId !== main.id){
+                         dispatch(setSelectedId(main.id))
+                       }
                      } }
                      className={ cn("ColorsOption-box-item",
                          props.option === 'Delivery' && 'delivery',
@@ -109,7 +116,8 @@ const ColorsOption = (props) => {
                       </p> :
                       <p className="ColorsOption-box-item-price">{ props.option === 'Delivery' ? 'Selbstabholung' : 'frei' }</p>
                   }
-                  {/*{ canBuyFew && selectedId === main.id ? renderCanBuyFew(main.id, canBuyFew) : null}*/ }
+
+                  { canBuyFew && selectedId === main.id || selectedId?.length >= 1 ? renderCanBuyFew(main.id, canBuyFew) : null}
                 </div>
             )
           }) : null }

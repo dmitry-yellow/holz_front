@@ -29,7 +29,9 @@ const TotalAmountCard = (props) => {
 
     const dispatch = useDispatch();
     const isLoadingPgfGenerator = useSelector(state => state.hotTub.isLoadingPgfGenerator);
+    const selectedIdsWithAmount = useSelector(state => state.hotTub.selectedIdsWithAmount);
     const cartData = useSelector(state => state.hotTub.cart);
+
     useEffect(() => {
         generateDynForm(cartData, cartUrl);
     }, [cartData]);
@@ -193,8 +195,14 @@ const TotalAmountCard = (props) => {
             allSelectedIds.forEach((id) => {
                 Object.values(customizeData).forEach((dataItem) => {
                     if (Object.keys(dataItem)?.length >= 1) {
+
                         let currentId = Object.keys(dataItem).filter(itemId => +itemId === +id ? String(id) : '');
                         let value;
+                        let amount = 1;
+
+                        if(selectedIdsWithAmount?.[currentId]){
+                            amount = selectedIdsWithAmount?.[currentId];
+                        }
 
                         if(selectedSizeId==80530){
                             value = currentId?.length >= 1 && dataItem?.[`${currentId}`].base?.priceBig?.realValue;
@@ -202,7 +210,9 @@ const TotalAmountCard = (props) => {
                             value = currentId?.length >= 1 && dataItem?.[`${currentId}`].base.price.realValue;
                         }
                         if (value) {
-                            totalPrice = totalPrice + accounting.unformat(`€ ${value}`)
+
+                            let unformatValue = accounting.unformat(`€ ${value}`);
+                            totalPrice = totalPrice + unformatValue * amount;
                         }
                     }
                 })
@@ -215,7 +225,7 @@ const TotalAmountCard = (props) => {
         selectedCoverId, selectedDeliveryId, selectedHeatingOvenId,
         selectedInsideColorId, selectedLedId, selectedMassageFunctionId,
         selectedMetalStrapsId, selectedSpruceColorId, selectedTubeExtensionId, selectedWarmingId,
-        selectedWoodId
+        selectedWoodId, selectedIdsWithAmount
     ])
 
     return (
