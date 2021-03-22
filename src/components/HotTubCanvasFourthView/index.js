@@ -1,9 +1,10 @@
-import {Group, Layer, Stage, Text} from "react-konva";
-import Image from "../Image/Image";
 import {useMemo, useRef, useEffect, useState} from "react";
+import {Group, Layer, Stage, Text} from "react-konva";
+import {useKunakovHeight} from "../customHooks/useKunakovHeight";
+import Image from "../Image/Image";
 import plusIcon from "../../assets/images/icon-svg.svg";
 import doneIcon from '../../assets/images/icon-done.svg';
-import {useKunakovHeight} from "../customHooks/useKunakovHeight";
+import bcgImagePositionFour from '../../assets/images/bcg-image-position-four.png';
 
 
 const HotTubCanvasFourthView = (props) => {
@@ -488,10 +489,20 @@ const HotTubCanvasFourthView = (props) => {
                     </Group>
 
                 </Layer>
-                <Layer scaleX={1}
-                       scaleY={1}
+                <Layer scaleX={ isExteriorBcg ? 1 : calcHeight(scaleX && scaleX) }
+                       scaleY={ isExteriorBcg ? 1 : calcHeight(scaleY && scaleY) }
                        ref={bcgRefImageLayer}
                 >
+                    { !isExteriorBcg && <Image x={ -455 }
+                                               y={ -515 }
+                                               width={ 680 }
+                                               height={ 580 }
+                                               src={ bcgImagePositionFour }
+                                               opacity={ isExteriorBcg ? 0 : 1 }
+                                               offsetX={ offsetX && offsetX }
+                                               offsetY={ offsetY && calcHeight(offsetY) }
+                    /> }
+
                     {(bcgExteriorImage4 && isExteriorBcg) && <Image x={-hotTubStageWidth / 2}
                                                                     y={-hotTubStageHeight / 2}
                                                                     width={hotTubStageWidth}

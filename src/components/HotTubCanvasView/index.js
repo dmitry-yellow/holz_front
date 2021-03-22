@@ -1,11 +1,11 @@
 import { Group, Layer, Stage, Text } from "react-konva";
-import Image from "../Image/Image";
 import { useMemo, useRef, useEffect, useState } from "react";
+import { useKunakovHeight } from "../customHooks/useKunakovHeight";
+import Image from "../Image/Image";
 import bcgImagePositionOne from '../../assets/images/bcg-image-position-one.png';
 import plusIcon from '../../assets/images/icon-svg.svg';
 import doneIcon from '../../assets/images/icon-done.svg';
 import './style.css';
-import { useKunakovHeight } from "../customHooks/useKunakovHeight";
 
 
 const HotTubCanvasView = (props) => {
@@ -550,15 +550,16 @@ const HotTubCanvasView = (props) => {
           </Layer>
           <Layer scaleX={ isExteriorBcg ? 1 : calcHeight(scaleX && scaleX) }
                  scaleY={ isExteriorBcg ? 1 : calcHeight(scaleY && scaleY) }>
-            { !isExteriorBcg && <Image x={ -905 }
-                                       y={ -535 }
-                                       width={ 1650 }
-                                       height={ 950 }
+            { !isExteriorBcg && <Image x={ -473 }
+                                       y={ -167 }
+                                       width={ 697 }
+                                       height={ 500 }
                                        src={ bcgImagePositionOne }
                                        opacity={ isExteriorBcg ? 0 : 1 }
                                        offsetX={ offsetX && offsetX }
                                        offsetY={ offsetY && calcHeight(offsetY) }
             /> }
+
             { (bcgExteriorImage1 && isExteriorBcg) && <Image x={ -hotTubStageWidth / 2 }
                                                              y={ -hotTubStageHeight / 2 }
                                                              width={ hotTubStageWidth }

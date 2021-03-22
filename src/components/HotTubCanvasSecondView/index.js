@@ -486,10 +486,10 @@ const HotTubCanvasSecondView = (props) => {
                 <Layer scaleX={isExteriorBcg ? 1 : calcHeight(scaleX && scaleX )}
                        scaleY={isExteriorBcg ? 1 : calcHeight(scaleY && scaleY )}
                 >
-                    {!isExteriorBcg && <Image x={-830}
-                                              y={-753}
-                                              width={1350}
-                                              height={1100}
+                    {!isExteriorBcg && <Image x={-450}
+                                              y={118}
+                                              width={780}
+                                              height={100}
                                               src={bcgImagePositionTwo}
                                               opacity={isExteriorBcg ? 0 : 1}
                                               offsetX={offsetX && offsetX}

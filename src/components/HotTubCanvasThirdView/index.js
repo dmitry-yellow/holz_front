@@ -7,7 +7,9 @@ import schalter_1 from '../../assets/images/schalter/Hottub-Studio_0002s_0004s_0
 import schalter_2 from '../../assets/images/schalter/Hottub-Studio_0002s_0004s_0002_Schalter-02.png';
 import schalter_3 from '../../assets/images/schalter/Hottub-Studio_0002s_0004s_0001_Schalter-03.png';
 import schalter_4 from '../../assets/images/schalter/Hottub-Studio_0002s_0004s_0000_Schalter-04.png';
+import bcgImagePositionThree from '../../assets/images/bcg-image-position-three.png';
 import { useKunakovHeight } from "../customHooks/useKunakovHeight";
+import bcgImagePositionOne from "../../assets/images/bcg-image-position-one.png";
 
 
 const HotTubCanvasThirdView = (props) => {
@@ -577,10 +579,20 @@ const HotTubCanvasThirdView = (props) => {
           </Layer>
 
 
-          <Layer scaleX={ 1 }
-                 scaleY={ 1 }
+          <Layer scaleX={ isExteriorBcg ? 1 : calcHeight(scaleX && scaleX) }
+                 scaleY={ isExteriorBcg ? 1 : calcHeight(scaleY && scaleY) }
                  ref={ bcgRefImageLayer }
           >
+            { !isExteriorBcg && <Image x={ -445 }
+                                       y={ -400 }
+                                       width={ 685 }
+                                       height={ 600 }
+                                       src={ bcgImagePositionThree }
+                                       opacity={ isExteriorBcg ? 0 : 1 }
+                                       offsetX={ offsetX && offsetX }
+                                       offsetY={ offsetY && calcHeight(offsetY) }
+            /> }
+
             { (bcgExteriorImage3 && isExteriorBcg) && <Image x={ -hotTubStageWidth / 2 }
                                                              y={ -hotTubStageHeight / 2 }
                                                              width={ hotTubStageWidth }
