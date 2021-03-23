@@ -214,6 +214,11 @@ export const setSelectedAdditionalAccessoriesId = (additionalAccessoriesId) => a
         }
 
         newSelectedIds.push(additionalAccessoriesId);
+
+        if(newSelectedIds.includes(80591)){
+            newSelectedIds = newSelectedIds.filter((id) => id !== 80575);
+        }
+
     }
     await dispatch({
         type: ActionTypes.SET_SELECTED_ADDITIONAL_ACCESSORIES_ID,
@@ -222,8 +227,7 @@ export const setSelectedAdditionalAccessoriesId = (additionalAccessoriesId) => a
     })
 }
 
-export const setSelectedTubeExtensionId = (tubeExtensionId) => (dispatch, getState) => {
-    /*const currentTubeId = getState().hotTub.selectedTubeExtensionId === tubeExtensionId ? null : tubeExtensionId*/
+export const setSelectedTubeExtensionId = (tubeExtensionId) => (dispatch) => {
     dispatch({type: ActionTypes.SET_SELECTED_TUBE_EXTENSION_ID, selectedTubeExtensionId: tubeExtensionId})
 }
 

@@ -4,7 +4,6 @@ import { useKunakovHeight } from "../customHooks/useKunakovHeight";
 import Image from "../Image/Image";
 import plusIcon from '../../assets/images/icon-svg.svg';
 import doneIcon from '../../assets/images/icon-done.svg';
-import './style.css';
 
 
 const HotTubCanvasView = (props) => {
@@ -347,12 +346,12 @@ const HotTubCanvasView = (props) => {
           setOffsetX(250);
           setOffsetY(-450);
       }
-    } else if (+hotTubStageWidth >= 420 && +hotTubStageWidth < 700) {
+    } else if (+hotTubStageWidth >= 440 && +hotTubStageWidth < 700) {
       setScaleX(0.6);
       setScaleY(0.6);
       setOffsetX(250);
       setOffsetY(-450);
-    } else if (+hotTubStageWidth >= 340 && +hotTubStageWidth <= 420) {
+    } else if (+hotTubStageWidth >= 340 && +hotTubStageWidth <= 440) {
       if (+selectedSizeId === 80504) {
         setScaleX(0.8);
         setScaleY(0.8);

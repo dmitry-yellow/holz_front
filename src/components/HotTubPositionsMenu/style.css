@@ -15,7 +15,7 @@
   box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.32);
   cursor: pointer;
 }
-@media screen and (max-device-width: 420px) {
+@media screen and (max-device-width: 440px) {
   .HotTubPositionsMenu > span {
     width: 40px;
     height: 40px;
@@ -33,7 +33,7 @@
   border: 2.5px solid #774D2E;
   border-radius: 50%;
 }
-@media screen and (max-device-width: 420px) {
+@media screen and (max-device-width: 440px) {
   .HotTubPositionsMenu > span.selected:before {
     width: 44px;
     height: 44px;
@@ -48,7 +48,7 @@
   background-repeat: no-repeat;
   background-size: contain;
 }
-@media screen and (max-device-width: 420px) {
+@media screen and (max-device-width: 440px) {
   .HotTubPositionsMenu > span:after {
     width: 30px;
     height: 30px;

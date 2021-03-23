@@ -10,7 +10,7 @@ const injectMedia = Component =>
         return (
             <Media queries={ { desktopQuery: desktopQuery, desktopQueryTooltip: desktopQueryTooltip } }>
               { matches => <Component { ...this.props }
-                                                  desktopQueryMatches={ matches.desktopQueryMatches }
+                                                  desktopQueryMatches={ matches.desktopQuery }
                                                   desktopQueryTooltip={ matches.desktopQueryTooltip}
               /> }
             </Media>
