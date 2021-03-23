@@ -7,7 +7,7 @@ import './style.css';
 import { useDispatch, useSelector } from "react-redux";
 import { Collapse } from "react-collapse/lib/Collapse";
 import { setSelectedIdsWithAmount } from "../../actions/hotTub";
-
+import PositioningSandfilterBox from "../PositioningSandfilter";
 
 
 const ColorsOption = (props) => {
@@ -34,7 +34,6 @@ const ColorsOption = (props) => {
   const selectedIdsWithAmount = useSelector(state => state.hotTub.selectedIdsWithAmount);
 
 
-
   let priceShow = (size) => {
 
     if (selectedSizeId == 80530) {
@@ -44,24 +43,24 @@ const ColorsOption = (props) => {
     return size.base.price;
   }
 
-    const renderCanBuyFew = (mainId, canBuyFew) => {
+  const renderCanBuyFew = (mainId, canBuyFew) => {
 
     let currentId, currentAmount;
 
-    if(selectedId?.length >= 1){
-        const index = selectedId.includes(mainId) ? selectedId.indexOf(mainId) : null;
-        currentId = selectedId[index];
-        currentAmount = selectedIdsWithAmount[currentId];
-      } else {
-        currentId = mainId;
-        currentAmount = selectedIdsWithAmount[currentId];
-      }
+    if (selectedId?.length >= 1) {
+      const index = selectedId.includes(mainId) ? selectedId.indexOf(mainId) : null;
+      currentId = selectedId[index];
+      currentAmount = selectedIdsWithAmount[currentId];
+    } else {
+      currentId = mainId;
+      currentAmount = selectedIdsWithAmount[currentId];
+    }
 
-      const classForMinSpan = cn( currentAmount <= 1 && 'disabled');
-      const classForMaxSpan = cn( currentAmount >= canBuyFew && 'disabled');
+    const classForMinSpan = cn(currentAmount <= 1 && 'disabled');
+    const classForMaxSpan = cn(currentAmount >= canBuyFew && 'disabled');
 
-      return <>
-        {  currentId && currentAmount && canBuyFew ? <div className='ColorsOption-box-item-canBuyFew'>
+    return <>
+      { currentId && currentAmount && canBuyFew ? <div className='ColorsOption-box-item-canBuyFew'>
         <span className={ classForMinSpan }
               onClick={ (event) => {
                 event.stopPropagation();
@@ -76,12 +75,12 @@ const ColorsOption = (props) => {
                 dispatch(setSelectedIdsWithAmount(mainId, currentAmount + 1))
               } }>+</span>
       </div> : null }
-      </>
-    }
+    </>
+  }
 
   return (
-      <div className="ColorsOption">
-        <div className="ColorsOption-box">
+      <div className={ cn("ColorsOption", option === 'Positioning' && 'positioning') }>
+        { option !== 'Positioning' ? <div className="ColorsOption-box">
           { optionData ? Object.values(optionData).map((option, index) => {
 
             const imageUrl = `${ process.env.REACT_APP_HOST_API_URL }${ option.base.image }`;
@@ -97,7 +96,7 @@ const ColorsOption = (props) => {
                        if (main.Name !== 'Spruce' && props.option === 'Wood') {
                          dispatch(setSelectedSpruceColorId(80533))
                        }
-                       if(selectedId !== main.id){
+                       if (selectedId !== main.id) {
                          dispatch(setSelectedId(main.id))
                        }
                      } }
@@ -117,11 +116,13 @@ const ColorsOption = (props) => {
                       <p className="ColorsOption-box-item-price">{ props.option === 'Delivery' ? 'Selbstabholung' : 'frei' }</p>
                   }
 
-                  { canBuyFew && selectedId === main.id || selectedId?.length >= 1 ? renderCanBuyFew(main.id, canBuyFew) : null}
+                  { canBuyFew && selectedId === main.id || selectedId?.length >= 1 ? renderCanBuyFew(main.id, canBuyFew) : null }
                 </div>
             )
           }) : null }
-        </div>
+        </div> : <PositioningSandfilterBox optionData={ optionData }
+                                           priceShow={priceShow}
+        /> }
 
         { desktopQueryTooltip ? <>
           <div className='ColorsOption-moreInfo'
@@ -153,19 +154,20 @@ const ColorsOption = (props) => {
 
           />
         </> : <>
-          <div className='ColorsOption-moreInfo' onClick={() => setOpenToolltip(option === openToolltip ? '' : option)}>
+          <div className='ColorsOption-moreInfo'
+               onClick={ () => setOpenToolltip(option === openToolltip ? '' : option) }>
             <img src={ moreInfoIcon } alt="alt"/>
             <p>Mehr Information</p>
           </div>
           <Collapse
-              theme={{
+              theme={ {
                 collapse: 'ColorsOption-collapse',
                 content: 'ColorsOption-content'
-              }}
-              isOpened={option === openToolltip}
+              } }
+              isOpened={ option === openToolltip }
           >
-            {dataTooltip && <div className='ColorsOption-moreInfo-tooltip-box collapse'>
-              {/*<p className='ColorsOption-moreInfo-tooltip-box-title'>{ dataTooltip?.germanName }</p>*/}
+            { dataTooltip && <div className='ColorsOption-moreInfo-tooltip-box collapse'>
+              {/*<p className='ColorsOption-moreInfo-tooltip-box-title'>{ dataTooltip?.germanName }</p>*/ }
               <div className='ColorsOption-moreInfo-tooltip-box-desc collapse-desc'
                    dangerouslySetInnerHTML={ { __html: dataTooltip?.germanDescription } }
               />

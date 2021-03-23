@@ -31,7 +31,7 @@ const CustomizeOptionContainer = (props) => {
                    }
                  }}>
                 <p className="CustomizeOptionContainer-header-optionName">
-                    {option === 'Positioning' ? 'Positioning of the sandfilter/pump & Control Panel' : showName}
+                    {showName && showName}
                 </p>
                 <p className="CustomizeOptionContainer-header-optional">
                     {optional ? (option === 'Positioning' ? 'Click on circle to choose position' : '(Optional)') : null}
