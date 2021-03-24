@@ -1,11 +1,12 @@
 .PositioningSandfilterBox {
+
   margin-top: 50px;
 
   &-image {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 40px;
+    margin-bottom: 60px;
     position: relative;
 
     > img {
@@ -98,11 +99,13 @@
       align-items: center;
       width: max-content;
 
+
       input {
         margin: 0 5px 0 0;
         width: 16px;
         height: 16px;
         position: relative;
+        cursor: pointer;
       }
 
       input[type='checkbox']:after {
@@ -131,6 +134,45 @@
         left: 3px;
         top: -1px;
       }
+
+      input:disabled{
+        cursor: not-allowed;
+      }
     }
+
+    &-desc{
+      position: absolute;
+      width: max-content;
+      text-align: center;
+
+      &.Position_1{
+        bottom: -25px;
+      }
+
+      &.Position_2{
+        bottom: -25px;
+      }
+
+      &.Position_3{
+        bottom: -25px;
+      }
+
+      &.Position_4{
+        top: -20px;
+        left: -60px;
+      }
+
+      &.Position_5{
+        top: -25px;
+        right: -30px;
+      }
+
+      &.Position_6{
+        bottom: -25px;
+        right: 0;
+      }
+    }
+
+
   }
 }

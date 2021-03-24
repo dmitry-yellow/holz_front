@@ -5,7 +5,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 40px;
+  margin-bottom: 60px;
   position: relative;
 }
 .PositioningSandfilterBox-image > img {
@@ -91,6 +91,7 @@
   width: 16px;
   height: 16px;
   position: relative;
+  cursor: pointer;
 }
 .PositioningSandfilterBox-item-checkbox input[type='checkbox']:after {
   line-height: 1.5em;
@@ -114,4 +115,33 @@
   position: absolute;
   left: 3px;
   top: -1px;
+}
+.PositioningSandfilterBox-item-checkbox input:disabled {
+  cursor: not-allowed;
+}
+.PositioningSandfilterBox-item-desc {
+  position: absolute;
+  width: max-content;
+  text-align: center;
+}
+.PositioningSandfilterBox-item-desc.Position_1 {
+  bottom: -25px;
+}
+.PositioningSandfilterBox-item-desc.Position_2 {
+  bottom: -25px;
+}
+.PositioningSandfilterBox-item-desc.Position_3 {
+  bottom: -25px;
+}
+.PositioningSandfilterBox-item-desc.Position_4 {
+  top: -20px;
+  left: -60px;
+}
+.PositioningSandfilterBox-item-desc.Position_5 {
+  top: -25px;
+  right: -30px;
+}
+.PositioningSandfilterBox-item-desc.Position_6 {
+  bottom: -25px;
+  right: 0;
 }

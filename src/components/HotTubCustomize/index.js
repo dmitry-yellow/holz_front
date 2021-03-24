@@ -244,7 +244,18 @@ const HotTubCustomize = (props) => {
               />
 
               { customizeMenu.map((item, index) => {
-                const isDisabled = (customizeData?.wood?.[`${ selectedWoodId }`]._main.Name !== 'Spruce') && item.option === 'Spruce color';
+                const customizeDataName = customizeData?.wood?.[`${ selectedWoodId }`]._main.Name;
+                const isIncludesSomeElementInAddAcc = selectedAdditionalAccessoriesIds.includes(80591) || selectedAdditionalAccessoriesIds.includes(80575);
+                const isPositioningDisabled =
+                    +selectedMassageFunctionId === 80515 &&
+                    +selectedLedId === 80517 &&
+                    !isIncludesSomeElementInAddAcc &&
+                    item.option === 'Positioning';
+
+                const isSpruceDisabled = (customizeDataName !== 'Spruce') && item.option === 'Spruce color'
+
+                const isDisabled = isSpruceDisabled || isPositioningDisabled;
+
                 let showName;
 
                 if (rootData.descriptions) {

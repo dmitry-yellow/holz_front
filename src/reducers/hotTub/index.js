@@ -15,6 +15,7 @@ const initialState = {
   selectedWarmingId: null,
   selectedHeatingOvenId: null,
   selectedAdditionalAccessoriesIds: [],
+  selectedPositioningIds: {},
   selectedTubeExtensionId: null,
   selectedDeliveryId: null,
   isLoadingData: false,
@@ -161,6 +162,14 @@ const hotTubReducer = (state = initialState, action) => {
         selectedIdsWithAmount: {
           ...state.selectedIdsWithAmount,
           [action.additionalAccessoriesId]: 1
+        }
+      }
+      case ActionTypes.SET_SELECTED_POSITIONING_IDS:
+      return {
+        ...state,
+        selectedPositioningIds: {
+          ...state.selectedPositioningIds,
+          [action.option]: action.positioningId
         }
       }
     case ActionTypes.SET_SELECTED_TUBE_EXTENSION_ID:
