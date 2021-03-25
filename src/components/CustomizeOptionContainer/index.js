@@ -34,7 +34,7 @@ const CustomizeOptionContainer = (props) => {
                     {showName && showName}
                 </p>
                 <p className="CustomizeOptionContainer-header-optional">
-                    {optional ? (option === 'Positioning' ? 'Click on circle to choose position' : '(Optional)') : null}
+                    {optional ? (option === 'Positioning' ? 'Bitte klicken, um die Position zu wählen' : '(Optional)') : null}
                 </p>
                 <span className={classForSpan}></span>
             </div>

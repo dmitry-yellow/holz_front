@@ -52,39 +52,41 @@
   position: absolute;
 }
 .PositioningSandfilterBox-item.Position_1 {
-  left: 20%;
-  bottom: -2%;
-  transform: translate(-20%, 2%);
+  left: 0;
+  bottom: 10%;
+  transform: translate(0, -10%);
 }
 .PositioningSandfilterBox-item.Position_2 {
   left: -10%;
-  bottom: 25%;
-  transform: translate(10%, -25%);
+  top: 30%;
+  transform: translate(10%, -30%);
 }
 .PositioningSandfilterBox-item.Position_3 {
-  left: 0;
-  top: 10%;
-  transform: translate(0, -10%);
+  left: 20%;
+  top: -8%;
+  transform: translate(-20%, 8%);
 }
 .PositioningSandfilterBox-item.Position_4 {
-  left: 45%;
-  top: -10%;
-  transform: translate(-45%, 10%);
+  right: 13%;
+  top: -8%;
+  transform: translate(-13%, 8%);
 }
 .PositioningSandfilterBox-item.Position_5 {
-  right: 5%;
-  top: 5%;
-  transform: translate(-5%, -5%);
+  right: -5%;
+  top: 30%;
+  transform: translate(5%, -30%);
 }
 .PositioningSandfilterBox-item.Position_6 {
-  right: -5%;
-  top: 50%;
-  transform: translate(5%, -50%);
+  right: 0;
+  bottom: 10%;
+  transform: translate(0, -10%);
 }
 .PositioningSandfilterBox-item-checkbox {
   display: flex;
   align-items: center;
   width: max-content;
+  font-family: 'Lato_300';
+  font-size: 1rem;
 }
 .PositioningSandfilterBox-item-checkbox input {
   margin: 0 5px 0 0;
@@ -124,24 +126,47 @@
   width: max-content;
   text-align: center;
 }
+.PositioningSandfilterBox-item-desc > p {
+  font-family: 'Montserrat_300';
+  font-size: 0.9rem;
+}
+.PositioningSandfilterBox-item-desc .checkedPositionDone {
+  position: relative;
+  font-family: 'Montserrat_Bold';
+}
+.PositioningSandfilterBox-item-desc .checkedPositionDone:after {
+  content: '';
+  display: block;
+  width: 16px;
+  height: 16px;
+  background-image: url("../../assets/images/check-selected-icon.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  top: 2px;
+  left: -20px;
+}
 .PositioningSandfilterBox-item-desc.Position_1 {
   bottom: -25px;
 }
 .PositioningSandfilterBox-item-desc.Position_2 {
   bottom: -25px;
 }
+.PositioningSandfilterBox-item-desc.Position_2 .checkedPositionDone:after {
+  left: initial;
+  right: -20px;
+}
 .PositioningSandfilterBox-item-desc.Position_3 {
-  bottom: -25px;
+  top: -23px;
 }
 .PositioningSandfilterBox-item-desc.Position_4 {
-  top: -20px;
-  left: -60px;
+  top: -23px;
+  left: 0;
 }
 .PositioningSandfilterBox-item-desc.Position_5 {
-  top: -25px;
-  right: -30px;
+  bottom: -25px;
 }
 .PositioningSandfilterBox-item-desc.Position_6 {
   bottom: -25px;
-  right: 0;
+  right: -10px;
 }

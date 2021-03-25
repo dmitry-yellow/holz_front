@@ -131,8 +131,9 @@ export const generatePdfLink = (images) => async (dispatch, getState) => {
   try {
     dispatch({ type: ActionTypes.GENERATE_PGF });
     const selectedIdsWithAmount = getState().hotTub.selectedIdsWithAmount;
+    const selectedPositioningIds = getState().hotTub.selectedPositioningIds;
     const selectedIds = await getAllSelectedIds(getState);
-
+    let sendData;
 
     const data = await selectedIds.map(id => {
       if (selectedIdsWithAmount?.[id]) {
@@ -142,9 +143,13 @@ export const generatePdfLink = (images) => async (dispatch, getState) => {
       }
     })
 
-    let sendData = { data: data, images: images };
+    if(Object.keys(selectedPositioningIds)?.length){
+      sendData = { data: data, images: images, positioning: selectedPositioningIds };
+    } else {
+      sendData = { data: data, images: images }
+    }
 
-    if (data && selectedIds?.length >= 1) {
+    if (data && selectedIds?.length >= 1 && sendData) {
       const response = await hotTubAPI.generatePdfLink(sendData);
       if (response?.data && response?.status === 200) {
         await dispatch({

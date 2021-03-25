@@ -43,11 +43,11 @@ const PositioningSandfilterBox = (props) => {
     return <div className='PositioningSandfilterBox-select-options'>
       <div className='PositioningSandfilterBox-select-options-sandfilter'>
         <img src={ sandFilter } alt="filter"/>
-        <p>Sandfilter (pump)</p>
+        <p>Sandfilter (Pumpe)</p>
       </div>
       <div className='PositioningSandfilterBox-select-options-control-panel'>
         <img src={ srcCP && srcCP } alt="panel"/>
-        <p>Control Panel</p>
+        <p>Schalter Position</p>
       </div>
     </div>
   }
@@ -57,7 +57,6 @@ const PositioningSandfilterBox = (props) => {
       <div className='PositioningSandfilterBox'>
         <div className='PositioningSandfilterBox-image'>
           <img src={ positioningImage } alt="positioning"/>
-          {console.log(selectedPositioningIds)}
 
           { optionData ? Object.values(optionData).map(option => {
 
@@ -101,7 +100,7 @@ const PositioningSandfilterBox = (props) => {
               </div>
 
               <div className={ cn('PositioningSandfilterBox-item-desc',main.Name.replace(' ', '_') ) }>
-              <p>{ main.Name }</p>
+              <p className={cn(isCheckedControlPanel || isCheckedSandFilter ? 'checkedPositionDone' : '')}>{ main.Name }</p>
               { price?.realValue && <p> +{ price.realValue } { price.currency.currencySymbol } </p> }
             </div>
             </div>

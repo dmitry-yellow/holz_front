@@ -26,7 +26,8 @@
       align-items: center;
       height: 100px;
       width: 150px;
-      > p{
+
+      > p {
         font-family: 'Montserrat_400';
         font-size: 14px;
       }
@@ -37,7 +38,8 @@
       align-items: center;
       height: 85px;
       width: 150px;
-      > p{
+
+      > p {
         font-family: 'Montserrat_400';
         font-size: 14px;
         padding-top: 15px;
@@ -58,46 +60,47 @@
     position: absolute;
 
     &.Position_1 {
-      left: 20%;
-      bottom: -2%;
-      transform: translate(-20%, 2%);
+      left: 0;
+      bottom: 10%;
+      transform: translate(0, -10%);
     }
 
     &.Position_2 {
       left: -10%;
-      bottom: 25%;
-      transform: translate(10%, -25%);
+      top: 30%;
+      transform: translate(10%, -30%);
     }
 
     &.Position_3 {
-      left: 0;
-      top: 10%;
-      transform: translate(0, -10%);
+      left: 20%;
+      top: -8%;
+      transform: translate(-20%, 8%);
     }
 
     &.Position_4 {
-      left: 45%;
-      top: -10%;
-      transform: translate(-45%, 10%);
+      right: 13%;
+      top: -8%;
+      transform: translate(-13%, 8%);
     }
 
     &.Position_5 {
-      right: 5%;
-      top: 5%;
-      transform: translate(-5%, -5%);
+      right: -5%;
+      top: 30%;
+      transform: translate(5%, -30%);
     }
 
     &.Position_6 {
-      right: -5%;
-      top: 50%;
-      transform: translate(5%, -50%);
-
+      right: 0;
+      bottom: 10%;
+      transform: translate(0, -10%);
     }
 
     &-checkbox {
       display: flex;
       align-items: center;
       width: max-content;
+      font-family: 'Lato_300';
+      font-size: 1rem;
 
 
       input {
@@ -135,44 +138,70 @@
         top: -1px;
       }
 
-      input:disabled{
+      input:disabled {
         cursor: not-allowed;
       }
     }
 
-    &-desc{
+    &-desc {
       position: absolute;
       width: max-content;
       text-align: center;
 
-      &.Position_1{
+      > p{
+        font-family: 'Montserrat_300';
+        font-size: 0.9rem;
+      }
+
+      .checkedPositionDone {
+        position: relative;
+        font-family: 'Montserrat_Bold';
+
+        &:after {
+          content: '';
+          display: block;
+          width: 16px;
+          height: 16px;
+          background-image: url("../../assets/images/check-selected-icon.png");
+          background-repeat: no-repeat;
+          background-size: contain;
+          position: absolute;
+          top: 2px;
+          left: -20px;
+        }
+      }
+
+      &.Position_1 {
         bottom: -25px;
       }
 
-      &.Position_2{
+      &.Position_2 {
+        bottom: -25px;
+        .checkedPositionDone {
+          &:after{
+            left: initial;
+            right: -20px;
+          }
+        }
+      }
+
+      &.Position_3 {
+        top: -23px;
+      }
+
+      &.Position_4 {
+        top: -23px;
+        left: 0;
+      }
+
+      &.Position_5 {
         bottom: -25px;
       }
 
-      &.Position_3{
+      &.Position_6 {
         bottom: -25px;
-      }
-
-      &.Position_4{
-        top: -20px;
-        left: -60px;
-      }
-
-      &.Position_5{
-        top: -25px;
-        right: -30px;
-      }
-
-      &.Position_6{
-        bottom: -25px;
-        right: 0;
+        right: -10px;
       }
     }
-
-
   }
 }
