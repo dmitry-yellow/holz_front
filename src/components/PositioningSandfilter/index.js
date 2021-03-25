@@ -5,7 +5,6 @@ import controlPanel from '../../assets/images/icon-control-panel.png';
 import ledAndMassage from '../../assets/images/icon-cp-led-massage.png';
 import onlyLed from '../../assets/images/icon-cp-only-led.png';
 import onlyMassage from '../../assets/images/icon-cp-only-massage.png';
-import positioningImage from '../../assets/images/Positioning.png';
 import cn from 'classnames';
 import './style.css';
 import { setSelectedPositioningIds } from "../../actions/hotTub";
@@ -23,6 +22,8 @@ const PositioningSandfilterBox = (props) => {
   const selectedAdditionalAccessoriesIds = useSelector(state => state.hotTub.selectedAdditionalAccessoriesIds);
   const selectedMassageFunctionId = useSelector(state => state.hotTub.selectedMassageFunctionId);
   const selectedLedId = useSelector(state => state.hotTub.selectedLedId);
+  const data = useSelector(state => state.hotTub.data);
+  const heatingOvenDataPositioningImage = data.heatingOven?.['80521']?.imagesext.objectimage1;
 
 
 
@@ -41,6 +42,7 @@ const PositioningSandfilterBox = (props) => {
     }
 
     return <div className='PositioningSandfilterBox-select-options'>
+
       <div className='PositioningSandfilterBox-select-options-sandfilter'>
         <img src={ sandFilter } alt="filter"/>
         <p>Sandfilter (Pumpe)</p>
@@ -56,7 +58,7 @@ const PositioningSandfilterBox = (props) => {
   return (
       <div className='PositioningSandfilterBox'>
         <div className='PositioningSandfilterBox-image'>
-          <img src={ positioningImage } alt="positioning"/>
+          <img src={ `${process.env.REACT_APP_HOST_API_URL}${heatingOvenDataPositioningImage}` } alt="positioning"/>
 
           { optionData ? Object.values(optionData).map(option => {
 

@@ -6,7 +6,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 60px;
+    margin-bottom: 20px;
     position: relative;
 
     > img {
@@ -105,10 +105,11 @@
 
       input {
         margin: 0 5px 0 0;
-        width: 16px;
-        height: 16px;
+        width: 17px;
+        height: 17px;
         position: relative;
         cursor: pointer;
+        font: initial!important;
       }
 
       input[type='checkbox']:after {
@@ -131,11 +132,11 @@
       }
 
       input[type='checkbox']:checked:before {
-        content: '✔';
+        content: '\2714';
         color: white;
         position: absolute;
-        left: 3px;
-        top: -1px;
+        left: 2px;
+        top: -3.5px;
       }
 
       input:disabled {

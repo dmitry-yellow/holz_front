@@ -5,7 +5,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 60px;
+  margin-bottom: 20px;
   position: relative;
 }
 .PositioningSandfilterBox-image > img {
@@ -90,10 +90,11 @@
 }
 .PositioningSandfilterBox-item-checkbox input {
   margin: 0 5px 0 0;
-  width: 16px;
-  height: 16px;
+  width: 17px;
+  height: 17px;
   position: relative;
   cursor: pointer;
+  font: initial!important;
 }
 .PositioningSandfilterBox-item-checkbox input[type='checkbox']:after {
   line-height: 1.5em;
@@ -112,11 +113,11 @@
   background-color: #774d2e;
 }
 .PositioningSandfilterBox-item-checkbox input[type='checkbox']:checked:before {
-  content: '✔';
+  content: '\2714';
   color: white;
   position: absolute;
-  left: 3px;
-  top: -1px;
+  left: 2px;
+  top: -3.5px;
 }
 .PositioningSandfilterBox-item-checkbox input:disabled {
   cursor: not-allowed;
