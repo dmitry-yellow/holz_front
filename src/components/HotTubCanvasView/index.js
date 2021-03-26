@@ -34,6 +34,8 @@ const HotTubCanvasView = (props) => {
 
   const accessoriesRef = useRef(null);
   const iconsRef = useRef(null);
+  const bcgWithoutExt = useRef(null);
+  const bcgExtRef = useRef(null);
 
 
   const [woodText, setWoodText] = useState('');
@@ -51,10 +53,16 @@ const HotTubCanvasView = (props) => {
 
   useEffect(() => {
     if (iconsRef.current) {
-      iconsRef.current.zIndex(3);
+      iconsRef.current.zIndex(4);
     }
     if (accessoriesRef.current) {
-      accessoriesRef.current.zIndex(2);
+      accessoriesRef.current.zIndex(3);
+    }
+    if (bcgWithoutExt.current) {
+      bcgWithoutExt.current.zIndex(1);
+    }
+    if (bcgExtRef.current) {
+      bcgExtRef.current.zIndex(0);
     }
     if (hotTubStageWidth && hotTubStageHeight) {
       setScaleForLayers(hotTubStageWidth);
@@ -298,10 +306,10 @@ const HotTubCanvasView = (props) => {
       imageLarge = bcgShadowImageData?.[`${ selectedSizeId }`].base.imageLarge1;
     }
 
-    if (imageLarge && !isExteriorBcg) {
+    if (imageLarge) {
         return `${ apiUrl }${ imageLarge }`
     }
-  }, [isExteriorBcg, apiUrl, selectedSizeId, customizeData])
+  }, [apiUrl, selectedSizeId, customizeData])
 
 
   const optionName = function (name) {
@@ -324,25 +332,25 @@ const HotTubCanvasView = (props) => {
 
     } else if (+hotTubStageWidth >= 1000 && +hotTubStageWidth < 1200) {
       if (+selectedSizeId === 80504) {
-        setScaleX(0.6);
-        setScaleY(0.6);
-        setOffsetX(120);
-        setOffsetY(-250);
+        setScaleX(0.55);
+        setScaleY(0.55);
+        setOffsetX(105);
+        setOffsetY(-350);
       } else {
-        setScaleX(0.65);
-        setScaleY(0.65);
-        setOffsetX(120);
-        setOffsetY(-250);
+        setScaleX(0.57);
+        setScaleY(0.57);
+        setOffsetX(100);
+        setOffsetY(-350);
       }
     } else if (+hotTubStageWidth >= 700 && +hotTubStageWidth < 1000) {
       if (+selectedSizeId === 80504) {
-        setScaleX(0.5);
-        setScaleY(0.5);
+        setScaleX(0.45);
+        setScaleY(0.45);
         setOffsetX(280);
         setOffsetY(-450);
       } else {
-          setScaleX(0.54);
-          setScaleY(0.54);
+          setScaleX(0.47);
+          setScaleY(0.47);
           setOffsetX(250);
           setOffsetY(-450);
       }
@@ -353,14 +361,14 @@ const HotTubCanvasView = (props) => {
       setOffsetY(-450);
     } else if (+hotTubStageWidth >= 340 && +hotTubStageWidth <= 440) {
       if (+selectedSizeId === 80504) {
-        setScaleX(0.8);
-        setScaleY(0.8);
-        setOffsetX(0);
+        setScaleX(0.75);
+        setScaleY(0.75);
+        setOffsetX(-50);
         setOffsetY(-600);
       } else {
-        setScaleX(0.85);
-        setScaleY(0.85);
-        setOffsetX(0);
+        setScaleX(0.8);
+        setScaleY(0.8);
+        setOffsetX(-50);
         setOffsetY(-600);
       }
     } else if ( +hotTubStageWidth <= 330){
@@ -368,12 +376,12 @@ const HotTubCanvasView = (props) => {
         setScaleX(0.7);
         setScaleY(0.7);
         setOffsetX(-100);
-        setOffsetY(-1200);
+        setOffsetY(-1000);
       } else {
         setScaleX(0.72);
         setScaleY(0.72);
         setOffsetX(-100);
-        setOffsetY(-1200);
+        setOffsetY(-1050);
       }
     }
   }
@@ -394,7 +402,7 @@ const HotTubCanvasView = (props) => {
 
           >
             <Group>
-              { woodText?.length > 1 && <Text x={ -55 }
+              { woodText?.length > 1 && <Text x={ -70 }
                                               y={ 80 }
                                               fontFamily='Lato_400'
                                               fontSize={ 16 }
@@ -403,7 +411,7 @@ const HotTubCanvasView = (props) => {
               />
               }
 
-              { plusIcon && <Image x={ -50 }
+              { plusIcon && <Image x={ -60 }
                                    y={ 100 }
                                    width={ 30 }
                                    height={ 30 }
@@ -416,7 +424,7 @@ const HotTubCanvasView = (props) => {
               }
             </Group>
             <Group>
-              { insideColorText?.length > 1 && <Text x={ -325 }
+              { insideColorText?.length > 1 && <Text x={ -400 }
                                                      y={ -200 }
                                                      fontFamily='Lato_400'
                                                      fontSize={ 16 }
@@ -425,7 +433,7 @@ const HotTubCanvasView = (props) => {
               />
               }
 
-              { plusIcon && <Image x={ -300 }
+              { plusIcon && <Image x={ -340 }
                                    y={ -180 }
                                    width={ 30 }
                                    height={ 30 }
@@ -438,8 +446,8 @@ const HotTubCanvasView = (props) => {
               }
             </Group>
             <Group>
-              { coverText?.length > 1 && <Text x={ -115 }
-                                               y={ -180 }
+              { coverText?.length > 1 && <Text x={ -135 }
+                                               y={ -190 }
                                                fontFamily='Lato_400'
                                                fontSize={ 16 }
                                                text={ coverText }
@@ -447,8 +455,8 @@ const HotTubCanvasView = (props) => {
               />
               }
 
-              { plusIcon && <Image x={ -110 }
-                                   y={ -160 }
+              { plusIcon && <Image x={ -115 }
+                                   y={ -170 }
                                    width={ 30 }
                                    height={ 30 }
                                    onMouseOver={ () => setCoverText(optionName('cover')) }
@@ -460,8 +468,8 @@ const HotTubCanvasView = (props) => {
               }
             </Group>
             <Group>
-              { metalStrapsText?.length > 1 && <Text x={ -190 }
-                                                     y={ 25 }
+              { metalStrapsText?.length > 1 && <Text x={ -175 }
+                                                     y={ 40 }
                                                      fontFamily='Lato_400'
                                                      fontSize={ 16 }
                                                      text={ metalStrapsText }
@@ -470,7 +478,7 @@ const HotTubCanvasView = (props) => {
               }
 
               { plusIcon && <Image x={ -160 }
-                                   y={ 45 }
+                                   y={ 60 }
                                    width={ 30 }
                                    height={ 30 }
                                    onMouseOver={ () => setMetalStrapsText(optionName('metalStraps')) }
@@ -505,8 +513,8 @@ const HotTubCanvasView = (props) => {
               }
             </Group>
             <Group>
-              { additionalAccessoriesText?.length > 1 && <Text x={ -330 }
-                                                               y={ 75 }
+              { additionalAccessoriesText?.length > 1 && <Text x={ -420 }
+                                                               y={ 55 }
                                                                fontFamily='Lato_400'
                                                                fontSize={ 16 }
                                                                text={ additionalAccessoriesText }
@@ -514,8 +522,8 @@ const HotTubCanvasView = (props) => {
               />
               }
 
-              { plusIcon && <Image x={ -280 }
-                                   y={ 95 }
+              { plusIcon && <Image x={ -340 }
+                                   y={ 80 }
                                    width={ 30 }
                                    height={ 30 }
                                    onMouseOver={ () => setAdditionalAccessoriesText(optionName('additionalAccessories')) }
@@ -553,27 +561,19 @@ const HotTubCanvasView = (props) => {
               />
             }) }
             <Group>
-              { imageTubeExtensionSrc && <Image x={ -912 }
-                                                y={ -483 }
-                                                width={ 1300 }
-                                                height={ 900 }
+              { imageTubeExtensionSrc && <Image x={ -949 }
+                                                y={ -470 }
+                                                width={ 1350 }
+                                                height={ 875 }
                                                 src={ imageTubeExtensionSrc }/>
               }
             </Group>
 
           </Layer>
-          <Layer scaleX={ isExteriorBcg ? 1 : calcHeight(scaleX && scaleX) }
-                 scaleY={ isExteriorBcg ? 1 : calcHeight(scaleY && scaleY) }>
-            { !isExteriorBcg && bcgShadowImage &&  <Image x={ -473 }
-                                       y={ -167 }
-                                       width={ 697 }
-                                       height={ 500 }
-                                       src={ bcgShadowImage }
-                                       opacity={ isExteriorBcg ? 0 : 1 }
-                                       offsetX={ offsetX && offsetX }
-                                       offsetY={ offsetY && calcHeight(offsetY) }
-            /> }
-
+          <Layer ref={bcgExtRef}
+                 scaleX={ 1 }
+                 scaleY={ 1 }
+          >
             { (bcgExteriorImage1 && isExteriorBcg) && <Image x={ -hotTubStageWidth / 2 }
                                                              y={ -hotTubStageHeight / 2 }
                                                              width={ hotTubStageWidth }
@@ -582,33 +582,47 @@ const HotTubCanvasView = (props) => {
             />
             }
           </Layer>
+
+          <Layer scaleX={ calcHeight(scaleX && scaleX) }
+                 scaleY={ calcHeight(scaleY && scaleY) }
+                 ref={bcgWithoutExt}
+          >
+            { bcgShadowImage &&  <Image x={ -535 }
+                                          y={ -170 }
+                                          width={ 770 }
+                                          height={ 525 }
+                                          src={ bcgShadowImage }
+                                          offsetX={ offsetX && offsetX }
+                                          offsetY={ offsetY && calcHeight(offsetY) }
+            /> }
+          </Layer>
           <Layer scaleX={ scaleX && calcHeight(scaleX) }
                  scaleY={ scaleY && calcHeight(scaleY) }
                  offsetX={ offsetX && offsetX }
                  offsetY={ offsetY && calcHeight(offsetY) }
           >
-            { imageHeatingOvenSrc && <Image x={ -889 }
-                                            y={ -495 }
-                                            width={ 1175 }
-                                            height={ 880 }
+            { imageHeatingOvenSrc && <Image x={ -995 }
+                                            y={ -507 }
+                                            width={ 1300 }
+                                            height={ 910 }
                                             src={ imageHeatingOvenSrc }
                                             opacity={ isExteriorBcg ? 0 : 1 }
             />
             }
 
-            { imageBasicPositionOne && <Image x={ -903 }
-                                              y={ -575 }
-                                              width={ 1650 }
-                                              height={ 1000 }
+            { imageBasicPositionOne && <Image x={ -995 }
+                                              y={ -507 }
+                                              width={ 1300 }
+                                              height={ 910 }
                                               src={ imageBasicPositionOne }
                                               opacity={ isExteriorBcg ? 1 : 0 }
             />
             }
 
-            { imageWoodSrc && <Image x={ -584 }
-                                     y={ -460 }
-                                     width={ 820 }
-                                     height={ 650 }
+            { imageWoodSrc && <Image x={ -660 }
+                                     y={ -476 }
+                                     width={ 915 }
+                                     height={ 680 }
                                      src={ imageWoodSrc }
             />
             }
@@ -620,10 +634,10 @@ const HotTubCanvasView = (props) => {
             />
             }
 
-            { imageInsideColorSrc && <Image x={ -915 }
-                                            y={ -458 }
-                                            width={ 1180 }
-                                            height={ 840 }
+            { imageInsideColorSrc && <Image x={ -1002 }
+                                            y={ -471 }
+                                            width={ 1275 }
+                                            height={ 875 }
                                             src={ imageInsideColorSrc }
             />
             }
