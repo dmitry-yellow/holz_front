@@ -12,10 +12,21 @@
   width: 100%;
   height: 100%;
 }
+@media screen and (max-device-width: 780px) and (min-device-width: 440px) and (orientation: portrait) {
+  .PositioningSandfilterBox-image > img {
+    width: 90%;
+    height: 90%;
+  }
+}
 .PositioningSandfilterBox-select-options {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+}
+@media screen and (max-device-width: 780px) and (min-device-width: 440px) and (orientation: portrait) {
+  .PositioningSandfilterBox-select-options {
+    justify-content: space-around;
+  }
 }
 .PositioningSandfilterBox-select-options-sandfilter {
   display: flex;
@@ -28,6 +39,11 @@
   font-family: 'Montserrat_400';
   font-size: 14px;
 }
+@media screen and (max-device-width: 780px) and (min-device-width: 440px) and (orientation: portrait) {
+  .PositioningSandfilterBox-select-options-sandfilter > p {
+    font-size: 1rem;
+  }
+}
 .PositioningSandfilterBox-select-options-control-panel {
   display: flex;
   align-items: center;
@@ -38,6 +54,11 @@
   font-family: 'Montserrat_400';
   font-size: 14px;
   padding-top: 15px;
+}
+@media screen and (max-device-width: 780px) and (min-device-width: 440px) and (orientation: portrait) {
+  .PositioningSandfilterBox-select-options-control-panel > p {
+    font-size: 1rem;
+  }
 }
 .PositioningSandfilterBox-item {
   width: 65px;
@@ -51,35 +72,80 @@
   align-items: center;
   position: absolute;
 }
+@media screen and (max-device-width: 780px) and (min-device-width: 440px) and (orientation: portrait) {
+  .PositioningSandfilterBox-item {
+    width: 110px;
+    height: 110px;
+  }
+}
 .PositioningSandfilterBox-item.Position_1 {
   left: 0;
   bottom: 10%;
   transform: translate(0, -10%);
 }
+@media screen and (max-device-width: 780px) and (min-device-width: 440px) and (orientation: portrait) {
+  .PositioningSandfilterBox-item.Position_1 {
+    left: 10%;
+    bottom: 10%;
+    transform: translate(-10%, -10%);
+  }
+}
 .PositioningSandfilterBox-item.Position_2 {
-  left: -10%;
+  left: -8%;
   top: 30%;
-  transform: translate(10%, -30%);
+  transform: translate(8%, -30%);
+}
+@media screen and (max-device-width: 780px) and (min-device-width: 440px) and (orientation: portrait) {
+  .PositioningSandfilterBox-item.Position_2 {
+    left: 0;
+    transform: translate(0, -30%);
+  }
 }
 .PositioningSandfilterBox-item.Position_3 {
   left: 20%;
   top: -8%;
   transform: translate(-20%, 8%);
 }
+@media screen and (max-device-width: 780px) and (min-device-width: 440px) and (orientation: portrait) {
+  .PositioningSandfilterBox-item.Position_3 {
+    left: 25%;
+    top: -2%;
+    transform: translate(-25%, 2%);
+  }
+}
 .PositioningSandfilterBox-item.Position_4 {
   right: 13%;
   top: -8%;
   transform: translate(-13%, 8%);
+}
+@media screen and (max-device-width: 780px) and (min-device-width: 440px) and (orientation: portrait) {
+  .PositioningSandfilterBox-item.Position_4 {
+    right: 18%;
+    top: -2%;
+    transform: translate(-18%, 2%);
+  }
 }
 .PositioningSandfilterBox-item.Position_5 {
   right: -5%;
   top: 30%;
   transform: translate(5%, -30%);
 }
+@media screen and (max-device-width: 780px) and (min-device-width: 440px) and (orientation: portrait) {
+  .PositioningSandfilterBox-item.Position_5 {
+    right: 0;
+    transform: translate(0, -30%);
+  }
+}
 .PositioningSandfilterBox-item.Position_6 {
   right: 0;
   bottom: 10%;
   transform: translate(0, -10%);
+}
+@media screen and (max-device-width: 780px) and (min-device-width: 440px) and (orientation: portrait) {
+  .PositioningSandfilterBox-item.Position_6 {
+    right: 10%;
+    transform: translate(-10%, -10%);
+  }
 }
 .PositioningSandfilterBox-item-checkbox {
   display: flex;
@@ -88,6 +154,11 @@
   font-family: 'Lato_300';
   font-size: 1rem;
 }
+@media screen and (max-device-width: 780px) and (min-device-width: 440px) and (orientation: portrait) {
+  .PositioningSandfilterBox-item-checkbox {
+    font-size: 1.5rem;
+  }
+}
 .PositioningSandfilterBox-item-checkbox input {
   margin: 0 5px 0 0;
   width: 17px;
@@ -95,6 +166,12 @@
   position: relative;
   cursor: pointer;
   font: initial!important;
+}
+@media screen and (max-device-width: 780px) and (min-device-width: 440px) and (orientation: portrait) {
+  .PositioningSandfilterBox-item-checkbox input {
+    width: 23px;
+    height: 22px;
+  }
 }
 .PositioningSandfilterBox-item-checkbox input[type='checkbox']:after {
   line-height: 1.5em;
@@ -105,6 +182,12 @@
   background: #FFFFFF;
   border: 1px solid #EAEAEA;
   box-sizing: border-box;
+}
+@media screen and (max-device-width: 780px) and (min-device-width: 440px) and (orientation: portrait) {
+  .PositioningSandfilterBox-item-checkbox input[type='checkbox']:after {
+    width: 23px;
+    height: 23px;
+  }
 }
 .PositioningSandfilterBox-item-checkbox input[type='checkbox']:checked:after {
   content: '';
@@ -119,6 +202,12 @@
   left: 2px;
   top: -3.5px;
 }
+@media screen and (max-device-width: 780px) and (min-device-width: 440px) and (orientation: portrait) {
+  .PositioningSandfilterBox-item-checkbox input[type='checkbox']:checked:before {
+    left: 5.5px;
+    top: 0;
+  }
+}
 .PositioningSandfilterBox-item-checkbox input:disabled {
   cursor: not-allowed;
 }
@@ -130,6 +219,11 @@
 .PositioningSandfilterBox-item-desc > p {
   font-family: 'Montserrat_300';
   font-size: 0.9rem;
+}
+@media screen and (max-device-width: 780px) and (min-device-width: 440px) and (orientation: portrait) {
+  .PositioningSandfilterBox-item-desc > p {
+    font-size: 1.2rem;
+  }
 }
 .PositioningSandfilterBox-item-desc .checkedPositionDone {
   position: relative;
@@ -147,27 +241,71 @@
   top: 2px;
   left: -20px;
 }
+@media screen and (max-device-width: 780px) and (min-device-width: 440px) and (orientation: portrait) {
+  .PositioningSandfilterBox-item-desc .checkedPositionDone:after {
+    width: 22px;
+    height: 22px;
+    left: -25px;
+  }
+}
 .PositioningSandfilterBox-item-desc.Position_1 {
   bottom: -25px;
 }
+@media screen and (max-device-width: 780px) and (min-device-width: 440px) and (orientation: portrait) {
+  .PositioningSandfilterBox-item-desc.Position_1 {
+    bottom: -30px;
+  }
+}
 .PositioningSandfilterBox-item-desc.Position_2 {
   bottom: -25px;
+}
+@media screen and (max-device-width: 780px) and (min-device-width: 440px) and (orientation: portrait) {
+  .PositioningSandfilterBox-item-desc.Position_2 {
+    bottom: -30px;
+  }
 }
 .PositioningSandfilterBox-item-desc.Position_2 .checkedPositionDone:after {
   left: initial;
   right: -20px;
 }
+@media screen and (max-device-width: 780px) and (min-device-width: 440px) and (orientation: portrait) {
+  .PositioningSandfilterBox-item-desc.Position_2 .checkedPositionDone:after {
+    right: -25px;
+  }
+}
 .PositioningSandfilterBox-item-desc.Position_3 {
   top: -23px;
+}
+@media screen and (max-device-width: 780px) and (min-device-width: 440px) and (orientation: portrait) {
+  .PositioningSandfilterBox-item-desc.Position_3 {
+    top: -30px;
+  }
 }
 .PositioningSandfilterBox-item-desc.Position_4 {
   top: -23px;
   left: 0;
 }
+@media screen and (max-device-width: 780px) and (min-device-width: 440px) and (orientation: portrait) {
+  .PositioningSandfilterBox-item-desc.Position_4 {
+    top: -30px;
+    left: 15px;
+  }
+}
 .PositioningSandfilterBox-item-desc.Position_5 {
   bottom: -25px;
+}
+@media screen and (max-device-width: 780px) and (min-device-width: 440px) and (orientation: portrait) {
+  .PositioningSandfilterBox-item-desc.Position_5 {
+    bottom: -30px;
+  }
 }
 .PositioningSandfilterBox-item-desc.Position_6 {
   bottom: -25px;
   right: -10px;
+}
+@media screen and (max-device-width: 780px) and (min-device-width: 440px) and (orientation: portrait) {
+  .PositioningSandfilterBox-item-desc.Position_6 {
+    bottom: -30px;
+    right: 0;
+  }
 }

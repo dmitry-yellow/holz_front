@@ -19,7 +19,7 @@
     left: 20px;
   }
 }
-@media screen and (max-device-width: 440px) {
+@media screen and (max-device-width: 770px) {
   .HotTubControls {
     grid-template-columns: repeat(4, 1fr);
     width: 90%;

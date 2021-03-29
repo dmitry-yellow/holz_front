@@ -13,7 +13,7 @@
   right: 0;
   bottom: 0;
 }
-@media screen and (max-device-width: 440px) {
+@media screen and (max-device-width: 770px) {
   .TotalAmountCard {
     display: none;
     background-color: transparent;

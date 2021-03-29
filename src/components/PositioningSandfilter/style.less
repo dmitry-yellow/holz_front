@@ -12,6 +12,10 @@
     > img {
       width: 100%;
       height: 100%;
+      @media screen and (max-device-width: 780px) and (min-device-width: 440px) and (orientation: portrait){
+        width: 90%;
+        height: 90%;
+      }
     }
   }
 
@@ -19,6 +23,9 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    @media screen and (max-device-width: 780px) and (min-device-width: 440px) and (orientation: portrait){
+      justify-content: space-around;
+    }
 
     &-sandfilter {
       display: flex;
@@ -27,9 +34,13 @@
       height: 100px;
       width: 150px;
 
+
       > p {
         font-family: 'Montserrat_400';
         font-size: 14px;
+        @media screen and (max-device-width: 780px) and (min-device-width: 440px) and (orientation: portrait){
+          font-size: 1rem;
+        }
       }
     }
 
@@ -43,6 +54,9 @@
         font-family: 'Montserrat_400';
         font-size: 14px;
         padding-top: 15px;
+        @media screen and (max-device-width: 780px) and (min-device-width: 440px) and (orientation: portrait){
+          font-size: 1rem;
+        }
       }
     }
   }
@@ -58,41 +72,72 @@
     justify-content: center;
     align-items: center;
     position: absolute;
+    @media screen and (max-device-width: 780px) and (min-device-width: 440px) and (orientation: portrait){
+      width: 110px;
+      height: 110px;
+    }
 
     &.Position_1 {
       left: 0;
       bottom: 10%;
       transform: translate(0, -10%);
+      @media screen and (max-device-width: 780px) and (min-device-width: 440px) and (orientation: portrait){
+        left: 10%;
+        bottom: 10%;
+        transform: translate(-10%, -10%);
+      }
     }
 
     &.Position_2 {
-      left: -10%;
+      left: -8%;
       top: 30%;
-      transform: translate(10%, -30%);
+      transform: translate(8%, -30%);
+      @media screen and (max-device-width: 780px) and (min-device-width: 440px) and (orientation: portrait){
+        left: 0;
+        transform: translate(0, -30%);
+      }
     }
 
     &.Position_3 {
       left: 20%;
       top: -8%;
       transform: translate(-20%, 8%);
+      @media screen and (max-device-width: 780px) and (min-device-width: 440px) and (orientation: portrait){
+        left: 25%;
+        top: -2%;
+        transform: translate(-25%, 2%);
+      }
     }
 
     &.Position_4 {
       right: 13%;
       top: -8%;
       transform: translate(-13%, 8%);
+      @media screen and (max-device-width: 780px) and (min-device-width: 440px) and (orientation: portrait){
+        right: 18%;
+        top: -2%;
+        transform: translate(-18%, 2%);
+      }
     }
 
     &.Position_5 {
       right: -5%;
       top: 30%;
       transform: translate(5%, -30%);
+      @media screen and (max-device-width: 780px) and (min-device-width: 440px) and (orientation: portrait){
+        right: 0;
+        transform: translate(0, -30%);
+      }
     }
 
     &.Position_6 {
       right: 0;
       bottom: 10%;
       transform: translate(0, -10%);
+      @media screen and (max-device-width: 780px) and (min-device-width: 440px) and (orientation: portrait){
+        right: 10%;
+        transform: translate(-10%, -10%);
+      }
     }
 
     &-checkbox {
@@ -101,6 +146,9 @@
       width: max-content;
       font-family: 'Lato_300';
       font-size: 1rem;
+      @media screen and (max-device-width: 780px) and (min-device-width: 440px) and (orientation: portrait){
+        font-size: 1.5rem;
+      }
 
 
       input {
@@ -110,6 +158,10 @@
         position: relative;
         cursor: pointer;
         font: initial!important;
+        @media screen and (max-device-width: 780px) and (min-device-width: 440px) and (orientation: portrait){
+          width: 23px;
+          height: 22px;
+        }
       }
 
       input[type='checkbox']:after {
@@ -121,6 +173,10 @@
         background: #FFFFFF;
         border: 1px solid #EAEAEA;
         box-sizing: border-box;
+        @media screen and (max-device-width: 780px) and (min-device-width: 440px) and (orientation: portrait){
+          width: 23px;
+          height: 23px;
+        }
 
       }
 
@@ -137,6 +193,10 @@
         position: absolute;
         left: 2px;
         top: -3.5px;
+        @media screen and (max-device-width: 780px) and (min-device-width: 440px) and (orientation: portrait){
+          left: 5.5px;
+          top: 0;
+        }
       }
 
       input:disabled {
@@ -152,6 +212,9 @@
       > p{
         font-family: 'Montserrat_300';
         font-size: 0.9rem;
+        @media screen and (max-device-width: 780px) and (min-device-width: 440px) and (orientation: portrait){
+          font-size: 1.2rem;
+        }
       }
 
       .checkedPositionDone {
@@ -169,39 +232,67 @@
           position: absolute;
           top: 2px;
           left: -20px;
+          @media screen and (max-device-width: 780px) and (min-device-width: 440px) and (orientation: portrait){
+            width: 22px;
+            height: 22px;
+            left: -25px;
+          }
         }
       }
 
       &.Position_1 {
         bottom: -25px;
+        @media screen and (max-device-width: 780px) and (min-device-width: 440px) and (orientation: portrait){
+          bottom: -30px;
+        }
       }
 
       &.Position_2 {
         bottom: -25px;
+        @media screen and (max-device-width: 780px) and (min-device-width: 440px) and (orientation: portrait){
+          bottom: -30px;
+        }
         .checkedPositionDone {
           &:after{
             left: initial;
             right: -20px;
+            @media screen and (max-device-width: 780px) and (min-device-width: 440px) and (orientation: portrait){
+              right: -25px;
+            }
           }
         }
       }
 
       &.Position_3 {
         top: -23px;
+        @media screen and (max-device-width: 780px) and (min-device-width: 440px) and (orientation: portrait){
+          top: -30px;
+        }
       }
 
       &.Position_4 {
         top: -23px;
         left: 0;
+        @media screen and (max-device-width: 780px) and (min-device-width: 440px) and (orientation: portrait){
+          top: -30px;
+          left: 15px;
+        }
       }
 
       &.Position_5 {
         bottom: -25px;
+        @media screen and (max-device-width: 780px) and (min-device-width: 440px) and (orientation: portrait){
+          bottom: -30px;
+        }
       }
 
       &.Position_6 {
         bottom: -25px;
         right: -10px;
+        @media screen and (max-device-width: 780px) and (min-device-width: 440px) and (orientation: portrait){
+          bottom: -30px;
+          right: 0;
+        }
       }
     }
   }

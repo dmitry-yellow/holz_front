@@ -12,24 +12,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-tap-highlight-color: transparent;
-  /*background-color: #774d2e;  !*удалить при коммите*!*/
 }
 
-/*.Holz{
-  margin-top: 130px;
-}*/
-
-
-/*#root{
-  background: black;
-}*/
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-
 
 p, span, a{
   margin: 0;
