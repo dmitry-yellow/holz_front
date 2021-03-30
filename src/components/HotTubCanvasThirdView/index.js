@@ -43,6 +43,7 @@ const HotTubCanvasThirdView = (props) => {
   const iconsRef = useRef(null);
   const bcgRefImageLayer = useRef(null);
   const massageRef = useRef(null);
+  const bcgShadowRef = useRef(null);
 
   const [woodText, setWoodText] = useState('');
   const [metalStrapsText, setMetalStrapsText] = useState('');
@@ -58,11 +59,16 @@ const HotTubCanvasThirdView = (props) => {
 
   useEffect(() => {
     if (iconsRef.current) {
-      iconsRef.current.zIndex(4);
+      iconsRef.current.zIndex(5);
     }
     if (massageRef.current) {
-      massageRef.current.zIndex(3);
+      massageRef.current.zIndex(4);
     }
+
+    if (bcgShadowRef.current) {
+      bcgShadowRef.current.zIndex(1);
+    }
+
     if (bcgRefImageLayer.current) {
       bcgRefImageLayer.current.zIndex(0);
     }
@@ -307,15 +313,15 @@ const HotTubCanvasThirdView = (props) => {
       imageLarge = bcgShadowImageData?.[`${ selectedSizeId }`].base.imageLarge3;
     }
 
-    if (imageLarge && !isExteriorBcg) {
+    if (imageLarge) {
       return `${ apiUrl }${ imageLarge }`
     }
-  }, [isExteriorBcg, apiUrl, selectedSizeId, customizeData])
+  }, [apiUrl, selectedSizeId, customizeData])
 
   const schalters = [
-    { image: schalter_1, width: 20, height: 20, x: -60, y: -31 },
-    { image: schalter_2, width: 20, height: 20, x: -36, y: -36 },
-    { image: schalter_3, width: 20, height: 20, x: -12, y: -42 }
+    { image: schalter_1, width: 20, height: 20, x: -18, y: -10 },
+    { image: schalter_2, width: 20, height: 20, x: 10, y: -16 },
+    { image: schalter_3, width: 20, height: 20, x: 38, y: -24 }
   ];
 
 	const setScaleForLayers = ( hotTubStageWidth ) => {
@@ -323,47 +329,47 @@ const HotTubCanvasThirdView = (props) => {
 			if(+selectedSizeId === 80504){
 				setScaleX(1);
 				setScaleY(1);
-				setOffsetX(-100);
+				setOffsetX(0);
 				setOffsetY(-250);
 			} else {
 				setScaleX(1.05);
 				setScaleY(1.05);
-				setOffsetX(-100);
+				setOffsetX(0);
 				setOffsetY(-250);
 			}
 		} else if( +hotTubStageWidth >= 1000 && +hotTubStageWidth < 1200 && window.innerHeight >= 1100){
       if(+selectedSizeId === 80504){
-        setScaleX(0.6);
-        setScaleY(0.6);
-        setOffsetX(100);
+        setScaleX(0.57);
+        setScaleY(0.57);
+        setOffsetX(150);
         setOffsetY(-400);
       } else {
-        setScaleX(0.65);
-        setScaleY(0.65);
-        setOffsetX(100);
+        setScaleX(0.6);
+        setScaleY(0.6);
+        setOffsetX(130);
         setOffsetY(-400);
       }
     } else if( +hotTubStageWidth >= 1000 && +hotTubStageWidth < 1200){
       if(+selectedSizeId === 80504){
-        setScaleX(0.8);
-        setScaleY(0.8);
-        setOffsetX(100);
-        setOffsetY(-400);
-      } else {
         setScaleX(0.85);
         setScaleY(0.85);
-        setOffsetX(100);
+        setOffsetX(120);
+        setOffsetY(-400);
+      } else {
+        setScaleX(0.9);
+        setScaleY(0.9);
+        setOffsetX(120);
         setOffsetY(-400);
       }
     } else if( +hotTubStageWidth >= 440 && +hotTubStageWidth < 1000){
       if(+selectedSizeId === 80504) {
+        setScaleX(0.85);
+        setScaleY(0.85);
+        setOffsetX(-50);
+        setOffsetY(-650);
+      } else {
         setScaleX(0.9);
         setScaleY(0.9);
-        setOffsetX(-50);
-        setOffsetY(-600);
-      } else {
-        setScaleX(0.95);
-        setScaleY(0.95);
         setOffsetX(-50);
         setOffsetY(-600);
       }
@@ -371,25 +377,25 @@ const HotTubCanvasThirdView = (props) => {
       if(+selectedSizeId === 80504) {
         setScaleX(0.7);
         setScaleY(0.7);
-        setOffsetX(-160);
-        setOffsetY(-950);
+        setOffsetX(-140);
+        setOffsetY(-800);
       } else {
         setScaleX(0.75);
         setScaleY(0.75);
-        setOffsetX(-180);
-        setOffsetY(-900);
+        setOffsetX(-140);
+        setOffsetY(-800);
       }
     } else if(+hotTubStageWidth <= 340){
       if(+selectedSizeId === 80504) {
-        setScaleX(0.55);
-        setScaleY(0.55);
+        setScaleX(0.6);
+        setScaleY(0.6);
         setOffsetX(-170);
-        setOffsetY(-1800);
+        setOffsetY(-1400);
       } else {
-        setScaleX(0.57);
-        setScaleY(0.57);
+        setScaleX(0.65);
+        setScaleY(0.65);
         setOffsetX(-170);
-        setOffsetY(-1800);
+        setOffsetY(-1300);
       }
     }
   }
@@ -425,8 +431,8 @@ const HotTubCanvasThirdView = (props) => {
                               key={ index }
                 />
               }) }
-              { +selectedLedId !== 80517 && <Image x={ 9 }
-                                                   y={ -50 }
+              { +selectedLedId !== 80517 && <Image x={ 63 }
+                                                   y={ -35 }
                                                    width={ 20 }
                                                    height={ 20 }
                                                    src={ schalter_4 }
@@ -442,8 +448,8 @@ const HotTubCanvasThirdView = (props) => {
                  offsetY={ offsetY && calcHeight(offsetY) }
           >
             <Group>
-              { woodText?.length > 1 && <Text x={ -237 }
-                                              y={ -10 }
+              { woodText?.length > 1 && <Text x={ -220 }
+                                              y={ 30 }
                                               fontFamily='Lato_400'
                                               fontSize={ 16 }
                                               text={ woodText }
@@ -451,8 +457,8 @@ const HotTubCanvasThirdView = (props) => {
               />
               }
 
-              { plusIcon && <Image x={ -230 }
-                                   y={ 10 }
+              { plusIcon && <Image x={ -215 }
+                                   y={ 50 }
                                    width={ 30 }
                                    height={ 30 }
                                    onMouseOver={ () => setWoodText('Wood') }
@@ -464,7 +470,7 @@ const HotTubCanvasThirdView = (props) => {
               }
             </Group>
             <Group>
-              { insideColorText?.length > 1 && <Text x={ 70 }
+              { insideColorText?.length > 1 && <Text x={ 150 }
                                                      y={ -360 }
                                                      fontFamily='Lato_400'
                                                      fontSize={ 16 }
@@ -473,7 +479,7 @@ const HotTubCanvasThirdView = (props) => {
               />
               }
 
-              { plusIcon && <Image x={ 95 }
+              { plusIcon && <Image x={ 170 }
                                    y={ -340 }
                                    width={ 30 }
                                    height={ 30 }
@@ -486,8 +492,8 @@ const HotTubCanvasThirdView = (props) => {
               }
             </Group>
             <Group>
-              { coverText?.length > 1 && <Text x={ -120 }
-                                               y={ -290 }
+              { coverText?.length > 1 && <Text x={ -75 }
+                                               y={ -310 }
                                                fontFamily='Lato_400'
                                                fontSize={ 16 }
                                                text={ coverText }
@@ -495,8 +501,8 @@ const HotTubCanvasThirdView = (props) => {
               />
               }
 
-              { plusIcon && <Image x={ -115 }
-                                   y={ -270 }
+              { plusIcon && <Image x={ -70 }
+                                   y={ -290 }
                                    width={ 30 }
                                    height={ 30 }
                                    onMouseOver={ () => setCoverText('Cover') }
@@ -508,8 +514,8 @@ const HotTubCanvasThirdView = (props) => {
               }
             </Group>
             <Group>
-              { metalStrapsText?.length > 1 && <Text x={ -25 }
-                                                     y={ -20 }
+              { metalStrapsText?.length > 1 && <Text x={ -100 }
+                                                     y={ -10 }
                                                      fontFamily='Lato_400'
                                                      fontSize={ 16 }
                                                      text={ metalStrapsText }
@@ -517,8 +523,8 @@ const HotTubCanvasThirdView = (props) => {
               />
               }
 
-              { plusIcon && <Image x={ 0 }
-                                   y={ 0 }
+              { plusIcon && <Image x={ -80 }
+                                   y={ 10 }
                                    width={ 30 }
                                    height={ 30 }
                                    onMouseOver={ () => setMetalStrapsText('Metal straps') }
@@ -553,8 +559,8 @@ const HotTubCanvasThirdView = (props) => {
               }
             </Group>
             <Group>
-              { additionalAccessoriesText?.length > 1 && <Text x={ 20 }
-                                                               y={ -440 }
+              { additionalAccessoriesText?.length > 1 && <Text x={ 50 }
+                                                               y={ -490 }
                                                                fontFamily='Lato_400'
                                                                fontSize={ 16 }
                                                                text={ additionalAccessoriesText }
@@ -562,8 +568,8 @@ const HotTubCanvasThirdView = (props) => {
               />
               }
 
-              { plusIcon && <Image x={ 70 }
-                                   y={ -420 }
+              { plusIcon && <Image x={ 110 }
+                                   y={ -470 }
                                    width={ 30 }
                                    height={ 30 }
                                    onMouseOver={ () => setAdditionalAccessoriesText('Additional accessories ') }
@@ -593,10 +599,10 @@ const HotTubCanvasThirdView = (props) => {
               />
             }) }
             <Group>
-              { imageTubeExtensionSrc && <Image x={ -890 }
-                                                y={ -520 }
+              { imageTubeExtensionSrc && <Image x={ -897 }
+                                                y={ -585 }
                                                 width={ 1150 }
-                                                height={ 750 }
+                                                height={ 825 }
                                                 src={ imageTubeExtensionSrc }
               />
               }
@@ -605,20 +611,10 @@ const HotTubCanvasThirdView = (props) => {
           </Layer>
 
 
-          <Layer scaleX={ isExteriorBcg ? 1 : calcHeight(scaleX && scaleX) }
-                 scaleY={ isExteriorBcg ? 1 : calcHeight(scaleY && scaleY) }
+          <Layer scaleX={ 1 }
+                 scaleY={ 1 }
                  ref={ bcgRefImageLayer }
           >
-            { !isExteriorBcg && bcgShadowImage && <Image x={ -445 }
-                                       y={ -400 }
-                                       width={ 685 }
-                                       height={ 600 }
-                                       src={ bcgShadowImage }
-                                       opacity={ isExteriorBcg ? 0 : 1 }
-                                       offsetX={ offsetX && offsetX }
-                                       offsetY={ offsetY && calcHeight(offsetY) }
-            /> }
-
             { (bcgExteriorImage3 && isExteriorBcg) && <Image x={ -hotTubStageWidth / 2 }
                                                              y={ -hotTubStageHeight / 2 }
                                                              width={ hotTubStageWidth }
@@ -627,35 +623,49 @@ const HotTubCanvasThirdView = (props) => {
             }
           </Layer>
 
+          <Layer scaleX={ calcHeight(scaleX && scaleX) }
+                 scaleY={ calcHeight(scaleY && scaleY) }
+                 ref={bcgShadowRef}
+          >
+            { bcgShadowImage && <Image x={ -445 }
+                                       y={ -434 }
+                                       width={ 770 }
+                                       height={ 700 }
+                                       src={ bcgShadowImage }
+                                       offsetX={ offsetX && offsetX }
+                                       offsetY={ offsetY && calcHeight(offsetY) }
+            /> }
+          </Layer>
+
           <Layer scaleX={ scaleX && calcHeight(scaleX) }
                  scaleY={ scaleY && calcHeight(scaleY) }
                  offsetX={ offsetX && offsetX }
                  offsetY={ offsetY && calcHeight(offsetY) }
           >
 
-            { imageHeatingOvenSrc && <Image x={ -857 }
-                                            y={ -540 }
-                                            width={ 1030 }
-                                            height={ 750 }
+            { imageHeatingOvenSrc && <Image x={ -917 }
+                                            y={ -590 }
+                                            width={ 1160 }
+                                            height={ 840 }
                                             src={ imageHeatingOvenSrc }
                                             opacity={ isExteriorBcg ? 0 : 1 }
             />
             }
 
 
-            { imageBasicPositionThree && <Image x={ -870 }
-                                                y={ -615 }
-                                                width={ 1485 }
-                                                height={ 850 }
+            { imageBasicPositionThree && <Image x={ -917 }
+                                                y={ -590 }
+                                                width={ 1160 }
+                                                height={ 840 }
                                                 src={ imageBasicPositionThree }
                                                 opacity={ isExteriorBcg ? 1 : 0 }
             />
             }
 
-            { imageWoodSrc && <Image x={ -578 }
-                                     y={ -490 }
-                                     width={ 750 }
-                                     height={ 670 }
+            { imageWoodSrc && <Image x={ -612 }
+                                     y={ -548 }
+                                     width={ 858 }
+                                     height={ 780 }
                                      src={ imageWoodSrc }
             />
             }
@@ -668,10 +678,10 @@ const HotTubCanvasThirdView = (props) => {
             />
             }
 
-            { imageInsideColorSrc && <Image x={ -860 }
-                                            y={ -501 }
-                                            width={ 1010 }
-                                            height={ 700 }
+            { imageInsideColorSrc && <Image x={ -920 }
+                                            y={ -552 }
+                                            width={ 1140 }
+                                            height={ 800 }
                                             src={ imageInsideColorSrc }
             />
             }
