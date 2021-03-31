@@ -298,12 +298,12 @@ const HotTubCanvasFourthView = (props) => {
                 setScaleX(1);
                 setScaleY(1);
                 setOffsetX(0);
-                setOffsetY(-350);
+                setOffsetY(-290);
             } else {
                 setScaleX(1.05);
                 setScaleY(1.05);
                 setOffsetX(0);
-                setOffsetY(-350);
+                setOffsetY(-290);
             }
 
         } else if(+hotTubStageWidth >= 1000 && +hotTubStageWidth < 1200 && window.innerHeight >= 1100){
