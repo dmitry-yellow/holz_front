@@ -38,6 +38,7 @@ const HotTubCanvasFourthView = (props) => {
     const iconsRef = useRef(null);
     const bcgRefImageLayer = useRef(null);
     const massageRef = useRef(null);
+    const bcgShadowRef = useRef(null);
 
     const [woodText, setWoodText] = useState('');
     const [insideColorText, setInsideColorText] = useState('');
@@ -51,10 +52,13 @@ const HotTubCanvasFourthView = (props) => {
 
     useEffect(() => {
         if (iconsRef.current) {
-            iconsRef.current.zIndex(4);
+            iconsRef.current.zIndex(5);
         }
         if (massageRef.current) {
-            massageRef.current.zIndex(3);
+            massageRef.current.zIndex(4);
+        }
+        if (bcgShadowRef.current) {
+            bcgShadowRef.current.zIndex(1);
         }
         if (bcgRefImageLayer.current) {
             bcgRefImageLayer.current.zIndex(0);
@@ -272,10 +276,10 @@ const HotTubCanvasFourthView = (props) => {
             imageLarge = bcgShadowImageData?.[`${ selectedSizeId }`].base.imageLarge4;
         }
 
-        if (imageLarge && !isExteriorBcg) {
+        if (imageLarge) {
             return `${ apiUrl }${ imageLarge }`
         }
-    }, [isExteriorBcg, apiUrl, selectedSizeId, customizeData])
+    }, [apiUrl, selectedSizeId, customizeData])
 
 
     const setScaleForLayers = ( hotTubStageWidth ) => {
@@ -284,64 +288,77 @@ const HotTubCanvasFourthView = (props) => {
                 setScaleX(1);
                 setScaleY(1);
                 setOffsetX(0);
-                setOffsetY(-300);
+                setOffsetY(-350);
             } else {
                 setScaleX(1.05);
                 setScaleY(1.05);
                 setOffsetX(0);
-                setOffsetY(-300);
+                setOffsetY(-350);
             }
 
         } else if(+hotTubStageWidth >= 1000 && +hotTubStageWidth < 1200 && window.innerHeight >= 1100){
             if(+selectedSizeId === 80504){
-                setScaleX(0.65);
-                setScaleY(0.65);
-                setOffsetX(80);
+                setScaleX(0.45);
+                setScaleY(0.45);
+                setOffsetX(130);
                 setOffsetY(-300);
             } else {
-                setScaleX(0.68);
-                setScaleY(0.68);
-                setOffsetX(80);
+                setScaleX(0.48);
+                setScaleY(0.48);
+                setOffsetX(110);
                 setOffsetY(-300);
             }
 
         } else if(+hotTubStageWidth >= 1000 && +hotTubStageWidth < 1200){
             if(+selectedSizeId === 80504){
-                setScaleX(0.9);
-                setScaleY(0.9);
-                setOffsetX(80);
-                setOffsetY(-300);
+                setScaleX(0.85);
+                setScaleY(0.85);
+                setOffsetX(110);
+                setOffsetY(-520);
             } else {
-                setScaleX(0.95);
-                setScaleY(0.95);
-                setOffsetX(80);
-                setOffsetY(-300);
+                setScaleX(0.87);
+                setScaleY(0.87);
+                setOffsetX(110);
+                setOffsetY(-520);
             }
 
         } else if(+hotTubStageWidth >= 440 && +hotTubStageWidth < 1000){
             if(+selectedSizeId === 80504){
-                setScaleX(1);
-                setScaleY(1);
+                setScaleX(0.85);
+                setScaleY(0.85);
                 setOffsetX(-150);
                 setOffsetY(-750);
             } else {
-                setScaleX(1.05);
-                setScaleY(1.05);
+                setScaleX(0.9);
+                setScaleY(0.9);
                 setOffsetX(-150);
                 setOffsetY(-750);
             }
 
-        } else if(+hotTubStageWidth >= 320 && +hotTubStageWidth < 500){
+        } else if(+hotTubStageWidth >= 330 && +hotTubStageWidth < 500){
             if(+selectedSizeId === 80504){
+                setScaleX(0.75);
+                setScaleY(0.75);
+                setOffsetX(-150);
+                setOffsetY(-790);
+            } else {
                 setScaleX(0.8);
                 setScaleY(0.8);
-                setOffsetX(-100);
-                setOffsetY(-1020);
+                setOffsetX(-150);
+                setOffsetY(-790);
+            }
+
+        }else if(+hotTubStageWidth >= 300 && +hotTubStageWidth < 330){
+            if(+selectedSizeId === 80504){
+                setScaleX(0.7);
+                setScaleY(0.7);
+                setOffsetX(-150);
+                setOffsetY(-1300);
             } else {
-                setScaleX(0.85);
-                setScaleY(0.85);
-                setOffsetX(-100);
-                setOffsetY(-1000);
+                setScaleX(0.75);
+                setScaleY(0.75);
+                setOffsetX(-150);
+                setOffsetY(-1300);
             }
 
         }
@@ -506,30 +523,20 @@ const HotTubCanvasFourthView = (props) => {
                         />
                     })}
                     <Group>
-                        {imageTubeExtensionSrc && <Image x={-730}
-                                                         y={-570}
-                                                         width={1000}
-                                                         height={700}
+                        {imageTubeExtensionSrc && <Image x={-1010}
+                                                         y={-535}
+                                                         width={1420}
+                                                         height={735}
                                                          src={imageTubeExtensionSrc}
                         />
                         }
                     </Group>
 
                 </Layer>
-                <Layer scaleX={ isExteriorBcg ? 1 : calcHeight(scaleX && scaleX) }
-                       scaleY={ isExteriorBcg ? 1 : calcHeight(scaleY && scaleY) }
+                <Layer scaleX={ 1 }
+                       scaleY={ 1 }
                        ref={bcgRefImageLayer}
                 >
-                    { !isExteriorBcg && bcgShadowImage &&  <Image x={ -455 }
-                                               y={ -515 }
-                                               width={ 680 }
-                                               height={ 580 }
-                                               src={ bcgShadowImage }
-                                               opacity={ isExteriorBcg ? 0 : 1 }
-                                               offsetX={ offsetX && offsetX }
-                                               offsetY={ offsetY && calcHeight(offsetY) }
-                    /> }
-
                     {(bcgExteriorImage4 && isExteriorBcg) && <Image x={-hotTubStageWidth / 2}
                                                                     y={-hotTubStageHeight / 2}
                                                                     width={hotTubStageWidth}
@@ -537,43 +544,55 @@ const HotTubCanvasFourthView = (props) => {
                                                                     src={bcgExteriorImage4}/>
                     }
                 </Layer>
+                <Layer scaleX={ calcHeight(scaleX && scaleX) }
+                       scaleY={ calcHeight(scaleY && scaleY) }
+                       ref={bcgShadowRef}
+                >
+                    { bcgShadowImage &&  <Image x={ -555 }
+                                                y={ -608 }
+                                                width={ 900 }
+                                                height={ 770 }
+                                                src={ bcgShadowImage }
+                                                offsetX={ offsetX && offsetX }
+                                                offsetY={ offsetY && calcHeight(offsetY) }
+                    /> }
+                </Layer>
                 <Layer scaleX={scaleX && calcHeight(scaleX)}
                        scaleY={scaleY && calcHeight(scaleY)}
                        offsetX={offsetX && offsetX}
                        offsetY={offsetY && calcHeight(offsetY)}
                 >
-
-                    {imageHeatingOvenSrc && <Image x={-765}
-                                                   y={-408}
-                                                   width={860}
-                                                   height={500}
+                    {imageHeatingOvenSrc && <Image x={-965}
+                                                   y={-465 }
+                                                   width={1140}
+                                                   height={665}
                                                    src={imageHeatingOvenSrc}
                                                    opacity={isExteriorBcg ? 0 : 1}
                     />
                     }
 
 
-                    {imageBasicPositionFour && <Image x={-770}
-                                                      y={-550}
-                                                      width={1150}
-                                                      height={690}
+                    {imageBasicPositionFour && <Image x={-965}
+                                                      y={-465}
+                                                      width={1140}
+                                                      height={665}
                                                       src={imageBasicPositionFour}
                                                       opacity={isExteriorBcg ? 1 : 0}
                     />
                     }
 
-                    {imageWoodSrc && <Image x={-545}
-                                            y={-460}
-                                            width={670}
-                                            height={480}
+                    {imageWoodSrc && <Image x={-682}
+                                            y={-530}
+                                            width={923}
+                                            height={620}
                                             src={imageWoodSrc}
                     />
                     }
 
-                    {imageInsideColorSrc && <Image x={-770}
-                                                   y={-484}
-                                                   width={850}
-                                                   height={590}
+                    {imageInsideColorSrc && <Image x={-970}
+                                                   y={-548}
+                                                   width={1125}
+                                                   height={750}
                                                    src={imageInsideColorSrc}
                     />
                     }
