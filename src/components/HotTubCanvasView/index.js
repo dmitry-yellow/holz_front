@@ -426,7 +426,7 @@ const HotTubCanvasView = (props) => {
             <Group>
               { woodText?.length > 1 && <Text x={ -70 }
                                               y={ 80 }
-                                              fontFamily='Lato_400'
+                                              fontFamily='Montserrat_400'
                                               fontSize={ 16 }
                                               text={ woodText }
                                               fill={ 'black' }
@@ -440,6 +440,7 @@ const HotTubCanvasView = (props) => {
                                    onMouseOver={ () => setWoodText(optionName('wood')) }
                                    onMouseOut={ () => setWoodText('') }
                                    onClick={ () => setOpenTab('Wood') }
+                                   onTap={ () => setOpenTab('Wood') }
                                    src={ doneIcon }
 
               />
@@ -448,7 +449,7 @@ const HotTubCanvasView = (props) => {
             <Group>
               { insideColorText?.length > 1 && <Text x={ -400 }
                                                      y={ -200 }
-                                                     fontFamily='Lato_400'
+                                                     fontFamily='Montserrat_400'
                                                      fontSize={ 16 }
                                                      text={ insideColorText }
                                                      fill={ 'black' }
@@ -462,6 +463,7 @@ const HotTubCanvasView = (props) => {
                                    onMouseOver={ () => setInsideColorText(optionName('insideColor')) }
                                    onMouseOut={ () => setInsideColorText('') }
                                    onClick={ () => setOpenTab('Inside color') }
+                                   onTap={ () => setOpenTab('Inside color') }
                                    src={ doneIcon }
 
               />
@@ -470,7 +472,7 @@ const HotTubCanvasView = (props) => {
             <Group>
               { coverText?.length > 1 && <Text x={ -135 }
                                                y={ -190 }
-                                               fontFamily='Lato_400'
+                                               fontFamily='Montserrat_400'
                                                fontSize={ 16 }
                                                text={ coverText }
                                                fill={ 'black' }
@@ -483,6 +485,7 @@ const HotTubCanvasView = (props) => {
                                    height={ 30 }
                                    onMouseOver={ () => setCoverText(optionName('cover')) }
                                    onMouseOut={ () => setCoverText('') }
+                                   onTap={() => setOpenTab('Cover') }
                                    onClick={ () => setOpenTab('Cover') }
                                    src={ +selectedCoverId === 80580 ? plusIcon : doneIcon }
 
@@ -492,7 +495,7 @@ const HotTubCanvasView = (props) => {
             <Group>
               { metalStrapsText?.length > 1 && <Text x={ -175 }
                                                      y={ 40 }
-                                                     fontFamily='Lato_400'
+                                                     fontFamily='Montserrat_400'
                                                      fontSize={ 16 }
                                                      text={ metalStrapsText }
                                                      fill={ 'black' }
@@ -506,6 +509,7 @@ const HotTubCanvasView = (props) => {
                                    onMouseOver={ () => setMetalStrapsText(optionName('metalStraps')) }
                                    onMouseOut={ () => setMetalStrapsText('') }
                                    onClick={ () => setOpenTab('Metal Straps') }
+                                   onTap={ () => setOpenTab('Metal Straps') }
                                    src={ +selectedMetalStrapsId === 80513 ? plusIcon : doneIcon }
 
               />
@@ -515,7 +519,7 @@ const HotTubCanvasView = (props) => {
             <Group>
               { tubeExtensionText?.length > 1 && <Text x={ 230 }
                                                        y={ -110 }
-                                                       fontFamily='Lato_400'
+                                                       fontFamily='Montserrat_400'
                                                        fontSize={ 16 }
                                                        text={ tubeExtensionText }
                                                        fill={ 'black' }
@@ -529,6 +533,7 @@ const HotTubCanvasView = (props) => {
                                    onMouseOver={ () => setTubeExtensionText(optionName('tubeExtension')) }
                                    onMouseOut={ () => setTubeExtensionText('') }
                                    onClick={ () => setOpenTab('Tube extension') }
+                                   onTap={ () => setOpenTab('Tube extension') }
                                    src={ +selectedTubeExtensionId !== 80527 ? plusIcon : doneIcon }
 
               />
@@ -537,7 +542,7 @@ const HotTubCanvasView = (props) => {
             <Group>
               { additionalAccessoriesText?.length > 1 && <Text x={ -420 }
                                                                y={ 55 }
-                                                               fontFamily='Lato_400'
+                                                               fontFamily='Montserrat_400'
                                                                fontSize={ 16 }
                                                                text={ additionalAccessoriesText }
                                                                fill={ 'black' }
@@ -551,6 +556,7 @@ const HotTubCanvasView = (props) => {
                                    onMouseOver={ () => setAdditionalAccessoriesText(optionName('additionalAccessories')) }
                                    onMouseOut={ () => setAdditionalAccessoriesText('') }
                                    onClick={ () => setOpenTab('Additional Accessoires') }
+                                   onTap={ () => setOpenTab('Additional Accessoires') }
                                    src={ +selectedAdditionalAccessoriesIds.includes(80523) ? plusIcon : doneIcon }
 
               />

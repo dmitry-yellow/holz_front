@@ -291,6 +291,9 @@ const HotTubCanvasFourthView = (props) => {
         }
     }, [apiUrl, selectedSizeId, customizeData])
 
+    const optionName = function (name) {
+        return rootData?.descriptions[name]?.germanName;
+    }
 
     const setScaleForLayers = ( hotTubStageWidth ) => {
         if(+hotTubStageWidth >= 1200){
@@ -405,53 +408,55 @@ const HotTubCanvasFourthView = (props) => {
                        offsetY={offsetY && calcHeight(offsetY)}
                 >
                     <Group>
-                        {woodText?.length > 1 && <Text x={65}
+                        {woodText?.length > 1 && <Text x={190}
                                                        y={-350}
-                                                       fontFamily='Lato_400'
+                                                       fontFamily='Montserrat_400'
                                                        fontSize={16}
                                                        text={woodText}
                                                        fill={'black'}
                         />
                         }
 
-                        {plusIcon && <Image x={70}
+                        {plusIcon && <Image x={200}
                                             y={-330}
                                             width={30}
                                             height={30}
-                                            onMouseOver={() => setWoodText('Wood')}
+                                            onMouseOver={() => setWoodText(optionName('wood'))}
                                             onMouseOut={() => setWoodText('')}
                                             onClick={() => setOpenTab('Wood')}
+                                            onTap={() => setOpenTab('Wood')}
                                             src={doneIcon}
 
                         />
                         }
                     </Group>
                     <Group>
-                        {insideColorText?.length > 1 && <Text x={-380}
-                                                              y={-410}
-                                                              fontFamily='Lato_400'
+                        {insideColorText?.length > 1 && <Text x={-490}
+                                                              y={-420}
+                                                              fontFamily='Montserrat_400'
                                                               fontSize={16}
                                                               text={insideColorText}
                                                               fill={'black'}
                         />
                         }
 
-                        {plusIcon && <Image x={-360}
-                                            y={-390}
+                        {plusIcon && <Image x={-430}
+                                            y={-400}
                                             width={30}
                                             height={30}
-                                            onMouseOver={() => setInsideColorText('Inside color')}
+                                            onMouseOver={() => setInsideColorText(optionName('insideColor'))}
                                             onMouseOut={() => setInsideColorText('')}
                                             onClick={() => setOpenTab('Inside color')}
+                                            onTap={() => setOpenTab('Inside color')}
                                             src={doneIcon}
 
                         />
                         }
                     </Group>
                     <Group>
-                        {coverText?.length > 1 && <Text x={-175}
+                        {coverText?.length > 1 && <Text x={-185}
                                                         y={-280}
-                                                        fontFamily='Lato_400'
+                                                        fontFamily='Montserrat_400'
                                                         fontSize={16}
                                                         text={coverText}
                                                         fill={'black'}
@@ -462,9 +467,10 @@ const HotTubCanvasFourthView = (props) => {
                                             y={-260}
                                             width={30}
                                             height={30}
-                                            onMouseOver={() => setCoverText('Cover')}
+                                            onMouseOver={() => setCoverText(optionName('cover'))}
                                             onMouseOut={() => setCoverText('')}
                                             onClick={() => setOpenTab('Cover')}
+                                            onTap={() => setOpenTab('Cover')}
                                             src={+selectedCoverId === 80580 ? plusIcon : doneIcon}
 
                         />
@@ -473,44 +479,46 @@ const HotTubCanvasFourthView = (props) => {
 
 
                     <Group>
-                        {tubeExtensionText?.length > 1 && <Text x={180}
-                                                                y={-160}
-                                                                fontFamily='Lato_400'
+                        {tubeExtensionText?.length > 1 && <Text x={250}
+                                                                y={-80}
+                                                                fontFamily='Montserrat_400'
                                                                 fontSize={16}
                                                                 text={tubeExtensionText}
                                                                 fill={'black'}
                         />
                         }
 
-                        {plusIcon && <Image x={210}
-                                            y={-140}
+                        {plusIcon && <Image x={300}
+                                            y={-60}
                                             width={30}
                                             height={30}
-                                            onMouseOver={() => setTubeExtensionText('Tube extension ')}
+                                            onMouseOver={() => setTubeExtensionText(optionName('tubeExtension'))}
                                             onMouseOut={() => setTubeExtensionText('')}
                                             onClick={() => setOpenTab('Tube extension')}
+                                            onTap={() => setOpenTab('Tube extension')}
                                             src={+selectedTubeExtensionId !== 80527 ? plusIcon : doneIcon}
 
                         />
                         }
                     </Group>
                     <Group>
-                        {additionalAccessoriesText?.length > 1 && <Text x={-500}
-                                                                        y={-230}
-                                                                        fontFamily='Lato_400'
+                        {additionalAccessoriesText?.length > 1 && <Text x={-640}
+                                                                        y={-235}
+                                                                        fontFamily='Montserrat_400'
                                                                         fontSize={16}
                                                                         text={additionalAccessoriesText}
                                                                         fill={'black'}
                         />
                         }
 
-                        {plusIcon && <Image x={-445}
-                                            y={-210}
+                        {plusIcon && <Image x={-530}
+                                            y={-215}
                                             width={30}
                                             height={30}
-                                            onMouseOver={() => setAdditionalAccessoriesText('Additional accessories ')}
+                                            onMouseOver={() => setAdditionalAccessoriesText(optionName('additionalAccessories'))}
                                             onMouseOut={() => setAdditionalAccessoriesText('')}
                                             onClick={() => setOpenTab('Additional Accessoires')}
+                                            onTap={() => setOpenTab('Additional Accessoires')}
                                             src={+selectedAdditionalAccessoriesIds.includes(80523) ? plusIcon : doneIcon}
 
                         />
@@ -523,6 +531,7 @@ const HotTubCanvasFourthView = (props) => {
                        offsetX={offsetX && offsetX}
                        offsetY={offsetY && calcHeight(offsetY)}
                 >
+
                     {imageAdditionalAccessoriesSrc?.length >= 1 && imageAdditionalAccessoriesSrc.map((item, index) => {
                         return <Image key={index}
                                       x={+item.position.x3 && +item.position.x3}

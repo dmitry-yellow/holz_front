@@ -333,6 +333,10 @@ const HotTubCanvasThirdView = (props) => {
     { image: schalter_3, width: 20, height: 20, x: 38, y: -24 }
   ];
 
+  const optionName = function (name) {
+    return rootData?.descriptions[name]?.germanName;
+  }
+
 	const setScaleForLayers = ( hotTubStageWidth ) => {
 		if(+hotTubStageWidth >= 1200){
 			if(+selectedSizeId === 80504){
@@ -457,9 +461,9 @@ const HotTubCanvasThirdView = (props) => {
                  offsetY={ offsetY && calcHeight(offsetY) }
           >
             <Group>
-              { woodText?.length > 1 && <Text x={ -220 }
+              { woodText?.length > 1 && <Text x={ -225 }
                                               y={ 30 }
-                                              fontFamily='Lato_400'
+                                              fontFamily='Montserrat_400'
                                               fontSize={ 16 }
                                               text={ woodText }
                                               fill={ 'black' }
@@ -470,18 +474,19 @@ const HotTubCanvasThirdView = (props) => {
                                    y={ 50 }
                                    width={ 30 }
                                    height={ 30 }
-                                   onMouseOver={ () => setWoodText('Wood') }
+                                   onMouseOver={ () => setWoodText(optionName('wood')) }
                                    onMouseOut={ () => setWoodText('') }
                                    onClick={ () => setOpenTab('Wood') }
+                                   onTap={ () => setOpenTab('Wood') }
                                    src={ doneIcon }
 
               />
               }
             </Group>
             <Group>
-              { insideColorText?.length > 1 && <Text x={ 150 }
+              { insideColorText?.length > 1 && <Text x={ 110 }
                                                      y={ -360 }
-                                                     fontFamily='Lato_400'
+                                                     fontFamily='Montserrat_400'
                                                      fontSize={ 16 }
                                                      text={ insideColorText }
                                                      fill={ 'black' }
@@ -492,18 +497,19 @@ const HotTubCanvasThirdView = (props) => {
                                    y={ -340 }
                                    width={ 30 }
                                    height={ 30 }
-                                   onMouseOver={ () => setInsideColorText('Inside color') }
+                                   onMouseOver={ () => setInsideColorText(optionName('insideColor')) }
                                    onMouseOut={ () => setInsideColorText('') }
                                    onClick={ () => setOpenTab('Inside color') }
+                                   onTap={ () => setOpenTab('Inside color') }
                                    src={ doneIcon }
 
               />
               }
             </Group>
             <Group>
-              { coverText?.length > 1 && <Text x={ -75 }
+              { coverText?.length > 1 && <Text x={ -85 }
                                                y={ -310 }
-                                               fontFamily='Lato_400'
+                                               fontFamily='Montserrat_400'
                                                fontSize={ 16 }
                                                text={ coverText }
                                                fill={ 'black' }
@@ -514,18 +520,19 @@ const HotTubCanvasThirdView = (props) => {
                                    y={ -290 }
                                    width={ 30 }
                                    height={ 30 }
-                                   onMouseOver={ () => setCoverText('Cover') }
+                                   onMouseOver={ () => setCoverText(optionName('cover')) }
                                    onMouseOut={ () => setCoverText('') }
                                    onClick={ () => setOpenTab('Cover') }
+                                   onTap={ () => setOpenTab('Cover') }
                                    src={ +selectedCoverId === 80580 ? plusIcon : doneIcon }
 
               />
               }
             </Group>
             <Group>
-              { metalStrapsText?.length > 1 && <Text x={ -100 }
+              { metalStrapsText?.length > 1 && <Text x={ -95 }
                                                      y={ -10 }
-                                                     fontFamily='Lato_400'
+                                                     fontFamily='Montserrat_400'
                                                      fontSize={ 16 }
                                                      text={ metalStrapsText }
                                                      fill={ 'black' }
@@ -536,9 +543,10 @@ const HotTubCanvasThirdView = (props) => {
                                    y={ 10 }
                                    width={ 30 }
                                    height={ 30 }
-                                   onMouseOver={ () => setMetalStrapsText('Metal straps') }
+                                   onMouseOver={ () => setMetalStrapsText(optionName('metalStraps')) }
                                    onMouseOut={ () => setMetalStrapsText('') }
                                    onClick={ () => setOpenTab('Metal Straps') }
+                                   onTap={ () => setOpenTab('Metal Straps') }
                                    src={ +selectedMetalStrapsId === 80513 ? plusIcon : doneIcon }
 
               />
@@ -546,9 +554,9 @@ const HotTubCanvasThirdView = (props) => {
             </Group>
 
             <Group>
-              { tubeExtensionText?.length > 1 && <Text x={ -535 }
+              { tubeExtensionText?.length > 1 && <Text x={ -555 }
                                                        y={ 80 }
-                                                       fontFamily='Lato_400'
+                                                       fontFamily='Montserrat_400'
                                                        fontSize={ 16 }
                                                        text={ tubeExtensionText }
                                                        fill={ 'black' }
@@ -559,18 +567,19 @@ const HotTubCanvasThirdView = (props) => {
                                    y={ 100 }
                                    width={ 30 }
                                    height={ 30 }
-                                   onMouseOver={ () => setTubeExtensionText('Tube extension ') }
+                                   onMouseOver={ () => setTubeExtensionText(optionName('tubeExtension')) }
                                    onMouseOut={ () => setTubeExtensionText('') }
                                    onClick={ () => setOpenTab('Tube extension') }
+                                   onTap={ () => setOpenTab('Tube extension') }
                                    src={ +selectedTubeExtensionId !== 80527 ? plusIcon : doneIcon }
 
               />
               }
             </Group>
             <Group>
-              { additionalAccessoriesText?.length > 1 && <Text x={ 50 }
+              { additionalAccessoriesText?.length > 1 && <Text x={ 35 }
                                                                y={ -490 }
-                                                               fontFamily='Lato_400'
+                                                               fontFamily='Montserrat_400'
                                                                fontSize={ 16 }
                                                                text={ additionalAccessoriesText }
                                                                fill={ 'black' }
@@ -581,9 +590,10 @@ const HotTubCanvasThirdView = (props) => {
                                    y={ -470 }
                                    width={ 30 }
                                    height={ 30 }
-                                   onMouseOver={ () => setAdditionalAccessoriesText('Additional accessories ') }
+                                   onMouseOver={ () => setAdditionalAccessoriesText(optionName('additionalAccessories')) }
                                    onMouseOut={ () => setAdditionalAccessoriesText('') }
                                    onClick={ () => setOpenTab('Additional Accessoires') }
+                                   onTap={ () => setOpenTab('Additional Accessoires') }
                                    src={ +selectedAdditionalAccessoriesIds.includes(80523) ? plusIcon : doneIcon }
 
               />

@@ -361,9 +361,9 @@ const HotTubCanvasSecondView = (props) => {
                  offsetY={ calcHeight(-offsetYToCalcHeight(hotTubStageHeight)) }
           >
             <Group>
-              { woodText?.length > 1 && <Text x={ -225 }
+              { woodText?.length > 1 && <Text x={ -230 }
                                               y={ 60 }
-                                              fontFamily='Lato_400'
+                                              fontFamily='Montserrat_400'
                                               fontSize={ 16 }
                                               text={ woodText }
                                               fill={ 'black' }
@@ -377,15 +377,16 @@ const HotTubCanvasSecondView = (props) => {
                                    onMouseOver={ () => setWoodText(optionName('wood')) }
                                    onMouseOut={ () => setWoodText('') }
                                    onClick={ () => setOpenTab('Wood') }
+                                   onTap={ () => setOpenTab('Wood') }
                                    src={ doneIcon }
 
               />
               }
             </Group>
             <Group>
-              { insideColorText?.length > 1 && <Text x={ -350 }
+              { insideColorText?.length > 1 && <Text x={ -390 }
                                                      y={ -125 }
-                                                     fontFamily='Lato_400'
+                                                     fontFamily='Montserrat_400'
                                                      fontSize={ 16 }
                                                      text={ insideColorText }
                                                      fill={ 'black' }
@@ -399,15 +400,16 @@ const HotTubCanvasSecondView = (props) => {
                                    onMouseOver={ () => setInsideColorText(optionName('insideColor')) }
                                    onMouseOut={ () => setInsideColorText('') }
                                    onClick={ () => setOpenTab('Inside color') }
+                                   onTap={ () => setOpenTab('Inside color') }
                                    src={ doneIcon }
 
               />
               }
             </Group>
             <Group>
-              { coverText?.length > 1 && <Text x={ -135 }
+              { coverText?.length > 1 && <Text x={ -145 }
                                                y={ -135 }
-                                               fontFamily='Lato_400'
+                                               fontFamily='Montserrat_400'
                                                fontSize={ 16 }
                                                text={ coverText }
                                                fill={ 'black' }
@@ -421,28 +423,30 @@ const HotTubCanvasSecondView = (props) => {
                                    onMouseOver={ () => setCoverText(optionName('cover')) }
                                    onMouseOut={ () => setCoverText('') }
                                    onClick={ () => setOpenTab('Cover') }
+                                   onTap={ () => setOpenTab('Cover') }
                                    src={ +selectedCoverId === 80580 ? plusIcon : doneIcon }
 
               />
               }
             </Group>
             <Group>
-              { metalStrapsText?.length > 1 && <Text x={ -325 }
-                                                     y={ -40 }
-                                                     fontFamily='Lato_400'
+              { metalStrapsText?.length > 1 && <Text x={ -270 }
+                                                     y={ -30 }
+                                                     fontFamily='Montserrat_400'
                                                      fontSize={ 16 }
                                                      text={ metalStrapsText }
                                                      fill={ 'black' }
               />
               }
 
-              { plusIcon && <Image x={ -300 }
-                                   y={ -23 }
+              { plusIcon && <Image x={ -250 }
+                                   y={ -10 }
                                    width={ 30 }
                                    height={ 30 }
                                    onMouseOver={ () => setMetalStrapsText(optionName('metalStraps')) }
                                    onMouseOut={ () => setMetalStrapsText('') }
                                    onClick={ () => setOpenTab('Metal Straps') }
+                                   onTap={ () => setOpenTab('Metal Straps') }
                                    src={ +selectedMetalStrapsId === 80513 ? plusIcon : doneIcon }
 
               />
@@ -451,8 +455,8 @@ const HotTubCanvasSecondView = (props) => {
 
             <Group>
               { tubeExtensionText?.length > 1 && <Text x={ 240 }
-                                                       y={ 150 }
-                                                       fontFamily='Lato_400'
+                                                       y={ 120 }
+                                                       fontFamily='Montserrat_400'
                                                        fontSize={ 16 }
                                                        text={ tubeExtensionText }
                                                        fill={ 'black' }
@@ -460,34 +464,36 @@ const HotTubCanvasSecondView = (props) => {
               }
 
               { plusIcon && <Image x={ 275 }
-                                   y={ 170 }
+                                   y={ 140 }
                                    width={ 30 }
                                    height={ 30 }
                                    onMouseOver={ () => setTubeExtensionText(optionName('tubeExtension')) }
                                    onMouseOut={ () => setTubeExtensionText('') }
                                    onClick={ () => setOpenTab('Tube extension') }
+                                   onTap={ () => setOpenTab('Tube extension') }
                                    src={ +selectedTubeExtensionId !== 80527 ? plusIcon : doneIcon }
 
               />
               }
             </Group>
             <Group>
-              { additionalAccessoriesText?.length > 1 && <Text x={ -450 }
-                                                               y={ 0 }
-                                                               fontFamily='Lato_400'
+              { additionalAccessoriesText?.length > 1 && <Text x={ -520 }
+                                                               y={ -20 }
+                                                               fontFamily='Montserrat_400'
                                                                fontSize={ 16 }
                                                                text={ additionalAccessoriesText }
                                                                fill={ 'black' }
               />
               }
 
-              { plusIcon && <Image x={ -390 }
-                                   y={ 20 }
+              { plusIcon && <Image x={ -430 }
+                                   y={ 0 }
                                    width={ 30 }
                                    height={ 30 }
-                                   onMouseOver={ () => setAdditionalAccessoriesText(optionName('additionalAccessoires')) }
+                                   onMouseOver={ () => setAdditionalAccessoriesText(optionName('additionalAccessories')) }
                                    onMouseOut={ () => setAdditionalAccessoriesText('') }
                                    onClick={ () => setOpenTab('Additional Accessoires') }
+                                   onTap={ () => setOpenTab('Additional Accessoires') }
                                    src={ +selectedAdditionalAccessoriesIds.includes(80523) ? plusIcon : doneIcon }
 
               />
