@@ -213,6 +213,16 @@ const HotTubCanvasFourthView = (props) => {
         }
     }, [customizeData, selectedHeatingOvenId, apiUrl]);
 
+    const imageSmokeSrc = useMemo(() => {
+
+        const heatingOvenData = customizeData?.heatingOven;
+        const imageLarge = heatingOvenData?.[`${ selectedHeatingOvenId }`].base.boxImage3;
+
+        if (heatingOvenData && selectedHeatingOvenId && imageLarge) {
+            return `${ apiUrl }${ imageLarge }`
+        }
+    }, [customizeData, selectedHeatingOvenId, apiUrl]);
+
 
     const imageCoverSrc = useMemo(() => {
         const coverData = customizeData?.cover;
@@ -605,6 +615,13 @@ const HotTubCanvasFourthView = (props) => {
                                              opacity={coverOptionOpacity ? 1 : 0}
                     />
                     }
+
+                    {imageSmokeSrc && <Image x={ 66 }
+                                             y={ -30 }
+                                             width={ 390 }
+                                             height={ 260 }
+                                             src={ imageSmokeSrc }
+                    />}
                 </Layer>
             </Stage>
 
