@@ -57,7 +57,7 @@ export const getCalcData = () => async (dispatch, getState) => {
           selectedLedId: +querySearchObj.led,
           selectedWarmingId: +querySearchObj.warming,
           selectedHeatingOvenId: +querySearchObj.heatingOven,
-          selectedAdditionalAccessoriesIds: querySearchObj.additionalAccessories.map(item => +item),
+          selectedAdditionalAccessoriesIds: querySearchObj.additionalAccessories?.map(item => +item),
           selectedTubeExtensionId: +querySearchObj.tubeExtension,
           selectedDeliveryId: +querySearchObj.delivery,
         })

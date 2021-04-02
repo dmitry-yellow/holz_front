@@ -50,10 +50,10 @@ const ColorsOption = (props) => {
       if (selectedId?.length >= 1) {
         const index = selectedId.includes(mainId) ? selectedId.indexOf(mainId) : null;
         currentId = selectedId[index];
-        currentAmount = selectedIdsWithAmount[currentId];
+        currentAmount = selectedIdsWithAmount?.[currentId];
       } else {
-        currentId = mainId;
-        currentAmount = selectedIdsWithAmount[currentId];
+        currentId = +mainId;
+        currentAmount = selectedIdsWithAmount?.[currentId];
       }
 
 
