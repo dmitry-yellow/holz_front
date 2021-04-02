@@ -47,32 +47,34 @@ const ColorsOption = (props) => {
 
     let currentId, currentAmount;
 
-    if (selectedId?.length >= 1) {
-      const index = selectedId.includes(mainId) ? selectedId.indexOf(mainId) : null;
-      currentId = selectedId[index];
-      currentAmount = selectedIdsWithAmount[currentId];
-    } else {
-      currentId = mainId;
-      currentAmount = selectedIdsWithAmount[currentId];
-    }
+      if (selectedId?.length >= 1) {
+        const index = selectedId.includes(mainId) ? selectedId.indexOf(mainId) : null;
+        currentId = selectedId[index];
+        currentAmount = selectedIdsWithAmount[currentId];
+      } else {
+        currentId = mainId;
+        currentAmount = selectedIdsWithAmount[currentId];
+      }
 
-    const classForMinSpan = cn(currentAmount <= 1 && 'disabled');
-    const classForMaxSpan = cn(currentAmount >= canBuyFew && 'disabled');
+
+
+    const classForMinSpan = cn(+currentAmount <= 1 && 'disabled');
+    const classForMaxSpan = cn(+currentAmount >= +canBuyFew && 'disabled');
 
     return <>
-      { currentId && currentAmount && canBuyFew ? <div className='ColorsOption-box-item-canBuyFew'>
+      { currentId && +currentAmount && +canBuyFew ? <div className='ColorsOption-box-item-canBuyFew'>
         <span className={ classForMinSpan }
               onClick={ (event) => {
                 event.stopPropagation();
                 if (classForMinSpan === 'disabled') return
-                dispatch(setSelectedIdsWithAmount(mainId, currentAmount - 1))
+                dispatch(setSelectedIdsWithAmount(mainId, +currentAmount - 1))
               } }>-</span>
         <p>{ currentAmount }</p>
         <span className={ classForMaxSpan }
               onClick={ (event) => {
                 event.stopPropagation();
                 if (classForMaxSpan === 'disabled') return
-                dispatch(setSelectedIdsWithAmount(mainId, currentAmount + 1))
+                dispatch(setSelectedIdsWithAmount(mainId, +currentAmount + 1))
               } }>+</span>
       </div> : null }
     </>
@@ -121,7 +123,7 @@ const ColorsOption = (props) => {
             )
           }) : null }
         </div> : <PositioningSandfilterBox optionData={ optionData }
-                                           priceShow={priceShow}
+                                           priceShow={ priceShow }
         /> }
 
         { desktopQueryTooltip ? <>

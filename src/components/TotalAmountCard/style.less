@@ -1,6 +1,9 @@
 .TotalAmountCard {
   width: 350px;
-  height: 175px;
+  min-height: 175px;
+  height: max-content;
+  max-height: 210px;
+  /*height: 175px;*/
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -33,7 +36,7 @@
     font-size: 0.75rem;
     color: #774D2E;
     text-align: end;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
   }
 
   &-title {
@@ -70,7 +73,7 @@
     border-radius: 90px;
     box-sizing: border-box;
     cursor: pointer;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     line-height: 1!important;
     transition: top .3s linear;
 
@@ -81,12 +84,33 @@
     }
   }
 
+  &-share{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &-button{
+      margin-right: 5px;
+      margin-bottom: 0!important;
+    }
+
+    > p {
+      font-family: "Montserrat_400"!important;
+      font-size: 0.875rem!important;
+      color: #774D2E!important;
+      margin: 0 10px 0 0;
+      text-align: start!important;
+  }
+  }
+
   &-pdfTextDownload{
     font-family: "Montserrat_400"!important;
     font-size: 0.875rem!important;
     color: #774D2E!important;
     text-decoration: none!important;
     cursor: pointer;
+    margin-bottom: 10px!important;
     text-align: center!important;
   }
 }

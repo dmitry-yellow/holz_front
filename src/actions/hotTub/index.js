@@ -1,4 +1,5 @@
 import { hotTubAPI } from "../../api";
+import qs from "qs";
 
 
 export const ActionTypes = {
@@ -28,7 +29,9 @@ export const ActionTypes = {
   GENERATE_CART_SUCCESS: "HOT_TUB/GENERATE_CART_SUCCESS",
   GENERATE_CART_FAILURE: "HOT_TUB/GENERATE_CART_FAILURE",
   SET_SELECTED_IDS_WITH_AMOUNT: "HOT_TUB/SET_SELECTED_IDS_WITH_AMOUNT",
-  SET_SELECTED_POSITIONING_IDS: "HOT_TUB/SET_SELECTED_POSITIONING_IDS"
+  SET_SELECTED_POSITIONING_IDS: "HOT_TUB/SET_SELECTED_POSITIONING_IDS",
+  SET_SELECTED_OBJ_POSITIONING_IDS: "HOT_TUB/SET_SELECTED_OBJ_POSITIONING_IDS",
+  SET_SELECTED_OBJ_IDS_WITH_AMOUNT: "HOT_TUB/SET_SELECTED_OBJ_IDS_WITH_AMOUNT",
 }
 
 
@@ -38,10 +41,34 @@ export const getCalcData = () => async (dispatch, getState) => {
     const response = await hotTubAPI.getCalcData();
     await dispatch(getRootData());
     if (response?.data && response?.status === 200) {
-      await dispatch({
-        type: ActionTypes.GET_DATA_SUCCESS,
-        data: response.data
-      })
+
+      if(window.location.search){
+        let querySearchObj = qs.parse(window.location.search.replace('?', ''));
+        await dispatch({
+          type: ActionTypes.GET_DATA_SUCCESS,
+          data: response.data,
+          selectedWoodId: +querySearchObj.wood,
+          selectedSizeId: +querySearchObj.size,
+          selectedSpruceColorId: +querySearchObj.spruceColor,
+          selectedInsideColorId: +querySearchObj.insideColor,
+          selectedCoverId: +querySearchObj.cover,
+          selectedMetalStrapsId: +querySearchObj.metalStraps,
+          selectedMassageFunctionId: +querySearchObj.massageFunction,
+          selectedLedId: +querySearchObj.led,
+          selectedWarmingId: +querySearchObj.warming,
+          selectedHeatingOvenId: +querySearchObj.heatingOven,
+          selectedAdditionalAccessoriesIds: querySearchObj.additionalAccessories.map(item => +item),
+          selectedTubeExtensionId: +querySearchObj.tubeExtension,
+          selectedDeliveryId: +querySearchObj.delivery,
+        })
+        await dispatch(setSelectedObjIdsWithAmount(querySearchObj.idsWithAmount));
+        await dispatch(setSelectedObjPositioningIds(querySearchObj.positioning));
+      } else {
+        await dispatch({
+          type: ActionTypes.GET_DATA_SUCCESS,
+          data: response.data
+        })
+      }
     }
   } catch (error) {
     console.log(error)
@@ -66,8 +93,10 @@ const getRootData = () => async (dispatch) => {
 };
 
 export const setSelectedIdsWithAmount = (selectedId, amount = 1) => (dispatch, getState) => {
-
   dispatch({ type: ActionTypes.SET_SELECTED_IDS_WITH_AMOUNT, selectedId, amount })
+}
+export const setSelectedObjIdsWithAmount = (selectedIds) => (dispatch) => {
+  dispatch({ type: ActionTypes.SET_SELECTED_OBJ_IDS_WITH_AMOUNT, selectedIds })
 }
 
 
@@ -238,6 +267,13 @@ export const setSelectedPositioningIds = (option, positioningId) => (dispatch, g
     type: ActionTypes.SET_SELECTED_POSITIONING_IDS,
     positioningId: positioningId,
     option
+  })
+}
+
+export const setSelectedObjPositioningIds = (positioningObj) => (dispatch) => {
+  dispatch({
+    type: ActionTypes.SET_SELECTED_OBJ_POSITIONING_IDS,
+    positioningObj
   })
 }
 
