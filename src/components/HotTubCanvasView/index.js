@@ -4,6 +4,7 @@ import { useKunakovHeight } from "../customHooks/useKunakovHeight";
 import Image from "../Image/Image";
 import plusIcon from '../../assets/images/icon-svg.svg';
 import doneIcon from '../../assets/images/icon-done.svg';
+import { logDOM } from "@testing-library/react";
 
 
 const HotTubCanvasView = (props) => {
@@ -107,13 +108,14 @@ const HotTubCanvasView = (props) => {
             image: `${ apiUrl }${ imageLargeExterior }`,
             position: positionExterior,
             width: widthExterior,
-            height: heightExterior
+            height: heightExterior,
+            id
           }, ...arr]
         } else if (imageLarge) {
           if (+id === 80591) {
-            arr = [{ image: `${ apiUrl }${ imageLarge }`, position: position, width: width, height: height }, ...arr]
+            arr = [{ image: `${ apiUrl }${ imageLarge }`, position: position, width: width, height: height, id }, ...arr]
           } else {
-            arr = [...arr, { image: `${ apiUrl }${ imageLarge }`, position: position, width: width, height: height }]
+            arr = [...arr, { image: `${ apiUrl }${ imageLarge }`, position: position, width: width, height: height, id }]
           }
         }
       })
@@ -579,13 +581,15 @@ const HotTubCanvasView = (props) => {
                                                 opacity={ selectedCoverId !== 80580 && coverOptionOpacity ? 0 : 1 }
             />
             }
-            { imageAdditionalAccessoriesSrc?.length >= 1 && imageAdditionalAccessoriesSrc.map((item, index) => {
-              return <Image key={ index }
+
+            { imageAdditionalAccessoriesSrc?.length >= 1 && imageAdditionalAccessoriesSrc.map(item => {
+              return <Image key={ item.id }
                             x={ +item.position.x && +item.position.x }
                             y={ +item.position.y && +item.position.y }
                             width={ +item.width && +item.width }
                             height={ +item.height && +item.height }
                             src={ item.image && item.image }
+                            debug
               />
             }) }
             <Group>

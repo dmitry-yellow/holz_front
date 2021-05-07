@@ -104,13 +104,14 @@ const HotTubCanvasFourthView = (props) => {
                         image: `${apiUrl}${imageLargeExterior}`,
                         position: positionExterior,
                         width: widthExterior,
-                        height: heightExterior
+                        height: heightExterior,
+                        id
                     }, ...arr ]
                 } else if (imageLarge) {
                     if(+id === 80591){
-                        arr = [ {image: `${apiUrl}${imageLarge}`, position: position, width: width, height: height}, ...arr]
+                        arr = [ {image: `${apiUrl}${imageLarge}`, position: position, width: width, height: height, id}, ...arr]
                     } else {
-                        arr = [...arr, {image: `${apiUrl}${imageLarge}`, position: position, width: width, height: height}]
+                        arr = [...arr, {image: `${apiUrl}${imageLarge}`, position: position, width: width, height: height, id}]
                     }
                 }
             })
@@ -532,8 +533,8 @@ const HotTubCanvasFourthView = (props) => {
                        offsetY={offsetY && calcHeight(offsetY)}
                 >
 
-                    {imageAdditionalAccessoriesSrc?.length >= 1 && imageAdditionalAccessoriesSrc.map((item, index) => {
-                        return <Image key={index}
+                    {imageAdditionalAccessoriesSrc?.length >= 1 && imageAdditionalAccessoriesSrc.map(item => {
+                        return <Image key={ item.id }
                                       x={+item.position.x3 && +item.position.x3}
                                       y={+item.position.y3 && +item.position.y3}
                                       width={+item.width && +item.width}

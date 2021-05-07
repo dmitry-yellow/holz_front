@@ -1,30 +1,24 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Image as KonvaImage } from "react-konva";
 import useImage from "use-image";
 
-const isSafari = /constructor/i.test(window.HTMLElement) || (function (p) {
-  return p.toString() === "[object SafariRemoteNotification]";
-})(!window['safari']);
-
-
 const Image = React.forwardRef((props, ref) => {
 
-  const [image, status] = useImage(props.src, 'Anonymous');
-  const [imageState, setStateImage] = useState(image);
 
+  const [image, status] = useImage(props.src, 'Anonymous');
+  const [pos, setPos] = useState({ x: props.x, y: props.y, img: image, width: props.width, height: props.height });
   const localRef = useRef(null);
   const KonvaImageRef = ref || localRef;
 
   useEffect(() => {
     if (status === 'loaded') {
-      setStateImage(image);
+      setPos({ x: props.x, y: props.y, img: image, width: props.width, height: props.height })
     }
-  }, [props.src, props, image]);
-
+  }, [status]);
 
   return (
       <React.Fragment>
-        <KonvaImage { ...props } image={ imageState } ref={ KonvaImageRef }/>
+         <KonvaImage { ...props } x={pos.x} y={pos.y} image={ pos.img } width={pos.width} height={pos.height} ref={ KonvaImageRef }/>
       </React.Fragment>
   )
 });

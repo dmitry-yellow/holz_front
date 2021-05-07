@@ -71,7 +71,7 @@ export const getCalcData = () => async (dispatch, getState) => {
       }
     }
   } catch (error) {
-    console.log(error)
+    console.error(error)
     dispatch({ type: ActionTypes.GET_DATA_FAILURE })
   }
 };
@@ -87,7 +87,7 @@ const getRootData = () => async (dispatch) => {
       })
     }
   } catch (error) {
-    console.log(error)
+    console.error(error)
     dispatch({ type: ActionTypes.GET_ROOT_DATA_FAILURE })
   }
 };
@@ -151,7 +151,7 @@ export const getCartData = () => async (dispatch, getState) => {
       }
     }
   } catch (error) {
-    console.log(error)
+    console.error(error)
     dispatch({ type: ActionTypes.GENERATE_CART_FAILURE })
   }
 };
@@ -190,7 +190,7 @@ export const generatePdfLink = (images) => async (dispatch, getState) => {
       }
     }
   } catch (error) {
-    console.log(error)
+    console.error(error)
     dispatch({ type: ActionTypes.GENERATE_PGF_FAILURE })
   }
 };
