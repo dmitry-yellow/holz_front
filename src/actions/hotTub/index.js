@@ -1,5 +1,6 @@
 import { hotTubAPI } from "../../api";
 import qs from "qs";
+import { getAddAccNoPriceId, getPreparationForSandFilterId, getSandFilterId } from "../../components/helperForIds";
 
 
 export const ActionTypes = {
@@ -32,21 +33,25 @@ export const ActionTypes = {
   SET_SELECTED_POSITIONING_IDS: "HOT_TUB/SET_SELECTED_POSITIONING_IDS",
   SET_SELECTED_OBJ_POSITIONING_IDS: "HOT_TUB/SET_SELECTED_OBJ_POSITIONING_IDS",
   SET_SELECTED_OBJ_IDS_WITH_AMOUNT: "HOT_TUB/SET_SELECTED_OBJ_IDS_WITH_AMOUNT",
+  SET_SELECTED_TYPE_ID: "HOT_TUB/SET_SELECTED_TYPE_ID",
 }
 
 
 export const getCalcData = () => async (dispatch, getState) => {
   try {
     dispatch({ type: ActionTypes.GET_DATA });
-    const response = await hotTubAPI.getCalcData();
+
+    const typeId = getState().hotTub.selectedTypeId;
+
+    let response = await hotTubAPI.getExternalCalcData(typeId);
+
     await dispatch(getRootData());
     if (response?.data && response?.status === 200) {
-
       if(window.location.search){
         let querySearchObj = qs.parse(window.location.search.replace('?', ''));
         await dispatch({
           type: ActionTypes.GET_DATA_SUCCESS,
-          data: response.data,
+          data: response.data.__,         // response.data.__
           selectedWoodId: +querySearchObj.wood,
           selectedSizeId: +querySearchObj.size,
           selectedSpruceColorId: +querySearchObj.spruceColor,
@@ -66,7 +71,7 @@ export const getCalcData = () => async (dispatch, getState) => {
       } else {
         await dispatch({
           type: ActionTypes.GET_DATA_SUCCESS,
-          data: response.data
+          data:  response.data.__        //response.data
         })
       }
     }
@@ -76,10 +81,11 @@ export const getCalcData = () => async (dispatch, getState) => {
   }
 };
 
-const getRootData = () => async (dispatch) => {
+const getRootData = () => async (dispatch, getState) => {
   try {
+    const typeId = getState().hotTub.selectedTypeId;
     dispatch({ type: ActionTypes.GET_ROOT_DATA });
-    const response = await hotTubAPI.getRootData();
+    const response = await hotTubAPI.getRootData(typeId);
     if (response?.data && response?.status === 200) {
       await dispatch({
         type: ActionTypes.GET_ROOT_DATA_SUCCESS,
@@ -92,7 +98,7 @@ const getRootData = () => async (dispatch) => {
   }
 };
 
-export const setSelectedIdsWithAmount = (selectedId, amount = 1) => (dispatch, getState) => {
+export const setSelectedIdsWithAmount = (selectedId, amount = 1) => (dispatch) => {
   dispatch({ type: ActionTypes.SET_SELECTED_IDS_WITH_AMOUNT, selectedId, amount })
 }
 export const setSelectedObjIdsWithAmount = (selectedIds) => (dispatch) => {
@@ -146,7 +152,6 @@ export const getCartData = () => async (dispatch, getState) => {
         await dispatch({
           type: ActionTypes.GENERATE_CART_SUCCESS,
           cart: response.data
-
         })
       }
     }
@@ -199,7 +204,7 @@ export const setSelectedSizeId = (sizeId) => (dispatch) => {
   dispatch({ type: ActionTypes.SET_SELECTED_SIZE_ID, selectedSizeId: sizeId })
 }
 
-export const setSelectedWoodId = (woodId) => (dispatch, getState) => {
+export const setSelectedWoodId = (woodId) => (dispatch) => {
   dispatch({ type: ActionTypes.SET_SELECTED_WOOD_ID, selectedWoodId: woodId })
 }
 
@@ -228,8 +233,11 @@ export const setSelectedHeatingOvenId = (heatingOvenId) => (dispatch) => {
 }
 
 export const setSelectedAdditionalAccessoriesId = (additionalAccessoriesId) => async (dispatch, getState) => {
+  const selectedTypeId = getState().hotTub.selectedTypeId;
   const oldSelectedIds = getState().hotTub.selectedAdditionalAccessoriesIds;
-  const noPriceId = +Object.keys(getState().hotTub.data.additionalAccessories)[0];
+  const noPriceId = getAddAccNoPriceId(selectedTypeId); // +Object.keys(getState().hotTub.data.additionalAccessories)[0];  // no price id change to function
+  const sandFilterId = getSandFilterId(selectedTypeId);
+  const preparationForSandFilterId = getPreparationForSandFilterId(selectedTypeId);
 
   let newSelectedIds = [...oldSelectedIds];
   if (additionalAccessoriesId === noPriceId) {
@@ -250,8 +258,8 @@ export const setSelectedAdditionalAccessoriesId = (additionalAccessoriesId) => a
 
     newSelectedIds.push(additionalAccessoriesId);
 
-    if (newSelectedIds.includes(80591)) {
-      newSelectedIds = newSelectedIds.filter((id) => id !== 80575);
+    if (newSelectedIds.includes(sandFilterId)) {
+      newSelectedIds = newSelectedIds.filter((id) => id !== preparationForSandFilterId);
     }
 
   }
@@ -262,7 +270,7 @@ export const setSelectedAdditionalAccessoriesId = (additionalAccessoriesId) => a
   })
 }
 
-export const setSelectedPositioningIds = (option, positioningId) => (dispatch, getState) => {
+export const setSelectedPositioningIds = (option, positioningId) => (dispatch) => {
   dispatch({
     type: ActionTypes.SET_SELECTED_POSITIONING_IDS,
     positioningId: positioningId,
@@ -292,3 +300,8 @@ export const setSelectedWarmingId = (warmingId) => (dispatch) => {
 export const setSelectedMetalStrapsId = (metalStrapsId) => (dispatch) => {
   dispatch({ type: ActionTypes.SET_SELECTED_METAL_STRAPS_ID, selectedMetalStrapsId: metalStrapsId })
 }
+
+export const setSelectedTypeId = (typeId) => (dispatch) => {
+  dispatch({ type: ActionTypes.SET_SELECTED_TYPE_ID, selectedTypeId: typeId })
+}
+

@@ -1,20 +1,23 @@
 import { Fragment, useEffect, useState } from 'react';
 import CustomizeOptionContainer from "../CustomizeOptionContainer";
 import "./style.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import {
   setSelectedAdditionalAccessoriesId,
-  setSelectedCoverId, setSelectedDeliveryId, setSelectedHeatingOvenId,
-  setSelectedInsideColorId, setSelectedLedId, setSelectedMassageFunctionId, setSelectedMetalStrapsId,
-  setSelectedSizeId,
-  setSelectedSpruceColorId, setSelectedTubeExtensionId, setSelectedWarmingId,
-  setSelectedWoodId
+  setSelectedCoverId, setSelectedDeliveryId,
+  setSelectedHeatingOvenId, setSelectedInsideColorId,
+  setSelectedLedId, setSelectedMassageFunctionId,
+  setSelectedMetalStrapsId, setSelectedSizeId,
+  setSelectedSpruceColorId, setSelectedTubeExtensionId,
+  setSelectedWarmingId, setSelectedWoodId
 } from "../../actions/hotTub";
 import customizeMenu from "./menuHelper";
 import ColorsOption from "../ColorsOption";
 import SizeOption from "../SizeOption";
 import TotalAmountCard from "../TotalAmountCard";
 import injectMedia from "../media";
+import TypeOption from "../TypeOption";
+import { getNoLedId, getNoMassageFuncId, getPreparationForSandFilterId, getSandFilterId } from "../helperForIds";
 
 
 const HotTubCustomize = (props) => {
@@ -25,14 +28,10 @@ const HotTubCustomize = (props) => {
     setOpenTab,
     rootData,
     setHotTubPositionView,
-    setExteriorBcg,
-    desktopQueryMatches
+    setExteriorBcg
   } = props;
 
   const [openToolltip, setOpenToolltip] = useState('');
-
-  const dispatch = useDispatch();
-
 
   const isLoadingData = useSelector(state => state.hotTub.isLoadingData);
   const selectedSizeId = useSelector(state => state.hotTub.selectedSizeId);
@@ -48,6 +47,7 @@ const HotTubCustomize = (props) => {
   const selectedAdditionalAccessoriesIds = useSelector(state => state.hotTub.selectedAdditionalAccessoriesIds);
   const selectedTubeExtensionId = useSelector(state => state.hotTub.selectedTubeExtensionId);
   const selectedDeliveryId = useSelector(state => state.hotTub.selectedDeliveryId);
+  const selectedTypeId = useSelector(state => state.hotTub.selectedTypeId);
 
 
   useEffect(() => {
@@ -60,6 +60,11 @@ const HotTubCustomize = (props) => {
 
   const loadCurrentContentForOption = (mainOption) => {
     switch (mainOption) {
+      case "Size":
+        return <SizeOption sizeData={ customizeData?.sizes }
+                           setSelectedSizeId={ setSelectedSizeId }
+                           selectedSizeId={ selectedSizeId }
+        />
       case 'Wood':
         return <ColorsOption optionData={ customizeData?.wood }
                              selectedId={ selectedWoodId }
@@ -71,7 +76,6 @@ const HotTubCustomize = (props) => {
                              openTab={ openTab }
                              openToolltip={ openToolltip }
                              setOpenToolltip={ setOpenToolltip }
-                             dispatch={ dispatch }
         />
       case 'Spruce color':
         return <ColorsOption optionData={ customizeData?.spruceColor }
@@ -79,7 +83,6 @@ const HotTubCustomize = (props) => {
                              selectedId={ selectedSpruceColorId }
                              setSelectedId={ setSelectedSpruceColorId }
                              option='Spruce color'
-                             dispatch={ dispatch }
                              dataTooltip={ rootData?.descriptions && rootData?.descriptions.spruceColor }
                              openToolltip={ openToolltip }
                              setOpenToolltip={ setOpenToolltip }
@@ -91,7 +94,6 @@ const HotTubCustomize = (props) => {
                              selectedId={ selectedInsideColorId }
                              setSelectedId={ setSelectedInsideColorId }
                              option='Inside color'
-                             dispatch={ dispatch }
                              dataTooltip={ rootData?.descriptions && rootData?.descriptions.insideColor }
                              openToolltip={ openToolltip }
                              setOpenToolltip={ setOpenToolltip }
@@ -103,7 +105,6 @@ const HotTubCustomize = (props) => {
                              selectedId={ selectedCoverId }
                              setSelectedId={ setSelectedCoverId }
                              option='Cover'
-                             dispatch={ dispatch }
                              dataTooltip={ rootData?.descriptions && rootData?.descriptions.cover }
                              openToolltip={ openToolltip }
                              setOpenToolltip={ setOpenToolltip }
@@ -116,7 +117,6 @@ const HotTubCustomize = (props) => {
                              setSelectedId={ setSelectedMetalStrapsId }
                              additionalClass={ 'without-image' }
                              option='Metal Straps'
-                             dispatch={ dispatch }
                              dataTooltip={ rootData?.descriptions && rootData?.descriptions.metalStraps }
                              openToolltip={ openToolltip }
                              setOpenToolltip={ setOpenToolltip }
@@ -129,7 +129,6 @@ const HotTubCustomize = (props) => {
                              setSelectedId={ setSelectedMassageFunctionId }
                              additionalClass={ 'without-image' }
                              option='Massage Function'
-                             dispatch={ dispatch }
                              dataTooltip={ rootData?.descriptions && rootData?.descriptions.massageFunction }
                              openToolltip={ openToolltip }
                              setOpenToolltip={ setOpenToolltip }
@@ -142,7 +141,6 @@ const HotTubCustomize = (props) => {
                              setSelectedId={ setSelectedLedId }
                              additionalClass={ 'without-image' }
                              option='LED'
-                             dispatch={ dispatch }
                              dataTooltip={ rootData?.descriptions && rootData?.descriptions.led }
                              openToolltip={ openToolltip }
                              setOpenToolltip={ setOpenToolltip }
@@ -155,7 +153,6 @@ const HotTubCustomize = (props) => {
                              setSelectedId={ setSelectedWarmingId }
                              additionalClass={ 'without-image' }
                              option='Warming'
-                             dispatch={ dispatch }
                              dataTooltip={ rootData?.descriptions && rootData?.descriptions.warming }
                              openToolltip={ openToolltip }
                              setOpenToolltip={ setOpenToolltip }
@@ -167,7 +164,6 @@ const HotTubCustomize = (props) => {
                              selectedId={ selectedHeatingOvenId }
                              setSelectedId={ setSelectedHeatingOvenId }
                              option='Heating oven'
-                             dispatch={ dispatch }
                              dataTooltip={ rootData?.descriptions && rootData?.descriptions.heatingOven }
                              openToolltip={ openToolltip }
                              setOpenToolltip={ setOpenToolltip }
@@ -180,7 +176,6 @@ const HotTubCustomize = (props) => {
                              setSelectedId={ setSelectedAdditionalAccessoriesId }
                              additionalClass={ 'without-image' }
                              option='Additional Accessoires'
-                             dispatch={ dispatch }
                              dataTooltip={ rootData?.descriptions && rootData?.descriptions.additionalAccessories }
                              openToolltip={ openToolltip }
                              setOpenToolltip={ setOpenToolltip }
@@ -194,7 +189,6 @@ const HotTubCustomize = (props) => {
                              setSelectedId={ setSelectedAdditionalAccessoriesId }
                              additionalClass={ 'without-image' }
                              option='Positioning'
-                             dispatch={ dispatch }
                              dataTooltip={ rootData?.descriptions && rootData?.descriptions.positioningSandfilter }
                              openToolltip={ openToolltip }
                              setOpenToolltip={ setOpenToolltip }
@@ -208,7 +202,6 @@ const HotTubCustomize = (props) => {
                              setSelectedId={ setSelectedTubeExtensionId }
                              additionalClass={ 'without-image' }
                              option='Tube extension'
-                             dispatch={ dispatch }
                              dataTooltip={ rootData?.descriptions && rootData?.descriptions.tubeExtension }
                              openToolltip={ openToolltip }
                              setOpenToolltip={ setOpenToolltip }
@@ -221,7 +214,6 @@ const HotTubCustomize = (props) => {
                              setSelectedId={ setSelectedDeliveryId }
                              additionalClass={ 'without-image' }
                              option='Delivery'
-                             dispatch={ dispatch }
                              dataTooltip={ rootData?.descriptions && rootData?.descriptions.delivery }
                              openToolltip={ openToolltip }
                              setOpenToolltip={ setOpenToolltip }
@@ -237,18 +229,18 @@ const HotTubCustomize = (props) => {
         {/*{desktopQueryMatches && <p className="HotTubCustomize-title">Passen Sie Ihren Hot Tub an</p>}*/ }
         { isLoadingData ? <p>Loading...</p> :
             <Fragment>
-              <SizeOption sizeData={ customizeData?.sizes }
-                          setSelectedSizeId={ setSelectedSizeId }
-                          selectedSizeId={ selectedSizeId }
-                          dispatch={ dispatch }
-              />
+              <TypeOption />
 
               { customizeMenu.map((item, index) => {
-                const customizeDataName = customizeData?.wood?.[`${ selectedWoodId }`]._main.Name;
-                const isIncludesSomeElementInAddAcc = selectedAdditionalAccessoriesIds.includes(80591) || selectedAdditionalAccessoriesIds.includes(80575);
+                const customizeDataName = customizeData?.wood?.[`0${ selectedWoodId }`]._main.Name;
+                const sandFilterId = getSandFilterId(selectedTypeId);
+                const preparationForSandFilterId = getPreparationForSandFilterId(selectedTypeId);
+                const noLedId = getNoLedId(selectedTypeId);
+                const noMassageFuncId = getNoMassageFuncId(selectedTypeId);
+                const isIncludesSomeElementInAddAcc = selectedAdditionalAccessoriesIds.includes(sandFilterId) || selectedAdditionalAccessoriesIds.includes(preparationForSandFilterId);
                 const isPositioningDisabled =
-                    +selectedMassageFunctionId === 80515 &&
-                    +selectedLedId === 80517 &&
+                    +selectedMassageFunctionId === noMassageFuncId &&
+                    +selectedLedId === noLedId &&
                     !isIncludesSomeElementInAddAcc &&
                     item.option === 'Positioning';
 

@@ -1,4 +1,5 @@
 const customizeMenu = [
+    {option: 'Size', optional: false, referencer: 'sizes'},
     {option: 'Wood', optional: false, referencer: 'wood'},
     {option: 'Spruce color', optional: true, referencer: 'spruceColor'},
     {option: 'Inside color', optional: false, referencer: 'insideColor'},

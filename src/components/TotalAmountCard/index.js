@@ -18,6 +18,7 @@ import {
   WhatsappShareButton
 } from "react-share";
 import qs from "qs";
+import { getBigSizeId } from "../helperForIds";
 
 
 const cartUrl = process.env.REACT_APP_CART_URL;
@@ -47,6 +48,7 @@ const TotalAmountCard = (props) => {
   const isLoadingPgfGenerator = useSelector(state => state.hotTub.isLoadingPgfGenerator);
   const selectedIdsWithAmount = useSelector(state => state.hotTub.selectedIdsWithAmount);
   const selectedPositioningIds = useSelector(state => state.hotTub.selectedPositioningIds);
+  const selectedTypeId = useSelector(state => state.hotTub.selectedTypeId);
   const cartData = useSelector(state => state.hotTub.cart);
 
   useEffect(() => {
@@ -213,6 +215,7 @@ const TotalAmountCard = (props) => {
   const totalPrice = useMemo(() => {
 
     let allSelectedIds = getAllSelectedIds();
+    const bigSizeId  = getBigSizeId(selectedTypeId);
 
     if (allSelectedIds?.length >= 1 && customizeData) {
       let totalPrice = 0;
@@ -224,17 +227,16 @@ const TotalAmountCard = (props) => {
             let value;
             let amount = 1;
 
-            if (selectedIdsWithAmount?.[currentId]) {
-              amount = selectedIdsWithAmount?.[currentId];
+            if (selectedIdsWithAmount?.[+currentId]) {
+              amount = selectedIdsWithAmount?.[+currentId];
             }
 
-            if (selectedSizeId == 80530) {
+            if (selectedSizeId == bigSizeId) {
               value = currentId?.length >= 1 && dataItem?.[`${ currentId }`].base?.priceBig?.realValue;
             } else {
               value = currentId?.length >= 1 && dataItem?.[`${ currentId }`].base.price.realValue;
             }
             if (value) {
-
               let unformatValue = accounting.unformat(`€ ${ value }`);
               totalPrice = totalPrice + unformatValue * amount;
             }

@@ -1,9 +1,36 @@
-import { Group, Layer, Stage, Text } from "react-konva";
+import { Group, Layer, Stage } from "react-konva";
 import Image from "../Image/Image";
-import { useMemo, useRef, useEffect, useState } from "react";
-import plusIcon from '../../assets/images/icon-svg.svg';
-import doneIcon from '../../assets/images/icon-done.svg';
+import { useRef, useEffect, useState } from "react";
 import { useKunakovHeight } from "../customHooks/useKunakovHeight";
+import { useImageSmokeProperties } from "../customHooks/useImageSmokeProperties";
+import { useImageHeatingOvenProperties } from "../customHooks/useImageHeatingOvenProperties";
+import { useImageCoverProperties } from "../customHooks/useImageCoverProperties";
+import { useImageWoodProperties } from "../customHooks/useImageWoodProperties";
+import { useImageBcgShadowProperties } from "../customHooks/useImageBcgShadowProperties";
+import { useImageExteriorHeatingOvenProperties } from "../customHooks/useImageExteriorHeatingOvenProperties";
+import { useImageExteriorBcgProperties } from "../customHooks/useImageExteriorBcgProperties";
+import { useImageTubeExtensionProperties } from "../customHooks/useImageTubeExtensionProperties";
+import { useImageMetalStrapsProperties } from "../customHooks/useImageMetalStrapsProperties";
+import { useImageInsideColorSecondViewProperties } from "../customHooks/useImageInsideColorProperties";
+import { useImageAdditionalAccessoriesProperties } from "../customHooks/useImageAdditionalAccessoriesProperties";
+import WoodOptionGroup from "../OptionGroups/WoodOptionGroup";
+import InsideColorGroup from "../OptionGroups/InsideColorOptionGroup";
+import CoverOptionGroup from "../OptionGroups/CoverOptionGroup";
+import MetalStrapsOptionGroup from "../OptionGroups/MetalStrapsOptionGroup";
+import TubeExtensionOptionGroup from "../OptionGroups/TubeExtensionOptionGroup";
+import AdditionalAccessories from "../OptionGroups/AdditionalAccessoriesOptionGroup";
+import { optionGroupWoodPropSecondView } from "../OptionGroups/WoodOptionGroup/helper";
+import { optionGroupInsideColorPropSecondView } from "../OptionGroups/InsideColorOptionGroup/helper";
+import { optionGroupCoverPropSecondView } from "../OptionGroups/CoverOptionGroup/helper";
+import { optionGroupMetalStrapsPropSecondView } from "../OptionGroups/MetalStrapsOptionGroup/helper";
+import { optionGroupTubeExtensionPropSecondView } from "../OptionGroups/TubeExtensionOptionGroup/helper";
+import { optionGroupAdditionalAccessoriesPropSecondView } from "../OptionGroups/AdditionalAccessoriesOptionGroup/helper";
+import { useSelector } from "react-redux";
+import { getNoLedId, getNoMassageFuncId, getSmallSizeId } from "../helperForIds";
+import schalter_1 from "../../assets/images/schalter/Hottub-Studio_0002s_0004s_0003_Schalter-01.png";
+import schalter_2 from "../../assets/images/schalter/Hottub-Studio_0002s_0004s_0002_Schalter-02.png";
+import schalter_3 from "../../assets/images/schalter/Hottub-Studio_0002s_0004s_0001_Schalter-03.png";
+import schalter_4 from "../../assets/images/schalter/Hottub-Studio_0002s_0004s_0000_Schalter-04.png";
 
 
 const HotTubCanvasSecondView = (props) => {
@@ -29,20 +56,32 @@ const HotTubCanvasSecondView = (props) => {
   } = props;
 
   const apiUrl = process.env.REACT_APP_HOST_API_URL;
+  const selectedTypeId = useSelector(state => state.hotTub.selectedTypeId);
+  const selectedMassageFunctionId = useSelector(state => state.hotTub.selectedMassageFunctionId);
+  const selectedLedId = useSelector(state => state.hotTub.selectedLedId);
+  const noMassageFuncId = getNoMassageFuncId(selectedTypeId);
+  const noLedId = getNoLedId(selectedTypeId);
+
+
   const [calcHeight] = useKunakovHeight(hotTubStageHeight);
   const accessoriesRef = useRef(null);
   const iconsRef = useRef(null);
   const bcgShadowRef = useRef(null);
-  const [woodText, setWoodText] = useState('');
-  const [metalStrapsText, setMetalStrapsText] = useState('');
-  const [insideColorText, setInsideColorText] = useState('');
-  const [coverText, setCoverText] = useState('');
-  const [tubeExtensionText, setTubeExtensionText] = useState('');
-  const [additionalAccessoriesText, setAdditionalAccessoriesText] = useState('');
   const [scaleX, setScaleX] = useState(null);
   const [scaleY, setScaleY] = useState(null);
   const [offsetX, setOffsetX] = useState(null);
-  const [offsetY, setOffsetY] = useState(null);
+  const imageSmokeSrc = useImageSmokeProperties(customizeData, selectedHeatingOvenId, apiUrl, '1');
+  const imageHeatingOvenSrc = useImageHeatingOvenProperties(customizeData, selectedHeatingOvenId, apiUrl, 'ImageLarge2', '1');
+  const imageCoverSrc = useImageCoverProperties(customizeData, selectedCoverId, apiUrl, 'ImageLarge2', '1');
+  const imageWoodSrc = useImageWoodProperties(customizeData, selectedWoodId, selectedSpruceColorId, apiUrl, 'ImageLarge2', '1');
+  const bcgShadowImage = useImageBcgShadowProperties(customizeData, selectedSizeId, apiUrl, 'ImageLarge2', '1');
+  const imageExteriorHeatingOvenSrc = useImageExteriorHeatingOvenProperties(rootData, isExteriorBcg, apiUrl, 'image2', '1');
+  const bcgExteriorImage = useImageExteriorBcgProperties(rootData, isExteriorBcg, apiUrl, 'exterior2');
+  const imageTubeExtensionSrc = useImageTubeExtensionProperties(customizeData, selectedTubeExtensionId, isExteriorBcg, apiUrl, 'ImageLarge2', 'objectimage2', '1');
+  const imageMetalStrapsSrc = useImageMetalStrapsProperties(customizeData, selectedMetalStrapsId, isExteriorBcg, apiUrl, 'ImageLarge2', 'objectimage2', '1');
+  const imageInsideColorSrc = useImageInsideColorSecondViewProperties(customizeData, selectedInsideColorId, apiUrl, 'ImageLarge2', '1');
+  const imageAdditionalAccessoriesSrc = useImageAdditionalAccessoriesProperties(customizeData, selectedTypeId, selectedAdditionalAccessoriesIds, selectedWoodId, selectedSpruceColorId, isExteriorBcg, apiUrl, 'ImageLarge2', 'objectimage2', '1');
+
 
   useEffect(() => {
     if (iconsRef.current) {
@@ -52,204 +91,17 @@ const HotTubCanvasSecondView = (props) => {
       accessoriesRef.current.zIndex(3);
     }
     if (bcgShadowRef.current) {
-        bcgShadowRef.current.zIndex(1);
+      bcgShadowRef.current.zIndex(1);
     }
 
     if (hotTubStageWidth && hotTubStageHeight) {
-      setScaleForLayers(hotTubStageWidth);
+      if(selectedTypeId === 4224){
+        setScaleForLayers(hotTubStageWidth);
+      } else {
+        setScaleForExternalLayers(hotTubStageWidth);
+      }
     }
   }, [iconsRef, accessoriesRef, selectedSizeId, hotTubStageWidth, hotTubStageHeight]);
-
-  const imageAdditionalAccessoriesSrc = useMemo(() => {
-    const additionalAccessoriesData = customizeData?.additionalAccessories;
-    const woodData = customizeData?.wood;
-    const spruceColorData = customizeData?.spruceColor;
-    if (additionalAccessoriesData && selectedAdditionalAccessoriesIds) {
-      let arr = [];
-      selectedAdditionalAccessoriesIds.forEach(id => {
-        const position = additionalAccessoriesData?.[`${ id }`].position;
-        const width = additionalAccessoriesData?.[`${ id }`].base.width1;
-        const height = additionalAccessoriesData?.[`${ id }`].base.height1;
-
-        const positionExterior = {
-          x1: additionalAccessoriesData?.['80574'].imagesext.x1,
-          y1: additionalAccessoriesData?.['80574'].imagesext.y1
-        };
-        const widthExterior = additionalAccessoriesData?.['80574'].imagesext.width1;
-        const heightExterior = additionalAccessoriesData?.['80574'].imagesext.height1;
-        const imageLargeExterior = additionalAccessoriesData?.['80574'].imagesext.objectimage2;
-
-        let imageLarge = '';
-        if (+id === 80576) {
-          if (woodData?.[`${ selectedWoodId }`]._main.Name === 'Spruce') {
-            imageLarge = spruceColorData?.[`${ selectedSpruceColorId }`].base.boxImage1;
-          } else {
-            imageLarge = woodData?.[`${ selectedWoodId }`].base.boxImage1;
-          }
-        } else {
-          imageLarge = additionalAccessoriesData?.[`${ id }`].base.ImageLarge2;
-        }
-
-        if (isExteriorBcg && +id === 80574) {
-          arr = [{
-            image: `${ apiUrl }${ imageLargeExterior }`,
-            position: positionExterior,
-            width: widthExterior,
-            height: heightExterior,
-            id
-          }, ...arr]
-        } else if (imageLarge) {
-          if (+id === 80591) {
-            arr = [{ image: `${ apiUrl }${ imageLarge }`, position: position, width: width, height: height, id }, ...arr]
-          } else {
-            arr = [...arr, { image: `${ apiUrl }${ imageLarge }`, position: position, width: width, height: height, id }]
-          }
-        }
-      })
-      return arr;
-    }
-
-  }, [customizeData, selectedAdditionalAccessoriesIds, selectedWoodId, selectedSpruceColorId, apiUrl, isExteriorBcg]);
-
-  const imageWoodSrc = useMemo(() => {
-    const woodData = customizeData?.wood;
-    const spruceColorData = customizeData?.spruceColor;
-    let imageLarge = '';
-
-    if (woodData?.[`${ selectedWoodId }`]._main.Name === 'Spruce') {
-      imageLarge = spruceColorData?.[`${ selectedSpruceColorId }`].base.ImageLarge2;
-    } else {
-      imageLarge = woodData?.[`${ selectedWoodId }`].base.ImageLarge2;
-    }
-
-    if (woodData && spruceColorData && selectedWoodId && imageLarge) {
-      return `${ apiUrl }${ imageLarge }`
-    }
-  }, [customizeData, selectedWoodId, selectedSpruceColorId, apiUrl]);
-
-
-  const imageInsideColorSrc = useMemo(() => {
-    const insideColorData = customizeData?.insideColor;
-    const imageLarge = insideColorData?.[`${ selectedInsideColorId }`].base.ImageLarge2;
-
-    if (insideColorData && selectedInsideColorId && imageLarge) {
-      return `${ apiUrl }${ imageLarge }`
-    }
-  }, [customizeData, selectedInsideColorId, apiUrl]);
-
-  const imageMetalStrapsSrc = useMemo(() => {
-    const metalStrapsData = customizeData?.metalStraps;
-
-    const position = metalStrapsData?.[`${ selectedMetalStrapsId }`].position;
-    const positionExterior = {
-      x1: metalStrapsData?.[`${ selectedMetalStrapsId }`].imagesext.x1,
-      y1: metalStrapsData?.[`${ selectedMetalStrapsId }`].imagesext.y1
-    };
-
-    const width = metalStrapsData?.[`${ selectedMetalStrapsId }`].base.width1;
-    const height = metalStrapsData?.[`${ selectedMetalStrapsId }`].base.height1;
-    const widthExterior = metalStrapsData?.[`${ selectedMetalStrapsId }`].imagesext.width1;
-    const heightExterior = metalStrapsData?.[`${ selectedMetalStrapsId }`].imagesext.height1;
-
-    const imageLarge = metalStrapsData?.[`${ selectedMetalStrapsId }`].base.ImageLarge2;
-    const imageLargeExterior = metalStrapsData?.[`${ selectedMetalStrapsId }`].imagesext.objectimage2;
-
-    if (metalStrapsData && selectedMetalStrapsId && imageLarge && imageLargeExterior && position && positionExterior) {
-      if (isExteriorBcg) {
-        return [`${ apiUrl }${ imageLargeExterior }`, positionExterior, {
-          width: widthExterior,
-          height: heightExterior
-        }]
-      } else {
-        return [`${ apiUrl }${ imageLarge }`, position, { width: width, height: height }]
-      }
-    }
-  }, [customizeData, selectedMetalStrapsId, apiUrl, isExteriorBcg]);
-
-  const imageHeatingOvenSrc = useMemo(() => {
-    const heatingOvenData = customizeData?.heatingOven;
-    const imageLarge = heatingOvenData?.[`${ selectedHeatingOvenId }`].base.ImageLarge2;
-
-    if (heatingOvenData && selectedHeatingOvenId && imageLarge) {
-      return `${ apiUrl }${ imageLarge }`
-    }
-  }, [customizeData, selectedHeatingOvenId, apiUrl]);
-
-  const imageSmokeSrc = useMemo(() => {
-
-    const heatingOvenData = customizeData?.heatingOven;
-    const imageLarge = heatingOvenData?.[`${ selectedHeatingOvenId }`].base.boxImage1;
-
-    if (heatingOvenData && selectedHeatingOvenId && imageLarge) {
-      return `${ apiUrl }${ imageLarge }`
-    }
-  }, [customizeData, selectedHeatingOvenId, apiUrl]);
-
-
-  const imageCoverSrc = useMemo(() => {
-    const coverData = customizeData?.cover;
-    const position = coverData?.[`${ selectedCoverId }`].position;
-    const width = coverData?.[`${ selectedCoverId }`].base.width1;
-    const height = coverData?.[`${ selectedCoverId }`].base.height1;
-    const imageLarge = coverData?.[`${ selectedCoverId }`].base.ImageLarge2;
-    if (coverData && selectedCoverId && imageLarge && position && width && height) {
-      return [`${ apiUrl }${ imageLarge }`, position, { width: width, height: height }];
-    }
-  }, [customizeData, selectedCoverId, apiUrl]);
-
-
-  const imageTubeExtensionSrc = useMemo(() => {
-    const tubeExtensionData = customizeData?.tubeExtension;
-
-    if (tubeExtensionData && selectedTubeExtensionId) {
-      const imageLarge = tubeExtensionData?.[`${ selectedTubeExtensionId }`].base.ImageLarge2;
-      const imageLargeExterior = tubeExtensionData?.[`${ selectedTubeExtensionId }`].imagesext.objectimage2;
-
-      if (isExteriorBcg && imageLargeExterior) {
-        return `${ apiUrl }${ imageLargeExterior }`
-      } else if (imageLarge) {
-        return `${ apiUrl }${ imageLarge }`
-      }
-
-    }
-  }, [customizeData, selectedTubeExtensionId, apiUrl, isExteriorBcg]);
-
-  const bcgExteriorImage2 = useMemo(() => {
-    const exteriorImages = rootData?.exteriorImages;
-    if (exteriorImages) {
-      const imageLarge = exteriorImages?.exterior2;
-      if (imageLarge && isExteriorBcg) {
-        return `${ apiUrl }${ imageLarge }`
-      }
-    }
-
-  }, [isExteriorBcg, apiUrl, rootData])
-
-  const imageBasicPositionTwo = useMemo(() => {
-    const exteriorImages = rootData?.reflections;
-    if (exteriorImages) {
-      const imageLarge = exteriorImages?.image2;
-      if (imageLarge && isExteriorBcg) {
-        return `${ apiUrl }${ imageLarge }`
-      }
-    }
-
-  }, [isExteriorBcg, apiUrl, rootData])
-
-  const bcgShadowImage = useMemo(() => {
-
-    const bcgShadowImageData = customizeData?.sizes;
-
-    let imageLarge = '';
-
-    if (bcgShadowImageData && selectedSizeId) {
-      imageLarge = bcgShadowImageData?.[`${ selectedSizeId }`].base.ImageLarge2;
-    }
-
-    if (imageLarge) {
-      return `${ apiUrl }${ imageLarge }`
-    }
-  }, [apiUrl, selectedSizeId, customizeData])
 
 
   const offsetYToCalcHeight = (stageHeight) => {
@@ -279,8 +131,11 @@ const HotTubCanvasSecondView = (props) => {
   }
 
   const setScaleForLayers = (hotTubStageWidth) => {
+
+    const smallSizeId = getSmallSizeId(selectedTypeId);   // old id = 80504
+
     if (+hotTubStageWidth >= 1200) {
-      if (+selectedSizeId === 80504) {
+      if (+selectedSizeId === smallSizeId) {
         setScaleX(1.15);
         setScaleY(1.15);
         setOffsetX(-50);
@@ -291,7 +146,7 @@ const HotTubCanvasSecondView = (props) => {
       }
 
     } else if (+hotTubStageWidth >= 1000 && +hotTubStageWidth < 1200 && window.innerHeight >= 1100) {
-      if (+selectedSizeId === 80504) {
+      if (+selectedSizeId === smallSizeId) {
         setScaleX(0.55);
         setScaleY(0.55);
         setOffsetX(150);
@@ -301,7 +156,7 @@ const HotTubCanvasSecondView = (props) => {
         setOffsetX(145);
       }
     } else if (+hotTubStageWidth >= 1000 && +hotTubStageWidth < 1200) {
-      if (+selectedSizeId === 80504) {
+      if (+selectedSizeId === smallSizeId) {
         setScaleX(0.8);
         setScaleY(0.8);
         setOffsetX(130);
@@ -311,7 +166,7 @@ const HotTubCanvasSecondView = (props) => {
         setOffsetX(130);
       }
     } else if (+hotTubStageWidth >= 440 && +hotTubStageWidth < 1000) {
-      if (+selectedSizeId === 80504) {
+      if (+selectedSizeId === smallSizeId) {
         setScaleX(1.1);
         setScaleY(1.1);
         setOffsetX(-200);
@@ -321,7 +176,7 @@ const HotTubCanvasSecondView = (props) => {
         setOffsetX(-200);
       }
     } else if (+hotTubStageWidth >= 340 && +hotTubStageWidth <= 500) {
-      if (+selectedSizeId === 80504) {
+      if (+selectedSizeId === smallSizeId) {
         setScaleX(0.9);
         setScaleY(0.9);
         setOffsetX(-100);
@@ -331,7 +186,7 @@ const HotTubCanvasSecondView = (props) => {
         setOffsetX(-100);
       }
     } else if (+hotTubStageWidth < 340) {
-      if (+selectedSizeId === 80504) {
+      if (+selectedSizeId === smallSizeId) {
         setScaleX(0.75);
         setScaleY(0.75);
         setOffsetX(-250);
@@ -343,288 +198,268 @@ const HotTubCanvasSecondView = (props) => {
     }
   }
 
+  const setScaleForExternalLayers = (hotTubStageWidth) => {
+
+    const smallSizeId = getSmallSizeId(selectedTypeId);   // old id = 80504
+
+    if (+hotTubStageWidth >= 1200) {
+      if (+selectedSizeId === smallSizeId) {
+        setScaleX(1.15);
+        setScaleY(1.15);
+        setOffsetX(-50);
+      } else {
+        setScaleX(1.2);
+        setScaleY(1.2);
+        setOffsetX(-50);
+      }
+
+    } else if (+hotTubStageWidth >= 1000 && +hotTubStageWidth < 1200 && window.innerHeight >= 1100) {
+      if (+selectedSizeId === smallSizeId) {
+        setScaleX(0.55);
+        setScaleY(0.55);
+        setOffsetX(40);
+      } else {
+        setScaleX(0.57);
+        setScaleY(0.57);
+        setOffsetX(45);
+      }
+    } else if (+hotTubStageWidth >= 1000 && +hotTubStageWidth < 1200) {
+      if (+selectedSizeId === smallSizeId) {
+        setScaleX(0.8);
+        setScaleY(0.8);
+        setOffsetX(130);
+      } else {
+        setScaleX(0.85);
+        setScaleY(0.85);
+        setOffsetX(130);
+      }
+    } else if (+hotTubStageWidth >= 440 && +hotTubStageWidth < 1000) {
+      if (+selectedSizeId === smallSizeId) {
+        setScaleX(1.1);
+        setScaleY(1.1);
+        setOffsetX(-200);
+      } else {
+        setScaleX(1.15);
+        setScaleY(1.15);
+        setOffsetX(-200);
+      }
+    } else if (+hotTubStageWidth >= 340 && +hotTubStageWidth <= 500) {
+      if (+selectedSizeId === smallSizeId) {
+        setScaleX(0.88);
+        setScaleY(0.88);
+        setOffsetX(-220);
+      } else {
+        setScaleX(0.9);
+        setScaleY(0.9);
+        setOffsetX(-210);
+      }
+    } else if (+hotTubStageWidth < 340) {
+      if (+selectedSizeId === smallSizeId) {
+        setScaleX(0.75);
+        setScaleY(0.75);
+        setOffsetX(-200);
+      } else {
+        setScaleX(0.77);
+        setScaleY(0.77);
+        setOffsetX(-200);
+      }
+    }
+  }
+
   const optionName = function (name) {
     return rootData?.descriptions[name]?.germanName;
   }
 
+  const schalters = [
+    { image: schalter_1, width: 15, height: 15, x: -100, y: -45 },
+    { image: schalter_2, width: 15, height: 15, x: -71, y: -45 },
+    { image: schalter_3, width: 15, height: 15, x: -45, y: -45 }
+  ];
+
   return (
-      <div className='HotTubCanvasSecondView'>
-        <Stage width={ hotTubStageWidth }
-               height={ hotTubStageHeight }
-               offsetX={ -hotTubStageWidth / 2 }
-               offsetY={ -hotTubStageHeight / 2 }
+    <div className='HotTubCanvasSecondView'>
+      <Stage width={ hotTubStageWidth }
+             height={ hotTubStageHeight }
+             offsetX={ -hotTubStageWidth / 2 }
+             offsetY={ -hotTubStageHeight / 2 }
+      >
+        <Layer ref={ iconsRef }
+               opacity={ isCustomizeOptionsOpen ? 1 : 0 }
+               scaleX={ scaleX && calcHeight(scaleX) }
+               scaleY={ scaleY && calcHeight(scaleY) }
+               offsetX={ offsetX && offsetX }
+               offsetY={ calcHeight(-offsetYToCalcHeight(hotTubStageHeight)) }
         >
-          <Layer ref={ iconsRef }
-                 opacity={ isCustomizeOptionsOpen ? 1 : 0 }
-                 scaleX={ scaleX && calcHeight(scaleX) }
-                 scaleY={ scaleY && calcHeight(scaleY) }
-                 offsetX={ offsetX && offsetX }
-                 offsetY={ calcHeight(-offsetYToCalcHeight(hotTubStageHeight)) }
-          >
-            <Group>
-              { woodText?.length > 1 && <Text x={ -230 }
-                                              y={ 60 }
-                                              fontFamily='Montserrat_400'
-                                              fontSize={ 16 }
-                                              text={ woodText }
-                                              fill={ 'black' }
-              />
-              }
+          <WoodOptionGroup setOpenTab={ setOpenTab } optionName={ optionName }
+                           optionGroupProp={ optionGroupWoodPropSecondView[selectedTypeId] }
+          />
+          <InsideColorGroup setOpenTab={ setOpenTab } optionName={ optionName }
+                            optionGroupProp={ optionGroupInsideColorPropSecondView[selectedTypeId] }
+          />
+          <CoverOptionGroup setOpenTab={ setOpenTab } optionName={ optionName } selectedTypeId={ selectedTypeId }
+                            optionGroupProp={ optionGroupCoverPropSecondView[selectedTypeId] }
+                            selectedCoverId={ selectedCoverId }
+          />
+          <MetalStrapsOptionGroup setOpenTab={ setOpenTab } optionName={ optionName } selectedTypeId={ selectedTypeId }
+                                  optionGroupProp={ optionGroupMetalStrapsPropSecondView[selectedTypeId] }
+                                  selectedMetalStrapsId={ selectedMetalStrapsId }
+          />
 
-              { plusIcon && <Image x={ -220 }
-                                   y={ 80 }
-                                   width={ 30 }
-                                   height={ 30 }
-                                   onMouseOver={ () => setWoodText(optionName('wood')) }
-                                   onMouseOut={ () => setWoodText('') }
-                                   onClick={ () => setOpenTab('Wood') }
-                                   onTap={ () => setOpenTab('Wood') }
-                                   src={ doneIcon }
+          <TubeExtensionOptionGroup setOpenTab={ setOpenTab } optionName={ optionName } selectedTypeId={ selectedTypeId }
+                                    optionGroupProp={ optionGroupTubeExtensionPropSecondView[selectedTypeId] }
+                                    selectedTubeExtensionId={ selectedTubeExtensionId }
+          />
+          <AdditionalAccessories setOpenTab={ setOpenTab } optionName={ optionName } selectedTypeId={ selectedTypeId }
+                                 optionGroupProp={ optionGroupAdditionalAccessoriesPropSecondView[selectedTypeId] }
+                                 selectedAdditionalAccessoriesIds={ selectedAdditionalAccessoriesIds }
+          />
+        </Layer>
 
-              />
-              }
-            </Group>
-            <Group>
-              { insideColorText?.length > 1 && <Text x={ -390 }
-                                                     y={ -125 }
-                                                     fontFamily='Montserrat_400'
-                                                     fontSize={ 16 }
-                                                     text={ insideColorText }
-                                                     fill={ 'black' }
-              />
-              }
+        <Layer ref={ accessoriesRef }
+               scaleX={ scaleX && calcHeight(scaleX) }
+               scaleY={ scaleY && calcHeight(scaleY) }
+               offsetX={ offsetX && offsetX }
+               offsetY={ calcHeight(-offsetYToCalcHeight(hotTubStageHeight)) }
+        >
+          { imageAdditionalAccessoriesSrc?.length >= 1 && imageAdditionalAccessoriesSrc.map(item => {
+            return <Image key={ item.id }
+                          x={ +item.position.x1 && +item.position.x1 }
+                          y={ +item.position.y1 && +item.position.y1 }
+                          width={ +item.width && +item.width }
+                          height={ +item.height && +item.height }
+                          src={ item.image && item.image }
+            />
+          }) }
+          <Group>
+            { imageTubeExtensionSrc && <Image x={ +imageTubeExtensionSrc[1].x1 }        // tube extension additional 1m
+                                              y={ +imageTubeExtensionSrc[1].y1 }
+                                              width={ +imageTubeExtensionSrc[2].width }
+                                              height={ +imageTubeExtensionSrc[2].height }
+                                              src={ imageTubeExtensionSrc[0] }
+            />
+            }
+          </Group>
 
-              { plusIcon && <Image x={ -330 }
-                                   y={ -105 }
-                                   width={ 30 }
-                                   height={ 30 }
-                                   onMouseOver={ () => setInsideColorText(optionName('insideColor')) }
-                                   onMouseOut={ () => setInsideColorText('') }
-                                   onClick={ () => setOpenTab('Inside color') }
-                                   onTap={ () => setOpenTab('Inside color') }
-                                   src={ doneIcon }
-
-              />
-              }
-            </Group>
-            <Group>
-              { coverText?.length > 1 && <Text x={ -145 }
-                                               y={ -135 }
-                                               fontFamily='Montserrat_400'
-                                               fontSize={ 16 }
-                                               text={ coverText }
-                                               fill={ 'black' }
-              />
-              }
-
-              { plusIcon && <Image x={ -130 }
-                                   y={ -115 }
-                                   width={ 30 }
-                                   height={ 30 }
-                                   onMouseOver={ () => setCoverText(optionName('cover')) }
-                                   onMouseOut={ () => setCoverText('') }
-                                   onClick={ () => setOpenTab('Cover') }
-                                   onTap={ () => setOpenTab('Cover') }
-                                   src={ +selectedCoverId === 80580 ? plusIcon : doneIcon }
-
-              />
-              }
-            </Group>
-            <Group>
-              { metalStrapsText?.length > 1 && <Text x={ -270 }
-                                                     y={ -30 }
-                                                     fontFamily='Montserrat_400'
-                                                     fontSize={ 16 }
-                                                     text={ metalStrapsText }
-                                                     fill={ 'black' }
-              />
-              }
-
-              { plusIcon && <Image x={ -250 }
-                                   y={ -10 }
-                                   width={ 30 }
-                                   height={ 30 }
-                                   onMouseOver={ () => setMetalStrapsText(optionName('metalStraps')) }
-                                   onMouseOut={ () => setMetalStrapsText('') }
-                                   onClick={ () => setOpenTab('Metal Straps') }
-                                   onTap={ () => setOpenTab('Metal Straps') }
-                                   src={ +selectedMetalStrapsId === 80513 ? plusIcon : doneIcon }
-
-              />
-              }
-            </Group>
-
-            <Group>
-              { tubeExtensionText?.length > 1 && <Text x={ 240 }
-                                                       y={ 120 }
-                                                       fontFamily='Montserrat_400'
-                                                       fontSize={ 16 }
-                                                       text={ tubeExtensionText }
-                                                       fill={ 'black' }
-              />
-              }
-
-              { plusIcon && <Image x={ 275 }
-                                   y={ 140 }
-                                   width={ 30 }
-                                   height={ 30 }
-                                   onMouseOver={ () => setTubeExtensionText(optionName('tubeExtension')) }
-                                   onMouseOut={ () => setTubeExtensionText('') }
-                                   onClick={ () => setOpenTab('Tube extension') }
-                                   onTap={ () => setOpenTab('Tube extension') }
-                                   src={ +selectedTubeExtensionId !== 80527 ? plusIcon : doneIcon }
-
-              />
-              }
-            </Group>
-            <Group>
-              { additionalAccessoriesText?.length > 1 && <Text x={ -520 }
-                                                               y={ -20 }
-                                                               fontFamily='Montserrat_400'
-                                                               fontSize={ 16 }
-                                                               text={ additionalAccessoriesText }
-                                                               fill={ 'black' }
-              />
-              }
-
-              { plusIcon && <Image x={ -430 }
-                                   y={ 0 }
-                                   width={ 30 }
-                                   height={ 30 }
-                                   onMouseOver={ () => setAdditionalAccessoriesText(optionName('additionalAccessories')) }
-                                   onMouseOut={ () => setAdditionalAccessoriesText('') }
-                                   onClick={ () => setOpenTab('Additional Accessoires') }
-                                   onTap={ () => setOpenTab('Additional Accessoires') }
-                                   src={ +selectedAdditionalAccessoriesIds.includes(80523) ? plusIcon : doneIcon }
-
-              />
-              }
-            </Group>
-
-          </Layer>
-
-          <Layer ref={ accessoriesRef }
-                 scaleX={ scaleX && calcHeight(scaleX) }
-                 scaleY={ scaleY && calcHeight(scaleY) }
-                 offsetX={ offsetX && offsetX }
-                 offsetY={ calcHeight(-offsetYToCalcHeight(hotTubStageHeight)) }
-          >
-            { imageAdditionalAccessoriesSrc?.length >= 1 && imageAdditionalAccessoriesSrc.map(item => {
-              return <Image key={ item.id }
-                            x={ +item.position.x1 && +item.position.x1 }
-                            y={ +item.position.y1 && +item.position.y1 }
-                            width={ +item.width && +item.width }
-                            height={ +item.height && +item.height }
-                            src={ item.image && item.image }
+          {selectedTypeId !== 4224 && <Group>
+            { +selectedMassageFunctionId !== noMassageFuncId && schalters?.length > 1 && schalters.map((schalter, index) => {
+              return <Image x={ schalter.x }
+                            y={ schalter.y }
+                            width={ schalter.width }
+                            height={ schalter.height }
+                            src={ schalter.image }
+                            key={ index }
               />
             }) }
-            <Group>
-              { imageTubeExtensionSrc && <Image x={ -863 }
-                                                y={ -465 }
-                                                width={ 1250 }
-                                                height={ 750 }
-                                                src={ imageTubeExtensionSrc }
-              />
-              }
-            </Group>
-
-          </Layer>
-
-          <Layer scaleX={ 1 }
-                 scaleY={ 1 }
-          >
-
-            { (bcgExteriorImage2 && isExteriorBcg) && <Image x={ -hotTubStageWidth / 2 }
-                                                             y={ -hotTubStageHeight / 2 }
-                                                             width={ hotTubStageWidth }
-                                                             height={ hotTubStageHeight }
-                                                             src={ bcgExteriorImage2 }/>
-            }
-
-          </Layer>
-
-          <Layer scaleX={ calcHeight(scaleX && scaleX) }
-                 scaleY={ calcHeight(scaleY && scaleY) }
-                 ref={bcgShadowRef}
-          >
-            { bcgShadowImage && <Image x={ -450 }
-                                       y={ 118 }
-                                       width={ 780 }
-                                       height={ 100 }
-                                       src={ bcgShadowImage }
-                                       offsetX={ offsetX && offsetX }
-                                       offsetY={ calcHeight(-offsetYToCalcHeight(hotTubStageHeight)) }
-            /> }
-          </Layer>
-
-          <Layer scaleX={ calcHeight(scaleX && scaleX) }
-                 scaleY={ calcHeight(scaleY && scaleY) }
-                 offsetX={ offsetX && offsetX }
-                 offsetY={ calcHeight(-offsetYToCalcHeight(hotTubStageHeight)) }
-          >
-
-            { imageHeatingOvenSrc && <Image x={ -839 }
-                                            y={ -462 }
-                                            width={ 960 }
-                                            height={ 740 }
-                                            src={ imageHeatingOvenSrc }
-                                            opacity={ isExteriorBcg ? 0 : 1 }
+            { +selectedLedId !== noLedId && <Image x={ -20 }
+                                                   y={ -45 }
+                                                   width={ 15 }
+                                                   height={ 15 }
+                                                   src={ schalter_4 }
             />
             }
+          </Group> }
+
+        </Layer>
+
+        <Layer scaleX={ 1 }
+               scaleY={ 1 }
+        >
+
+          { (bcgExteriorImage && isExteriorBcg) && <Image x={ -hotTubStageWidth / 2 }
+                                                          y={ -hotTubStageHeight / 2 }
+                                                          width={ hotTubStageWidth }
+                                                          height={ hotTubStageHeight }
+                                                          src={ bcgExteriorImage }/>
+          }
+
+        </Layer>
+
+        <Layer scaleX={ calcHeight(scaleX && scaleX) } // bottom shadow
+               scaleY={ calcHeight(scaleY && scaleY) }
+               ref={ bcgShadowRef }
+        >
+          { bcgShadowImage && <Image x={ +bcgShadowImage[1].x1 }
+                                     y={ +bcgShadowImage[1].y1 }
+                                     width={ +bcgShadowImage[2].width }
+                                     height={ +bcgShadowImage[2].height }
+                                     src={ bcgShadowImage[0] }
+                                     offsetX={ offsetX && offsetX }
+                                     offsetY={ calcHeight(-offsetYToCalcHeight(hotTubStageHeight)) }
+          /> }
+        </Layer>
+
+        <Layer scaleX={ calcHeight(scaleX && scaleX) }
+               scaleY={ calcHeight(scaleY && scaleY) }
+               offsetX={ offsetX && offsetX }
+               offsetY={ calcHeight(-offsetYToCalcHeight(hotTubStageHeight)) }
+        >
+
+          { imageHeatingOvenSrc && <Image x={ +imageHeatingOvenSrc[1].x1 }           // heating oven image
+                                          y={ +imageHeatingOvenSrc[1].y1 }
+                                          width={ +imageHeatingOvenSrc[2].width }
+                                          height={ +imageHeatingOvenSrc[2].height }
+                                          src={ imageHeatingOvenSrc[0] }
+                                          opacity={ isExteriorBcg ? 0 : 1 }
+          />
+          }
 
 
-            { imageBasicPositionTwo && <Image x={ -839 }
-                                              y={ -462 }
-                                              width={ 960 }
-                                              height={ 740 }
-                                              src={ imageBasicPositionTwo }
-                                              opacity={ isExteriorBcg ? 1 : 0 }
-            />
-            }
+          { imageExteriorHeatingOvenSrc &&
+          <Image x={ +imageExteriorHeatingOvenSrc[1].x1 }       // heating oven exterior image
+                 y={ +imageExteriorHeatingOvenSrc[1].y1 }
+                 width={ +imageExteriorHeatingOvenSrc[2].width }
+                 height={ +imageExteriorHeatingOvenSrc[2].height }
+                 src={ imageExteriorHeatingOvenSrc[0] }
+                 opacity={ isExteriorBcg ? 1 : 0 }
+          />
+          }
 
-            { imageWoodSrc && <Image x={ -586 }
-                                     y={ -449 }
-                                     width={ 825 }
-                                     height={ 640 }
-                                     src={ imageWoodSrc }
-            />
-            }
+          { imageWoodSrc && <Image x={ +imageWoodSrc[1].x1 }                        // wood and spruce images
+                                   y={ +imageWoodSrc[1].y1 }
+                                   width={ +imageWoodSrc[2].width }
+                                   height={ +imageWoodSrc[2].height }
+                                   src={ imageWoodSrc[0] }
+          />
+          }
 
-            { imageMetalStrapsSrc && <Image x={ +imageMetalStrapsSrc?.[1].x1 }
-                                            y={ +imageMetalStrapsSrc?.[1].y1 }
-                                            width={ +imageMetalStrapsSrc?.[2].width }
-                                            height={ +imageMetalStrapsSrc?.[2].height }
-                                            src={ imageMetalStrapsSrc[0] }
-            />
-            }
-            { imageInsideColorSrc && <Image x={ -585 }
-                                            y={ -310 }
-                                            width={ 717 }
-                                            height={ 450 }
-                                            src={ imageInsideColorSrc }
-            />
-            }
+          { imageMetalStrapsSrc && <Image x={ +imageMetalStrapsSrc?.[1].x1 }
+                                          y={ +imageMetalStrapsSrc?.[1].y1 }
+                                          width={ +imageMetalStrapsSrc?.[2].width }
+                                          height={ +imageMetalStrapsSrc?.[2].height }
+                                          src={ imageMetalStrapsSrc[0] }
+          />
+          }
 
-            { imageCoverSrc && <Image x={ +imageCoverSrc?.[1].x1 }
-                                      y={ +imageCoverSrc?.[1].y1 }
-                                      width={ +imageCoverSrc?.[2].width }
-                                      height={ +imageCoverSrc?.[2].height }
-                                      src={ imageCoverSrc[0] }
-                                      opacity={ coverOptionOpacity ? 1 : 0 }
-            />
-            }
 
-            {imageSmokeSrc && <Image x={ -57 }
-                                     y={ -473 }
-                                     width={ 335 }
-                                     height={ 120 }
-                                     src={ imageSmokeSrc }
-            />}
-          </Layer>
+          { imageInsideColorSrc &&
+          <Image x={ +imageInsideColorSrc[1].x1 }         // inside color without or with water and led or no led
+                 y={ +imageInsideColorSrc[1].y1 }
+                 width={ +imageInsideColorSrc[2].width }
+                 height={ +imageInsideColorSrc[2].height }
+                 src={ imageInsideColorSrc[0] }
+          />
+          }
 
-        </Stage>
+          { imageCoverSrc && <Image x={ +imageCoverSrc?.[1].x1 }
+                                    y={ +imageCoverSrc?.[1].y1 }
+                                    width={ +imageCoverSrc?.[2].width }
+                                    height={ +imageCoverSrc?.[2].height }
+                                    src={ imageCoverSrc[0] }
+                                    opacity={ coverOptionOpacity ? 1 : 0 }
+          />
+          }
 
-      </div>
+          { imageSmokeSrc && <Image x={ +imageSmokeSrc[1].x1 }               // tube smoke top
+                                    y={ +imageSmokeSrc[1].y1 }
+                                    width={ +imageSmokeSrc[2].width }
+                                    height={ +imageSmokeSrc[2].height }
+                                    src={ imageSmokeSrc[0] }
+          /> }
+        </Layer>
+
+      </Stage>
+
+    </div>
   )
 
 }

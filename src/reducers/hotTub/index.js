@@ -22,7 +22,12 @@ const initialState = {
   isLoadingRootData: false,
   isLoadingPgfGenerator: false,
   selectedIdsWithAmount: {},
-  pdfFile: ''
+  pdfFile: '',
+  selectedTypeId: 4224,
+  typeOptions: [
+    { type: 'Hot Tub', id: 4224, ab: 3000 },
+    { type: 'Hot Tub with external heater', id: 80602, ab: 3000 }
+  ]
 }
 
 const hotTubReducer = (state = initialState, action) => {
@@ -39,19 +44,19 @@ const hotTubReducer = (state = initialState, action) => {
         ...state,
         isLoadingData: false,
         data: action.data,
-        selectedSizeId: action.selectedSizeId ? action.selectedSizeId : +Object.keys(action.data.sizes)[0],
-        selectedWoodId: action.selectedWoodId ? action.selectedWoodId : +Object.keys(action.data.wood)[0],
-        selectedSpruceColorId: action.selectedSpruceColorId ? action.selectedSpruceColorId : +Object.keys(action.data.spruceColor)[0],
-        selectedInsideColorId: action.selectedInsideColorId ? action.selectedInsideColorId : +Object.keys(action.data.insideColor)[2],
-        selectedCoverId: action.selectedCoverId ? action.selectedCoverId : +Object.keys(action.data.cover)[0],
-        selectedMetalStrapsId: action.selectedMetalStrapsId ? action.selectedMetalStrapsId : +Object.keys(action.data.metalStraps)[0],
-        selectedMassageFunctionId: action.selectedMassageFunctionId ? action.selectedMassageFunctionId : +Object.keys(action.data.massageFunction)[0],
-        selectedLedId: action.selectedLedId ? action.selectedLedId : +Object.keys(action.data.led)[0],
-        selectedWarmingId: action.selectedWarmingId ? action.selectedWarmingId : +Object.keys(action.data.warming)[0],
-        selectedHeatingOvenId: action.selectedHeatingOvenId ? action.selectedHeatingOvenId : +Object.keys(action.data.heatingOven)[0],
-        selectedAdditionalAccessoriesIds: action.selectedAdditionalAccessoriesIds ? action.selectedAdditionalAccessoriesIds : [+Object.keys(action.data.additionalAccessories)[0]],
-        selectedTubeExtensionId: action.selectedTubeExtensionId ? action.selectedTubeExtensionId : +Object.keys(action.data.tubeExtension)[1],
-        selectedDeliveryId: action.selectedDeliveryId ? action.selectedDeliveryId : +Object.keys(action.data.delivery)[0],
+        selectedSizeId: action.selectedSizeId ? action.selectedSizeId : action.data.sizes[Object.keys(action.data.sizes)[0]]._main.id,
+        selectedWoodId: action.selectedWoodId ? action.selectedWoodId : action.data.wood[Object.keys(action.data.wood)[0]]._main.id,
+        selectedSpruceColorId: action.selectedSpruceColorId ? action.selectedSpruceColorId : action.data.spruceColor[Object.keys(action.data.spruceColor)[0]]._main.id,
+        selectedInsideColorId: action.selectedInsideColorId ? action.selectedInsideColorId : action.data.insideColor[Object.keys(action.data.insideColor)[2]]._main.id,
+        selectedCoverId: action.selectedCoverId ? action.selectedCoverId : action.data.cover[Object.keys(action.data.cover)[0]]._main.id,
+        selectedMetalStrapsId: action.selectedMetalStrapsId ? action.selectedMetalStrapsId : action.data.metalStraps[Object.keys(action.data.metalStraps)[0]]._main.id,
+        selectedMassageFunctionId: action.selectedMassageFunctionId ? action.selectedMassageFunctionId : action.data.massageFunction[Object.keys(action.data.massageFunction)[0]]._main.id,
+        selectedLedId: action.selectedLedId ? action.selectedLedId : action.data.led[Object.keys(action.data.led)[0]]._main.id,
+        selectedWarmingId: action.selectedWarmingId ? action.selectedWarmingId : action.data.warming[Object.keys(action.data.warming)[0]]._main.id,
+        selectedHeatingOvenId: action.selectedHeatingOvenId ? action.selectedHeatingOvenId : action.data.heatingOven[Object.keys(action.data.heatingOven)[0]]._main.id,
+        selectedAdditionalAccessoriesIds: action.selectedAdditionalAccessoriesIds ? action.selectedAdditionalAccessoriesIds : [action.data.additionalAccessories[Object.keys(action.data.additionalAccessories)[0]]._main.id],
+        selectedTubeExtensionId: action.selectedTubeExtensionId ? action.selectedTubeExtensionId : action.data.tubeExtension[Object.keys(action.data.tubeExtension)[0]]._main.id,
+        selectedDeliveryId: action.selectedDeliveryId ? action.selectedDeliveryId : action.data.delivery[Object.keys(action.data.delivery)[0]]._main.id,
       }
     case ActionTypes.GET_DATA_FAILURE:
       return {
@@ -208,6 +213,11 @@ const hotTubReducer = (state = initialState, action) => {
       return {
         ...state,
         selectedIdsWithAmount: action.selectedIds
+      }
+    case ActionTypes.SET_SELECTED_TYPE_ID:
+      return {
+        ...state,
+        selectedTypeId: action.selectedTypeId
       }
 
     default:

@@ -1,14 +1,16 @@
 import cn from "classnames";
 import './style.css';
+import { useDispatch } from "react-redux";
 
 
 const SizeOption = ( props ) => {
 
-  const { sizeData, selectedSizeId, setSelectedSizeId, dispatch } = props;
+  const dispatch = useDispatch();
+  const { sizeData, selectedSizeId, setSelectedSizeId } = props;
 
   return (
       <div className="SizeOption">
-        <p>Größe</p>
+        {/*<p>Größe</p>*/}
         { sizeData ? Object.values(sizeData).map((size, index) => {
 
           const price = size.base.price;  // object with prices

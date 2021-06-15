@@ -14,7 +14,7 @@ const Image = React.forwardRef((props, ref) => {
     if (status === 'loaded') {
       setPos({ x: props.x, y: props.y, img: image, width: props.width, height: props.height })
     }
-  }, [status]);
+  }, [status]);  // , props.x, props.y, props.width, props.height
 
   return (
       <React.Fragment>

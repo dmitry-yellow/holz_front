@@ -8,6 +8,7 @@ import onlyMassage from '../../assets/images/icon-cp-only-massage.png';
 import cn from 'classnames';
 import './style.css';
 import { setSelectedPositioningIds } from "../../actions/hotTub";
+import { getNoLedId, getNoMassageFuncId, getPreparationForSandFilterId, getSandFilterId } from "../helperForIds";
 
 
 const PositioningSandfilterBox = (props) => {
@@ -17,13 +18,19 @@ const PositioningSandfilterBox = (props) => {
   const [sandFilterChecked, setSandFilterChecked] = useState(false);
   const [controlPanelChecked, setControlPanelChecked] = useState(false);
 
+
   const dispatch = useDispatch();
   const selectedPositioningIds = useSelector(state => state.hotTub.selectedPositioningIds);
   const selectedAdditionalAccessoriesIds = useSelector(state => state.hotTub.selectedAdditionalAccessoriesIds);
   const selectedMassageFunctionId = useSelector(state => state.hotTub.selectedMassageFunctionId);
   const selectedLedId = useSelector(state => state.hotTub.selectedLedId);
   const data = useSelector(state => state.hotTub.data);
-  const heatingOvenDataPositioningImage = data.heatingOven?.['80521']?.imagesext.objectimage1;
+  const selectedTypeId = useSelector(state => state.hotTub.selectedTypeId);
+  const heatingOvenDataPositioningImage = data.heatingOven?.['080521']?.imagesext.objectimage1 || data.heatingOven?.['080661']?.imagesext.objectimage1;
+  const noMassageFuncId = getNoMassageFuncId(selectedTypeId);  // 80515
+  const noLedId = getNoLedId(selectedTypeId);  // 80517
+  const sandFilterId = getSandFilterId(selectedTypeId);  // 80591
+  const preparationForSandFilterId = getPreparationForSandFilterId(selectedTypeId);  // 80575
 
   useEffect(() => {
     if(selectedPositioningIds?.sandFilter && selectedPositioningIds?.controlPanel){
@@ -36,17 +43,17 @@ const PositioningSandfilterBox = (props) => {
     if(!selectedPositioningIds?.sandFilter && selectedPositioningIds?.controlPanel){
       setControlPanelChecked(true);
     }
-  }, [selectedPositioningIds]);
+  }, [selectedPositioningIds, selectedMassageFunctionId, selectedLedId]);
 
   const selectOptionsJsx = () => {
 
     let srcCP = '';
 
-    if (+selectedMassageFunctionId !== 80515 && +selectedLedId !== 80517) {
+    if (+selectedMassageFunctionId !== noMassageFuncId && +selectedLedId !== noLedId) {
       srcCP = ledAndMassage;
-    } else if (+selectedMassageFunctionId === 80515 && +selectedLedId !== 80517) {
+    } else if (+selectedMassageFunctionId === noMassageFuncId && +selectedLedId !== noLedId) {
       srcCP = onlyLed;
-    } else if (+selectedMassageFunctionId !== 80515 && +selectedLedId === 80517) {
+    } else if (+selectedMassageFunctionId !== noMassageFuncId && +selectedLedId === noLedId) {
       srcCP = onlyMassage;
     } else {
       srcCP = controlPanel;
@@ -75,8 +82,8 @@ const PositioningSandfilterBox = (props) => {
 
             const main = option['_main'];
             const price = priceShow(option);
-            const isDisabledSandFilter = (selectedAdditionalAccessoriesIds.includes(80591) || selectedAdditionalAccessoriesIds.includes(80575));
-            const isDisabledControlPanel = +selectedMassageFunctionId !== 80515 || +selectedLedId !== 80517;
+            const isDisabledSandFilter = (selectedAdditionalAccessoriesIds.includes(sandFilterId) || selectedAdditionalAccessoriesIds.includes(preparationForSandFilterId));
+            const isDisabledControlPanel = +selectedMassageFunctionId !== noMassageFuncId || +selectedLedId !== noLedId;
             const isCheckedSandFilter = +selectedPositioningIds?.sandFilter === main.id && sandFilterChecked;
             const isCheckedControlPanel = +selectedPositioningIds?.controlPanel === main.id && controlPanelChecked;
 

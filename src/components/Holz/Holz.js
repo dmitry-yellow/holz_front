@@ -21,7 +21,7 @@ const Holz = () => {
   const [openTab, setOpenTab] = useState('');
   const [hotTubStageWidth, setHotTubStageWidth] = useState(0);
   const [hotTubStageHeight, setHotTubStageHeight] = useState(0);
-  const [hotTubPositionView, setHotTubPositionView] = useState('positionOne')
+  const [hotTubPositionView, setHotTubPositionView] = useState('positionOne');
 
   const dispatch = useDispatch();
 
@@ -40,12 +40,13 @@ const Holz = () => {
   const selectedAdditionalAccessoriesIds = useSelector(state => state.hotTub.selectedAdditionalAccessoriesIds);
   const selectedTubeExtensionId = useSelector(state => state.hotTub.selectedTubeExtensionId);
   const selectedDeliveryId = useSelector(state => state.hotTub.selectedDeliveryId);
+  const selectedTypeId = useSelector(state => state.hotTub.selectedTypeId);
 
 
   useEffect(() => {
     getHeightAndWidthStage();
     dispatch(getCalcData());
-  }, [dispatch])
+  }, [dispatch, selectedTypeId])   //selectedTypeId  добавить в зависимости чтобы подтянуть второй хот таб
 
   useEffect(() => {
     window.addEventListener('resize', getHeightAndWidthStage);
@@ -68,6 +69,7 @@ const Holz = () => {
       <div className={ classForHolz }>
         { hotTubPositionView === 'positionOne' && <HotTubCanvasView hotTubStageWidth={ hotTubStageWidth }
                                                                     hotTubStageHeight={ hotTubStageHeight }
+                                                                    hotTubPositionView={ hotTubPositionView }
                                                                     isExteriorBcg={ isExteriorBcg }
                                                                     setOpenTab={ setOpenTab }
                                                                     customizeData={ customizeData }
@@ -89,6 +91,7 @@ const Holz = () => {
         /> }
         { hotTubPositionView === 'positionTwo' && <HotTubCanvasSecondView hotTubStageWidth={ hotTubStageWidth }
                                                                           hotTubStageHeight={ hotTubStageHeight }
+                                                                          hotTubPositionView={ hotTubPositionView }
                                                                           isExteriorBcg={ isExteriorBcg }
                                                                           setOpenTab={ setOpenTab }
                                                                           customizeData={ customizeData }
@@ -108,6 +111,7 @@ const Holz = () => {
         /> }
         { hotTubPositionView === 'positionThree' && <HotTubCanvasThirdView hotTubStageWidth={ hotTubStageWidth }
                                                                            hotTubStageHeight={ hotTubStageHeight }
+                                                                           hotTubPositionView={ hotTubPositionView }
                                                                            isExteriorBcg={ isExteriorBcg }
                                                                            setOpenTab={ setOpenTab }
                                                                            customizeData={ customizeData }
@@ -129,6 +133,7 @@ const Holz = () => {
         /> }
         { hotTubPositionView === 'positionFour' && <HotTubCanvasFourthView hotTubStageWidth={ hotTubStageWidth }
                                                                            hotTubStageHeight={ hotTubStageHeight }
+                                                                           hotTubPositionView={ hotTubPositionView }
                                                                            isExteriorBcg={ isExteriorBcg }
                                                                            setOpenTab={ setOpenTab }
                                                                            customizeData={ customizeData }

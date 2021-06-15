@@ -10,7 +10,8 @@ const instance = axios.create({
 
 export const hotTubAPI = {
         getCalcData: () => instance.get('/~api/json/catalog.mf/getCalcData'),
-        getRootData: () => instance.get('/~api/json/catalog.mf/getRootData'),
+        getExternalCalcData: (typeId) => instance.get(`/~api/json/catalog.mf/getCalcData/id/${typeId}`),
+        getRootData: (typeId) => instance.get(`/~api/json/catalog.mf/getRootData/id/${typeId}`),
         getCartData: (data) => {
             const instance = axios.create({
                 baseURL: `${process.env.REACT_APP_HOST_API_URL}`,
