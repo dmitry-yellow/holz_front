@@ -32,6 +32,7 @@ import schalter_1 from "../../assets/images/schalter/Hottub-Studio_0002s_0004s_0
 import schalter_2 from "../../assets/images/schalter/Hottub-Studio_0002s_0004s_0002_Schalter-02.png";
 import schalter_3 from "../../assets/images/schalter/Hottub-Studio_0002s_0004s_0001_Schalter-03.png";
 import schalter_4 from "../../assets/images/schalter/Hottub-Studio_0002s_0004s_0000_Schalter-04.png";
+import schalterOval_1 from "../../assets/images/schalter/schalter-oval1.png";
 
 const HotTubCanvasView = (props) => {
 
@@ -101,7 +102,7 @@ const HotTubCanvasView = (props) => {
       bcgExtRef.current.zIndex(0);
     }
     if (hotTubStageWidth && hotTubStageHeight) {
-      if(selectedTypeId === 4224){
+      if (selectedTypeId === 4224) {
         setScaleForLayers(hotTubStageWidth);
       } else {
         setScaleForExternalLayers(hotTubStageWidth);
@@ -306,6 +307,7 @@ const HotTubCanvasView = (props) => {
                offsetY={ offsetY && calcHeight(offsetY) }
 
         >
+
           <WoodOptionGroup setOpenTab={ setOpenTab } optionName={ optionName }
                            optionGroupProp={ optionGroupWoodPropFirstView[selectedTypeId] }
           />
@@ -339,6 +341,7 @@ const HotTubCanvasView = (props) => {
                offsetX={ offsetX && offsetX }
                offsetY={ offsetY && calcHeight(offsetY) }
         >
+
           { imageMassageFunctionSrc && <Image x={ +imageMassageFunctionSrc?.[1].x }
                                               y={ +imageMassageFunctionSrc?.[1].y }
                                               width={ +imageMassageFunctionSrc[2].width }
@@ -359,7 +362,30 @@ const HotTubCanvasView = (props) => {
             />
           })
           }
-          {selectedTypeId !== 4224 && <Group>
+
+
+          { selectedTypeId === 80690 && imageHeatingOvenSrc &&
+          <Image x={ +imageHeatingOvenSrc[1].x }            // heating oven image
+                 y={ +imageHeatingOvenSrc[1].y }
+                 width={ +imageHeatingOvenSrc[2].width }
+                 height={ +imageHeatingOvenSrc[2].height }
+                 src={ imageHeatingOvenSrc[0] }
+                 opacity={ isExteriorBcg ? 0 : 1 }
+          />
+          }
+
+          { selectedTypeId === 80690 && imageExteriorHeatingOvenSrc &&
+          <Image x={ +imageExteriorHeatingOvenSrc[1].x }                              // heating oven exterior image
+                 y={ +imageExteriorHeatingOvenSrc[1].y }
+                 width={ +imageExteriorHeatingOvenSrc[2].width }
+                 height={ +imageExteriorHeatingOvenSrc[2].height }
+                 src={ imageExteriorHeatingOvenSrc[0] }
+                 opacity={ isExteriorBcg ? 1 : 0 }
+          />
+          }
+
+
+          { selectedTypeId === 80602 && <Group>
             { +selectedMassageFunctionId !== noMassageFuncId && schalters?.length > 1 && schalters.map((schalter, index) => {
               return <Image x={ schalter.x }
                             y={ schalter.y }
@@ -370,13 +396,21 @@ const HotTubCanvasView = (props) => {
               />
             }) }
             { +selectedLedId !== noLedId && <Image x={ 105 }
-                                                 y={ -57 }
-                                                 width={ 10 }
-                                                 height={ 12 }
-                                                 src={ schalter_4 }
+                                                   y={ -57 }
+                                                   width={ 10 }
+                                                   height={ 12 }
+                                                   src={ schalter_4 }
             />
             }
           </Group> }
+
+          { selectedTypeId === 80690 && +selectedMassageFunctionId !== noMassageFuncId && <Image x={ -1092 }
+                                                                                                 y={ -480 }
+                                                                                                 width={ 1170 }
+                                                                                                 height={ 1000 }
+                                                                                                 src={ schalterOval_1 }
+          /> }
+
           <Group>
             { imageTubeExtensionSrc && <Image x={ +imageTubeExtensionSrc[1].x }     // tube extension additional 1m
                                               y={ +imageTubeExtensionSrc[1].y }
@@ -429,16 +463,18 @@ const HotTubCanvasView = (props) => {
             />
           })
           }
-          { imageHeatingOvenSrc && <Image x={ +imageHeatingOvenSrc[1].x }            // heating oven image
-                                          y={ +imageHeatingOvenSrc[1].y }
-                                          width={ +imageHeatingOvenSrc[2].width }
-                                          height={ +imageHeatingOvenSrc[2].height }
-                                          src={ imageHeatingOvenSrc[0] }
-                                          opacity={ isExteriorBcg ? 0 : 1 }
+
+          { selectedTypeId !== 80690 && imageHeatingOvenSrc &&
+          <Image x={ +imageHeatingOvenSrc[1].x }            // heating oven image
+                 y={ +imageHeatingOvenSrc[1].y }
+                 width={ +imageHeatingOvenSrc[2].width }
+                 height={ +imageHeatingOvenSrc[2].height }
+                 src={ imageHeatingOvenSrc[0] }
+                 opacity={ isExteriorBcg ? 0 : 1 }
           />
           }
 
-          { imageExteriorHeatingOvenSrc &&
+          { selectedTypeId !== 80690 && imageExteriorHeatingOvenSrc &&
           <Image x={ +imageExteriorHeatingOvenSrc[1].x }                              // heating oven exterior image
                  y={ +imageExteriorHeatingOvenSrc[1].y }
                  width={ +imageExteriorHeatingOvenSrc[2].width }
@@ -463,6 +499,7 @@ const HotTubCanvasView = (props) => {
           />
           }
 
+
           { imageInsideColorSrc &&
           <Image x={ +imageInsideColorSrc[1].x }           // inside color without or with water and led or no led
                  y={ +imageInsideColorSrc[1].y }
@@ -480,12 +517,26 @@ const HotTubCanvasView = (props) => {
                                     opacity={ coverOptionOpacity ? 1 : 0 }
           />
           }
+
           { imageSmokeSrc && <Image x={ +imageSmokeSrc[1].x }                // smoke top
                                     y={ +imageSmokeSrc[1].y }
                                     width={ +imageSmokeSrc[2].width }
                                     height={ +imageSmokeSrc[2].height }
                                     src={ imageSmokeSrc[0] }
           /> }
+
+          { selectedTypeId === 80690 && imageAdditionalAccessoriesSrc?.length >= 1 && imageAdditionalAccessoriesSrc.map(item => {
+            return <Image key={ item.id }
+                          x={ +item.position.x && +item.position.x }
+                          y={ +item.position.y && +item.position.y }
+                          width={ +item.width && +item.width }
+                          height={ +item.height && +item.height }
+
+                          src={ item.image && item.image }
+                          debug
+            />
+          })
+          }
         </Layer>
       </Stage>
 

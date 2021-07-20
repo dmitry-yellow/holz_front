@@ -31,6 +31,7 @@ import schalter_1 from "../../assets/images/schalter/Hottub-Studio_0002s_0004s_0
 import schalter_2 from "../../assets/images/schalter/Hottub-Studio_0002s_0004s_0002_Schalter-02.png";
 import schalter_3 from "../../assets/images/schalter/Hottub-Studio_0002s_0004s_0001_Schalter-03.png";
 import schalter_4 from "../../assets/images/schalter/Hottub-Studio_0002s_0004s_0000_Schalter-04.png";
+import schalter_oval2 from "../../assets/images/schalter/schalter-oval2.png";
 
 
 const HotTubCanvasSecondView = (props) => {
@@ -95,7 +96,7 @@ const HotTubCanvasSecondView = (props) => {
     }
 
     if (hotTubStageWidth && hotTubStageHeight) {
-      if(selectedTypeId === 4224){
+      if (selectedTypeId === 4224) {
         setScaleForLayers(hotTubStageWidth);
       } else {
         setScaleForExternalLayers(hotTubStageWidth);
@@ -321,7 +322,7 @@ const HotTubCanvasSecondView = (props) => {
                offsetX={ offsetX && offsetX }
                offsetY={ calcHeight(-offsetYToCalcHeight(hotTubStageHeight)) }
         >
-          { imageAdditionalAccessoriesSrc?.length >= 1 && imageAdditionalAccessoriesSrc.map(item => {
+          { selectedTypeId !== 80690 && imageAdditionalAccessoriesSrc?.length >= 1 && imageAdditionalAccessoriesSrc.map(item => {
             return <Image key={ item.id }
                           x={ +item.position.x1 && +item.position.x1 }
                           y={ +item.position.y1 && +item.position.y1 }
@@ -340,7 +341,7 @@ const HotTubCanvasSecondView = (props) => {
             }
           </Group>
 
-          {selectedTypeId !== 4224 && <Group>
+          { selectedTypeId === 80602 && <Group>
             { +selectedMassageFunctionId !== noMassageFuncId && schalters?.length > 1 && schalters.map((schalter, index) => {
               return <Image x={ schalter.x }
                             y={ schalter.y }
@@ -358,6 +359,13 @@ const HotTubCanvasSecondView = (props) => {
             />
             }
           </Group> }
+          { selectedTypeId === 80690 && +selectedMassageFunctionId !== noMassageFuncId && <Image x={ -1042 }
+                                                                                                 y={ -432 }
+                                                                                                 width={ 1100 }
+                                                                                                 height={ 770 }
+                                                                                                 src={ schalter_oval2 }
+          />
+          }
 
         </Layer>
 
@@ -393,7 +401,15 @@ const HotTubCanvasSecondView = (props) => {
                offsetX={ offsetX && offsetX }
                offsetY={ calcHeight(-offsetYToCalcHeight(hotTubStageHeight)) }
         >
-
+          { selectedTypeId === 80690 && imageAdditionalAccessoriesSrc?.length >= 1 && imageAdditionalAccessoriesSrc.map(item => {
+            return <Image key={ item.id }
+                          x={ +item.position.x1 && +item.position.x1 }
+                          y={ +item.position.y1 && +item.position.y1 }
+                          width={ +item.width && +item.width }
+                          height={ +item.height && +item.height }
+                          src={ item.image && item.image }
+            />
+          }) }
           { imageHeatingOvenSrc && <Image x={ +imageHeatingOvenSrc[1].x1 }           // heating oven image
                                           y={ +imageHeatingOvenSrc[1].y1 }
                                           width={ +imageHeatingOvenSrc[2].width }
@@ -455,6 +471,7 @@ const HotTubCanvasSecondView = (props) => {
                                     height={ +imageSmokeSrc[2].height }
                                     src={ imageSmokeSrc[0] }
           /> }
+
         </Layer>
 
       </Stage>

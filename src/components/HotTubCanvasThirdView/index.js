@@ -295,7 +295,7 @@ const HotTubCanvasThirdView = (props) => {
                offsetX={ offsetX && offsetX }
                offsetY={ offsetY && calcHeight(offsetY) }
         >
-          {selectedTypeId !== 4224 && imageAdditionalAccessoriesSrc?.length >= 1 && imageAdditionalAccessoriesSrc.map((item, index) => {
+          {selectedTypeId === 80602 && imageAdditionalAccessoriesSrc?.length >= 1 && imageAdditionalAccessoriesSrc.map((item, index) => {
             return <Image key={ index }
                           x={ +item.position.x2 && +item.position.x2 }
                           y={ +item.position.y2 && +item.position.y2 }
@@ -366,7 +366,7 @@ const HotTubCanvasThirdView = (props) => {
                offsetX={ offsetX && offsetX }
                offsetY={ offsetY && calcHeight(offsetY) }
         >
-          {selectedTypeId === 4224 && imageAdditionalAccessoriesSrc?.length >= 1 && imageAdditionalAccessoriesSrc.map((item, index) => {
+          {selectedTypeId === 4224 || selectedTypeId === 80690 && imageAdditionalAccessoriesSrc?.length >= 1 && imageAdditionalAccessoriesSrc.map((item, index) => {
             return <Image key={ index }
                           x={ +item.position.x2 && +item.position.x2 }
                           y={ +item.position.y2 && +item.position.y2 }
@@ -473,6 +473,7 @@ const HotTubCanvasThirdView = (props) => {
                                     opacity={ coverOptionOpacity ? 1 : 0 }
           />
           }
+
           { imageSmokeSrc && <Image x={ +imageSmokeSrc[1].x2 }        // tube smoke top
                                     y={ +imageSmokeSrc[1].y2 }
                                     width={ +imageSmokeSrc[2].width }

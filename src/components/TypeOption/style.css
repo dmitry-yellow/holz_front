@@ -10,18 +10,20 @@
 }
 .TypeOption-item {
   display: flex;
-  flex-direction: column;
-  /*align-items: center;*/
-  justify-content: space-around;
+  align-items: center;
   width: 100%;
   height: 100px;
-  padding: 15px 15px 15px 60px;
   border: 1px solid #EAEAEA;
   margin-bottom: 10px;
   border-radius: 4px;
   position: relative;
   box-sizing: border-box;
   cursor: pointer;
+}
+.TypeOption-item > img {
+  width: 60px;
+  height: 60px;
+  margin: 0 20px;
 }
 .TypeOption-item.selected {
   border: 1.5px solid #774D2E;
@@ -49,7 +51,7 @@
   position: relative;
 }
 .TypeOption-item-typeName:before {
-  content: '★';
+  content: '';
   display: block;
   font-size: 2rem;
   position: absolute;

@@ -52,19 +52,19 @@ export const getCalcData = () => async (dispatch, getState) => {
         await dispatch({
           type: ActionTypes.GET_DATA_SUCCESS,
           data: response.data.__,         // response.data.__
-          selectedWoodId: +querySearchObj.wood,
-          selectedSizeId: +querySearchObj.size,
-          selectedSpruceColorId: +querySearchObj.spruceColor,
-          selectedInsideColorId: +querySearchObj.insideColor,
-          selectedCoverId: +querySearchObj.cover,
-          selectedMetalStrapsId: +querySearchObj.metalStraps,
-          selectedMassageFunctionId: +querySearchObj.massageFunction,
-          selectedLedId: +querySearchObj.led,
-          selectedWarmingId: +querySearchObj.warming,
-          selectedHeatingOvenId: +querySearchObj.heatingOven,
-          selectedAdditionalAccessoriesIds: querySearchObj.additionalAccessories?.map(item => +item),
-          selectedTubeExtensionId: +querySearchObj.tubeExtension,
-          selectedDeliveryId: +querySearchObj.delivery,
+          selectedWoodId: querySearchObj.wood,
+          selectedSizeId: querySearchObj.size,
+          selectedSpruceColorId: querySearchObj.spruceColor,
+          selectedInsideColorId: querySearchObj.insideColor,
+          selectedCoverId: querySearchObj.cover,
+          selectedMetalStrapsId: querySearchObj.metalStraps,
+          selectedMassageFunctionId: querySearchObj.massageFunction,
+          selectedLedId: querySearchObj.led,
+          selectedWarmingId: querySearchObj.warming,
+          selectedHeatingOvenId: querySearchObj.heatingOven,
+          selectedAdditionalAccessoriesIds: querySearchObj.additionalAccessories?.map(item => item),
+          selectedTubeExtensionId: querySearchObj.tubeExtension,
+          selectedDeliveryId: querySearchObj.delivery,
         })
         await dispatch(setSelectedObjIdsWithAmount(querySearchObj.idsWithAmount));
         await dispatch(setSelectedObjPositioningIds(querySearchObj.positioning));

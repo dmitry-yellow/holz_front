@@ -124,37 +124,6 @@ const ColorsOption = (props) => {
       </div> : <PositioningSandfilterBox optionData={ optionData }
                                          priceShow={ priceShow }
       /> }
-
-      { desktopQueryTooltip ? <>
-        <div className='ColorsOption-moreInfo'
-             key={ option?.replace(' ', '_') }
-             data-tip={ option?.replace(' ', '_') }
-             data-for={ option?.replace(' ', '_') }
-        >
-          <img src={ moreInfoIcon } alt="alt"/>
-          <p>Mehr Information</p>
-
-        </div>
-        <ReactTooltip className='ColorsOption-moreInfo-tooltip' id={ option?.replace(' ', '_') }
-                      getContent={ (dataTip) => {
-
-                        return <div className='ColorsOption-moreInfo-tooltip-box'>
-                          <p className='ColorsOption-moreInfo-tooltip-box-title'>{ dataTooltip?.germanName }</p>
-                          <div className='ColorsOption-moreInfo-tooltip-box-desc'
-                               dangerouslySetInnerHTML={ { __html: dataTooltip?.germanDescription } }
-                          />
-                        </div>
-                      }
-
-                      }
-                      delayHide={ 300 }
-                      place="left"
-                      type='light'
-                      effect='solid'
-                      border={ false }
-
-        />
-      </> : <>
         <div className='ColorsOption-moreInfo'
              onClick={ () => setOpenToolltip(option === openToolltip ? '' : option) }>
           <img src={ moreInfoIcon } alt="alt"/>
@@ -174,9 +143,7 @@ const ColorsOption = (props) => {
             />
           </div> }
         </Collapse>
-      </>
 
-      }
     </div>
   )
 }

@@ -6,6 +6,10 @@ export const optionGroupInsideColorPropFirstView = {
   80602: {
     optionTextProp: {x: -410, y: -270},
     optionImageProp: {x: -340, y: -250, width: 30, height: 30}
+  },
+  80690: {
+    optionTextProp: {x: -290, y: -310},
+    optionImageProp: {x: -220, y: -290, width: 30, height: 30}
   }
 }
 
@@ -17,6 +21,10 @@ export const optionGroupInsideColorPropSecondView = {
   80602: {
     optionTextProp: {x: -390, y: -120},
     optionImageProp: {x: -330, y: -100, width: 30, height: 30}
+  },
+  80690: {
+    optionTextProp: {x: -400, y: -135},
+    optionImageProp: {x: -330, y: -115, width: 30, height: 30}
   }
 
 }
@@ -30,6 +38,10 @@ export const optionGroupInsideColorPropThirdView = {
   80602: {
     optionTextProp: {x: -360, y: -290},
     optionImageProp: {x: -300, y: -270, width: 30, height: 30}
+  },
+  80690: {
+    optionTextProp: {x: 150, y: -95},
+    optionImageProp: {x: 220, y: -75, width: 30, height: 30}
   }
 
 }
@@ -42,5 +54,9 @@ export const optionGroupInsideColorPropFourthView = {
   80602: {
     optionTextProp: {x: -100, y: -565},
     optionImageProp: {x: -20, y: -545, width: 30, height: 30}
+  },
+  80690: {
+    optionTextProp: {x: -220, y: -520},
+    optionImageProp: {x: -150, y: -500, width: 30, height: 30}
   }
 }

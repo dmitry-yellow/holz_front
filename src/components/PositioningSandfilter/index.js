@@ -26,7 +26,10 @@ const PositioningSandfilterBox = (props) => {
   const selectedLedId = useSelector(state => state.hotTub.selectedLedId);
   const data = useSelector(state => state.hotTub.data);
   const selectedTypeId = useSelector(state => state.hotTub.selectedTypeId);
-  const heatingOvenDataPositioningImage = data.heatingOven?.['080521']?.imagesext.objectimage1 || data.heatingOven?.['080661']?.imagesext.objectimage1;
+  const heatingOvenDataPositioningImage =
+    data.heatingOven?.['080521']?.imagesext.objectimage1 ||
+    data.heatingOven?.['080661']?.imagesext.objectimage1 ||
+    data.heatingOven?.['080749']?.imagesext.objectimage1;
   const noMassageFuncId = getNoMassageFuncId(selectedTypeId);  // 80515
   const noLedId = getNoLedId(selectedTypeId);  // 80517
   const sandFilterId = getSandFilterId(selectedTypeId);  // 80591

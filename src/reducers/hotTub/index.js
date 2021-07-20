@@ -25,8 +25,9 @@ const initialState = {
   pdfFile: '',
   selectedTypeId: 4224,
   typeOptions: [
-    { type: 'Hot Tub', id: 4224, ab: 3000 },
-    { type: 'Hot Tub with external heater', id: 80602, ab: 3000 }
+    { type: 'Hot Tub SAPHIR', id: 4224 },
+    { type: 'Hot Tub JADE', id: 80602 },
+    { type: 'Hot Tub OPAL', id: 80690},
   ]
 }
 
