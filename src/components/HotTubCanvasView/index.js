@@ -32,7 +32,13 @@ import schalter_1 from "../../assets/images/schalter/Hottub-Studio_0002s_0004s_0
 import schalter_2 from "../../assets/images/schalter/Hottub-Studio_0002s_0004s_0002_Schalter-02.png";
 import schalter_3 from "../../assets/images/schalter/Hottub-Studio_0002s_0004s_0001_Schalter-03.png";
 import schalter_4 from "../../assets/images/schalter/Hottub-Studio_0002s_0004s_0000_Schalter-04.png";
+import schalterExt_1 from "../../assets/images/schalter/shaltersExt0001/schalterext-0001.png";
+import schalterExt_2 from "../../assets/images/schalter/shaltersExt0001/schalterext-0002.png";
+import schalterExt_3 from "../../assets/images/schalter/shaltersExt0001/schalterext-0003.png";
+import schalterExt_4 from "../../assets/images/schalter/shaltersExt0001/schalterext-0004.png";
 import schalterOval_1 from "../../assets/images/schalter/schalter-oval1.png";
+import schalterOvalExt_1 from "../../assets/images/schalter/schalter-hottub2umgebung0001.png";
+
 
 const HotTubCanvasView = (props) => {
 
@@ -292,6 +298,12 @@ const HotTubCanvasView = (props) => {
     { image: schalter_3, width: 12, height: 12, x: 91, y: -45 }
   ];
 
+  const schaltersExterior = [
+    { image: schalterExt_1, width: 1650, height: 1000, x: -940, y: -575 },
+    { image: schalterExt_2, width: 15, height: 30, x: 75, y: -39 },
+    { image: schalterExt_3, width: 13, height: 15, x: 88, y: -46 }
+  ];
+
   return (
     <div className='HotTubCanvasView'>
       <Stage width={ hotTubStageWidth }
@@ -341,7 +353,6 @@ const HotTubCanvasView = (props) => {
                offsetX={ offsetX && offsetX }
                offsetY={ offsetY && calcHeight(offsetY) }
         >
-
           { imageMassageFunctionSrc && <Image x={ +imageMassageFunctionSrc?.[1].x }
                                               y={ +imageMassageFunctionSrc?.[1].y }
                                               width={ +imageMassageFunctionSrc[2].width }
@@ -386,30 +397,65 @@ const HotTubCanvasView = (props) => {
 
 
           { selectedTypeId === 80602 && <Group>
-            { +selectedMassageFunctionId !== noMassageFuncId && schalters?.length > 1 && schalters.map((schalter, index) => {
-              return <Image x={ schalter.x }
-                            y={ schalter.y }
-                            width={ schalter.width }
-                            height={ schalter.height }
-                            src={ schalter.image }
-                            key={ index }
+
+            { !isExteriorBcg ? <>
+              { +selectedMassageFunctionId !== noMassageFuncId && schalters?.length > 1 && schalters.map((schalter, index) => {
+                return <Image x={ schalter.x }
+                              y={ schalter.y }
+                              width={ schalter.width }
+                              height={ schalter.height }
+                              src={ schalter.image }
+                              key={ index }
+                />
+              }) }
+              { +selectedLedId !== noLedId && <Image x={ 105 }
+                                                     y={ -57 }
+                                                     width={ 10 }
+                                                     height={ 12 }
+                                                     src={ schalter_4 }
               />
-            }) }
-            { +selectedLedId !== noLedId && <Image x={ 105 }
-                                                   y={ -57 }
-                                                   width={ 10 }
-                                                   height={ 12 }
-                                                   src={ schalter_4 }
-            />
+              }
+            </> : <>
+              { +selectedMassageFunctionId !== noMassageFuncId && schalters?.length > 1 && schaltersExterior.map((schalter, index) => {
+                return <Image x={ schalter.x }
+                              y={ schalter.y }
+                              width={ schalter.width }
+                              height={ schalter.height }
+                              src={ schalter.image }
+                              key={ index }
+                />
+              }) }
+              { +selectedLedId !== noLedId && <Image x={ 103 }
+                                                     y={ -62 }
+                                                     width={ 17 }
+                                                     height={ 23 }
+                                                     src={ schalterExt_4 }
+              />
+              }
+            </>
             }
           </Group> }
+          { !isExteriorBcg ?
+            <>
+              { selectedTypeId === 80690 && +selectedMassageFunctionId !== noMassageFuncId &&
+              <Image x={ -1092 }
+                     y={ -480 }
+                     width={ 1170 }
+                     height={ 1000 }
+                     src={ schalterOval_1 }
+              /> }
+            </> :
+            <>
+              { selectedTypeId === 80690 && +selectedMassageFunctionId !== noMassageFuncId &&
+              <Image x={ -1023 }
+                     y={ -630 }
+                     width={ 1800 }
+                     height={ 1100 }
+                     src={ schalterOvalExt_1 }
+              /> }
+            </>
+          }
 
-          { selectedTypeId === 80690 && +selectedMassageFunctionId !== noMassageFuncId && <Image x={ -1092 }
-                                                                                                 y={ -480 }
-                                                                                                 width={ 1170 }
-                                                                                                 height={ 1000 }
-                                                                                                 src={ schalterOval_1 }
-          /> }
 
           <Group>
             { imageTubeExtensionSrc && <Image x={ +imageTubeExtensionSrc[1].x }     // tube extension additional 1m

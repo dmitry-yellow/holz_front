@@ -27,11 +27,16 @@ import { optionGroupTubeExtensionPropSecondView } from "../OptionGroups/TubeExte
 import { optionGroupAdditionalAccessoriesPropSecondView } from "../OptionGroups/AdditionalAccessoriesOptionGroup/helper";
 import { useSelector } from "react-redux";
 import { getNoLedId, getNoMassageFuncId, getSmallSizeId } from "../helperForIds";
-import schalter_1 from "../../assets/images/schalter/Hottub-Studio_0002s_0004s_0003_Schalter-01.png";
-import schalter_2 from "../../assets/images/schalter/Hottub-Studio_0002s_0004s_0002_Schalter-02.png";
-import schalter_3 from "../../assets/images/schalter/Hottub-Studio_0002s_0004s_0001_Schalter-03.png";
-import schalter_4 from "../../assets/images/schalter/Hottub-Studio_0002s_0004s_0000_Schalter-04.png";
+import schalterExt_1 from "../../assets/images/schalter/shaltersExt0002/schalter-0001.png";
+import schalterExt_2 from "../../assets/images/schalter/shaltersExt0002/schalter-0002.png";
+import schalterExt_3 from "../../assets/images/schalter/shaltersExt0002/schalter-0003.png";
+import schalterExt_4 from "../../assets/images/schalter/shaltersExt0002/schalter-0004.png";
+import schalter_1 from "../../assets/images/schalter/shalters0002/schalter-0001.png";
+import schalter_2 from "../../assets/images/schalter/shalters0002/schalter-0002.png";
+import schalter_3 from "../../assets/images/schalter/shalters0002/schalter-0003.png";
+import schalter_4 from "../../assets/images/schalter/shalters0002/schalter-0004.png";
 import schalter_oval2 from "../../assets/images/schalter/schalter-oval2.png";
+import schalter_ovalExt2 from "../../assets/images/schalter/schalter-hottub2umgebung0004.png";
 
 
 const HotTubCanvasSecondView = (props) => {
@@ -117,7 +122,7 @@ const HotTubCanvasSecondView = (props) => {
     } else if (stageHeight >= 750 && stageHeight < 900) {
       return 220
     } else if (stageHeight >= 900 && stageHeight < 1000) {
-      return 200
+      return 190
     } else if (stageHeight >= 1000 && stageHeight < 1200) {
       return 150
     } else if ((stageHeight >= 1200 && stageHeight < 1400) && +hotTubStageWidth < 1200) {
@@ -205,12 +210,12 @@ const HotTubCanvasSecondView = (props) => {
 
     if (+hotTubStageWidth >= 1200) {
       if (+selectedSizeId === smallSizeId) {
-        setScaleX(1.15);
-        setScaleY(1.15);
+        setScaleX(1.10);
+        setScaleY(1.10);
         setOffsetX(-50);
       } else {
-        setScaleX(1.2);
-        setScaleY(1.2);
+        setScaleX(1.15);
+        setScaleY(1.15);
         setOffsetX(-50);
       }
 
@@ -272,9 +277,15 @@ const HotTubCanvasSecondView = (props) => {
   }
 
   const schalters = [
-    { image: schalter_1, width: 15, height: 15, x: -100, y: -45 },
-    { image: schalter_2, width: 15, height: 15, x: -71, y: -45 },
-    { image: schalter_3, width: 15, height: 15, x: -45, y: -45 }
+    { image: schalter_1, width: 1020, height: 780, x: -1104, y: -419 },
+    { image: schalter_2, width: 17, height: 17, x: -73, y: -55 },
+    { image: schalter_3, width: 17, height: 17, x: -46, y: -55 }
+  ];
+
+  const schaltersExterior = [
+    { image: schalterExt_1, width: 1550, height: 900, x: -990, y: -555 },
+    { image: schalterExt_2, width: 20, height: 25, x: -73, y: -59 },
+    { image: schalterExt_3, width: 21, height: 29, x: -49, y: -55 }
   ];
 
   return (
@@ -340,32 +351,68 @@ const HotTubCanvasSecondView = (props) => {
             />
             }
           </Group>
+          {!isExteriorBcg ?
+            <>
+              { selectedTypeId === 80602 && <Group>
+                { +selectedMassageFunctionId !== noMassageFuncId && schalters?.length > 1 && schalters.map((schalter, index) => {
+                  return <Image x={ schalter.x }
+                                y={ schalter.y }
+                                width={ schalter.width }
+                                height={ schalter.height }
+                                src={ schalter.image }
+                                key={ index }
+                  />
+                }) }
+                { +selectedLedId !== noLedId && <Image x={ -20 }
+                                                       y={ -55 }
+                                                       width={ 17 }
+                                                       height={ 17 }
+                                                       src={ schalter_4 }
+                />
+                }
+              </Group> }
 
-          { selectedTypeId === 80602 && <Group>
-            { +selectedMassageFunctionId !== noMassageFuncId && schalters?.length > 1 && schalters.map((schalter, index) => {
-              return <Image x={ schalter.x }
-                            y={ schalter.y }
-                            width={ schalter.width }
-                            height={ schalter.height }
-                            src={ schalter.image }
-                            key={ index }
-              />
-            }) }
-            { +selectedLedId !== noLedId && <Image x={ -20 }
-                                                   y={ -45 }
-                                                   width={ 15 }
-                                                   height={ 15 }
-                                                   src={ schalter_4 }
+            </> :
+            <>
+              { selectedTypeId === 80602 && <Group>
+                { +selectedMassageFunctionId !== noMassageFuncId && schalters?.length > 1 && schaltersExterior.map((schalter, index) => {
+                  return <Image x={ schalter.x }
+                                y={ schalter.y }
+                                width={ schalter.width }
+                                height={ schalter.height }
+                                src={ schalter.image }
+                                key={ index }
+                  />
+                }) }
+                { +selectedLedId !== noLedId && <Image x={ -20 }
+                                                       y={ -65 }
+                                                       width={ 35 }
+                                                       height={ 40 }
+                                                       src={ schalterExt_4 }
+                />
+                }
+              </Group> }
+            </>
+          }
+          {!isExteriorBcg ? <>
+            { selectedTypeId === 80690 && +selectedMassageFunctionId !== noMassageFuncId && <Image x={ -1125 }
+                                                                                                   y={ -432 }
+                                                                                                   width={ 1200 }
+                                                                                                   height={ 770 }
+                                                                                                   src={ schalter_oval2 }
             />
             }
-          </Group> }
-          { selectedTypeId === 80690 && +selectedMassageFunctionId !== noMassageFuncId && <Image x={ -1042 }
-                                                                                                 y={ -432 }
-                                                                                                 width={ 1100 }
-                                                                                                 height={ 770 }
-                                                                                                 src={ schalter_oval2 }
-          />
+          </> : <>
+            { selectedTypeId === 80690 && +selectedMassageFunctionId !== noMassageFuncId && <Image x={ -1135 }
+                                                                                                   y={ -599 }
+                                                                                                   width={ 1700 }
+                                                                                                   height={ 950 }
+                                                                                                   src={ schalter_ovalExt2 }
+            />
+            }
+          </>
           }
+
 
         </Layer>
 
