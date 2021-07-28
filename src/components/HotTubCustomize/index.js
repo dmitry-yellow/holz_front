@@ -229,7 +229,7 @@ const HotTubCustomize = (props) => {
         {/*{desktopQueryMatches && <p className="HotTubCustomize-title">Passen Sie Ihren Hot Tub an</p>}*/ }
         { isLoadingData ? <p>Loading...</p> :
             <Fragment>
-              <TypeOption />
+              <TypeOption setOpenTab={setOpenTab}/>
 
               { customizeMenu.map((item, index) => {
                 const customizeDataName = customizeData?.wood?.[`0${ selectedWoodId }`]._main.Name;

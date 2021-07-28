@@ -7,8 +7,9 @@ import opalIcon from '../../assets/images/opal-icon.png';
 import saphirIcon from '../../assets/images/saphir-icon.png';
 
 
-const TypeOption = () => {
+const TypeOption = (props) => {
 
+  const { setOpenTab } = props;
   const dispatch = useDispatch();
   const typeOptions = useSelector(state => state.hotTub.typeOptions);
   const selectedTypeId = useSelector(state => state.hotTub.selectedTypeId);
@@ -33,6 +34,7 @@ const TypeOption = () => {
                     className={cn('TypeOption-item', selectedTypeId === item.id && 'selected')}
                     onClick={() => {
                       dispatch(setSelectedTypeId(item.id))
+                      setOpenTab('');
                     }}
         >
           <img src={getCorrectTypeIcon(item.id)} alt="icon"/>

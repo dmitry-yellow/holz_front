@@ -87,7 +87,7 @@ const HotTubCanvasSecondView = (props) => {
   const imageMetalStrapsSrc = useImageMetalStrapsProperties(customizeData, selectedMetalStrapsId, isExteriorBcg, apiUrl, 'ImageLarge2', 'objectimage2', '1');
   const imageInsideColorSrc = useImageInsideColorSecondViewProperties(customizeData, selectedInsideColorId, apiUrl, 'ImageLarge2', '1');
   const imageAdditionalAccessoriesSrc = useImageAdditionalAccessoriesProperties(customizeData, selectedTypeId, selectedAdditionalAccessoriesIds, selectedWoodId, selectedSpruceColorId, isExteriorBcg, apiUrl, 'ImageLarge2', 'objectimage2', '1');
-
+  const isLoadingData = useSelector(state => state.hotTub.isLoadingData);
 
   useEffect(() => {
     if (iconsRef.current) {
@@ -295,12 +295,12 @@ const HotTubCanvasSecondView = (props) => {
              offsetX={ -hotTubStageWidth / 2 }
              offsetY={ -hotTubStageHeight / 2 }
       >
-        <Layer ref={ iconsRef }
-               opacity={ isCustomizeOptionsOpen ? 1 : 0 }
-               scaleX={ scaleX && calcHeight(scaleX) }
-               scaleY={ scaleY && calcHeight(scaleY) }
-               offsetX={ offsetX && offsetX }
-               offsetY={ calcHeight(-offsetYToCalcHeight(hotTubStageHeight)) }
+        { !isLoadingData && <Layer ref={ iconsRef }
+                 opacity={ isCustomizeOptionsOpen ? 1 : 0 }
+                 scaleX={ scaleX && calcHeight(scaleX) }
+                 scaleY={ scaleY && calcHeight(scaleY) }
+                 offsetX={ offsetX && offsetX }
+                 offsetY={ calcHeight(-offsetYToCalcHeight(hotTubStageHeight)) }
         >
           <WoodOptionGroup setOpenTab={ setOpenTab } optionName={ optionName }
                            optionGroupProp={ optionGroupWoodPropSecondView[selectedTypeId] }
@@ -317,7 +317,8 @@ const HotTubCanvasSecondView = (props) => {
                                   selectedMetalStrapsId={ selectedMetalStrapsId }
           />
 
-          <TubeExtensionOptionGroup setOpenTab={ setOpenTab } optionName={ optionName } selectedTypeId={ selectedTypeId }
+          <TubeExtensionOptionGroup setOpenTab={ setOpenTab } optionName={ optionName }
+                                    selectedTypeId={ selectedTypeId }
                                     optionGroupProp={ optionGroupTubeExtensionPropSecondView[selectedTypeId] }
                                     selectedTubeExtensionId={ selectedTubeExtensionId }
           />
@@ -325,13 +326,13 @@ const HotTubCanvasSecondView = (props) => {
                                  optionGroupProp={ optionGroupAdditionalAccessoriesPropSecondView[selectedTypeId] }
                                  selectedAdditionalAccessoriesIds={ selectedAdditionalAccessoriesIds }
           />
-        </Layer>
+        </Layer> }
 
-        <Layer ref={ accessoriesRef }
-               scaleX={ scaleX && calcHeight(scaleX) }
-               scaleY={ scaleY && calcHeight(scaleY) }
-               offsetX={ offsetX && offsetX }
-               offsetY={ calcHeight(-offsetYToCalcHeight(hotTubStageHeight)) }
+        { !isLoadingData && <Layer ref={ accessoriesRef }
+                 scaleX={ scaleX && calcHeight(scaleX) }
+                 scaleY={ scaleY && calcHeight(scaleY) }
+                 offsetX={ offsetX && offsetX }
+                 offsetY={ calcHeight(-offsetYToCalcHeight(hotTubStageHeight)) }
         >
           { selectedTypeId !== 80690 && imageAdditionalAccessoriesSrc?.length >= 1 && imageAdditionalAccessoriesSrc.map(item => {
             return <Image key={ item.id }
@@ -351,7 +352,7 @@ const HotTubCanvasSecondView = (props) => {
             />
             }
           </Group>
-          {!isExteriorBcg ?
+          { !isExteriorBcg ?
             <>
               { selectedTypeId === 80602 && <Group>
                 { +selectedMassageFunctionId !== noMassageFuncId && schalters?.length > 1 && schalters.map((schalter, index) => {
@@ -394,7 +395,7 @@ const HotTubCanvasSecondView = (props) => {
               </Group> }
             </>
           }
-          {!isExteriorBcg ? <>
+          { !isExteriorBcg ? <>
             { selectedTypeId === 80690 && +selectedMassageFunctionId !== noMassageFuncId && <Image x={ -1125 }
                                                                                                    y={ -432 }
                                                                                                    width={ 1200 }
@@ -414,7 +415,7 @@ const HotTubCanvasSecondView = (props) => {
           }
 
 
-        </Layer>
+        </Layer> }
 
         <Layer scaleX={ 1 }
                scaleY={ 1 }
@@ -429,9 +430,9 @@ const HotTubCanvasSecondView = (props) => {
 
         </Layer>
 
-        <Layer scaleX={ calcHeight(scaleX && scaleX) } // bottom shadow
-               scaleY={ calcHeight(scaleY && scaleY) }
-               ref={ bcgShadowRef }
+        { !isLoadingData && <Layer scaleX={ calcHeight(scaleX && scaleX) } // bottom shadow
+                 scaleY={ calcHeight(scaleY && scaleY) }
+                 ref={ bcgShadowRef }
         >
           { bcgShadowImage && <Image x={ +bcgShadowImage[1].x1 }
                                      y={ +bcgShadowImage[1].y1 }
@@ -441,12 +442,12 @@ const HotTubCanvasSecondView = (props) => {
                                      offsetX={ offsetX && offsetX }
                                      offsetY={ calcHeight(-offsetYToCalcHeight(hotTubStageHeight)) }
           /> }
-        </Layer>
+        </Layer> }
 
-        <Layer scaleX={ calcHeight(scaleX && scaleX) }
-               scaleY={ calcHeight(scaleY && scaleY) }
-               offsetX={ offsetX && offsetX }
-               offsetY={ calcHeight(-offsetYToCalcHeight(hotTubStageHeight)) }
+        { !isLoadingData && <Layer scaleX={ calcHeight(scaleX && scaleX) }
+                 scaleY={ calcHeight(scaleY && scaleY) }
+                 offsetX={ offsetX && offsetX }
+                 offsetY={ calcHeight(-offsetYToCalcHeight(hotTubStageHeight)) }
         >
           { selectedTypeId === 80690 && imageAdditionalAccessoriesSrc?.length >= 1 && imageAdditionalAccessoriesSrc.map(item => {
             return <Image key={ item.id }
@@ -519,7 +520,7 @@ const HotTubCanvasSecondView = (props) => {
                                     src={ imageSmokeSrc[0] }
           /> }
 
-        </Layer>
+        </Layer> }
 
       </Stage>
 

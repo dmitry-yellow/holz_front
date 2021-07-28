@@ -84,7 +84,7 @@ const HotTubCanvasThirdView = (props) => {
   const imageMetalStrapsSrc = useImageMetalStrapsProperties(customizeData, selectedMetalStrapsId, isExteriorBcg, apiUrl, 'imageLarge3', 'objectimage3', '2');
   const imageInsideColorSrc = useImageInsideColorProperties(customizeData, selectedTypeId, selectedInsideColorId, selectedLedId, selectedSizeId, isCustomizeOptionsWater, apiUrl, 'imageLarge3', 'image3', '2');
   const imageAdditionalAccessoriesSrc = useImageAdditionalAccessoriesProperties(customizeData, selectedTypeId, selectedAdditionalAccessoriesIds, selectedWoodId, selectedSpruceColorId, isExteriorBcg, apiUrl, 'imageLarge3', 'objectimage3', '2');
-
+  const isLoadingData = useSelector(state => state.hotTub.isLoadingData);
 
   useEffect(() => {
     if (iconsRef.current) {
@@ -289,13 +289,13 @@ const HotTubCanvasThirdView = (props) => {
              offsetX={ -hotTubStageWidth / 2 }
              offsetY={ -hotTubStageHeight / 2 }
       >
-        <Layer ref={ massageRef }
-               scaleX={ scaleX && calcHeight(scaleX) }
-               scaleY={ scaleY && calcHeight(scaleY) }
-               offsetX={ offsetX && offsetX }
-               offsetY={ offsetY && calcHeight(offsetY) }
+        { !isLoadingData && <Layer ref={ massageRef }
+                 scaleX={ scaleX && calcHeight(scaleX) }
+                 scaleY={ scaleY && calcHeight(scaleY) }
+                 offsetX={ offsetX && offsetX }
+                 offsetY={ offsetY && calcHeight(offsetY) }
         >
-          {selectedTypeId === 80602 && imageAdditionalAccessoriesSrc?.length >= 1 && imageAdditionalAccessoriesSrc.map((item, index) => {
+          { selectedTypeId === 80602 && imageAdditionalAccessoriesSrc?.length >= 1 && imageAdditionalAccessoriesSrc.map((item, index) => {
             return <Image key={ index }
                           x={ +item.position.x2 && +item.position.x2 }
                           y={ +item.position.y2 && +item.position.y2 }
@@ -330,13 +330,14 @@ const HotTubCanvasThirdView = (props) => {
             />
             }
           </Group> }
-        </Layer>
-        <Layer ref={ iconsRef }
-               opacity={ isCustomizeOptionsOpen ? 1 : 0 }
-               scaleX={ scaleX && calcHeight(scaleX) }
-               scaleY={ scaleY && calcHeight(scaleY) }
-               offsetX={ offsetX && offsetX }
-               offsetY={ offsetY && calcHeight(offsetY) }
+        </Layer> }
+
+        { !isLoadingData && <Layer ref={ iconsRef }
+                 opacity={ isCustomizeOptionsOpen ? 1 : 0 }
+                 scaleX={ scaleX && calcHeight(scaleX) }
+                 scaleY={ scaleY && calcHeight(scaleY) }
+                 offsetX={ offsetX && offsetX }
+                 offsetY={ offsetY && calcHeight(offsetY) }
         >
           <WoodOptionGroup setOpenTab={ setOpenTab } optionName={ optionName }
                            optionGroupProp={ optionGroupWoodPropThirdView[selectedTypeId] }
@@ -352,7 +353,8 @@ const HotTubCanvasThirdView = (props) => {
                                   optionGroupProp={ optionGroupMetalStrapsPropThirdView[selectedTypeId] }
                                   selectedMetalStrapsId={ selectedMetalStrapsId }
           />
-          <TubeExtensionOptionGroup setOpenTab={ setOpenTab } optionName={ optionName } selectedTypeId={ selectedTypeId }
+          <TubeExtensionOptionGroup setOpenTab={ setOpenTab } optionName={ optionName }
+                                    selectedTypeId={ selectedTypeId }
                                     optionGroupProp={ optionGroupTubeExtensionPropThirdView[selectedTypeId] }
                                     selectedTubeExtensionId={ selectedTubeExtensionId }
           />
@@ -360,13 +362,15 @@ const HotTubCanvasThirdView = (props) => {
                                  optionGroupProp={ optionGroupAdditionalAccessoriesPropThirdView[selectedTypeId] }
                                  selectedAdditionalAccessoriesIds={ selectedAdditionalAccessoriesIds }
           />
-        </Layer>
-        <Layer scaleX={ scaleX && calcHeight(scaleX) }
-               scaleY={ scaleY && calcHeight(scaleY) }
-               offsetX={ offsetX && offsetX }
-               offsetY={ offsetY && calcHeight(offsetY) }
+        </Layer> }
+
+
+        { !isLoadingData && <Layer scaleX={ scaleX && calcHeight(scaleX) }
+                 scaleY={ scaleY && calcHeight(scaleY) }
+                 offsetX={ offsetX && offsetX }
+                 offsetY={ offsetY && calcHeight(offsetY) }
         >
-          {selectedTypeId === 4224 || selectedTypeId === 80690 && imageAdditionalAccessoriesSrc?.length >= 1 && imageAdditionalAccessoriesSrc.map((item, index) => {
+          { selectedTypeId === 4224 || selectedTypeId === 80690 && imageAdditionalAccessoriesSrc?.length >= 1 && imageAdditionalAccessoriesSrc.map((item, index) => {
             return <Image key={ index }
                           x={ +item.position.x2 && +item.position.x2 }
                           y={ +item.position.y2 && +item.position.y2 }
@@ -385,7 +389,7 @@ const HotTubCanvasThirdView = (props) => {
             }
           </Group>
 
-        </Layer>
+        </Layer> }
 
 
         <Layer scaleX={ 1 }
@@ -400,9 +404,9 @@ const HotTubCanvasThirdView = (props) => {
           }
         </Layer>
 
-        <Layer scaleX={ calcHeight(scaleX && scaleX) }    // bottom shadow
-               scaleY={ calcHeight(scaleY && scaleY) }
-               ref={ bcgShadowRef }
+        { !isLoadingData && <Layer scaleX={ calcHeight(scaleX && scaleX) }    // bottom shadow
+                 scaleY={ calcHeight(scaleY && scaleY) }
+                 ref={ bcgShadowRef }
         >
           { bcgShadowImage && <Image x={ +bcgShadowImage[1].x2 }
                                      y={ +bcgShadowImage[1].y2 }
@@ -412,12 +416,12 @@ const HotTubCanvasThirdView = (props) => {
                                      offsetX={ offsetX && offsetX }
                                      offsetY={ offsetY && calcHeight(offsetY) }
           /> }
-        </Layer>
+        </Layer> }
 
-        <Layer scaleX={ scaleX && calcHeight(scaleX) }
-               scaleY={ scaleY && calcHeight(scaleY) }
-               offsetX={ offsetX && offsetX }
-               offsetY={ offsetY && calcHeight(offsetY) }
+        { !isLoadingData && <Layer scaleX={ scaleX && calcHeight(scaleX) }
+                 scaleY={ scaleY && calcHeight(scaleY) }
+                 offsetX={ offsetX && offsetX }
+                 offsetY={ offsetY && calcHeight(offsetY) }
         >
 
           { imageHeatingOvenSrc && <Image x={ +imageHeatingOvenSrc[1].x2 }           // heating oven image
@@ -480,7 +484,7 @@ const HotTubCanvasThirdView = (props) => {
                                     height={ +imageSmokeSrc[2].height }
                                     src={ imageSmokeSrc[0] }
           /> }
-        </Layer>
+        </Layer> }
       </Stage>
 
     </div>
