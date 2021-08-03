@@ -257,6 +257,7 @@ const TotalAmountCard = (props) => {
 
   const qsMediaStringUrl = useMemo(() => {
     let selectedIds = {
+      type: selectedTypeId,
       size: selectedSizeId,
       wood: selectedWoodId,
       spruceColor: selectedSpruceColorId,
@@ -278,7 +279,7 @@ const TotalAmountCard = (props) => {
     return `${process.env.REACT_APP_CONFIGURATOR_BASE_URL}?${string}`
 
   }, [
-    selectedSizeId, selectedWoodId, selectedSpruceColorId,
+    selectedSizeId, selectedWoodId, selectedSpruceColorId, selectedTypeId,
     selectedInsideColorId, selectedCoverId, selectedMetalStrapsId,
     selectedMassageFunctionId, selectedLedId, selectedWarmingId,
     selectedHeatingOvenId, selectedTubeExtensionId, selectedDeliveryId,

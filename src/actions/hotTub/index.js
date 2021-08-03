@@ -41,6 +41,11 @@ export const getCalcData = () => async (dispatch, getState) => {
   try {
     dispatch({ type: ActionTypes.GET_DATA });
 
+    if(window.location.search){
+      let querySearchObj = qs.parse(window.location.search.replace('?', ''));
+      await dispatch(setSelectedTypeId(+querySearchObj.type));
+    }
+
     const typeId = getState().hotTub.selectedTypeId;
 
     let response = await hotTubAPI.getExternalCalcData(typeId);
@@ -49,22 +54,23 @@ export const getCalcData = () => async (dispatch, getState) => {
     if (response?.data && response?.status === 200) {
       if(window.location.search){
         let querySearchObj = qs.parse(window.location.search.replace('?', ''));
+
         await dispatch({
           type: ActionTypes.GET_DATA_SUCCESS,
-          data: response.data.__,         // response.data.__
-          selectedWoodId: querySearchObj.wood,
-          selectedSizeId: querySearchObj.size,
-          selectedSpruceColorId: querySearchObj.spruceColor,
-          selectedInsideColorId: querySearchObj.insideColor,
-          selectedCoverId: querySearchObj.cover,
-          selectedMetalStrapsId: querySearchObj.metalStraps,
-          selectedMassageFunctionId: querySearchObj.massageFunction,
-          selectedLedId: querySearchObj.led,
-          selectedWarmingId: querySearchObj.warming,
-          selectedHeatingOvenId: querySearchObj.heatingOven,
-          selectedAdditionalAccessoriesIds: querySearchObj.additionalAccessories?.map(item => item),
-          selectedTubeExtensionId: querySearchObj.tubeExtension,
-          selectedDeliveryId: querySearchObj.delivery,
+          data: response.data.__,
+          selectedWoodId: +querySearchObj.wood,
+          selectedSizeId: +querySearchObj.size,
+          selectedSpruceColorId: +querySearchObj.spruceColor,
+          selectedInsideColorId: +querySearchObj.insideColor,
+          selectedCoverId: +querySearchObj.cover,
+          selectedMetalStrapsId: +querySearchObj.metalStraps,
+          selectedMassageFunctionId: +querySearchObj.massageFunction,
+          selectedLedId: +querySearchObj.led,
+          selectedWarmingId: +querySearchObj.warming,
+          selectedHeatingOvenId: +querySearchObj.heatingOven,
+          selectedAdditionalAccessoriesIds: querySearchObj.additionalAccessories?.map(item => +item),
+          selectedTubeExtensionId: +querySearchObj.tubeExtension,
+          selectedDeliveryId: +querySearchObj.delivery,
         })
         await dispatch(setSelectedObjIdsWithAmount(querySearchObj.idsWithAmount));
         await dispatch(setSelectedObjPositioningIds(querySearchObj.positioning));

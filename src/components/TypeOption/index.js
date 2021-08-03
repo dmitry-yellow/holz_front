@@ -34,6 +34,9 @@ const TypeOption = (props) => {
                     className={cn('TypeOption-item', selectedTypeId === item.id && 'selected')}
                     onClick={() => {
                       dispatch(setSelectedTypeId(item.id))
+                      if(window.location.search){
+                        window.history.pushState(null, null, window.location.pathname);
+                      }
                       setOpenTab('');
                     }}
         >
