@@ -13,7 +13,7 @@ import { getNoLedId, getNoMassageFuncId, getPreparationForSandFilterId, getSandF
 
 const PositioningSandfilterBox = (props) => {
 
-  const { optionData, priceShow } = props;
+  const { optionData, priceShow, consoleOptionData } = props;
 
   const [sandFilterChecked, setSandFilterChecked] = useState(false);
   const [controlPanelChecked, setControlPanelChecked] = useState(false);
@@ -81,14 +81,17 @@ const PositioningSandfilterBox = (props) => {
         <div className='PositioningSandfilterBox-image'>
           <img src={ `${ process.env.REACT_APP_HOST_API_URL }${ heatingOvenDataPositioningImage }` } alt="positioning"/>
 
-          { optionData ? Object.values(optionData).map(option => {
-
+          { consoleOptionData?.[0] && consoleOptionData?.length >= 1 ? Object.values(consoleOptionData?.[0]).map((option, index) => {
+            const sandFilterData = consoleOptionData?.[0];
+            const shalterData = consoleOptionData?.[1];
             const main = option['_main'];
             const price = priceShow(option);
             const isDisabledSandFilter = (selectedAdditionalAccessoriesIds.includes(sandFilterId) || selectedAdditionalAccessoriesIds.includes(preparationForSandFilterId));
             const isDisabledControlPanel = +selectedMassageFunctionId !== noMassageFuncId || +selectedLedId !== noLedId;
-            const isCheckedSandFilter = +selectedPositioningIds?.sandFilter === main.id && sandFilterChecked;
-            const isCheckedControlPanel = +selectedPositioningIds?.controlPanel === main.id && controlPanelChecked;
+            const isCheckedSandFilter = +selectedPositioningIds?.sandFilter === Object.values(sandFilterData)[index]._main.id && sandFilterChecked;
+            const isCheckedControlPanel = +selectedPositioningIds?.controlPanel === Object.values(shalterData)[index]._main.id && controlPanelChecked;
+
+
 
             return <div key={ main.id } className={ cn('PositioningSandfilterBox-item', main.Name.replace(' ', '_')) }>
               <div className='PositioningSandfilterBox-item-checkbox'>
@@ -98,7 +101,7 @@ const PositioningSandfilterBox = (props) => {
                        onChange={ (e) => {
                          setSandFilterChecked(e.target.checked)
                          if (e.target.checked === true) {
-                           dispatch(setSelectedPositioningIds('sandFilter', main.id));
+                           dispatch(setSelectedPositioningIds('sandFilter', Object.values(sandFilterData)[index]._main.id));
                          } else {
                            dispatch(setSelectedPositioningIds('sandFilter', null));
                          }
@@ -113,7 +116,7 @@ const PositioningSandfilterBox = (props) => {
                        onChange={ (e) => {
                          setControlPanelChecked(e.target.checked)
                          if (e.target.checked === true) {
-                           dispatch(setSelectedPositioningIds('controlPanel', main.id));
+                           dispatch(setSelectedPositioningIds('controlPanel', Object.values(shalterData)[index]._main.id));
                          } else {
                            dispatch(setSelectedPositioningIds('controlPanel', null));
                          }

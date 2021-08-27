@@ -26,7 +26,8 @@ const ColorsOption = (props) => {
     desktopQueryTooltip,
     selectedSizeId,
     openToolltip,
-    setOpenToolltip
+    setOpenToolltip,
+    consoleOptionData
   } = props;
 
 
@@ -123,6 +124,7 @@ const ColorsOption = (props) => {
         }) : null }
       </div> : <PositioningSandfilterBox optionData={ optionData }
                                          priceShow={ priceShow }
+                                         consoleOptionData={consoleOptionData}
       /> }
         <div className='ColorsOption-moreInfo'
              onClick={ () => setOpenToolltip(option === openToolltip ? '' : option) }>

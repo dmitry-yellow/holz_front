@@ -10,7 +10,7 @@ const customizeMenu = [
     {option: 'Warming', optional: true, referencer: 'warming'},
     {option: 'Heating oven', optional: false, referencer: 'heatingOven'},
     {option: 'Additional Accessoires', optional: true, referencer: 'additionalAccessories'},
-    {option: 'Positioning', optional: true, referencer: 'positioningSandfilter' },
+    {option: 'Positioning', optional: true, referencer: 'positioningPump' },
     {option: 'Tube extension', optional: true, referencer: 'tubeExtension'},
     {option: 'Delivery', optional: false, referencer: 'delivery'}
 ];

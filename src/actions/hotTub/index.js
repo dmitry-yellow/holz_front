@@ -141,8 +141,15 @@ const getAllSelectedIds = (getState) => {
 export const getCartData = () => async (dispatch, getState) => {
   try {
     dispatch({ type: ActionTypes.GENERATE_CART });
+
+    const selectedPositioningIds = getState().hotTub.selectedPositioningIds;
+
     const selectedIdsWithAmount = getState().hotTub.selectedIdsWithAmount;
     const selectedIds = await getAllSelectedIds(getState);
+
+    await [selectedPositioningIds?.sandFilter, selectedPositioningIds?.controlPanel].forEach(item => {
+      if(item) selectedIds.push(item);
+    })
 
     const data = await selectedIds.map(id => {
       if (selectedIdsWithAmount?.[id]) {

@@ -184,12 +184,13 @@ const HotTubCustomize = (props) => {
         />
       case 'Positioning':
         return <ColorsOption optionData={ customizeData?.positioningSandfilter }
+                             consoleOptionData={[customizeData?.positioningPump, customizeData?.positioningShalter]}
                              selectedSizeId={ selectedSizeId }
                              selectedId={ selectedAdditionalAccessoriesIds }
                              setSelectedId={ setSelectedAdditionalAccessoriesId }
                              additionalClass={ 'without-image' }
                              option='Positioning'
-                             dataTooltip={ rootData?.descriptions && rootData?.descriptions.positioningSandfilter }
+                             dataTooltip={ rootData?.descriptions && rootData?.descriptions.positioningPump }
                              openToolltip={ openToolltip }
                              setOpenToolltip={ setOpenToolltip }
                              multi
@@ -230,7 +231,6 @@ const HotTubCustomize = (props) => {
         { isLoadingData ? <p>Loading...</p> :
             <Fragment>
               <TypeOption setOpenTab={setOpenTab}/>
-
               { customizeMenu.map((item, index) => {
                 const customizeDataName = customizeData?.wood?.[`0${ selectedWoodId }`]._main.Name;
                 const sandFilterId = getSandFilterId(selectedTypeId);
