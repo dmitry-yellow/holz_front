@@ -19,6 +19,7 @@ const PositioningSandfilterBox = (props) => {
   const [controlPanelChecked, setControlPanelChecked] = useState(false);
 
 
+
   const dispatch = useDispatch();
   const selectedPositioningIds = useSelector(state => state.hotTub.selectedPositioningIds);
   const selectedAdditionalAccessoriesIds = useSelector(state => state.hotTub.selectedAdditionalAccessoriesIds);
@@ -93,7 +94,7 @@ const PositioningSandfilterBox = (props) => {
 
 
 
-            return <div key={ main.id } className={ cn('PositioningSandfilterBox-item', main.Name.replace(' ', '_')) }>
+            return <div key={ main.id } className={ cn('PositioningSandfilterBox-item', main.Name.replace(' ', '_'), selectedTypeId === 80690 && 'opal') }>
               <div className='PositioningSandfilterBox-item-checkbox'>
                 <input type="checkbox"
                        checked={ isCheckedSandFilter }

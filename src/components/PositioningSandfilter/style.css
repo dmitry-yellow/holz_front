@@ -90,6 +90,10 @@
     transform: translate(-10%, -10%);
   }
 }
+.PositioningSandfilterBox-item.Position_1.opal {
+  bottom: 5%;
+  transform: translate(0, -5%);
+}
 .PositioningSandfilterBox-item.Position_2 {
   left: -8%;
   top: 30%;
@@ -100,6 +104,10 @@
     left: 0;
     transform: translate(0, -30%);
   }
+}
+.PositioningSandfilterBox-item.Position_2.opal {
+  top: 45%;
+  transform: translate(0, -45%);
 }
 .PositioningSandfilterBox-item.Position_3 {
   left: 20%;
@@ -113,6 +121,11 @@
     transform: translate(-25%, 2%);
   }
 }
+.PositioningSandfilterBox-item.Position_3.opal {
+  left: 10%;
+  top: 3%;
+  transform: translate(-10%, -3%);
+}
 .PositioningSandfilterBox-item.Position_4 {
   right: 13%;
   top: -8%;
@@ -125,6 +138,11 @@
     transform: translate(-18%, 2%);
   }
 }
+.PositioningSandfilterBox-item.Position_4.opal {
+  right: 7%;
+  top: 3%;
+  transform: translate(-7%, -3%);
+}
 .PositioningSandfilterBox-item.Position_5 {
   right: -5%;
   top: 30%;
@@ -136,6 +154,10 @@
     transform: translate(0, -30%);
   }
 }
+.PositioningSandfilterBox-item.Position_5.opal {
+  top: 45%;
+  transform: translate(0, -45%);
+}
 .PositioningSandfilterBox-item.Position_6 {
   right: 0;
   bottom: 10%;
@@ -146,6 +168,10 @@
     right: 10%;
     transform: translate(-10%, -10%);
   }
+}
+.PositioningSandfilterBox-item.Position_6.opal {
+  bottom: 5%;
+  transform: translate(0, -5%);
 }
 .PositioningSandfilterBox-item-checkbox {
   display: flex;
