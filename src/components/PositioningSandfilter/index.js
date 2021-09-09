@@ -8,7 +8,13 @@ import onlyMassage from '../../assets/images/icon-cp-only-massage.png';
 import cn from 'classnames';
 import './style.css';
 import { setSelectedPositioningIds } from "../../actions/hotTub";
-import { getNoLedId, getNoMassageFuncId, getPreparationForSandFilterId, getSandFilterId } from "../helperForIds";
+import {
+  getHeatingOvenExtId,
+  getNoLedId,
+  getNoMassageFuncId,
+  getPreparationForSandFilterId,
+  getSandFilterId
+} from "../helperForIds";
 
 
 const PositioningSandfilterBox = (props) => {
@@ -27,10 +33,14 @@ const PositioningSandfilterBox = (props) => {
   const selectedLedId = useSelector(state => state.hotTub.selectedLedId);
   const data = useSelector(state => state.hotTub.data);
   const selectedTypeId = useSelector(state => state.hotTub.selectedTypeId);
-  const heatingOvenDataPositioningImage =
-    data.heatingOven?.['080521']?.imagesext.objectimage1 ||
-    data.heatingOven?.['080661']?.imagesext.objectimage1 ||
-    data.heatingOven?.['080749']?.imagesext.objectimage1;
+  let heatingOvenDataPositioningImage;
+  let id;
+  if(data?.heatingOven){
+    id = getHeatingOvenExtId(data.heatingOven);
+    if(id){
+      heatingOvenDataPositioningImage = data.heatingOven?.[`${id}`]?.imagesext.objectimage1;
+    }
+  }
   const noMassageFuncId = getNoMassageFuncId(selectedTypeId);  // 80515
   const noLedId = getNoLedId(selectedTypeId);  // 80517
   const sandFilterId = getSandFilterId(selectedTypeId);  // 80591
@@ -80,7 +90,7 @@ const PositioningSandfilterBox = (props) => {
   return (
       <div className='PositioningSandfilterBox'>
         <div className='PositioningSandfilterBox-image'>
-          <img src={ `${ process.env.REACT_APP_HOST_API_URL }${ heatingOvenDataPositioningImage }` } alt="positioning"/>
+          { heatingOvenDataPositioningImage &&  <img src={`${process.env.REACT_APP_HOST_API_URL}${heatingOvenDataPositioningImage}`} alt="positioning"/>}
 
           { consoleOptionData?.[0] && consoleOptionData?.length >= 1 ? Object.values(consoleOptionData?.[0]).map((option, index) => {
             const sandFilterData = consoleOptionData?.[0];

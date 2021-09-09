@@ -26,7 +26,7 @@ export const getNoColorId = (selectedTypeId) => {
   } else {
     return 80701;
   }
-}
+};
 
 export const getSkimmerId = (selectedTypeId) => {
   if (selectedTypeId === 4224) {
@@ -36,7 +36,7 @@ export const getSkimmerId = (selectedTypeId) => {
   } else {
     return 80753;
   }
-}
+};
 
 export const getTubeExtensionId = (selectedTypeId) => {
   if (selectedTypeId === 4224) {
@@ -46,7 +46,7 @@ export const getTubeExtensionId = (selectedTypeId) => {
   } else {
     return 80767;
   }
-}
+};
 
 export const getSandFilterId = (selectedTypeId) => {
   if (selectedTypeId === 4224) {
@@ -56,7 +56,7 @@ export const getSandFilterId = (selectedTypeId) => {
   } else {
     return 80757;
   }
-}
+};
 
 export const getPreparationForSandFilterId = (selectedTypeId) => {
   if (selectedTypeId === 4224) {
@@ -66,7 +66,7 @@ export const getPreparationForSandFilterId = (selectedTypeId) => {
   } else {
     return 80754;
   }
-}
+};
 
 export const getAddAccNoPriceId = (selectedTypeId) => {
   if (selectedTypeId === 4224) {
@@ -76,7 +76,7 @@ export const getAddAccNoPriceId = (selectedTypeId) => {
   } else {
     return 80752;
   }
-}
+};
 
 export const getNoLedId = (selectedTypeId) => {
   if (selectedTypeId === 4224) {
@@ -86,7 +86,7 @@ export const getNoLedId = (selectedTypeId) => {
   } else {
     return 80743;
   }
-}
+};
 
 export const getNoMassageFuncId = (selectedTypeId) => {
   if (selectedTypeId === 4224) {
@@ -96,7 +96,7 @@ export const getNoMassageFuncId = (selectedTypeId) => {
   } else {
     return 80736;
   }
-}
+};
 
 export const getNoCoverId = (selectedTypeId) => {
   if (selectedTypeId === 4224) {
@@ -106,7 +106,7 @@ export const getNoCoverId = (selectedTypeId) => {
   } else {
     return 80721;
   }
-}
+};
 
 export const getNoMetalStrapsId = (selectedTypeId) => {
   if (selectedTypeId === 4224) {
@@ -116,7 +116,7 @@ export const getNoMetalStrapsId = (selectedTypeId) => {
   } else {
     return 80733;
   }
-}
+};
 
 export const getWoodenBoxId = (selectedTypeId) => {
   if (selectedTypeId === 4224) {
@@ -126,4 +126,11 @@ export const getWoodenBoxId = (selectedTypeId) => {
   } else {
     return 80755;
   }
-}
+};
+
+export const getHeatingOvenExtId = (data) => {
+  const hoArr = Object.keys(data);
+  if(hoArr?.length >= 1){
+    return hoArr[0]
+  }
+};
