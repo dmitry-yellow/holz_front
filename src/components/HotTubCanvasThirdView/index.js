@@ -191,13 +191,13 @@ const HotTubCanvasThirdView = (props) => {
       if (+selectedSizeId === smallSizeId) {
         setScaleX(0.7);
         setScaleY(0.7);
-        setOffsetX(-180);
-        setOffsetY(-950);
+        setOffsetX(-150);
+        setOffsetY(-1100);
       } else {
-        setScaleX(0.73);
-        setScaleY(0.73);
-        setOffsetX(-180);
-        setOffsetY(-900);
+        setScaleX(0.71);
+        setScaleY(0.71);
+        setOffsetX(-150);
+        setOffsetY(-1100);
       }
     } else if (+hotTubStageWidth <= 330) {
       if (+selectedSizeId === smallSizeId) {
@@ -283,12 +283,12 @@ const HotTubCanvasThirdView = (props) => {
         setScaleX(0.75);
         setScaleY(0.75);
         setOffsetX(-120);
-        setOffsetY(-830);
+        setOffsetY(-970);
       } else {
-        setScaleX(0.8);
-        setScaleY(0.8);
+        setScaleX(0.76);
+        setScaleY(0.76);
         setOffsetX(-120);
-        setOffsetY(-780);
+        setOffsetY(-970);
       }
     } else if (+hotTubStageWidth <= 330) {
       if (+selectedSizeId === smallSizeId) {

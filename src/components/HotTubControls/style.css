@@ -32,7 +32,7 @@
 @media screen and (max-device-width: 380px) {
   .HotTubControls {
     height: 40px;
-    top: calc(130px + 312px - 120px);
+    top: calc(130px + 312px - 155px);
   }
 }
 @media screen and (max-device-width: 330px) {

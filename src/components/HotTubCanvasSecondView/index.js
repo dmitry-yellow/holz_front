@@ -114,7 +114,7 @@ const HotTubCanvasSecondView = (props) => {
     if ((stageHeight < 450) && (+hotTubStageWidth >= 300 && +hotTubStageWidth < 330)) {
       return 1050
     } else if ((stageHeight < 450) && (+hotTubStageWidth >= 330 && +hotTubStageWidth < 380)) {
-      return 670
+      return 800
     } else if ((stageHeight < 450) && (+hotTubStageWidth >= 380 && +hotTubStageWidth < 500)) {
       return 565
     } else if ((window.innerHeight >= 600 && window.innerHeight < 1100) && (+hotTubStageWidth >= 800 && +hotTubStageWidth < 1100)) {

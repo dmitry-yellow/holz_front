@@ -176,15 +176,15 @@ const HotTubCanvasFourthView = (props) => {
 
     } else if (+hotTubStageWidth >= 330 && +hotTubStageWidth < 380) {
       if (+selectedSizeId === smallSizeId) {
-        setScaleX(0.75);
-        setScaleY(0.75);
+        setScaleX(0.72);
+        setScaleY(0.72);
         setOffsetX(-150);
-        setOffsetY(-1050);
+        setOffsetY(-1300);
       } else {
-        setScaleX(0.77);
-        setScaleY(0.77);
+        setScaleX(0.73);
+        setScaleY(0.73);
         setOffsetX(-150);
-        setOffsetY(-1050);
+        setOffsetY(-1300);
       }
 
     } else if (+hotTubStageWidth >= 300 && +hotTubStageWidth < 330) {
@@ -274,15 +274,15 @@ const HotTubCanvasFourthView = (props) => {
 
     } else if (+hotTubStageWidth >= 330 && +hotTubStageWidth < 380) {
       if (+selectedSizeId === smallSizeId) {
-        setScaleX(0.75);
-        setScaleY(0.75);
+        setScaleX(0.7);
+        setScaleY(0.7);
         setOffsetX(-150);
-        setOffsetY(-1000);
+        setOffsetY(-1300);
       } else {
-        setScaleX(0.77);
-        setScaleY(0.77);
+        setScaleX(0.71);
+        setScaleY(0.71);
         setOffsetX(-150);
-        setOffsetY(-1000);
+        setOffsetY(-1300);
       }
 
     } else if (+hotTubStageWidth >= 300 && +hotTubStageWidth < 330) {

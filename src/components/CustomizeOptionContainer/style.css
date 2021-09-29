@@ -7,6 +7,11 @@
   transition: all 0.15s linear;
   margin-bottom: 2rem;
 }
+@media (max-width: 380px) {
+  .CustomizeOptionContainer-header {
+    margin-bottom: 1.5rem;
+  }
+}
 .CustomizeOptionContainer-header.optionOpen {
   margin-bottom: 1rem;
 }

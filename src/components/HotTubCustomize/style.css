@@ -22,9 +22,10 @@
 }
 @media screen and (max-device-width: 380px) {
   .HotTubCustomize {
+    padding: 10px 10px 0 10px;
     width: 100%;
-    height: calc(100vh - 312px - 48px);
-    top: calc(312px + 58px);
+    height: calc(100vh - 312px - 18px);
+    top: calc(312px + 18px);
   }
 }
 @media screen and (max-device-width: 330px) {
@@ -64,4 +65,9 @@
 .HotTubCustomize > div {
   width: 100%;
   margin-bottom: 30px;
+}
+@media (max-width: 380px) {
+  .HotTubCustomize > div {
+    margin-bottom: 20px;
+  }
 }

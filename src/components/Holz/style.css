@@ -7,17 +7,17 @@
   background: linear-gradient(180deg, #CFCFCF 0%, #CFCFCF 12.59%, #E1E1E1 60.81%, #EAEAEA 74.35%, #EAEAEA 100%);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
 }
-@media screen and (max-device-width: 770px) {
+@media screen and (max-width: 770px) {
   .Holz {
     height: 442px;
   }
 }
-@media screen and (max-device-width: 380px) {
+@media screen and (max-width: 380px) {
   .Holz {
-    height: 370px;
+    height: 330px;
   }
 }
-@media screen and (max-device-width: 340px) {
+@media screen and (max-width: 340px) {
   .Holz {
     height: 342px;
   }
