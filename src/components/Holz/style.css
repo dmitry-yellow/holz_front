@@ -12,6 +12,11 @@
     height: 442px;
   }
 }
+@media screen and (max-device-width: 380px) {
+  .Holz {
+    height: 370px;
+  }
+}
 @media screen and (max-device-width: 340px) {
   .Holz {
     height: 342px;

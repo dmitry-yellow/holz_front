@@ -175,7 +175,7 @@ const HotTubCanvasThirdView = (props) => {
         setOffsetX(-50);
         setOffsetY(-600);
       }
-    } else if (+hotTubStageWidth >= 340 && +hotTubStageWidth < 500) {
+    } else if (+hotTubStageWidth >= 380 && +hotTubStageWidth < 500) {
       if (+selectedSizeId === smallSizeId) {
         setScaleX(0.7);
         setScaleY(0.7);
@@ -187,7 +187,19 @@ const HotTubCanvasThirdView = (props) => {
         setOffsetX(-140);
         setOffsetY(-800);
       }
-    } else if (+hotTubStageWidth <= 340) {
+    } else if (+hotTubStageWidth >= 330 && +hotTubStageWidth < 380) {
+      if (+selectedSizeId === smallSizeId) {
+        setScaleX(0.7);
+        setScaleY(0.7);
+        setOffsetX(-180);
+        setOffsetY(-950);
+      } else {
+        setScaleX(0.73);
+        setScaleY(0.73);
+        setOffsetX(-180);
+        setOffsetY(-900);
+      }
+    } else if (+hotTubStageWidth <= 330) {
       if (+selectedSizeId === smallSizeId) {
         setScaleX(0.6);
         setScaleY(0.6);
@@ -254,7 +266,7 @@ const HotTubCanvasThirdView = (props) => {
         setOffsetX(-50);
         setOffsetY(-550);
       }
-    } else if (+hotTubStageWidth >= 340 && +hotTubStageWidth < 500) {
+    } else if (+hotTubStageWidth >= 380 && +hotTubStageWidth < 500) {
       if (+selectedSizeId === smallSizeId) {
         setScaleX(0.8);
         setScaleY(0.8);
@@ -266,7 +278,19 @@ const HotTubCanvasThirdView = (props) => {
         setOffsetX(-80);
         setOffsetY(-600);
       }
-    } else if (+hotTubStageWidth <= 340) {
+    } else if (+hotTubStageWidth >= 330 && +hotTubStageWidth < 380) {
+      if (+selectedSizeId === smallSizeId) {
+        setScaleX(0.75);
+        setScaleY(0.75);
+        setOffsetX(-120);
+        setOffsetY(-830);
+      } else {
+        setScaleX(0.8);
+        setScaleY(0.8);
+        setOffsetX(-120);
+        setOffsetY(-780);
+      }
+    } else if (+hotTubStageWidth <= 330) {
       if (+selectedSizeId === smallSizeId) {
         setScaleX(0.7);
         setScaleY(0.7);

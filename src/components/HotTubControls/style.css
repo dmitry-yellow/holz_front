@@ -29,6 +29,12 @@
     transform: translateX(-50%);
   }
 }
+@media screen and (max-device-width: 380px) {
+  .HotTubControls {
+    height: 40px;
+    top: calc(130px + 312px - 120px);
+  }
+}
 @media screen and (max-device-width: 330px) {
   .HotTubControls {
     width: 95%;
