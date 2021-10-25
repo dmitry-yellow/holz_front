@@ -164,6 +164,7 @@ const Holz = () => {
               rootData={rootData}
               setHotTubPositionView={setHotTubPositionView}
               setExteriorBcg={setExteriorBcg}
+              setCoverOptionOpacity={setCoverOptionOpacity}
           />
           <TotalAmountCard customizeData={ customizeData }
                            selectedSizeId={ selectedSizeId }

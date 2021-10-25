@@ -24,6 +24,7 @@ const initialState = {
   selectedIdsWithAmount: {},
   pdfFile: '',
   selectedTypeId: 4224,
+  priceAddValue: 0,
   typeOptions: [
     { type: 'Hot Tub SAPHIR', id: 4224 },
     { type: 'Hot Tub JADE', id: 80602 },
@@ -35,6 +36,11 @@ const hotTubReducer = (state = initialState, action) => {
 
   switch (action.type) {
 
+    case ActionTypes.SET_PRICE_ADD_VALUE:
+      return {
+        ...state,
+        priceAddValue: action.priceAddValue
+      }
     case ActionTypes.GET_DATA:
       return {
         ...state,

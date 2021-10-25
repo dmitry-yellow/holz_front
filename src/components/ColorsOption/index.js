@@ -1,14 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { Collapse } from "react-collapse/lib/Collapse";
+import {setPriceAddValue, setSelectedIdsWithAmount} from "../../actions/hotTub";
+import {getBigSizeId, getNoColorId, getWoodenBoxId} from "../helperForIds";
 import moreInfoIcon from '../../assets/images/icon-more-info-circle.png';
-import ReactTooltip from "react-tooltip";
+import PositioningSandfilterBox from "../PositioningSandfilter";
 import injectMedia from "../media";
 import cn from 'classnames';
 import './style.css';
-import { useDispatch, useSelector } from "react-redux";
-import { Collapse } from "react-collapse/lib/Collapse";
-import { setSelectedIdsWithAmount } from "../../actions/hotTub";
-import PositioningSandfilterBox from "../PositioningSandfilter";
-import { getBigSizeId, getNoColorId } from "../helperForIds";
 
 
 const ColorsOption = (props) => {
@@ -23,7 +22,7 @@ const ColorsOption = (props) => {
     multiSel,
     setSelectedSpruceColorId,
     dataTooltip,
-    desktopQueryTooltip,
+    setCoverOptionOpacity,
     selectedSizeId,
     openToolltip,
     setOpenToolltip,
@@ -33,11 +32,13 @@ const ColorsOption = (props) => {
 
   const selectedIdsWithAmount = useSelector(state => state.hotTub.selectedIdsWithAmount);
   const selectedTypeId = useSelector(state => state.hotTub.selectedTypeId);
+  const priceAddValue = useSelector(state => state.hotTub.priceAddValue);
   const dispatch = useDispatch();
 
 
   let priceShow = (size) => {
     let bigSizeId = getBigSizeId(selectedTypeId);
+
     if (bigSizeId && +selectedSizeId === +bigSizeId) {
       return size.base.priceBig;
     }
@@ -79,6 +80,16 @@ const ColorsOption = (props) => {
     </>
   }
 
+
+  useEffect(() => {
+    const { option } = props;
+    if((option === 'Wood' || option === 'Spruce color') && optionData){
+      dispatch(setPriceAddValue(optionData?.['0' + selectedId]?.base?.priceAdd?.realValue));
+    }
+  }, [props.option, selectedId])
+
+
+
   return (
     <div className={ cn("ColorsOption", option === 'Positioning' && 'positioning') }>
       { option !== 'Positioning' ? <div className="ColorsOption-box">
@@ -89,16 +100,21 @@ const ColorsOption = (props) => {
           const price = priceShow(option);
           const main = option['_main'];
           const showName = option['translation']['germanName'];
+          const woodenBoxId = getWoodenBoxId(selectedTypeId);
 
           return (
             <div key={ main.id }
-                 onClick={ () => {
+                 onClick={ async () => {
+
                    if (main.Name !== 'Spruce' && props.option === 'Wood') {
                      const noColorId = getNoColorId(selectedTypeId);
                      dispatch(setSelectedSpruceColorId(noColorId));
                    }
                    if (selectedId !== main.id) {
-                     dispatch(setSelectedId(main.id))
+                     await dispatch(setSelectedId(main.id))
+                     if(setCoverOptionOpacity){
+                       setCoverOptionOpacity(true);
+                     }
                    }
                  } }
                  className={ cn("ColorsOption-box-item",
@@ -112,7 +128,7 @@ const ColorsOption = (props) => {
               <p className="ColorsOption-box-item-name">{ showName }</p>
               { price?.realValue ?
                 <p className="ColorsOption-box-item-price">
-                  + { price?.realValue } { price.currency.currencySymbol } { description?.length > 0 ? `(${ description })` : null }
+                  + { +main.id === woodenBoxId ? `${Number(priceAddValue) + Number(price?.realValue)}.00` : price?.realValue } { price.currency.currencySymbol } { description?.length > 0 ? `(${ description })` : null }
                 </p> :
                 <p
                   className="ColorsOption-box-item-price">{ props.option === 'Delivery' ? 'Selbstabholung' : 'frei' }</p>

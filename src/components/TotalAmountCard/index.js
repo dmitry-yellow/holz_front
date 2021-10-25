@@ -18,7 +18,7 @@ import {
   WhatsappShareButton
 } from "react-share";
 import qs from "qs";
-import { getBigSizeId } from "../helperForIds";
+import {getBigSizeId, getWoodenBoxId} from "../helperForIds";
 
 
 const cartUrl = process.env.REACT_APP_CART_URL;
@@ -49,6 +49,7 @@ const TotalAmountCard = (props) => {
   const selectedIdsWithAmount = useSelector(state => state.hotTub.selectedIdsWithAmount);
   const selectedPositioningIds = useSelector(state => state.hotTub.selectedPositioningIds);
   const selectedTypeId = useSelector(state => state.hotTub.selectedTypeId);
+  const priceAddValue = useSelector(state => state.hotTub.priceAddValue);
   const cartData = useSelector(state => state.hotTub.cart);
 
   useEffect(() => {
@@ -224,6 +225,7 @@ const TotalAmountCard = (props) => {
           if (Object.keys(dataItem)?.length >= 1) {
 
             let currentId = Object.keys(dataItem).filter(itemId => +itemId === +id ? String(id) : '');
+
             let value;
             let amount = 1;
 
@@ -232,9 +234,18 @@ const TotalAmountCard = (props) => {
             }
 
             if (selectedSizeId == bigSizeId) {
-              value = currentId?.length >= 1 && dataItem?.[`${ currentId }`].base?.priceBig?.realValue;
+              if(+currentId === getWoodenBoxId(selectedTypeId)){
+                value = currentId?.length >= 1 && (Number(dataItem?.[`${ currentId }`].base?.priceBig?.realValue) + Number(priceAddValue))
+              } else {
+                value = currentId?.length >= 1 && dataItem?.[`${ currentId }`].base?.priceBig?.realValue;
+              }
             } else {
-              value = currentId?.length >= 1 && dataItem?.[`${ currentId }`].base.price.realValue;
+              if(+currentId === getWoodenBoxId(selectedTypeId)){
+                value = currentId?.length >= 1 && (Number(dataItem?.[`${ currentId }`].base?.price?.realValue) + Number(priceAddValue));
+              } else {
+                value = currentId?.length >= 1 && dataItem?.[`${ currentId }`].base.price.realValue;
+              }
+
             }
             if (value) {
               let unformatValue = accounting.unformat(`€ ${ value }`);
@@ -251,7 +262,7 @@ const TotalAmountCard = (props) => {
     selectedCoverId, selectedDeliveryId, selectedHeatingOvenId,
     selectedInsideColorId, selectedLedId, selectedMassageFunctionId,
     selectedMetalStrapsId, selectedSpruceColorId, selectedTubeExtensionId, selectedWarmingId,
-    selectedWoodId, selectedIdsWithAmount
+    selectedWoodId, selectedIdsWithAmount, priceAddValue
   ])
 
 
@@ -293,7 +304,7 @@ const TotalAmountCard = (props) => {
           <p className="TotalAmountCard-title-amount">Gesamtsumme</p>
           <p className="TotalAmountCard-title-price">{ totalPrice && `€ ${ totalPrice }` }</p>
         </div>
-        <p>Versandbereit in 10-12 Wochen</p>
+        <p>Versandbereit in 4-6 Wochen</p>
         <button onClick={ () => callToCart() }>in den Warenkorb</button>
         <p className='TotalAmountCard-pdfTextDownload'
            onClick={ () => callGenerate() }

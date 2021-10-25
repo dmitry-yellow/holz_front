@@ -28,7 +28,8 @@ const HotTubCustomize = (props) => {
     setOpenTab,
     rootData,
     setHotTubPositionView,
-    setExteriorBcg
+    setExteriorBcg,
+    setCoverOptionOpacity
   } = props;
 
   const [openToolltip, setOpenToolltip] = useState('');
@@ -109,6 +110,7 @@ const HotTubCustomize = (props) => {
                              openToolltip={ openToolltip }
                              setOpenToolltip={ setOpenToolltip }
                              openTab={ openTab }
+                             setCoverOptionOpacity={setCoverOptionOpacity}
         />
       case 'Metal Straps':
         return <ColorsOption optionData={ customizeData?.metalStraps }
@@ -226,11 +228,12 @@ const HotTubCustomize = (props) => {
   }
 
   return (
-      <div className='HotTubCustomize' id='HotTubCustomize'>   {/*classForCustomize*/ }
-        {/*{desktopQueryMatches && <p className="HotTubCustomize-title">Passen Sie Ihren Hot Tub an</p>}*/ }
+      <div className='HotTubCustomize' id='HotTubCustomize'>
         { isLoadingData ? <p>Loading...</p> :
             <Fragment>
-              <TypeOption setOpenTab={setOpenTab}/>
+              <TypeOption setOpenTab={setOpenTab}
+                          setCoverOptionOpacity={setCoverOptionOpacity}
+              />
               { customizeMenu.map((item, index) => {
                 const customizeDataName = customizeData?.wood?.[`0${ selectedWoodId }`]._main.Name;
                 const sandFilterId = getSandFilterId(selectedTypeId);

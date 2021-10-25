@@ -9,7 +9,7 @@ import saphirIcon from '../../assets/images/saphir-icon.png';
 
 const TypeOption = (props) => {
 
-  const { setOpenTab } = props;
+  const { setOpenTab, setCoverOptionOpacity } = props;
   const dispatch = useDispatch();
   const typeOptions = useSelector(state => state.hotTub.typeOptions);
   const selectedTypeId = useSelector(state => state.hotTub.selectedTypeId);
@@ -34,6 +34,7 @@ const TypeOption = (props) => {
                     className={cn('TypeOption-item', selectedTypeId === item.id && 'selected')}
                     onClick={() => {
                       dispatch(setSelectedTypeId(item.id))
+                      setCoverOptionOpacity(true);
                       if(window.location.search){
                         window.history.pushState(null, null, window.location.pathname);
                       }

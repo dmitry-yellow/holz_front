@@ -34,6 +34,7 @@ export const ActionTypes = {
   SET_SELECTED_OBJ_POSITIONING_IDS: "HOT_TUB/SET_SELECTED_OBJ_POSITIONING_IDS",
   SET_SELECTED_OBJ_IDS_WITH_AMOUNT: "HOT_TUB/SET_SELECTED_OBJ_IDS_WITH_AMOUNT",
   SET_SELECTED_TYPE_ID: "HOT_TUB/SET_SELECTED_TYPE_ID",
+  SET_PRICE_ADD_VALUE: "HOT_TUB/SET_PRICE_ADD_VALUE"
 }
 
 
@@ -215,6 +216,10 @@ export const generatePdfLink = (images) => async (dispatch, getState) => {
 
 export const setSelectedSizeId = (sizeId) => (dispatch) => {
   dispatch({ type: ActionTypes.SET_SELECTED_SIZE_ID, selectedSizeId: sizeId })
+}
+
+export const setPriceAddValue = (priceAddValue) => (dispatch) => {
+  dispatch({ type: ActionTypes.SET_PRICE_ADD_VALUE, priceAddValue })
 }
 
 export const setSelectedWoodId = (woodId) => (dispatch) => {
