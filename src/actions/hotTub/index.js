@@ -34,7 +34,8 @@ export const ActionTypes = {
   SET_SELECTED_OBJ_POSITIONING_IDS: "HOT_TUB/SET_SELECTED_OBJ_POSITIONING_IDS",
   SET_SELECTED_OBJ_IDS_WITH_AMOUNT: "HOT_TUB/SET_SELECTED_OBJ_IDS_WITH_AMOUNT",
   SET_SELECTED_TYPE_ID: "HOT_TUB/SET_SELECTED_TYPE_ID",
-  SET_PRICE_ADD_VALUE: "HOT_TUB/SET_PRICE_ADD_VALUE"
+  SET_PRICE_ADD_VALUE: "HOT_TUB/SET_PRICE_ADD_VALUE",
+  SET_OPEN_FINALLY_CART_MODAL: "HOT_TUB/SET_OPEN_FINALLY_CART_MODAL",
 }
 
 
@@ -321,5 +322,9 @@ export const setSelectedMetalStrapsId = (metalStrapsId) => (dispatch) => {
 
 export const setSelectedTypeId = (typeId) => (dispatch) => {
   dispatch({ type: ActionTypes.SET_SELECTED_TYPE_ID, selectedTypeId: typeId })
+}
+
+export const setIsOpenFinalCartModal = (isOpen) => (dispatch) => {
+  dispatch({ type: ActionTypes.SET_OPEN_FINALLY_CART_MODAL, isCartModalOpen: isOpen })
 }
 

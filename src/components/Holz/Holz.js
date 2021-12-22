@@ -5,12 +5,13 @@ import HotTubCustomize from "../HotTubCustomize";
 import HotTubControls from "../HotTubControls";
 import HotTubCanvasView from "../HotTubCanvasView";
 import { useDispatch, useSelector } from "react-redux";
-import { getCalcData } from "../../actions/hotTub";
+import {getCalcData, setIsOpenFinalCartModal} from "../../actions/hotTub";
 import cn from 'classnames';
 import './style.css';
 import HotTubCanvasSecondView from "../HotTubCanvasSecondView";
 import HotTubCanvasThirdView from "../HotTubCanvasThirdView";
 import HotTubCanvasFourthView from "../HotTubCanvasFourthView";
+import CartModal from "../CartModal";
 
 const Holz = () => {
 
@@ -41,6 +42,7 @@ const Holz = () => {
   const selectedTubeExtensionId = useSelector(state => state.hotTub.selectedTubeExtensionId);
   const selectedDeliveryId = useSelector(state => state.hotTub.selectedDeliveryId);
   const selectedTypeId = useSelector(state => state.hotTub.selectedTypeId);
+  const isCartModalOpen = useSelector(state => state.hotTub.isCartModalOpen);
 
 
   useEffect(() => {
@@ -63,6 +65,10 @@ const Holz = () => {
       setHotTubStageWidth(HotTubCanvasViewElem[0].clientWidth); // 1440
       setHotTubStageHeight(HotTubCanvasViewElem[0].clientHeight);
     }
+  }
+
+  const onHandleCloseCartModal = () => {
+    dispatch(setIsOpenFinalCartModal(false))
   }
 
   return (
@@ -194,6 +200,8 @@ const Holz = () => {
               setCoverOptionOpacity={ setCoverOptionOpacity }
           />
         </div>
+        <CartModal onHandleCloseCartModal={onHandleCloseCartModal}/>
+        <div className={cn('Holz-bcgOpacityModal', isCartModalOpen && 'visible')} onClick={onHandleCloseCartModal}></div>
       </div>
   )
       ;

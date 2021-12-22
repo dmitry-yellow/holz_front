@@ -1,0 +1,9 @@
+.MadeInGermanyLogo {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+.MadeInGermanyLogo > img {
+  width: 150px;
+  height: 115px;
+}

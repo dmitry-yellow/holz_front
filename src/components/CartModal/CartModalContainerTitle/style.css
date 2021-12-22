@@ -1,0 +1,23 @@
+.CartModalContainerTitle {
+  display: flex;
+  align-items: center;
+  padding: 0 0 0 20px;
+  box-sizing: border-box;
+}
+@media (max-width: 560px) {
+  .CartModalContainerTitle {
+    padding: 0;
+    margin-bottom: 20px;
+  }
+}
+.CartModalContainerTitle > p {
+  font-size: 1rem;
+  color: #7a9c59;
+  font-family: "Montserrat_400";
+  margin-left: 15px;
+}
+@media (max-width: 560px) {
+  .CartModalContainerTitle > p {
+    margin-left: 30px;
+  }
+}

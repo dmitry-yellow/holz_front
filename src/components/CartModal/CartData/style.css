@@ -1,0 +1,11 @@
+.CartData {
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  box-sizing: border-box;
+}
+@media (max-width: 1000px) {
+  .CartData {
+    flex-direction: column;
+  }
+}

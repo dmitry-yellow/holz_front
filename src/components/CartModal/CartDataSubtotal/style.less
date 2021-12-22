@@ -1,0 +1,155 @@
+.CartDataSubtotal {
+  width: 35%;
+  height: 400px;
+  position: sticky;
+  top: 10px;
+  padding: 0 20px;
+  box-sizing: border-box;
+
+  @media (max-width: 560px) {
+    padding: 0;
+  }
+
+
+  @media (max-width: 1000px) {
+    position: static;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  &-header {
+    border-bottom: 3px solid #ececec;
+    margin-bottom: 20px;
+
+    > p {
+      font-family: "Montserrat_Bold";
+      font-size: 0.9rem;
+      color: #777;
+      padding: 0.5em;
+    }
+  }
+
+  &-title, &-common, &-VATIncluded {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ececec;
+
+    &-name, &-price {
+      font-family: "Montserrat_400";
+      padding: 0.5em;
+      font-size: 0.9rem;
+    }
+
+    &-price {
+      font-family: "Montserrat_Bold";
+    }
+  }
+
+  &-common {
+    border-bottom: 3px solid #ececec;
+  }
+
+  &-transportation {
+    padding: 0.5em;
+
+    > p {
+      font-family: "Montserrat_400";
+      padding: 0.5em;
+      font-size: 0.9rem;
+    }
+
+    &-method {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      height: max-content;
+      padding: 0.5em;
+      border-bottom: 1px solid #ececec;
+      box-sizing: border-box;
+
+
+      > p {
+        font-family: "Montserrat_400";
+        padding: 0.5em;
+        font-size: 0.9rem;
+        cursor: pointer;
+        color: #334862;
+
+        &:hover{
+          color: #000;
+        }
+      }
+
+      &-radio {
+        font-family: "Montserrat_400";
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        background-color: rgba(0, 0, 0, .01);
+        border: 1px solid rgba(0, 0, 0, .1);
+        padding: 0.3em 0.6em;
+        border-radius: 5px;
+        margin-bottom: 5px;
+        min-height: 2.4em;
+        cursor: pointer;
+
+        > b {
+          font-family: "Montserrat_Bold";
+          margin-left: 5px;
+        }
+
+        &.checked {
+          font-family: "Montserrat_Bold";
+        }
+
+        > input {
+          margin: 0 10px 0 0;
+        }
+      }
+
+      &-collapse {
+        transition: height .7s ease;
+      }
+
+      &-content {
+        height: max-content;
+        background-color: #fff;
+        position: relative;
+      }
+    }
+  }
+
+  > button {
+    width: 100%;
+    margin: 20px 0;
+    outline: none;
+    color: #fff;
+    background-color: #777;
+    font-size: .97em;
+    letter-spacing: .03em;
+    cursor: pointer;
+    font-weight: bolder;
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid transparent;
+    vertical-align: middle;
+    border-radius: 0;
+    text-shadow: none;
+    line-height: 2.4em;
+    min-height: 2.5em;
+    padding: 0 1.2em;
+    max-width: 100%;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+
+    &:hover {
+      background-color: #525252;
+    }
+
+    &:active {
+      position: relative;
+      top: 2px;
+    }
+  }
+
+}

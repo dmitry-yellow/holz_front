@@ -1,0 +1,28 @@
+.CloseIcon {
+  position: absolute;
+  cursor: pointer;
+  right: 15px;
+  top: 10px;
+  width: 25px;
+  height: 25px;
+  opacity: 0.5;
+  line-height: 1;
+}
+.CloseIcon:hover {
+  opacity: 1;
+}
+.CloseIcon:before,
+.CloseIcon:after {
+  position: absolute;
+  left: 12px;
+  content: ' ';
+  height: 25px;
+  width: 2px;
+  background-color: #333;
+}
+.CloseIcon:before {
+  transform: rotate(45deg);
+}
+.CloseIcon:after {
+  transform: rotate(-45deg);
+}

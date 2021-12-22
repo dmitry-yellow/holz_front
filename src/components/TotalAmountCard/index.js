@@ -2,7 +2,7 @@ import { useMemo, useEffect } from 'react';
 import './style.css';
 import * as accounting from "accounting-js";
 import { useDispatch, useSelector } from "react-redux";
-import { getCartData, generatePdfLink } from "../../actions/hotTub";
+import {getCartData, generatePdfLink, setIsOpenFinalCartModal} from "../../actions/hotTub";
 import {
   EmailIcon,
   EmailShareButton,
@@ -142,7 +142,8 @@ const TotalAmountCard = (props) => {
 
   const generateDynForm = (data, sendTo) => {
     if (data) {
-      var f = document.createElement("form");
+      dispatch(setIsOpenFinalCartModal(true));
+      /*var f = document.createElement("form");
       f.setAttribute('style', "display:none");
       f.setAttribute('method', "post");
       f.setAttribute('action', sendTo);
@@ -156,7 +157,7 @@ const TotalAmountCard = (props) => {
       }
 
       document.getElementsByTagName('body')[0].appendChild(f);
-      f.submit();
+      f.submit();*/
     }
   }
 
