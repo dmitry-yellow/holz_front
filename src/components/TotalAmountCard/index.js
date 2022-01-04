@@ -305,7 +305,7 @@ const TotalAmountCard = (props) => {
           <p className="TotalAmountCard-title-amount">Gesamtsumme</p>
           <p className="TotalAmountCard-title-price">{ totalPrice && `€ ${ totalPrice }` }</p>
         </div>
-        <p>Versandbereit in 4-6 Wochen</p>
+        <p>Versandbereit in 8-10 Wochen</p>
         <button onClick={ () => callToCart() }>in den Warenkorb</button>
         <p className='TotalAmountCard-pdfTextDownload'
            onClick={ () => callGenerate() }
