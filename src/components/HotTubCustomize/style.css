@@ -1,7 +1,6 @@
 .HotTubCustomize {
   width: 350px;
-  height: calc(100vh - 187px - 100px);
-  /*height: calc(940px - 187px);*/
+  height: calc(100vh - 187px);
   padding: 20px 30px;
   box-sizing: border-box;
   background-color: #FFFFFF;
@@ -43,7 +42,6 @@
   .HotTubCustomize > .TotalAmountCard {
     display: block;
     position: initial;
-    margin-bottom: 120px!important;
   }
 }
 .HotTubCustomize::-webkit-scrollbar {
