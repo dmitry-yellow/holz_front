@@ -9,6 +9,7 @@
     "accounting-js": "^1.1.1",
     "axios": "^0.21.1",
     "classnames": "^2.2.6",
+    "formik": "^2.2.9",
     "konva": "^7.2.4",
     "less": "^4.1.1",
     "qs": "^6.10.1",
