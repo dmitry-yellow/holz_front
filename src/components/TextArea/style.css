@@ -1,0 +1,47 @@
+.TextArea {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+.TextArea-header {
+  font-weight: bold;
+  display: block;
+  font-size: 0.9em;
+  margin-bottom: 0.4em;
+  color: #222;
+}
+.TextArea-area {
+  opacity: 1 !important;
+  outline: 0;
+  appearance: none;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  padding: 0 0.75em;
+  height: 2.507em;
+  font-size: 0.97em;
+  border-radius: 0;
+  max-width: 100%;
+  width: 100%;
+  vertical-align: middle;
+  background-color: #fff;
+  color: #333;
+  font-family: "Montserrat_400";
+  font-size: 0.9rem;
+  padding-top: 0.7em;
+  min-height: 120px;
+  letter-spacing: normal;
+  word-spacing: normal;
+  line-height: normal;
+}
+.TextArea-area:hover {
+  box-shadow: inset 0 -1.8em 1em 0 rgba(0, 0, 0, 0);
+}
+.TextArea-area:focus {
+  box-shadow: 0 0 5px #ccc;
+  opacity: 1 !important;
+  outline: 0;
+  color: #333;
+  background-color: #fff;
+}
