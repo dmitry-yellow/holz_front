@@ -1,6 +1,7 @@
 import {Formik} from "formik";
 import {useDispatch} from "react-redux";
 import CartOrderCustomerDataForm from "./CartOrderCustomerDataForm";
+import { countries } from "./helper";
 
 const CartOrderCustomerDataFormik = () => {
 
@@ -81,18 +82,18 @@ const CartOrderCustomerDataFormik = () => {
           first_name: '',
           last_name: '',
           company: '',
-          country: '',
+          country: countries[6],
           street: '',
           apartment: '',
           postal_code: '',
           city: '',
           phone: '',
           email: '',
-          is_address_delivery: '',
+          is_address_delivery: false,
           delivery_first_name: '',
           delivery_last_name: '',
           delivery_company: '',
-          delivery_country: '',
+          delivery_country: countries[6],
           delivery_street: '',
           delivery_apartment: '',
           delivery_postal_code: '',
