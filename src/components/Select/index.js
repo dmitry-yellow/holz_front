@@ -1,59 +1,81 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import cn from "classnames";
+import { useFocus } from "../customHooks/useFocus";
+import { useOutsideClick } from "../customHooks/useOutsideClick";
 import './style.css';
 
-const Select = () => {
-    const countries = [
-        {name: "Afghanistan"},
-        {name: "Bangladesch"},
-        {name: "Britische Jungferninseln"},
-        {name: "Ghana"},
-        {name: "Japan"},
-        {name: "Liberia"},
-        {name: "Afghanistan"},
-        {name: "Bangladesch"},
-        {name: "Britische Jungferninseln"},
-        {name: "Ghana"},
-        {name: "Japan"},
-        {name: "Liberia"},
-    ]
+const Select = (props) => {
 
-    const [selectedOption, setSelectedOption] = useState(countries[0].name);
+    const { label, classes = {}, options, value, required = false, onChange } = props;
+    const { labelClass, errorClass } = classes;
+
     const [isOpen, setIsOpen] = useState(false);
     const [searchValue, setSearchValue] = useState("");
-    const [filteredOptions, setFilteredOptions] = useState(countries);
+    const [filteredOptions, setFilteredOptions] = useState(options);
+
+    const [inputRef, setInputFocus] = useFocus();
+    const dropDownRef = useOutsideClick(event => setIsOpen(false));
+
+    useEffect(() => {
+        if(isOpen) {
+            setInputFocus();
+        }
+    }, [isOpen])
+
+    useEffect(() => {
+        if(isOpen) {
+            const selectedValue = dropDownRef.current.querySelector('.selected')
+            selectedValue.scrollIntoView({block: "nearest", behavior: "smooth"});
+        }
+    }, [isOpen])
 
     const toggling = () => {
         setIsOpen(!isOpen);
         setSearchValue("");
-        setFilteredOptions(countries);
+        setFilteredOptions(options);
     }
 
     const onOptionClicked = value => () => {
-        setSelectedOption(value);
+        onChange(value);
         setIsOpen(false);
         setSearchValue("");
-        setFilteredOptions(countries);
+        setFilteredOptions(options);
     };
 
     const handlerSearch = value => {
         setSearchValue(value);
-        setFilteredOptions(countries.filter(country => country.name.toLowerCase().includes(value.toLowerCase())));
+        setFilteredOptions(options.filter(option => option.toLowerCase().includes(value.toLowerCase())));
     }
+
     return (
-        <div className="Selection" >
+        <div className="Selection" ref={dropDownRef} >
+            <p className={ cn("Selection-header", labelClass, {"obligatory-field": required}) }>{ label }</p>
             <div className={`Selection-select-value ${isOpen && 'hidden-border-bottom'}`} onClick={toggling}>
-                <span>{selectedOption}</span>
+                <span>{value}</span>
                 <div className="Selection-wrap">
                     <span className="Selection-wrap-arrow"/>
                 </div>
             </div>
             { isOpen && 
                 <div className="Selection-box">
-                    <div className="Selection-box-search">
-                        <input className="Selection-box-search-field" type="text" value={searchValue} onChange={event => handlerSearch(event.target.value)}/>
+                    <div className="Selection-box-search" >
+                        <input 
+                            className="Selection-box-search-field" 
+                            ref={ inputRef } type="text" 
+                            value={searchValue} 
+                            onChange={event => handlerSearch(event.target.value)}
+                        />
                     </div>
-                    <ul className="Selection-box-options-list">
-                        {filteredOptions.map((country, index) => <li className="Selection-box-option" key={index+1} onClick={onOptionClicked(country.name)}>{country.name}</li>)}
+                    <ul className="Selection-box-options-list" >
+                        {filteredOptions.map((option, index) => 
+                            <li 
+                                className={cn("Selection-box-option", {"selected": value === option})}
+                                key={index} 
+                                onClick={onOptionClicked(option)}
+                            >
+                                    {option}
+                            </li>
+                        )}
                     </ul>
                 </div>
             }
