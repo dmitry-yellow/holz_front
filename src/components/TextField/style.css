@@ -37,3 +37,6 @@
 .TextField-input:focus {
   box-shadow: 0 0 5px #ccc;
 }
+.TextField-input-error {
+  border-color: #b20000;
+}

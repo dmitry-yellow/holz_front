@@ -107,6 +107,7 @@ const CartOrderCustomerDataForm = (props) => {
             required={true}
             value={values.first_name}
             onChange={handleFirstNameChange}
+            error={errors.first_name}
           />
         </div>
 
@@ -119,6 +120,7 @@ const CartOrderCustomerDataForm = (props) => {
             required={true}
             value={values.last_name}
             onChange={handleLastNameChange}
+            error={errors.last_name}
           />
         </div>
       </div>
@@ -131,6 +133,7 @@ const CartOrderCustomerDataForm = (props) => {
           label="Firmenname (optional)"
           value={values.company}
           onChange={handleCompanyChange}
+          error={errors.company}
         />
       </div>
 
@@ -158,6 +161,7 @@ const CartOrderCustomerDataForm = (props) => {
             required={true}
             value={values.street}
             onChange={handleStreetChange}
+            error={errors.street}
           />
         </div>
 
@@ -169,6 +173,7 @@ const CartOrderCustomerDataForm = (props) => {
             placeholder="Wohnung, Suite, Zimmer usw. (optional)"
             value={values.apartment}
             onChange={handleApartmentChange}
+            error={errors.apartment}
           />
         </div>
       </div>
@@ -182,6 +187,7 @@ const CartOrderCustomerDataForm = (props) => {
           required={true}
           value={values.postalCode}
           onChange={handlePostalCodeChange}
+          error={errors.postal_code}
         />
       </div>
 
@@ -194,6 +200,7 @@ const CartOrderCustomerDataForm = (props) => {
           required={true}
           value={values.city}
           onChange={handleCityChange}
+          error={errors.city}
         />
       </div>
 
@@ -206,6 +213,7 @@ const CartOrderCustomerDataForm = (props) => {
           required={true}
           value={values.phone}
           onChange={handlePhoneChange}
+          error={errors.phone}
         />
       </div>
 
@@ -218,6 +226,7 @@ const CartOrderCustomerDataForm = (props) => {
           required={true}
           value={values.email}
           onChange={handleEmailChange}
+          error={errors.email}
         />
       </div>
       <div>
@@ -246,6 +255,7 @@ const CartOrderCustomerDataForm = (props) => {
                 required={true}
                 value={values.delivery_first_name}
                 onChange={handleDeliveryFirstNameChange}
+                error={errors.delivery_first_name}
               />
             </div>
 
@@ -258,6 +268,7 @@ const CartOrderCustomerDataForm = (props) => {
                 required={true}
                 value={values.delivery_last_name}
                 onChange={handleDeliveryLastNameChange}
+                error={errors.delivery_last_name}
               />
             </div>
           </div>
@@ -270,6 +281,7 @@ const CartOrderCustomerDataForm = (props) => {
               label="Firmenname (optional)"
               value={values.delivery_company}
               onChange={handleDeliveryCompanyChange}
+              error={errors.delivery_company}
             />
           </div>
 
@@ -296,6 +308,7 @@ const CartOrderCustomerDataForm = (props) => {
                 required={true}
                 value={values.delivery_street}
                 onChange={handleDeliveryStreetChange}
+                error={errors.delivery_street}
               />
             </div>
 
@@ -307,6 +320,7 @@ const CartOrderCustomerDataForm = (props) => {
                 placeholder="Wohnung, Suite, Zimmer usw. (optional)"
                 value={values.delivery_apartment}
                 onChange={handleDeliveryApartmentChange}
+                error={errors.delivery_apartment}
               />
             </div>
           </div>
@@ -320,6 +334,7 @@ const CartOrderCustomerDataForm = (props) => {
               required={true}
               value={values.delivery_postal_code}
               onChange={handleDeliveryPostalCodeChange}
+              error={errors.delivery_postal_code}
             />
           </div>
 
@@ -332,6 +347,7 @@ const CartOrderCustomerDataForm = (props) => {
               required={true}
               value={values.delivery_city}
               onChange={handleDeliveryCityChange}
+              error={errors.delivery_city}
             />
           </div>
         </Collapse>
