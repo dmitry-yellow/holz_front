@@ -1,15 +1,17 @@
 import { Formik } from "formik";
 import CartOrderCustomerDataForm from "./CartOrderCustomerDataForm";
+import CartPaymentsMethod from "../CartPaymentsMethod";
 import { countries } from "./helper";
+import "./style.css";
 
 const CartOrderCustomerDataFormik = () => {
 
-  const onHandleSubmit = (values) => {
-      console.log(values);
-  };
+    const onHandleSubmit = (values) => {
+        console.log(values);
+    }
 
-  const onHandleValidate = (values) => {
-    const errors = {};
+    const onHandleValidate = (values) => {
+        const errors = {};
 
     if (!values.first_name) {
       errors.first_name = "can't be blank";
@@ -85,8 +87,6 @@ const CartOrderCustomerDataFormik = () => {
       }
     }
 
-    console.log(errors);
-
     return errors;
   };
 
@@ -118,8 +118,9 @@ const CartOrderCustomerDataFormik = () => {
       onSubmit={onHandleSubmit}
     >
       {({ submitForm, setValues, setFieldValue, values, errors, touched }) => {
-        return (
-          <CartOrderCustomerDataForm
+        return (<>
+        <div className="CartOrderCustomerDataFormik">
+            <CartOrderCustomerDataForm
             submitForm={submitForm}
             setValues={setValues}
             setFieldValue={setFieldValue}
@@ -127,6 +128,8 @@ const CartOrderCustomerDataFormik = () => {
             errors={errors}
             touched={touched}
           />
+        </div>
+          <CartPaymentsMethod /></>
         );
       }}
     </Formik>
