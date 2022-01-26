@@ -35,7 +35,7 @@ const CartDataSubtotal = () => {
                                onChange={(e) => {setRadioValue(e.target.value)}}
                         /> Versandkosten: <b>500,00 €</b>
                     </label>
-                    <p onClick={() => setIsOpenCollapseBlock(!isOpenCollapseBlock)}>Versandkosten berechnen</p>
+                    {/* <p onClick={() => setIsOpenCollapseBlock(!isOpenCollapseBlock)}>Versandkosten berechnen</p>
                     <Collapse
                         isOpened={isOpenCollapseBlock}
                         theme={{
@@ -46,7 +46,7 @@ const CartDataSubtotal = () => {
                         <div style={{height:  "200px", backgroundColor: "#000"}}>
 
                         </div>
-                    </Collapse>
+                    </Collapse> */}
                 </div>
             </div>
 
