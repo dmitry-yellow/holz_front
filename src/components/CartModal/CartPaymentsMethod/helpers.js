@@ -1,3 +1,8 @@
+import paypalImage from "../../../assets/images/paypal.png";
+import klarnaImage from "../../../assets/images/klarna.svg";
+
+
+
 export const productData = {
     0: {
         productOptions: [
@@ -371,7 +376,37 @@ export const productData = {
     }
 }
 
-export const paymentData = JSON.parse(JSON.stringify({
+export const paymentData = [
+    {
+        payment_method: "Direkte Banküberweisung",
+        payment_method_img: "",
+        payment_method_link: "",
+        payment_method_name: "BankTransfer",
+        payment_method_blok_text: "Überweise direkt an unsere Bankverbindung. Bitte nutze die Bestellnummer als Verwendungszweck. Deine Bestellung wird erst nach Geldeingang auf unserem Konto versandt.",
+        payment_method_block: {}
+    },
+    {
+        payment_method: "PayPal",
+        payment_method_img: paypalImage,
+        payment_method_link: "https://www.paypal.com/de/webapps/mpp/paypal-popup",
+        payment_method_name: "PayPal",
+        payment_method_blok_text: "Mit Paypal bezahlen. Solltest du keinen Paypal-Account besitzen, kannst du auch mit deiner Kreditkarte bezahlen. Es fallen bei dieser Zahlungsmethode 3% PayPal Gebühren an.",
+        payment_method_block: {}
+    },
+    {
+        payment_method: "Sofort bezahlen",
+        payment_method_img: klarnaImage,
+        payment_method_link: "https://www.klarna.com/",
+        payment_method_name: "PayPal",
+        payment_method_blok_text: "",
+        payment_method_block: {
+            title: "Jetzt bezahlen.",
+            subtitle: "Schnell und sicher",
+        }
+    }
+]
+
+export const paymentDataTest = JSON.parse(JSON.stringify({
     "internal" : {
       "status" : "ok",
       "status_details" : {
@@ -381,7 +416,8 @@ export const paymentData = JSON.parse(JSON.stringify({
       "language" : "de",
       "purchase_country" : "DE",
       "currency" : "EUR",
-      "available_payment_methods" : [ {
+      "available_payment_methods" : [ 
+          {
         "payment_method_id" : "directdebit_kp",
         "payment_method_session_id" : "a76da6b4-0b59-4067-b706-df44522ce43c",
         "ui" : {

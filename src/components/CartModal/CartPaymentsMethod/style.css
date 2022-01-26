@@ -46,6 +46,18 @@
   position: relative;
   top: 2px;
 }
+.CartPaymentsMethod-order-agreement > p {
+  font-size: 1.1em;
+  overflow: hidden;
+  padding-top: 10px;
+  font-family: "Montserrat_Bold", sans-serif;
+  font-weight: bolder;
+  text-transform: uppercase;
+  color: #555;
+  margin-top: 0;
+  margin-bottom: 0.7rem;
+  text-rendering: optimizeSpeed;
+}
 .CartPaymentsMethod-order-content {
   background-color: #eeeeee;
   padding: 0.5em;
@@ -126,4 +138,19 @@
 }
 .CartPaymentsMethod-order-content-totalSum > p:last-child {
   color: #111;
+}
+.CartPaymentsMethod-order-agreement-label {
+  font-family: "Montserrat_400", sans-serif;
+  font-size: 0.9em;
+  line-height: 1.6;
+}
+.CartPaymentsMethod-order-agreement-label > a {
+  color: #334862;
+  text-decoration: none;
+}
+.CartPaymentsMethod-order-agreement-label > a:hover {
+  color: #000;
+}
+.CartPaymentsMethod-order-agreement-label > a:focus {
+  outline: none;
 }
