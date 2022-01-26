@@ -1,0 +1,46 @@
+.Stepper {
+  width: 100%;
+
+  &-header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    margin-bottom: 40px;
+
+    &-item {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+
+      > p {
+        font-family: "Montserrat_400", sans-serif;
+        font-size: 1.2em;
+        line-height: 1.6;
+        color: #ccc;
+      }
+
+      &::after {
+        display: inline-block;
+        content: ">";
+        padding: 0 .5em;
+        color: #ccc;
+      }
+
+      &:last-child {
+        &::after {
+          display: none;
+        }
+      }
+    }
+
+    .completed {
+      > p {
+        color: #111;
+      }
+    }
+  }
+}

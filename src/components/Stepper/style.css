@@ -1,0 +1,36 @@
+.Stepper {
+  width: 100%;
+}
+.Stepper-header {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  margin-bottom: 40px;
+}
+.Stepper-header-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.Stepper-header-item > p {
+  font-family: "Montserrat_400", sans-serif;
+  font-size: 1.2em;
+  line-height: 1.6;
+  color: #ccc;
+}
+.Stepper-header-item::after {
+  display: inline-block;
+  content: ">";
+  padding: 0 0.5em;
+  color: #ccc;
+}
+.Stepper-header-item:last-child::after {
+  display: none;
+}
+.Stepper-header .completed > p {
+  color: #111;
+}
