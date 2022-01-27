@@ -9,6 +9,13 @@
   align-items: flex-start;
   margin-bottom: 40px;
 }
+@media screen and (max-width: 600px) {
+  .Stepper-header {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
 .Stepper-header-item {
   display: flex;
   flex-direction: row;
@@ -28,9 +35,19 @@
   padding: 0 0.5em;
   color: #ccc;
 }
+@media screen and (max-width: 600px) {
+  .Stepper-header-item::after {
+    display: none;
+  }
+}
 .Stepper-header-item:last-child::after {
   display: none;
 }
 .Stepper-header .completed > p {
   color: #111;
+}
+@media screen and (max-width: 600px) {
+  .Stepper-header .noCompleted {
+    display: none;
+  }
 }

@@ -2,12 +2,16 @@ import { Formik } from "formik";
 import CartOrderCustomerDataForm from "./CartOrderCustomerDataForm";
 import CartPaymentsMethod from "../CartPaymentsMethod";
 import { countries } from "./helper";
+import { useStepper } from "../../customHooks/useStepper";
 import "./style.css";
 
 const CartOrderCustomerDataFormik = () => {
 
+    const { setStep } = useStepper();
+
     const onHandleSubmit = (values) => {
         console.log(values);
+        setStep(2);
     }
 
     const onHandleValidate = (values) => {

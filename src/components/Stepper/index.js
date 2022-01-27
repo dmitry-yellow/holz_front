@@ -14,7 +14,7 @@ const Stepper = ({children}) => {
             <div className="Stepper-header">
                 {!!steps.length &&
                     steps.map((step, index) => (
-                        <div className={cn("Stepper-header-item", currentStep === index ? 'completed' : '')}
+                        <div className={cn("Stepper-header-item", currentStep === index ? 'completed' : 'noCompleted')}
                             key={step.id} onClick={() => {setStep(index)}}
                         >
                             <p>{step.name}</p>

@@ -1,13 +1,15 @@
 import {useState} from "react";
 import cn from "classnames";
-import './style.css';
 import {Collapse} from "react-collapse/lib/Collapse";
+import { useStepper } from "../../customHooks/useStepper";
+import './style.css';
 
 
 const CartDataSubtotal = () => {
 
     const [radioValue, setRadioValue] = useState("Abholung");
-    const [isOpenCollapseBlock, setIsOpenCollapseBlock] = useState(false);
+    // const [isOpenCollapseBlock, setIsOpenCollapseBlock] = useState(false);
+    const { setStep } = useStepper();
 
     return (
         <div className="CartDataSubtotal">
@@ -59,7 +61,7 @@ const CartDataSubtotal = () => {
                 <p className="CartDataSubtotal-VATIncluded-price">472,61 €</p>
             </div>
 
-            <button>Weiter zur Kasse</button>
+            <button onClick={() => setStep(1)}>Weiter zur Kasse</button>
 
         </div>
     )

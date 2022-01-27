@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import {useStepper} from '../../customHooks/useStepper';
+import React, { useEffect } from 'react';
+import { useStepper } from '../../customHooks/useStepper';
 
 export const StepperSteps = function({ children }) {
     const { currentStep, steps, setSteps } = useStepper();

@@ -11,6 +11,8 @@ import "./style.css";
 const CartPaymentsMethod = (props) => {
   const { mobileCartQuery } = props;
 
+  const [radioValue, setRadioValue] = useState("Abholung");
+
   const labelAgreement = (
     <span className="CartPaymentsMethod-order-agreement-label">
       Mit deiner Bestellung erklärst du dich mit unseren{" "}
@@ -110,9 +112,38 @@ const CartPaymentsMethod = (props) => {
                 </div>
               );
             })}
+            <div>
+          <div className="CartPaymentsMethod-order-transportation">
+                <p>Versand</p>
+                <div className="CartPaymentsMethod-order-transportation-method">  {/*radio buttons*/}
+                    <label className={cn("CartPaymentsMethod-order-transportation-method-radio", radioValue === "Abholung" && "checked")}>
+                        <input type="radio"
+                               value="Abholung"
+                               checked={radioValue === "Abholung"}
+                               onChange={(e) => {setRadioValue(e.target.value)}}
+                        /> Abholung vor Ort
+                    </label>
+                    <label className={cn("CartPaymentsMethod-order-transportation-method-radio", radioValue === "Versandkosten" && "checked")}>
+                        <input type="radio"
+                               value="Versandkosten"
+                               checked={radioValue === "Versandkosten"}
+                               onChange={(e) => {setRadioValue(e.target.value)}}
+                        /> Versandkosten: <b>500,00 €</b>
+                    </label>
+                </div>
+            </div>
+
+            <div className="CartPaymentsMethod-order-common">
+                <p className="CartPaymentsMethod-order-common-name">Gesamtsumme</p>
+                <p className="CartPaymentsMethod-order-common-price">2.960,00 €</p>
+            </div>
+            <div className="CartPaymentsMethod-order-VATIncluded">
+                <p className="CartPaymentsMethod-order-VATIncluded-name">inkl. MwSt.</p>
+                <p className="CartPaymentsMethod-order-VATIncluded-price">472,61 €</p>
+            </div>
           </div>
         </div>
-
+          </div>
         <button
           className="CartPaymentsMethod-box-button"
           onClick={onHandlerSubmit}

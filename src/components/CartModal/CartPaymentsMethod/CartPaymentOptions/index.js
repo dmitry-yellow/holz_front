@@ -51,7 +51,7 @@ const CartPaymentOptions = () => {
             }}
           />PayPal
           <img src={paypalImage} />
-          <a src={process.env.REACT_APP_PAYPAL} target="_blank" rel="noreferrer" >Was ist PayPal?</a>
+          <a href={process.env.REACT_APP_PAYPAL} target="_blank" rel="noreferrer">Was ist PayPal?</a>
         </label>
         <Collapse
           isOpened={radioPaymentValue === "PayPal"}
@@ -77,7 +77,7 @@ const CartPaymentOptions = () => {
             }}
             />Sofort bezahlen
             <img src={klarnaImage} />
-            <a src={process.env.REACT_APP_KLARNA} target="_blank" rel="noreferrer">Was ist Klarna?</a>
+            <a href={process.env.REACT_APP_KLARNA} target="_blank" rel="noreferrer">Was ist Klarna?</a>
         </label>
         <Collapse
             isOpened={radioPaymentValue === "PayNow"}
@@ -146,7 +146,7 @@ const CartPaymentOptions = () => {
                             <li>Nutze Deine regulären Online Banking Daten</li>
                             <li>Bequem und siche</li>
                             <li>Direkte Transaktionsbestätigung</li>
-                            <li><a src="https://www.klarna.com/de/kauferschutzrichtlinie/" target="_blank" rel="noopener">Klarnas Käuferschutz</a></li>
+                            <li><a href="https://www.klarna.com/de/kauferschutzrichtlinie/" target="_blank" rel="noopener">Klarnas Käuferschutz</a></li>
                         </ul>
                     </div>
                 </Collapse>
@@ -165,15 +165,15 @@ const CartPaymentOptions = () => {
                     <div className="CartPaymentOptions-method-payNow-content-list">
                         <ul>
                             <li>Speichere deine Kartendaten für zukünftige Einkäufe</li>
-                            <li><a src="https://www.klarna.com/de/kauferschutzrichtlinie/" target="_blank" rel="noopener">Klarnas Käuferschutz</a></li>
+                            <li><a href="https://www.klarna.com/de/kauferschutzrichtlinie/" target="_blank" rel="noopener">Klarnas Käuferschutz</a></li>
                         </ul>
                     </div>
                 </Collapse>
                 <p className="CartPaymentOptions-method-payNow-condition">
-                    Indem ich fortfahre, akzeptiere ich die <a src="https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_de/user" target="_blank" rel="noopener">
-                    Bedingungen für den Klarna Shopping Service</a> und bestätige, dass ich die <a src="https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_de/privacy" target="_blank" rel="noopener">
-                    Datenschutzerklärung</a> und den <a src="https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_de/cookie_purchase" target="_blank" rel="noopener">
-                    Hinweis zu Cookies</a> gelesen habe. <a src="https://www.klarna.com/de/impressum/" target="_blank" rel="noopener">Impressum</a>
+                    Indem ich fortfahre, akzeptiere ich die <a href="https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_de/user" target="_blank" rel="noopener">
+                    Bedingungen für den Klarna Shopping Service</a> und bestätige, dass ich die <a href="https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_de/privacy" target="_blank" rel="noopener">
+                    Datenschutzerklärung</a> und den <a href="https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_de/cookie_purchase" target="_blank" rel="noopener">
+                    Hinweis zu Cookies</a> gelesen habe. <a href="https://www.klarna.com/de/impressum/" target="_blank" rel="noopener">Impressum</a>
                 </p>
             </div>
         </Collapse>
