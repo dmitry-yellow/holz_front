@@ -6,18 +6,6 @@ export const useStepper = () => {
     const { currentStep, steps } = useSelector(state => state.stepper);
     const dispatch = useDispatch();
 
-    const incrementCurrentStep = useCallback(() => {
-        dispatch({
-            type: ActionTypes.INCREMENT_CURRENT_STEP
-        });
-    }, [dispatch]);
-
-    const decrementCurrentStep = useCallback(() => {
-        dispatch({
-            type: ActionTypes.DECREMENT_CURRENT_STEP
-        });
-    }, [dispatch]);
-
     const setSteps = useCallback(steps => {
         dispatch({ 
             type: ActionTypes.SET_STEPS, payload: { steps } 
@@ -31,8 +19,6 @@ export const useStepper = () => {
     }, [dispatch]);
 
     return {
-        incrementCurrentStep,
-        decrementCurrentStep,
         setSteps,
         setStep,
         currentStep,

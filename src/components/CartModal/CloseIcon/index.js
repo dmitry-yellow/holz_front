@@ -1,3 +1,4 @@
-import './style.css';
+import cn from "classnames";
+import "./style.css";
 
-export const CloseIcon = ({onHandleCloseCartModal}) => <span className='CloseIcon' onClick={onHandleCloseCartModal}></span>;
+export const CloseIcon = ({ onHandleCloseCartModal, classIcon }) => <span className={cn("CloseIcon", classIcon)} onClick={onHandleCloseCartModal}></span>;
