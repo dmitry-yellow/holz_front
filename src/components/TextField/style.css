@@ -12,7 +12,7 @@
   color: #222;
   font-family: "Montserrat_Bold";
 }
-.TextField .obligatory-field:after {
+.TextField-header.obligatory:after {
   content: " * ";
 }
 .TextField-input {

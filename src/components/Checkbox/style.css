@@ -1,9 +1,12 @@
-.Checkbox > label {
+.Checkbox-label {
   display: inline-block;
   margin-bottom: 0.5rem;
   font-family: "Montserrat_400", sans-serif;
   font-size: 0.9rem;
   line-height: 1.6;
+}
+.Checkbox-label.obligatory:after {
+  content: " * ";
 }
 .Checkbox-input {
   margin: 0.2rem 0.7rem 0 0.2rem;

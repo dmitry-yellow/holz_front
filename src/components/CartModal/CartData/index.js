@@ -1,6 +1,6 @@
-import './style.css';
 import CartDataProducts from "../CartDataProducts";
 import CartDataSubtotal from "../CartDataSubtotal";
+import './style.css';
 
 
 const CartData = () => {

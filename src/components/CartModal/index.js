@@ -12,7 +12,7 @@ const CartModal = (props) => {
   const isCartModalOpen = useSelector((state) => state.hotTub.isCartModalOpen);
 
   return (
-    <Popup isCartModalOpen={isCartModalOpen} onHandleCloseCartModal={onHandleCloseCartModal}>
+    <Popup isModalOpen={isCartModalOpen} onHandleCloseModal={onHandleCloseCartModal}>
       <Stepper>
         <StepperSteps>
           <StepperStep id="first" name="Warenkorb">

@@ -28,6 +28,7 @@
   font-size: 1.2em;
   line-height: 1.6;
   color: #ccc;
+  user-select: none;
 }
 .Stepper-header-item::after {
   display: inline-block;
@@ -43,11 +44,11 @@
 .Stepper-header-item:last-child::after {
   display: none;
 }
-.Stepper-header .completed > p {
+.Stepper-header-item.completed > p {
   color: #111;
 }
 @media screen and (max-width: 600px) {
-  .Stepper-header .noCompleted {
+  .Stepper-header-item.noCompleted {
     display: none;
   }
 }

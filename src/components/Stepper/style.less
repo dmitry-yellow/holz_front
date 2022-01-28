@@ -27,6 +27,7 @@
         font-size: 1.2em;
         line-height: 1.6;
         color: #ccc;
+        user-select: none;
       }
 
       &::after {
@@ -45,19 +46,18 @@
           display: none;
         }
       }
-    }
 
-    .completed {
-      > p {
-        color: #111;
+      &.completed {
+        > p {
+          color: #111;
+        }
       }
-    }
 
-    .noCompleted {
-
+      &.noCompleted {
         @media screen and (max-width: 600px) {
           display: none;
         }
+      }
     }
   }
 }

@@ -7,7 +7,7 @@ import './style.css';
 const Select = (props) => {
 
     const { label, classes = {}, options, value, required = false, onChange } = props;
-    const { labelClass, errorClass } = classes;
+    const { labelClass, errorClass, listClass, optionListClass } = classes;
 
     const [isOpen, setIsOpen] = useState(false);
     const [searchValue, setSearchValue] = useState("");
@@ -50,7 +50,7 @@ const Select = (props) => {
     return (
         <div className="Selection" ref={dropDownRef} >
             <p className={ cn("Selection-header", labelClass, {"obligatory-field": required}) }>{ label }</p>
-            <div className={`Selection-select-value ${isOpen && 'hidden-border-bottom'}`} onClick={toggling}>
+            <div className={ cn("Selection-select-value", {"hidden-border-bottom": isOpen}, errorClass) } onClick={toggling}>
                 <span>{value}</span>
                 <div className="Selection-wrap">
                     <span className="Selection-wrap-arrow"/>
@@ -66,14 +66,14 @@ const Select = (props) => {
                             onChange={event => handlerSearch(event.target.value)}
                         />
                     </div>
-                    <ul className="Selection-box-options-list" >
+                    <ul className={ cn("Selection-box-options-list", listClass) } >
                         {filteredOptions.map((option, index) => 
                             <li 
-                                className={cn("Selection-box-option", {"selected": value === option})}
+                                className={cn("Selection-box-option", {"selected": value === option}, optionListClass)}
                                 key={index} 
                                 onClick={onOptionClicked(option)}
                             >
-                                    {option}
+                                {option}
                             </li>
                         )}
                     </ul>

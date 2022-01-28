@@ -142,7 +142,7 @@ const TotalAmountCard = (props) => {
 
   const generateDynForm = (data, sendTo) => {
     if (data) {
-      dispatch(setIsOpenFinalCartModal(true));
+    //   dispatch(setIsOpenFinalCartModal(true));
       /*var f = document.createElement("form");
       f.setAttribute('style', "display:none");
       f.setAttribute('method', "post");
@@ -163,6 +163,7 @@ const TotalAmountCard = (props) => {
 
   const callToCart = () => {
     dispatch(getCartData());
+    dispatch(setIsOpenFinalCartModal(true));
   }
 
   const delay = (delayInms) => {
