@@ -11,7 +11,7 @@ export const StepperSteps = function({ children }) {
             })
             .map(step => step.props);
         setSteps(stepperSteps);
-    }, [setSteps]);
+    }, [setSteps, children]);
 
     return (
         <div>

@@ -45,7 +45,7 @@ const CartPaymentOptions = () => {
     <div className="CartPaymentOptions">
       <p>ZAHLUNGSART AUSWÄHLEN</p>
       
-        {paymentData.map((typePayment, index) => <div className="CartPaymentOptions-method">
+        {paymentData.map((typePayment, index) => <div key={index} className="CartPaymentOptions-method">
           <Radio 
           checked={radioPaymentValue === typePayment.name} 
           setRadioValue={setRadioPaymentValue} 
@@ -58,7 +58,7 @@ const CartPaymentOptions = () => {
             collapse: "CartPaymentOptions-method-collapse",
             content: "CartPaymentOptions-method-content",
           }}>
-          <p>{typePayment.text}</p>
+          <div className="CartPaymentOptions-method-content-data">{typePayment.text}</div>
         </Collapse>
       </div>)}
     </div>

@@ -9,7 +9,7 @@ import "./style.css";
 
 const CartOrderCustomerDataForm = (props) => {
 
-  const { submitForm, setValues, values, setFieldValue, errors, touched } = props;
+  const { values, setFieldValue, errors, touched } = props;
 
   // const errorMessage = useSelector(state => state.firstPage.error_message);
   // const isFormSubmitting = useSelector(state => state.firstPage.isFormSubmitting);

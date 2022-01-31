@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import cn from "classnames";
 import { useFocus } from "../customHooks/useFocus";
 import { useOutsideClick } from "../customHooks/useOutsideClick";
@@ -20,14 +20,14 @@ const Select = (props) => {
         if(isOpen) {
             setInputFocus();
         }
-    }, [isOpen])
+    }, [isOpen, setInputFocus])
 
     useEffect(() => {
         if(isOpen) {
             const selectedValue = dropDownRef.current.querySelector('.selected')
             selectedValue.scrollIntoView({block: "nearest", behavior: "smooth"});
         }
-    }, [isOpen])
+    }, [isOpen, dropDownRef])
 
     const toggling = () => {
         setIsOpen(!isOpen);

@@ -6,7 +6,7 @@ import "./style.css";
 const Popup = (props) => {
   const { isModalOpen, onHandleCloseModal, children, classes={} } = props;
   const { classModal, classIconClose, classModalContainer } = classes;
-console.log(isModalOpen)
+  
   return (
     <div className={cn("Popup", {"visible": isModalOpen}, classModal)}>
       {/*<MadeInGermanyLogo />*/}
