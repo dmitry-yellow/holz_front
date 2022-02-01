@@ -2,6 +2,7 @@ import { useMemo, useEffect } from 'react';
 import './style.css';
 import * as accounting from "accounting-js";
 import { useDispatch, useSelector } from "react-redux";
+import { useStepper } from "../customHooks/useStepper";
 import {getCartData, generatePdfLink, setIsOpenFinalCartModal} from "../../actions/hotTub";
 import {
   EmailIcon,
@@ -51,6 +52,7 @@ const TotalAmountCard = (props) => {
   const selectedTypeId = useSelector(state => state.hotTub.selectedTypeId);
   const priceAddValue = useSelector(state => state.hotTub.priceAddValue);
   const cartData = useSelector(state => state.hotTub.cart);
+  const { setStep } = useStepper();
 
   useEffect(() => {
     generateDynForm(cartData, cartUrl);
@@ -163,6 +165,7 @@ const TotalAmountCard = (props) => {
 
   const callToCart = () => {
     dispatch(getCartData());
+    setStep(0);
     dispatch(setIsOpenFinalCartModal(true));
   }
 
