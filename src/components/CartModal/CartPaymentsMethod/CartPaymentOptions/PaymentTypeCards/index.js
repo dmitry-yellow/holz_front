@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Collapse } from "react-collapse/lib/Collapse";
+import Popup from "../../../../Popup";
 import maestroCardImage from "../../../../../assets/images/maestroCard.svg";
 import masterCardImage from "../../../../../assets/images/masterCard.svg";
 import visaCardImage from "../../../../../assets/images/visaCard.svg";
@@ -9,6 +10,11 @@ import "../style.css";
 const PaymentTypeCards = (props) => {
 
   const {radioValue, setRadioValue} = props;
+  const [modalActive, setModalActive] = useState("");
+
+  const onHandleCloseModal = () => {
+    setModalActive("");
+  }
 
   return (
     <div className="CartPaymentOptions-method-payNow">
@@ -109,11 +115,41 @@ const PaymentTypeCards = (props) => {
         </div>
       </Collapse>
       <p className="CartPaymentOptions-method-payNow-condition">
-        Indem ich fortfahre, akzeptiere ich die <a href="https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_de/user" target="_blank"rel="noreferrer">
-        Bedingungen für den Klarna Shopping Service </a> und bestätige, dass ich die <a href="https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_de/privacy" target="_blank"rel="noreferrer">
-        Datenschutzerklärung</a> und den <a href="https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_de/cookie_purchase" target="_blank"rel="noreferrer">
+        Indem ich fortfahre, akzeptiere ich die <a href="#" target="_blank"rel="noreferrer" onClick={ e => {e.preventDefault(); setModalActive("TermsService");}}>
+        Bedingungen für den Klarna Shopping Service </a> und bestätige, dass ich die <a href="#" target="_blank"rel="noreferrer" onClick={ e => {e.preventDefault(); setModalActive("PrivacyPolicy");}}>
+        Datenschutzerklärung</a> und den <a href="#" target="_blank"rel="noreferrer" onClick={ e => {e.preventDefault(); setModalActive("Cookies");}}>
         Hinweis zu Cookies </a> gelesen habe. <a href="https://www.klarna.com/de/impressum/" target="_blank"rel="noreferrer">Impressum</a>
       </p>
+      <Popup  isModalOpen={modalActive === "TermsService"}
+              onHandleCloseModal={onHandleCloseModal}   
+              classes={{classModal: "CartPaymentOptions-method-payNow-condition-modal", 
+                        classModalContainer: "CartPaymentOptions-method-payNow-condition-modal-container", 
+                        classIconClose: "CartPaymentOptions-method-payNow-condition-close"}}
+      >
+        <iframe src="https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_de/user" 
+                className="CartPaymentOptions-method-payNow-condition-frame" title="Terms service"
+        />
+      </Popup>
+      <Popup isModalOpen={modalActive === "PrivacyPolicy"}
+              onHandleCloseModal={onHandleCloseModal}   
+              classes={{classModal: "CartPaymentOptions-method-payNow-condition-modal", 
+                        classModalContainer: "CartPaymentOptions-method-payNow-condition-modal-container", 
+                        classIconClose: "CartPaymentOptions-method-payNow-condition-close"}}
+      >
+        <iframe src="https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_de/privacy" 
+                className="CartPaymentOptions-method-payNow-condition-frame" title="Privacy policy"
+        />
+      </Popup>
+      <Popup isModalOpen={modalActive === "Cookies"}
+              onHandleCloseModal={onHandleCloseModal}   
+              classes={{classModal: "CartPaymentOptions-method-payNow-condition-modal", 
+                        classModalContainer: "CartPaymentOptions-method-payNow-condition-modal-container", 
+                        classIconClose: "CartPaymentOptions-method-payNow-condition-close"}}
+      >
+        <iframe src="https://cdn.klarna.com/1.0/shared/content/legal/terms/0/de_de/cookie_purchase" 
+                className="CartPaymentOptions-method-payNow-condition-frame" title="TermsService"
+        />
+      </Popup>
     </div>
   );
 };

@@ -4,14 +4,15 @@ import cn from "classnames";
 import "./style.css";
 
 const Popup = (props) => {
+
   const { isModalOpen, onHandleCloseModal, children, classes={} } = props;
   const { classModal, classIconClose, classModalContainer } = classes;
   
   return (
     <div className={cn("Popup", {"visible": isModalOpen}, classModal)}>
       {/*<MadeInGermanyLogo />*/}
-      <CloseIcon onHandleCloseCartModal={onHandleCloseModal} classIcon={classIconClose} />
       <div className={cn("Popup-container", classModalContainer)}>
+      <CloseIcon onHandleCloseCartModal={onHandleCloseModal} classIcon={classIconClose} />
           {children}
       </div>
     </div>
