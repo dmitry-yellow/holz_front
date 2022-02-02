@@ -1,6 +1,8 @@
 import { Formik } from "formik";
+import {useDispatch} from "react-redux";
 import CartOrderCustomerDataForm from "./CartOrderCustomerDataForm";
 import CartPaymentsMethod from "../CartPaymentsMethod";
+import { setUserData } from "../../../actions/cart";
 import { countries } from "./helper";
 import { useStepper } from "../../customHooks/useStepper";
 import "./style.css";
@@ -8,9 +10,10 @@ import "./style.css";
 const CartOrderOverview = () => {
 
     const { setStep } = useStepper();
+    const dispatch = useDispatch();
 
     const onHandleSubmit = (values) => {
-        console.log(values);
+        dispatch(setUserData(values));
         setStep(2);
     }
 

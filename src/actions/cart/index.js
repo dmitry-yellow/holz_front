@@ -1,3 +1,5 @@
+import { createDataForUser } from "./helper";
+
 export const ActionTypes = {
   SUBMIT_FORM: "CART/SUBMIT_FORM",
   SUBMIT_FORM_SUCCESS: "CART/SUBMIT_FORM_SUCCESS",
@@ -17,4 +19,9 @@ export const setNeedForDelivery = (payload) => {
       type: ActionTypes.SET_KIND_OF_DELIVERY,
       payload: payload
   };
+}
+
+export const setUserData = (data) => async(dispatch) => {
+  const formData = createDataForUser(data);
+  console.log(formData);
 }
