@@ -145,7 +145,7 @@ const TotalAmountCard = (props) => {
   const generateDynForm = (data, sendTo) => {
     if (data) {
     //   dispatch(setIsOpenFinalCartModal(true));
-      /*var f = document.createElement("form");
+      var f = document.createElement("form");
       f.setAttribute('style', "display:none");
       f.setAttribute('method', "post");
       f.setAttribute('action', sendTo);
@@ -159,14 +159,14 @@ const TotalAmountCard = (props) => {
       }
 
       document.getElementsByTagName('body')[0].appendChild(f);
-      f.submit();*/
+      f.submit();
     }
   }
 
   const callToCart = () => {
     dispatch(getCartData());
-    setStep(0);
-    dispatch(setIsOpenFinalCartModal(true));
+    // setStep(0);
+    // dispatch(setIsOpenFinalCartModal(true));
   }
 
   const delay = (delayInms) => {
@@ -309,7 +309,7 @@ const TotalAmountCard = (props) => {
           <p className="TotalAmountCard-title-amount">Gesamtsumme</p>
           <p className="TotalAmountCard-title-price">{ totalPrice && `€ ${ totalPrice }` }</p>
         </div>
-        <p>Versandbereit in 8-10 Wochen</p>
+        <p>Versandbereit in 4 Wochen</p>
         <button onClick={ () => callToCart() }>in den Warenkorb</button>
         <p className='TotalAmountCard-pdfTextDownload'
            onClick={ () => callGenerate() }
