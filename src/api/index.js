@@ -29,7 +29,16 @@ export const hotTubAPI = {
                 }
             });
             return instance.post('/download', JSON.stringify(data))
-        }
+        },
+        addToCartFull: (data) => {
+            const instance = axios.create({
+                baseURL: `${process.env.REACT_APP_HOST_API_URL}`,
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            });
+            return instance.post('/~api/json/catalog.mf/addToCartFull', JSON.stringify(data))
+        },
     }
 
 

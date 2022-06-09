@@ -39,6 +39,10 @@ export const ActionTypes = {
 }
 
 
+const convertArrayToArrayOfObjects = (array) => {
+  return array.map((item, index) => ({[index]: item}));
+}
+
 export const getCalcData = () => async (dispatch, getState) => {
   try {
     dispatch({ type: ActionTypes.GET_DATA });
@@ -147,7 +151,11 @@ export const getCartData = () => async (dispatch, getState) => {
     const selectedPositioningIds = getState().hotTub.selectedPositioningIds;
 
     const selectedIdsWithAmount = getState().hotTub.selectedIdsWithAmount;
+
     const selectedIds = await getAllSelectedIds(getState);
+    const dataSelectedIds = JSON.stringify(convertArrayToArrayOfObjects(selectedIds));
+    debugger;
+    const setSelectedIds = await hotTubAPI.addToCartFull(dataSelectedIds);
 
     await [selectedPositioningIds?.sandFilter, selectedPositioningIds?.controlPanel].forEach(item => {
       if(item) selectedIds.push(item);
