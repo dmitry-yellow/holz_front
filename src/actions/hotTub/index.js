@@ -39,8 +39,25 @@ export const ActionTypes = {
 }
 
 
-const convertArrayToArrayOfObjects = (array) => {
-  return array.map((item, index) => ({[index]: item}));
+const convertArrayToArrayOfObjects = (array, object) => {
+  return array.map(item => {
+      if (object[item]) {
+        return {
+          id: item,
+          count: object[item],
+          isSku: "",
+          extendedData: {}
+        }
+      } else {
+        return {
+          id: item,
+          count: 1,
+          isSku: "",
+          extendedData: {}
+        }
+      }
+    }
+  );
 }
 
 export const getCalcData = () => async (dispatch, getState) => {
@@ -153,9 +170,6 @@ export const getCartData = () => async (dispatch, getState) => {
     const selectedIdsWithAmount = getState().hotTub.selectedIdsWithAmount;
 
     const selectedIds = await getAllSelectedIds(getState);
-    const dataSelectedIds = JSON.stringify(convertArrayToArrayOfObjects(selectedIds));
-    debugger;
-    const setSelectedIds = await hotTubAPI.addToCartFull(dataSelectedIds);
 
     await [selectedPositioningIds?.sandFilter, selectedPositioningIds?.controlPanel].forEach(item => {
       if(item) selectedIds.push(item);
@@ -168,6 +182,8 @@ export const getCartData = () => async (dispatch, getState) => {
         return { id: id, amount: 1 }
       }
     })
+    const dataSelectedIds = convertArrayToArrayOfObjects(selectedIds, selectedIdsWithAmount);
+    const setSelectedIds = await hotTubAPI.addToCartFull(dataSelectedIds);
 
     if (data && selectedIds?.length >= 1) {
       const response = await hotTubAPI.getCartData(data);

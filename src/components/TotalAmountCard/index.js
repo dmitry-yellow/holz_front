@@ -159,14 +159,14 @@ const TotalAmountCard = (props) => {
       }
 
       document.getElementsByTagName('body')[0].appendChild(f);
-      f.submit();
+      // f.submit();
     }
   }
 
   const callToCart = () => {
     dispatch(getCartData());
-    // setStep(0);
-    // dispatch(setIsOpenFinalCartModal(true));
+    setStep(0);
+    dispatch(setIsOpenFinalCartModal(true));
   }
 
   const delay = (delayInms) => {
