@@ -38,28 +38,6 @@ export const ActionTypes = {
   SET_OPEN_FINALLY_CART_MODAL: "HOT_TUB/SET_OPEN_FINALLY_CART_MODAL",
 }
 
-
-const convertArrayToArrayOfObjects = (array, object) => {
-  return array.map(item => {
-      if (object[item]) {
-        return {
-          id: item,
-          count: object[item],
-          isSku: "",
-          extendedData: {}
-        }
-      } else {
-        return {
-          id: item,
-          count: 1,
-          isSku: "",
-          extendedData: {}
-        }
-      }
-    }
-  );
-}
-
 export const getCalcData = () => async (dispatch, getState) => {
   try {
     dispatch({ type: ActionTypes.GET_DATA });
@@ -182,11 +160,33 @@ export const getCartData = () => async (dispatch, getState) => {
         return { id: id, amount: 1 }
       }
     })
-    const dataSelectedIds = convertArrayToArrayOfObjects(selectedIds, selectedIdsWithAmount);
-    const setSelectedIds = await hotTubAPI.addToCartFull(dataSelectedIds);
+
+    const dataNew = await selectedIds.map(item => {
+          if (selectedIdsWithAmount[item]) {
+            return {
+              id: item,
+              count: selectedIdsWithAmount[item],
+              isSku: "",
+              extendedData: {}
+            }
+          } else {
+            return {
+              id: item,
+              count: 1,
+              isSku: "",
+              extendedData: {}
+            }
+          }
+        }
+    );
+
+    const setSelectedIds = await hotTubAPI.addToCartFull(dataNew);
 
     if (data && selectedIds?.length >= 1) {
       const response = await hotTubAPI.getCartData(data);
+      const response2 = await hotTubAPI.getCartItems();
+      console.log('getCartData', response);
+      console.log('getCartItems', response2);
       if (response?.data && response?.status === 200) {
         await dispatch({
           type: ActionTypes.GENERATE_CART_SUCCESS,
