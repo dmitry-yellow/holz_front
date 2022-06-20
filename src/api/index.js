@@ -6,6 +6,12 @@ const instance = axios.create({
         'Content-Type': 'application/json',
     }
 });
+const instance2 = axios.create({
+    baseURL: 'http://dindon.bi',
+    headers: {
+        'Content-Type': 'application/json',
+    }
+});
 
 
 export const hotTubAPI = {
@@ -22,6 +28,6 @@ export const hotTubAPI = {
         });
         return instance.post('/download', JSON.stringify(data))
     },
-    addToCartFull: (data) => instance.post('/~api/json/ishop/addToCartFull', JSON.stringify(data)),
-    getCartItems: () => instance.get('/~api/json/ishop/getCartItems'),
+    addToCartFull: (data) => instance2.post('/~api/json/ishop/addToCartFull', JSON.stringify(data)),
+    getCartItems: () => instance2.get('/~api/json/ishop/getCartItems'),
 };
