@@ -183,8 +183,9 @@ export const getCartData = () => async (dispatch, getState) => {
     const setSelectedIds = await hotTubAPI.addToCartFull(dataNew);
 
     if (data && selectedIds?.length >= 1) {
+      console.log('setSelectedIds', setSelectedIds);
       const response = await hotTubAPI.getCartData(data);
-      const response2 = await hotTubAPI.getCartItems();
+      const response2 = await hotTubAPI.getCartItems(setSelectedIds.data);
       console.log('getCartData', response);
       console.log('getCartItems', response2);
       if (response?.data && response?.status === 200) {
