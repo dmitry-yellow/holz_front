@@ -180,14 +180,11 @@ export const getCartData = () => async (dispatch, getState) => {
         }
     );
 
-    const setSelectedIds = await hotTubAPI.addToCartFull(dataNew);
+    const setSelectedIds = await hotTubAPI.addToCartFull({products: [...dataNew]});
 
     if (data && selectedIds?.length >= 1) {
-      console.log('setSelectedIds', setSelectedIds);
-      const response = await hotTubAPI.getCartData(data);
-      const response2 = await hotTubAPI.getCartItems(setSelectedIds.data);
-      console.log('getCartData', response);
-      console.log('getCartItems', response2);
+      // const response = await hotTubAPI.getCartData(data);
+      const response = await hotTubAPI.getCartItems(setSelectedIds);
       if (response?.data && response?.status === 200) {
         await dispatch({
           type: ActionTypes.GENERATE_CART_SUCCESS,

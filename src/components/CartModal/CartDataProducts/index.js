@@ -3,9 +3,12 @@ import injectMedia from "../../media";
 import defaultImage from "../../../assets/images/defaultImage.png";
 import flipPhoneImg from "../../../assets/images/flip-fone-icon-text.png";
 import './style.css';
+import {useSelector} from "react-redux";
 
 
 const CartDataProducts = (props) => {
+
+    const cartData = useSelector(state => state.hotTub.cart);
 
     const productData = {
         0: {
@@ -385,6 +388,13 @@ const CartDataProducts = (props) => {
 
     const { mobileCartQuery } = props;
 
+    if (!cartData) {
+        return <div>PRODUKT</div>
+    }
+
+    const totalSum = Object.values(cartData).reduce((accumulator, product) => {
+        return (Number(product.object.base.price.realValue.replace(/,/gi, '')) * Number(product.count)) + accumulator;
+    }, 0)
 
     return (
         <div className="CartDataProducts">
@@ -394,22 +404,23 @@ const CartDataProducts = (props) => {
                     productsHeader.map((item) => <span key={item}>{item}</span>) :
                     productsMobileHeader.map((item) => <span key={item}>{item}</span>)}
             </div>
-            {Object.values(productData).map((item, index) => {
-                    return <React.Fragment key={index}>
-                        {item.productOptions.map((product) => {
+            {/*{Object.values(productData).map((item, index) => {*/}
+            {/*        return <React.Fragment key={index}>*/}
+                    <React.Fragment>
+                        {Object.values(cartData).map((product, index) => {
                             return <div className="CartDataProducts-product"
-                                        key={product.optionDesc}>
+                                        key={product.object._main.id}>
                                 <div className="CartDataProducts-product-icons">
-                                    {product.deleteIcon && <span>×</span>}
-                                    {product.image && <img src={defaultImage} alt="defaultImage"/>}
+                                    {index === 0 && <span>×</span>}
+                                    {product.object.base.image ? <img src={product.object.base.image} alt="product"/> : <img src={defaultImage} alt="defaultImage"/>}
                                 </div>
                                 <div className="CartDataProducts-product-option">
-                                    <p className="CartDataProducts-product-option-name">{product.optionName}</p>
-                                    <p className="CartDataProducts-product-option-desc">{product.optionDesc}</p>
+                                    <p className="CartDataProducts-product-option-name">{product.object._main.Name}</p>
+                                    <p className="CartDataProducts-product-option-desc">{product.object.base.description}</p>
                                 </div>
-                                {!mobileCartQuery && <p className="CartDataProducts-product-price">{product.price}</p>}
-                                <p className="CartDataProducts-product-amount">{product.amount}</p>
-                                {!mobileCartQuery && <p className="CartDataProducts-product-price">{product.subtotal}</p>}
+                                {!mobileCartQuery && <p className="CartDataProducts-product-price">{product.object.base.price.realValue + " €"}</p>}
+                                <p className="CartDataProducts-product-amount">{product.count}</p>
+                                {!mobileCartQuery && <p className="CartDataProducts-product-price">{(Number(product.object.base.price.realValue.replace(/,/gi, '')) * Number(product.count)).toLocaleString('en-US', {minimumFractionDigits: 2}) + " €"}</p>}
                             </div>
                         }
                     )}
@@ -418,12 +429,12 @@ const CartDataProducts = (props) => {
                             {!mobileCartQuery && <p></p>}
                             <p></p>
                             <p></p>
-                            <p>{item.totalSum}</p>
+                            <p>{totalSum.toLocaleString('en-US', {minimumFractionDigits: 2}) + " €"}</p>
 
                         </div>
                 </React.Fragment>
-                }
-            )}
+            {/*    }*/}
+            {/*)}*/}
 
         </div>
     )
