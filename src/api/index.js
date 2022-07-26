@@ -23,4 +23,5 @@ export const hotTubAPI = {
     },
     addToCartFull: (data) => instance.post('/~api/json/ishop/addToCartFull', JSON.stringify(data)),
     getCartItems: (data) => instance.post('/~api/json/ishop/getCartItemsFull', JSON.stringify(data)),
+    submitOrder: (data) => instance.post('/~api/json/ishop/submitOrder', JSON.stringify(data)),
 };

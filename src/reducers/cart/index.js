@@ -2,6 +2,7 @@ import { ActionTypes } from "../../actions/cart";
 
 const initialState = {
   userData: {},
+  session: {},
   isFormSubmitting: false,
   isDelivery: false,
 };
@@ -28,6 +29,11 @@ const cartReducer = (state = initialState, action) => {
         return {
           ...state,
           isDelivery: action.payload,
+        };
+      case ActionTypes.SET_SESSION:
+        return {
+          ...state,
+          session: action.payload,
         };
     default:
       return state;

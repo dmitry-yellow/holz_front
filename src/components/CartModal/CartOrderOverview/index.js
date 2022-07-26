@@ -1,5 +1,5 @@
 import { Formik } from "formik";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import CartOrderCustomerDataForm from "./CartOrderCustomerDataForm";
 import CartPaymentsMethod from "../CartPaymentsMethod";
 import { setUserData } from "../../../actions/cart";
@@ -9,11 +9,12 @@ import "./style.css";
 
 const CartOrderOverview = () => {
 
+    const session = useSelector(state => state.cart.session);
     const { setStep } = useStepper();
     const dispatch = useDispatch();
 
     const onHandleSubmit = (values) => {
-        dispatch(setUserData(values));
+        dispatch(setUserData(values, session));
         setStep(2);
     }
 

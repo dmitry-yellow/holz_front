@@ -1,6 +1,7 @@
 import { hotTubAPI } from "../../api";
 import qs from "qs";
 import { getAddAccNoPriceId, getPreparationForSandFilterId, getSandFilterId } from "../../components/helperForIds";
+import {setUserSession} from "../cart";
 
 
 export const ActionTypes = {
@@ -186,10 +187,12 @@ export const getCartData = () => async (dispatch, getState) => {
       // const response = await hotTubAPI.getCartData(data);
       const response = await hotTubAPI.getCartItems(setSelectedIds);
       if (response?.data && response?.status === 200) {
+        await dispatch(setUserSession(response.data.session));
+        delete response.data.session;
         await dispatch({
           type: ActionTypes.GENERATE_CART_SUCCESS,
           cart: response.data
-        })
+        });
       }
     }
   } catch (error) {
