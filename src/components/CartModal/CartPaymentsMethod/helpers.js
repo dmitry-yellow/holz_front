@@ -666,3 +666,19 @@ export const paymentDataTest = JSON.parse(JSON.stringify({
   }));
 
 export const productsHeader = ['PRODUKT', "ZWISCHENSUMME"];
+
+export const cutSeparator = (string) => Number(string.replace(/,/gi, ''));
+
+export const totalSum = (data) => {
+    const result = Object.values(data).reduce((accumulator, product) => {
+        return (cutSeparator(product.object?.base.price.realValue) * Number(product.count)) + accumulator;
+    }, 0);
+    return result;
+}
+
+export const toEuroAmount = (amount) => {
+    if (!amount) {
+        return "";
+    }
+    return amount.toLocaleString('en-US', {minimumFractionDigits: 2}) + " €";
+};
