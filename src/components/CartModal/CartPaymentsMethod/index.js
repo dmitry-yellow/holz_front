@@ -3,10 +3,13 @@ import { useFormikContext } from "formik";
 import Checkbox from "../../Checkbox";
 import CartPaymentOptions from "./CartPaymentOptions";
 import CartPaymentOrder from "./CartPaymentOrder";
+import {useSelector} from "react-redux";
 import "./style.css";
 
 const CartPaymentsMethod = (props) => {
   const [radioDeliveryValue, setRadioDeliveryValue] = useState("Abholung");
+
+  const paySystemsList = useSelector(state => state.cart.paySystemsList);
 
   const labelAgreement = (
     <span className="CartPaymentsMethod-order-agreement-label">
@@ -24,6 +27,8 @@ const CartPaymentsMethod = (props) => {
   const onHandlerSubmit = () => {
     submitForm();
   };
+
+    console.log(paySystemsList)
 
   return (
     <div className="CartPaymentsMethod">

@@ -1,7 +1,7 @@
 import { hotTubAPI } from "../../api";
 import qs from "qs";
 import { getAddAccNoPriceId, getPreparationForSandFilterId, getSandFilterId } from "../../components/helperForIds";
-import {setUserSession} from "../cart";
+import {setPaySystemsList, setUserSession} from "../cart";
 
 
 export const ActionTypes = {
@@ -194,6 +194,12 @@ export const getCartData = () => async (dispatch, getState) => {
           cart: response.data
         });
       }
+    }
+
+    const paySystemsList = await hotTubAPI.getPaySystemsList();
+
+    if (paySystemsList?.data && paySystemsList?.status === 200) {
+      await dispatch(setPaySystemsList(paySystemsList.data));
     }
   } catch (error) {
     console.error(error)

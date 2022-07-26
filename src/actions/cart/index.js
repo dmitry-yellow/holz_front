@@ -7,6 +7,7 @@ export const ActionTypes = {
   SUBMIT_FORM_FAILURE: "CART/SUBMIT_FORM_FAILURE",
   SET_KIND_OF_DELIVERY: "CART/SET_KIND_OF_DELIVERY",
   SET_SESSION: "CART/SET_SESSION",
+  SET_PAY_SYSTEMS_LIST: "CART/SET_PAY_SYSTEMS_LIST",
 };
 
 export const setUserDataSuccess = (payload) => {
@@ -26,6 +27,13 @@ export const setNeedForDelivery = (payload) => {
 export const setUserSession = (payload) => {
   return {
       type: ActionTypes.SET_SESSION,
+      payload: payload
+  };
+}
+
+export const setPaySystemsList = (payload) => {
+  return {
+      type: ActionTypes.SET_PAY_SYSTEMS_LIST,
       payload: payload
   };
 }
