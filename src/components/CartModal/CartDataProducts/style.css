@@ -124,3 +124,17 @@
   font-size: 0.9rem;
   font-family: "Montserrat_Bold";
 }
+.CartDataWrapper {
+  width: 65%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+@media (max-width: 1000px) {
+  .CartDataWrapper {
+    width: 100%;
+    border-right: none;
+  }
+}
