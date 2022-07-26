@@ -155,3 +155,8 @@
 .CartPaymentOrder-common {
   border-bottom: 3px solid #ececec;
 }
+.CartPaymentOrderWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}

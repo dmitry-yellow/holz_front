@@ -1,11 +1,24 @@
+import React from "react";
 import cn from "classnames";
-import { productData, productsHeader } from "../helpers";
-import defaultImageSmall from "../../../../assets/images/defaultImageSmall.png";
+import {productsHeader, toEuroAmount, totalSum} from "../helpers";
+import {useSelector} from "react-redux";
+import CartPaymentProduct from "./CartPaymentProduct";
+import {Loader} from "../../../Loader";
 import "./style.css";
 
-const CartPaymentsMethod = (props) => {
+const CartPaymentOrder = (props) => {
 
   const {radioValue, setRadioValue} = props;
+
+  const cartData = useSelector(state => state.hotTub.cart);
+
+  if (!cartData) {
+    return (
+        <div className="CartPaymentOrderWrapper">
+          <Loader />
+        </div>
+    );;
+  }
 
   return (
     <div className="CartPaymentOrder">
@@ -14,47 +27,19 @@ const CartPaymentsMethod = (props) => {
           <div key={item}>{item}</div>
         ))}
       </div>
-      {Object.values(productData).map((item, index) => {
-        return (
-          <div key={index}>
-            {item.productOptions.map((product) => {
-              return (
-                <div
-                  className="CartPaymentOrder-product"
-                  key={product.optionDesc}
-                >
-                  <div className="CartPaymentOrder-product-option">
-                    {product.image && (
-                      <div className="CartPaymentOrder-product-icon">
-                        <img src={defaultImageSmall} alt="defaultImage" />
-                      </div>
-                    )}
-                    <div className="CartPaymentOrder-option-text">
-                      <p className="CartPaymentOrder-product-option-name">
-                        {product.optionName}
-                      </p>
-                      <p className="CartPaymentOrder-product-option-amount">
-                        <span>× </span>
-                        {product.amount}
-                      </p>
-                      <p className="CartPaymentOrder-product-option-desc">
-                        {product.optionDesc}
-                      </p>
-                    </div>
-                  </div>
-                  <p className="CartPaymentOrder-product-price">
-                    {product.subtotal}
-                  </p>
-                </div>
-              );
+      {/*{Object.values(productData).map((item, index) => {*/}
+      {/*  return (*/}
+      {/*    <div key={index}>*/}
+            {Object.values(cartData).map((product) => {
+              return <CartPaymentProduct key={product.object?._main.id} product={product} />
             })}
             <div className="CartPaymentOrder-totalSum">
               <p>Zwischensumme</p>
-              <p>{item.totalSum}</p>
+              <p>{toEuroAmount(totalSum(cartData))}</p>
             </div>
-          </div>
-        );
-      })}
+          {/*</div>*/}
+      {/*  );*/}
+      {/*})}*/}
       <div>
         <div className="CartPaymentOrder-transportation">
           <p>Versand</p>
@@ -94,4 +79,4 @@ const CartPaymentsMethod = (props) => {
   );
 };
 
-export default CartPaymentsMethod;
+export default CartPaymentOrder;
