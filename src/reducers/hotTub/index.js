@@ -3,6 +3,7 @@ import {ActionTypes} from "../../actions/hotTub";
 
 const initialState = {
     data: {},
+    cart: [],
     rootData: {},
     selectedSizeId: null,
     selectedWoodId: null,
@@ -113,6 +114,11 @@ const hotTubReducer = (state = initialState, action) => {
                 ...state,
                 isLoadingCartData: false,
                 cart: action.cart,
+            }
+        case ActionTypes.UPDATE_CART:
+            return {
+                ...state,
+                cart: action.payload,
             }
         case ActionTypes.GENERATE_CART_FAILURE:
             return {

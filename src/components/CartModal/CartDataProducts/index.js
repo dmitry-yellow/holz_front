@@ -2,21 +2,28 @@ import React from "react";
 import injectMedia from "../../media";
 import defaultImage from "../../../assets/images/defaultImage.png";
 import flipPhoneImg from "../../../assets/images/flip-fone-icon-text.png";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {productData, toEuroAmount, totalSum} from "../CartPaymentsMethod/helpers";
 import CartDataProduct from "./CartDataProduct";
 import {Loader} from "../../Loader";
 import './style.css';
+import {updateCart} from "../../../actions/hotTub";
 
 
 const CartDataProducts = (props) => {
 
     const cartData = useSelector(state => state.hotTub.cart);
+    const dispatch = useDispatch();
 
     const productsHeader = ['PRODUKT', "", "PREIS", "ANZAHL", "ZWISCHENSUMME"];
     const productsMobileHeader = ['PRODUKT', "", "ANZAHL"];
 
     const { mobileCartQuery } = props;
+
+    const handleDeleteHotTub = (index) => {
+        const cart = cartData.filter((item, i) => i !== index);
+        dispatch(updateCart(cart));
+    }
 
     if (!cartData) {
         return (
@@ -34,11 +41,10 @@ const CartDataProducts = (props) => {
                     productsHeader.map((item) => <span key={item}>{item}</span>) :
                     productsMobileHeader.map((item) => <span key={item}>{item}</span>)}
             </div>
-            {/*{Object.values(productData).map((item, index) => {*/}
-            {/*        return <React.Fragment key={index}>*/}
-                    <React.Fragment>
-                        {Object.values(cartData).map((product, index) => {
-                            return <CartDataProduct key={product.object?._main.id} product={product} index={index} />
+            {cartData.map((item, i) => {
+                    return <React.Fragment key={i}>
+                        {Object.values(item).map((product, index) => {
+                            return <CartDataProduct key={product.object?._main.id} product={product} index={index} onClickDelete={handleDeleteHotTub} />
                         }
                     )}
                         <div className="CartDataProducts-totalSum">
@@ -46,12 +52,12 @@ const CartDataProducts = (props) => {
                             {!mobileCartQuery && <p></p>}
                             <p></p>
                             <p></p>
-                            <p>{toEuroAmount(totalSum(cartData))}</p>
+                            <p>{toEuroAmount(totalSum(item))}</p>
 
                         </div>
                 </React.Fragment>
-            {/*    }*/}
-            {/*)}*/}
+                }
+            )}
 
         </div>
     )

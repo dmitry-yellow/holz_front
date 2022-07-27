@@ -28,6 +28,7 @@ export const ActionTypes = {
   GENERATE_PGF_SUCCESS: "HOT_TUB/GENERATE_PGF_SUCCESS",
   GENERATE_PGF_FAILURE: "HOT_TUB/GENERATE_PGF_FAILURE",
   GENERATE_CART: "HOT_TUB/GENERATE_CART",
+  UPDATE_CART: "HOT_TUB/UPDATE_CART",
   GENERATE_CART_SUCCESS: "HOT_TUB/GENERATE_CART_SUCCESS",
   GENERATE_CART_FAILURE: "HOT_TUB/GENERATE_CART_FAILURE",
   SET_SELECTED_IDS_WITH_AMOUNT: "HOT_TUB/SET_SELECTED_IDS_WITH_AMOUNT",
@@ -113,6 +114,10 @@ export const setSelectedObjIdsWithAmount = (selectedIds) => (dispatch) => {
   dispatch({ type: ActionTypes.SET_SELECTED_OBJ_IDS_WITH_AMOUNT, selectedIds })
 }
 
+export const updateCart = (cart) => (dispatch) => {
+  dispatch({ type: ActionTypes.UPDATE_CART, payload: cart });
+}
+
 
 const getAllSelectedIds = (getState) => {
   let allSelectedIds = [];
@@ -191,7 +196,7 @@ export const getCartData = () => async (dispatch, getState) => {
         delete response.data.session;
         await dispatch({
           type: ActionTypes.GENERATE_CART_SUCCESS,
-          cart: response.data
+          cart: [response.data]
         });
       }
     }

@@ -27,19 +27,18 @@ const CartPaymentOrder = (props) => {
           <div key={item}>{item}</div>
         ))}
       </div>
-      {/*{Object.values(productData).map((item, index) => {*/}
-      {/*  return (*/}
-      {/*    <div key={index}>*/}
-            {Object.values(cartData).map((product) => {
+        {cartData.map((item, i) => {
+            return <React.Fragment key={i}>
+            {Object.values(item).map((product) => {
               return <CartPaymentProduct key={product.object?._main.id} product={product} />
             })}
             <div className="CartPaymentOrder-totalSum">
               <p>Zwischensumme</p>
-              <p>{toEuroAmount(totalSum(cartData))}</p>
+              <p>{toEuroAmount(totalSum(item))}</p>
             </div>
-          {/*</div>*/}
-      {/*  );*/}
-      {/*})}*/}
+            </React.Fragment>
+            }
+        )}
       <div>
         <div className="CartPaymentOrder-transportation">
           <p>Versand</p>
